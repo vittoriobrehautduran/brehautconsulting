@@ -305,7 +305,7 @@ export default function ServicesPage() {
         </section>
 
         {/* Mobile Navigation - Sticky at top */}
-        <nav className="lg:hidden sticky top-20 z-30 bg-black/70 backdrop-blur-md border-b border-white/15 py-2.5">
+        <nav className="lg:hidden sticky top-20 z-30 bg-black/70 backdrop-blur-md border-t border-b border-white/15 py-2.5">
           <div className="flex gap-1.5 justify-center px-2">
             {SERVICE_DETAILS.map((service, index) => (
               <button
