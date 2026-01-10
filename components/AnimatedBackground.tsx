@@ -131,30 +131,31 @@ export default function AnimatedBackground() {
     // Throttled resize handler to prevent jumps during scroll
     let resizeTimeout: NodeJS.Timeout | null = null
     let lastWidth = window.innerWidth
-    let lastHeight = window.innerHeight
+    let lastAspectRatio = window.innerWidth / window.innerHeight
 
     const handleResize = () => {
       const currentWidth = window.innerWidth
       const currentHeight = window.innerHeight
+      const currentAspectRatio = currentWidth / currentHeight
 
-      // Only resize if there's a significant change (more than 10px) to avoid micro-adjustments
       const widthDiff = Math.abs(currentWidth - lastWidth)
-      const heightDiff = Math.abs(currentHeight - lastHeight)
+      const aspectRatioDiff = Math.abs(currentAspectRatio - lastAspectRatio)
 
       if (resizeTimeout) {
         clearTimeout(resizeTimeout)
       }
 
       resizeTimeout = setTimeout(() => {
-        // Only update if change is significant (prevents address bar hide/show micro-adjustments)
-        if (widthDiff > 10 || heightDiff > 10) {
-          camera.aspect = currentWidth / currentHeight
+        // Only resize if width changes significantly (orientation change) or aspect ratio changes significantly
+        // This ignores address bar hide/show which only changes height
+        if (widthDiff > 20 || aspectRatioDiff > 0.05) {
+          camera.aspect = currentAspectRatio
           camera.updateProjectionMatrix()
           renderer.setSize(currentWidth, currentHeight)
           lastWidth = currentWidth
-          lastHeight = currentHeight
+          lastAspectRatio = currentAspectRatio
         }
-      }, 150)
+      }, 200)
     }
 
     window.addEventListener('resize', handleResize, { passive: true })
