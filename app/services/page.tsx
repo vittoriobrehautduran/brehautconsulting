@@ -124,7 +124,7 @@ export default function ServicesPage() {
   const titleRef = useRef<HTMLHeadingElement>(null)
   const introRef = useRef<HTMLParagraphElement>(null)
   const servicesRef = useRef<HTMLDivElement>(null)
-  const serviceCardsRefs = useRef<(HTMLDivElement | null)[]>([])
+  const serviceCardsRefs = useRef<(HTMLElement | null)[]>([])
   const [activeSection, setActiveSection] = useState<number>(0)
   const [showScrollTop, setShowScrollTop] = useState<boolean>(false)
 
@@ -452,7 +452,7 @@ export default function ServicesPage() {
               Ready to Get Started?
             </h2>
             <p className="text-xl text-white/90 mb-12 max-w-2xl mx-auto">
-              Let's discuss how we can help transform your digital presence and drive real business results.
+              Let&apos;s discuss how we can help transform your digital presence and drive real business results.
             </p>
             <Link
               href="/booking"

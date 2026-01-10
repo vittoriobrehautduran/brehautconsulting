@@ -129,13 +129,16 @@ export default function AnimatedBackground() {
 
     window.addEventListener('resize', handleResize)
 
+    const mountElement = mountRef.current
+    const rendererElement = renderer.domElement
+
     return () => {
       window.removeEventListener('resize', handleResize)
       if (frameRef.current) {
         cancelAnimationFrame(frameRef.current)
       }
-      if (mountRef.current && renderer.domElement) {
-        mountRef.current.removeChild(renderer.domElement)
+      if (mountElement && rendererElement) {
+        mountElement.removeChild(rendererElement)
       }
       geometry.dispose()
       material.dispose()

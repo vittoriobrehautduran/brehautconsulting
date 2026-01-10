@@ -1326,7 +1326,7 @@ export default function HomePage() {
                 <p className="text-lg text-white/80 leading-relaxed">
                   You can book a consultation meeting directly through our booking system. 
                   Available time slots are Monday through Thursday. Simply select your preferred 
-                  date and time, fill in your details, and we'll confirm your meeting.
+                  date and time, fill in your details, and we&apos;ll confirm your meeting.
                 </p>
               </div>
 
@@ -1347,7 +1347,7 @@ export default function HomePage() {
                 </h3>
                 <p className="text-lg text-white/80 leading-relaxed">
                   Project timelines vary depending on scope and complexity. During our initial 
-                  consultation, we'll discuss your specific needs and provide a detailed timeline 
+                  consultation, we&apos;ll discuss your specific needs and provide a detailed timeline 
                   and project plan tailored to your goals.
                 </p>
               </div>
@@ -1379,7 +1379,7 @@ export default function HomePage() {
               ref={ctaTextRef}
               className="text-xl text-white/90 mb-12 max-w-2xl mx-auto"
             >
-              Let's discuss how we can help transform your digital presence and drive real business results.
+              Let&apos;s discuss how we can help transform your digital presence and drive real business results.
             </p>
             <div ref={ctaButtonRef}>
               <Link
