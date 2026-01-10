@@ -10,6 +10,10 @@ export default function AnimatedBackground() {
   useEffect(() => {
     if (!mountRef.current) return
 
+    // Detect mobile device for performance optimizations
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) || window.innerWidth < 768
+    const isLowEndDevice = isMobile && (navigator.hardwareConcurrency || 4) < 4
+
     const scene = new THREE.Scene()
     const camera = new THREE.PerspectiveCamera(
       75,
@@ -19,12 +23,13 @@ export default function AnimatedBackground() {
     )
     const renderer = new THREE.WebGLRenderer({ 
       alpha: true, 
-      antialias: true,
-      premultipliedAlpha: false 
+      antialias: !isMobile,
+      premultipliedAlpha: false,
+      powerPreference: 'high-performance'
     })
     renderer.setClearColor(0x000000, 0)
     renderer.setSize(window.innerWidth, window.innerHeight)
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, isMobile ? 1.5 : 2))
     const canvas = renderer.domElement
     canvas.style.pointerEvents = 'none'
     canvas.style.position = 'fixed'
@@ -34,6 +39,7 @@ export default function AnimatedBackground() {
     canvas.style.height = '100%'
     canvas.style.zIndex = '-1'
     canvas.style.backgroundColor = 'transparent'
+    canvas.style.willChange = 'transform'
     mountRef.current.appendChild(canvas)
     
     // Render once immediately to ensure canvas is cleared and transparent
@@ -62,8 +68,8 @@ export default function AnimatedBackground() {
 
     const particleTexture = createParticleTexture()
 
-    // Create smooth, subtle particles
-    const particleCount = 150
+    // Reduce particle count on mobile for better performance
+    const particleCount = isLowEndDevice ? 80 : isMobile ? 100 : 150
     const positions = new Float32Array(particleCount * 3)
     const colors = new Float32Array(particleCount * 3)
 
@@ -83,13 +89,14 @@ export default function AnimatedBackground() {
     geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3))
     geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3))
 
+    // Use NormalBlending on mobile instead of AdditiveBlending for better performance
     const material = new THREE.PointsMaterial({
       size: 2,
       map: particleTexture,
       vertexColors: true,
       transparent: true,
       opacity: 0.5,
-      blending: THREE.AdditiveBlending,
+      blending: isMobile ? THREE.NormalBlending : THREE.AdditiveBlending,
       depthWrite: false,
     })
 
@@ -121,19 +128,45 @@ export default function AnimatedBackground() {
 
     animate()
 
+    // Throttled resize handler to prevent jumps during scroll
+    let resizeTimeout: NodeJS.Timeout | null = null
+    let lastWidth = window.innerWidth
+    let lastHeight = window.innerHeight
+
     const handleResize = () => {
-      camera.aspect = window.innerWidth / window.innerHeight
-      camera.updateProjectionMatrix()
-      renderer.setSize(window.innerWidth, window.innerHeight)
+      const currentWidth = window.innerWidth
+      const currentHeight = window.innerHeight
+
+      // Only resize if there's a significant change (more than 10px) to avoid micro-adjustments
+      const widthDiff = Math.abs(currentWidth - lastWidth)
+      const heightDiff = Math.abs(currentHeight - lastHeight)
+
+      if (resizeTimeout) {
+        clearTimeout(resizeTimeout)
+      }
+
+      resizeTimeout = setTimeout(() => {
+        // Only update if change is significant (prevents address bar hide/show micro-adjustments)
+        if (widthDiff > 10 || heightDiff > 10) {
+          camera.aspect = currentWidth / currentHeight
+          camera.updateProjectionMatrix()
+          renderer.setSize(currentWidth, currentHeight)
+          lastWidth = currentWidth
+          lastHeight = currentHeight
+        }
+      }, 150)
     }
 
-    window.addEventListener('resize', handleResize)
+    window.addEventListener('resize', handleResize, { passive: true })
 
     const mountElement = mountRef.current
     const rendererElement = renderer.domElement
 
     return () => {
       window.removeEventListener('resize', handleResize)
+      if (resizeTimeout) {
+        clearTimeout(resizeTimeout)
+      }
       if (frameRef.current) {
         cancelAnimationFrame(frameRef.current)
       }

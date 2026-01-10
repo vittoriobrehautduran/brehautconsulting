@@ -95,12 +95,13 @@ export default function HomePage() {
         if (serviceCard) {
           gsap.fromTo(
             serviceCard,
-            { x: -100, opacity: 0 },
+            { x: -50, opacity: 0 },
             {
               x: 0,
               opacity: 1,
-              duration: 0.8,
-              ease: 'power3.out',
+              duration: 0.6,
+              ease: 'power2.out',
+              force3D: true,
               scrollTrigger: {
                 trigger: serviceCard,
                 start: 'top 80%',
@@ -281,12 +282,13 @@ export default function HomePage() {
       if (serviceCard3Ref.current) {
         gsap.fromTo(
           serviceCard3Ref.current,
-          { x: -100, opacity: 0 },
+          { x: -50, opacity: 0 },
           {
             x: 0,
             opacity: 1,
-            duration: 0.8,
-            ease: 'power3.out',
+            duration: 0.6,
+            ease: 'power2.out',
+            force3D: true,
             scrollTrigger: {
               trigger: serviceCard3Ref.current,
               start: 'top 80%',
@@ -343,12 +345,13 @@ export default function HomePage() {
       if (serviceCard4Ref.current) {
         gsap.fromTo(
           serviceCard4Ref.current,
-          { x: -100, opacity: 0 },
+          { x: -50, opacity: 0 },
           {
             x: 0,
             opacity: 1,
-            duration: 0.8,
-            ease: 'power3.out',
+            duration: 0.6,
+            ease: 'power2.out',
+            force3D: true,
             scrollTrigger: {
               trigger: serviceCard4Ref.current,
               start: 'top 80%',
@@ -384,12 +387,13 @@ export default function HomePage() {
       if (serviceCard5Ref.current) {
         gsap.fromTo(
           serviceCard5Ref.current,
-          { x: -100, opacity: 0 },
+          { x: -50, opacity: 0 },
           {
             x: 0,
             opacity: 1,
-            duration: 0.8,
-            ease: 'power3.out',
+            duration: 0.6,
+            ease: 'power2.out',
+            force3D: true,
             scrollTrigger: {
               trigger: serviceCard5Ref.current,
               start: 'top 80%',
@@ -444,12 +448,13 @@ export default function HomePage() {
       if (serviceCard6Ref.current) {
         gsap.fromTo(
           serviceCard6Ref.current,
-          { x: -100, opacity: 0 },
+          { x: -50, opacity: 0 },
           {
             x: 0,
             opacity: 1,
-            duration: 0.8,
-            ease: 'power3.out',
+            duration: 0.6,
+            ease: 'power2.out',
+            force3D: true,
             scrollTrigger: {
               trigger: serviceCard6Ref.current,
               start: 'top 80%',
@@ -741,7 +746,7 @@ export default function HomePage() {
               <div className="hidden lg:block absolute left-[calc(50%-1px)] top-1/2 -translate-y-1/2 w-px h-20 bg-gradient-to-b from-transparent via-white/20 to-transparent z-0"></div>
               
               {/* Left Column - Service Card */}
-              <div className="service-card description-card bg-white/5 rounded-3xl p-10 lg:p-10 hover:bg-white/10 transition-all duration-300 relative z-10">
+              <div className="service-card description-card bg-white/20 rounded-3xl p-10 lg:p-10 hover:bg-white/30 transition-all duration-300 relative z-10 backdrop-blur-sm">
                 <h3 className="glow-text text-3xl lg:text-4xl font-heading font-bold mb-4 text-white leading-tight text-center lg:text-left">
                   {SERVICES[0].title}
                 </h3>
@@ -788,7 +793,7 @@ export default function HomePage() {
               {/* Left Column - Service Card */}
               <div 
                 ref={serviceCard2Ref}
-                className="description-card bg-white/5 rounded-3xl p-10 lg:p-14 hover:bg-white/10 transition-all duration-300 relative z-10"
+                className="description-card bg-white/20 rounded-3xl p-10 lg:p-14 hover:bg-white/30 transition-all duration-300 relative z-10 backdrop-blur-sm"
               >
                 <h3 className="glow-text text-3xl lg:text-4xl font-heading font-bold mb-6 text-white leading-tight">
                   {SERVICES[1].title}
@@ -900,7 +905,7 @@ export default function HomePage() {
               {/* Left Column - Service Card */}
               <div 
                 ref={serviceCard3Ref}
-                className="description-card bg-white/5 rounded-3xl p-10 lg:p-14 hover:bg-white/10 transition-all duration-300 relative z-10"
+                className="description-card bg-white/20 rounded-3xl p-10 lg:p-14 hover:bg-white/30 transition-all duration-300 relative z-10 backdrop-blur-sm"
               >
                 <h3 className="glow-text text-3xl lg:text-4xl font-heading font-bold mb-6 text-white leading-tight">
                   {SERVICES[2].title}
@@ -979,7 +984,7 @@ export default function HomePage() {
               {/* Left Column - Service Card */}
               <div 
                 ref={serviceCard4Ref}
-                className="description-card bg-white/5 rounded-3xl p-10 lg:p-14 hover:bg-white/10 transition-all duration-300 relative z-10"
+                className="description-card bg-white/20 rounded-3xl p-10 lg:p-14 hover:bg-white/30 transition-all duration-300 relative z-10 backdrop-blur-sm"
               >
                 <h3 className="glow-text text-3xl lg:text-4xl font-heading font-bold mb-6 text-white leading-tight">
                   {SERVICES[3].title}
@@ -1124,7 +1129,7 @@ export default function HomePage() {
               {/* Left Column - Service Card */}
               <div 
                 ref={serviceCard5Ref}
-                className="description-card bg-white/5 rounded-3xl p-10 lg:p-14 hover:bg-white/10 transition-all duration-300 relative z-10"
+                className="description-card bg-white/20 rounded-3xl p-10 lg:p-14 hover:bg-white/30 transition-all duration-300 relative z-10 backdrop-blur-sm"
               >
                 <h3 className="glow-text text-3xl lg:text-4xl font-heading font-bold mb-6 text-white leading-tight">
                   {SERVICES[4].title}
@@ -1195,7 +1200,7 @@ export default function HomePage() {
               {/* Left Column - Service Card */}
               <div 
                 ref={serviceCard6Ref}
-                className="description-card bg-white/5 rounded-3xl p-10 lg:p-14 hover:bg-white/10 transition-all duration-300 relative z-10 flex flex-col justify-center"
+                className="description-card bg-white/20 rounded-3xl p-10 lg:p-14 hover:bg-white/30 transition-all duration-300 relative z-10 flex flex-col justify-center backdrop-blur-sm"
               >
                 <h3 className="glow-text text-3xl lg:text-4xl font-heading font-bold mb-6 text-white leading-tight">
                   {SERVICES[5].title}
