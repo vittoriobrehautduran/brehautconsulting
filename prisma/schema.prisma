@@ -1,0 +1,28 @@
+// Prisma schema for Brehaut Consulting booking system
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Booking {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  company   String?
+  message   String?
+  date      DateTime // Date only (time ignored in application logic)
+  timeSlot  String   // "13-14", "16-17", or "18-19"
+  status    String   @default("confirmed") // "confirmed", "cancelled"
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([date, timeSlot])
+  @@index([email])
+  @@map("bookings")
+}
+
