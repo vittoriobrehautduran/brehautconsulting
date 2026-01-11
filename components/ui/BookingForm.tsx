@@ -12,6 +12,15 @@ import { Card, CardContent } from '@/components/ui/card'
 import { TimeSlot } from '@/lib/constants'
 import { BookingRequest } from '@/types/booking'
 import { Loader2 } from 'lucide-react'
+import { cn } from '@/lib/utils'
+
+// Format date as YYYY-MM-DD in local time (not UTC)
+function formatDateLocal(date: Date): string {
+  const year = date.getFullYear()
+  const month = String(date.getMonth() + 1).padStart(2, '0')
+  const day = String(date.getDate()).padStart(2, '0')
+  return `${year}-${month}-${day}`
+}
 
 interface BookingFormProps {
   selectedDate: Date | null
@@ -72,7 +81,7 @@ export default function BookingForm({
     }
 
     try {
-      const dateStr = selectedDate.toISOString().split('T')[0]
+      const dateStr = formatDateLocal(selectedDate)
       await onSubmit({
         name: formData.name.trim(),
         email: formData.email.trim(),
@@ -97,12 +106,12 @@ export default function BookingForm({
   return (
     <form onSubmit={handleSubmit} className="mt-8 space-y-6">
       {selectedDate && selectedTimeSlot && (
-        <Card className="border-[#f5f5f5]/20 bg-card/50">
+        <Card className="border-blue-500/30 bg-blue-950/20">
           <CardContent className="pt-6">
-            <Label className="text-sm font-medium text-muted-foreground mb-2 block">
+            <Label className="text-base font-medium text-blue-300/80 mb-3 block">
               Selected Time Slot
             </Label>
-            <h4 className="text-lg font-semibold mb-1">
+            <h4 className="text-xl font-semibold mb-2 text-blue-100">
               {selectedDate.toLocaleDateString('en-US', {
                 weekday: 'long',
                 year: 'numeric',
@@ -110,7 +119,7 @@ export default function BookingForm({
                 day: 'numeric',
               })}
             </h4>
-            <p className="text-[#f5f5f5] font-medium">{formatTimeSlot(selectedTimeSlot)} (Stockholm time)</p>
+            <p className="text-blue-200 font-medium text-lg">{formatTimeSlot(selectedTimeSlot)} (Stockholm time)</p>
           </CardContent>
         </Card>
       )}
@@ -121,22 +130,26 @@ export default function BookingForm({
         </Alert>
       )}
 
-      <div className="space-y-4">
-        <div className="space-y-2">
-          <Label htmlFor="name">
+      <div className="space-y-5">
+        <div className="space-y-3">
+          <Label htmlFor="name" className="text-blue-100 text-base">
             Name <span className="text-destructive">*</span>
           </Label>
           <Input
             id="name"
             value={formData.name}
             onChange={handleChange('name')}
-            className={errors.name ? 'border-destructive' : ''}
+            className={cn(
+              "h-12 text-base border-blue-500/30 bg-blue-950/20 text-white placeholder:text-blue-300/50",
+              "focus-visible:ring-blue-500/50 focus-visible:border-blue-400",
+              errors.name ? 'border-destructive' : ''
+            )}
           />
-          {errors.name && <p className="text-sm text-destructive">{errors.name}</p>}
+          {errors.name && <p className="text-base text-destructive">{errors.name}</p>}
         </div>
 
-        <div className="space-y-2">
-          <Label htmlFor="email">
+        <div className="space-y-3">
+          <Label htmlFor="email" className="text-blue-100 text-base">
             Email <span className="text-destructive">*</span>
           </Label>
           <Input
@@ -144,27 +157,33 @@ export default function BookingForm({
             type="email"
             value={formData.email}
             onChange={handleChange('email')}
-            className={errors.email ? 'border-destructive' : ''}
+            className={cn(
+              "h-12 text-base border-blue-500/30 bg-blue-950/20 text-white placeholder:text-blue-300/50",
+              "focus-visible:ring-blue-500/50 focus-visible:border-blue-400",
+              errors.email ? 'border-destructive' : ''
+            )}
           />
-          {errors.email && <p className="text-sm text-destructive">{errors.email}</p>}
+          {errors.email && <p className="text-base text-destructive">{errors.email}</p>}
         </div>
 
-        <div className="space-y-2">
-          <Label htmlFor="company">Company (optional)</Label>
+        <div className="space-y-3">
+          <Label htmlFor="company" className="text-blue-100 text-base">Company (optional)</Label>
           <Input
             id="company"
             value={formData.company}
             onChange={handleChange('company')}
+            className="h-12 text-base border-blue-500/30 bg-blue-950/20 text-white placeholder:text-blue-300/50 focus-visible:ring-blue-500/50 focus-visible:border-blue-400"
           />
         </div>
 
-        <div className="space-y-2">
-          <Label htmlFor="message">Message (optional)</Label>
+        <div className="space-y-3">
+          <Label htmlFor="message" className="text-blue-100 text-base">Message (optional)</Label>
           <Textarea
             id="message"
-            rows={4}
+            rows={5}
             value={formData.message}
             onChange={handleChange('message')}
+            className="text-base border-blue-500/30 bg-blue-950/20 text-white placeholder:text-blue-300/50 focus-visible:ring-blue-500/50 focus-visible:border-blue-400"
           />
         </div>
       </div>
@@ -172,12 +191,12 @@ export default function BookingForm({
       <Button
         type="submit"
         size="lg"
-        className="w-full"
+        className="w-full h-14 bg-blue-600 hover:bg-blue-700 text-white border-blue-500 text-lg font-semibold"
         disabled={!selectedDate || !selectedTimeSlot || isLoading}
       >
         {isLoading ? (
           <>
-            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+            <Loader2 className="mr-2 h-5 w-5 animate-spin" />
             Confirming...
           </>
         ) : (

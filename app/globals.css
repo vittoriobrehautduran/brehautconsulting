@@ -43,18 +43,42 @@
 
   .glow-text {
     text-shadow: 0 0 8px rgba(147, 197, 253, 0.3), 0 0 12px rgba(196, 181, 253, 0.2);
-    animation: text-glow 4s ease-in-out infinite;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .glow-text {
+      animation: text-glow 4s ease-in-out infinite;
+    }
   }
 
   .glow-title {
     text-shadow: 0 0 12px rgba(147, 197, 253, 0.25), 0 0 20px rgba(196, 181, 253, 0.15);
-    animation: title-glow 5s ease-in-out infinite;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .glow-title {
+      animation: title-glow 5s ease-in-out infinite;
+    }
   }
 
   .glow-button {
     box-shadow: 0 0 15px rgba(255, 255, 255, 0.25), 0 0 25px rgba(147, 197, 253, 0.2);
-    animation: button-glow 3s ease-in-out infinite;
     transition: all 0.3s ease;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .glow-button {
+      animation: button-glow 3s ease-in-out infinite;
+    }
+  }
+
+  /* Reduce animation intensity on mobile instead of disabling */
+  @media (max-width: 768px) {
+    .glow-text,
+    .glow-title,
+    .glow-button {
+      animation-duration: 6s !important; /* Slower animations */
+    }
   }
 
   .glow-button:hover {
@@ -93,6 +117,73 @@
     animation: bounce-subtle 2s ease-in-out infinite;
   }
 
+  /* Calendar selected date styling */
+  button[aria-selected="true"] {
+    background-color: rgb(37 99 235) !important;
+    background: rgb(37 99 235) !important;
+    color: white !important;
+    font-weight: 600 !important;
+  }
+
+  button[aria-selected="true"]:hover {
+    background-color: rgb(29 78 216) !important;
+    background: rgb(29 78 216) !important;
+    color: white !important;
+  }
+
+  /* Additional selector for react-day-picker selected state */
+  .day_selected,
+  button.day_selected,
+  [role="gridcell"] button[aria-selected="true"] {
+    background-color: rgb(37 99 235) !important;
+    background: rgb(37 99 235) !important;
+    color: white !important;
+    font-weight: 600 !important;
+  }
+
+  .day_selected:hover,
+  button.day_selected:hover,
+  [role="gridcell"] button[aria-selected="true"]:hover {
+    background-color: rgb(29 78 216) !important;
+    background: rgb(29 78 216) !important;
+    color: white !important;
+  }
+
+  /* Calendar disabled date styling - gray out entire date slot */
+  button.day_disabled,
+  button[disabled].day,
+  [role="gridcell"] button:disabled,
+  [role="gridcell"] button[aria-disabled="true"],
+  .rdp-button[disabled],
+  .rdp-day[disabled] {
+    background-color: rgba(0, 0, 0, 0.5) !important;
+    background: rgba(0, 0, 0, 0.5) !important;
+    color: rgba(255, 255, 255, 0.3) !important;
+    opacity: 0.6 !important;
+    cursor: not-allowed !important;
+    pointer-events: none !important;
+  }
+
+  button.day_disabled:hover,
+  button[disabled].day:hover,
+  [role="gridcell"] button:disabled:hover,
+  [role="gridcell"] button[aria-disabled="true"]:hover,
+  .rdp-button[disabled]:hover,
+  .rdp-day[disabled]:hover {
+    background-color: rgba(0, 0, 0, 0.5) !important;
+    background: rgba(0, 0, 0, 0.5) !important;
+    color: rgba(255, 255, 255, 0.3) !important;
+  }
+
+  /* Hide calendar day headers */
+  .rdp-head_row,
+  .rdp-head_cell,
+  [role="grid"] thead,
+  [role="grid"] thead tr,
+  [role="grid"] thead th {
+    display: none !important;
+  }
+
   @keyframes bounce-subtle {
     0%, 100% {
       transform: translateY(0);
@@ -125,5 +216,29 @@
 
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
+  }
+
+  /* Reduce backdrop blur intensity on mobile for better performance */
+  @media (max-width: 768px) {
+    .backdrop-blur-sm {
+      backdrop-filter: blur(2px) !important;
+      -webkit-backdrop-filter: blur(2px) !important;
+    }
+    .backdrop-blur-md {
+      backdrop-filter: blur(4px) !important;
+      -webkit-backdrop-filter: blur(4px) !important;
+    }
+  }
+}
+
+/* Disable animations for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }

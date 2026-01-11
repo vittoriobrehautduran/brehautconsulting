@@ -6,6 +6,8 @@ import { WORK_DAYS, TIME_SLOTS, TIMEZONE } from '../../lib/constants'
 import { createBooking, isSlotAvailable } from '../../lib/db/bookings'
 import { createCalendarEvent } from '../../lib/google-calendar/client'
 import { parseDateFromStorage } from '../../lib/google-calendar/utils'
+import { sendBookingConfirmationEmail } from '../../lib/email/ses'
+import { EVENT_CREATION_CALENDAR_ID } from '../../lib/constants'
 import { z } from 'zod'
 
 // Validation schema for booking request
@@ -55,21 +57,8 @@ export const handler: Handler = async (event, context) => {
 
     const { name, email, company, message, date, timeSlot } = validationResult.data
 
-    // Parse and validate date
-    const bookingDate = new Date(date + 'T12:00:00')
-    if (isNaN(bookingDate.getTime())) {
-      return {
-        statusCode: 400,
-        headers: {
-          'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': '*',
-        },
-        body: JSON.stringify({
-          success: false,
-          error: 'Invalid date format',
-        }),
-      }
-    }
+    // Parse date string to Date object in Stockholm timezone
+    const bookingDate = parseDateFromStorage(date)
 
     // Check if date is a work day (Monday-Thursday)
     const dayOfWeek = bookingDate.getDay()
@@ -108,10 +97,24 @@ export const handler: Handler = async (event, context) => {
 
     // Create event in Google Calendar (non-blocking - don't fail if this errors)
     try {
-      await createCalendarEvent(bookingDate, timeSlot, name, email, company, message)
+      await createCalendarEvent(bookingDate, timeSlot, name, email, company, message, EVENT_CREATION_CALENDAR_ID)
     } catch (calendarError) {
       console.error('Error creating calendar event (booking still saved):', calendarError)
       // Continue - booking is already saved in database
+    }
+
+    // Send confirmation email (non-blocking - don't fail if this errors)
+    try {
+      await sendBookingConfirmationEmail({
+        name,
+        email,
+        date: bookingDate,
+        timeSlot,
+        company,
+      })
+    } catch (emailError) {
+      console.error('Error sending confirmation email (booking still saved):', emailError)
+      // Continue - booking is already saved
     }
 
     return {

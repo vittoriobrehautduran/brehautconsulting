@@ -446,7 +446,7 @@ export default function ServicesPage() {
         </section>
 
         {/* CTA Section */}
-        <section className="py-32 px-6 relative z-10">
+        <section className="pt-32 pb-48 px-6 relative z-10">
           <div className="container mx-auto max-w-4xl text-center">
             <h2 className="glow-title text-4xl md:text-5xl font-heading font-bold mb-8 text-white">
               Ready to Get Started?

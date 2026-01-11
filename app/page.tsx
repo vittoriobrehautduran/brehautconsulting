@@ -48,25 +48,29 @@ export default function HomePage() {
   useEffect(() => {
     let scrollCleanup: (() => void) | null = null
     
+    // Detect mobile and reduced motion preference
+    const isMobile = typeof window !== 'undefined' && (window.innerWidth < 768 || /iPhone|iPad|iPod|Android/i.test(navigator.userAgent))
+    const prefersReducedMotion = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    
     const ctx = gsap.context(() => {
-      // Hero animations
+      // Hero animations - optimized for mobile
       if (titleRef.current && taglineRef.current && ctaRef.current) {
         const tl = gsap.timeline()
         tl.fromTo(
           titleRef.current,
-          { y: 100, opacity: 0 },
-          { y: 0, opacity: 1, duration: 1, ease: 'power3.out' }
+          { y: isMobile ? 60 : 100, opacity: 0 },
+          { y: 0, opacity: 1, duration: isMobile ? 0.7 : 1, ease: isMobile ? 'power2.out' : 'power3.out' }
         )
           .fromTo(
             taglineRef.current,
-            { y: 50, opacity: 0 },
-            { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out' },
+            { y: isMobile ? 30 : 50, opacity: 0 },
+            { y: 0, opacity: 1, duration: isMobile ? 0.5 : 0.8, ease: isMobile ? 'power2.out' : 'power3.out' },
             '-=0.5'
           )
           .fromTo(
             ctaRef.current,
-            { y: 30, opacity: 0 },
-            { y: 0, opacity: 1, duration: 0.6, ease: 'power3.out' },
+            { y: isMobile ? 20 : 30, opacity: 0 },
+            { y: 0, opacity: 1, duration: isMobile ? 0.4 : 0.6, ease: isMobile ? 'power2.out' : 'power3.out' },
             '-=0.4'
           )
       }
@@ -112,28 +116,30 @@ export default function HomePage() {
         }
       }
 
-      if (portfolioCarouselRef.current) {
+      // Optimized carousel animation - simpler on mobile
+      if (portfolioCarouselRef.current && !prefersReducedMotion) {
         const images = portfolioCarouselRef.current.querySelectorAll('.portfolio-image')
         const totalImages = images.length
-        const radius = 170
+        const radius = isMobile ? 120 : 170
         
         let currentRotation = 0
         let scrollVelocity = 0
         let lastScrollY = window.scrollY
         let lastTime = Date.now()
+        let lastScrollUpdate = 0
         let animationFrameId: number | null = null
         
         images.forEach((img: any, index: number) => {
           const angle = (index * 360) / totalImages
           const x = Math.cos((angle * Math.PI) / 180) * radius
-          const z = Math.sin((angle * Math.PI) / 180) * radius
+          const z = isMobile ? 0 : Math.sin((angle * Math.PI) / 180) * radius // Flatten on mobile
           
           gsap.set(img, {
             x: x,
             z: z,
-            rotationY: angle + 90,
+            rotationY: isMobile ? 0 : angle + 90, // No 3D rotation on mobile
             transformOrigin: 'center center',
-            transformStyle: 'preserve-3d',
+            transformStyle: isMobile ? 'flat' : 'preserve-3d',
           })
         })
 
@@ -142,24 +148,24 @@ export default function HomePage() {
             const baseAngle = (index * 360) / totalImages
             const currentAngle = baseAngle + currentRotation
             const x = Math.cos((currentAngle * Math.PI) / 180) * radius
-            const z = Math.sin((currentAngle * Math.PI) / 180) * radius
+            const z = isMobile ? 0 : Math.sin((currentAngle * Math.PI) / 180) * radius
             
             const frontFacing = Math.abs(Math.sin((currentAngle * Math.PI) / 180)) < 0.3
             
             gsap.set(img, {
               x: x,
               z: z,
-              rotationY: currentAngle + 90,
-              opacity: frontFacing ? 1 : 0.4,
-              scale: frontFacing ? 1 : 0.85,
+              rotationY: isMobile ? 0 : currentAngle + 90,
+              opacity: frontFacing ? 1 : (isMobile ? 0.6 : 0.4),
+              scale: frontFacing ? 1 : (isMobile ? 0.9 : 0.85),
             })
           })
         }
 
         const animate = () => {
           if (Math.abs(scrollVelocity) > 0.01) {
-            scrollVelocity *= 0.95
-            currentRotation += scrollVelocity
+            scrollVelocity *= isMobile ? 0.92 : 0.95 // Faster decay on mobile
+            currentRotation += scrollVelocity * (isMobile ? 0.7 : 1) // Slower rotation on mobile
             updateRotation()
             animationFrameId = requestAnimationFrame(animate)
           } else {
@@ -167,14 +173,23 @@ export default function HomePage() {
           }
         }
 
+        // Throttle scroll handler more aggressively on mobile
+        const scrollThrottle = isMobile ? 100 : 16
         const handleScroll = () => {
           const currentScrollY = window.scrollY
           const currentTime = Date.now()
+          
+          // Throttle scroll updates on mobile
+          if (currentTime - lastScrollUpdate < scrollThrottle) {
+            return
+          }
+          lastScrollUpdate = currentTime
+          
           const deltaY = currentScrollY - lastScrollY
           const deltaTime = Math.max(currentTime - lastTime, 1)
           
-          scrollVelocity = (deltaY / deltaTime) * 3
-          currentRotation += scrollVelocity
+          scrollVelocity = (deltaY / deltaTime) * (isMobile ? 2 : 3) // Slower velocity on mobile
+          currentRotation += scrollVelocity * (isMobile ? 0.5 : 1)
           updateRotation()
           
           if (!animationFrameId && Math.abs(scrollVelocity) > 0.01) {
@@ -259,13 +274,13 @@ export default function HomePage() {
           )
         })
 
-        // Blinking green animation for success node (no scale, just opacity/colors)
-        if (funnelBottom) {
+        // Blinking green animation - slower on mobile for performance
+        if (funnelBottom && !prefersReducedMotion) {
           gsap.to(funnelBottom, {
             borderColor: 'rgba(34, 197, 94, 0.6)',
             boxShadow: '0 0 15px rgba(34, 197, 94, 0.4)',
             opacity: 0.9,
-            duration: 1.5,
+            duration: isMobile ? 2 : 1.5, // Slower on mobile
             repeat: -1,
             yoyo: true,
             ease: 'power1.inOut',
@@ -321,13 +336,14 @@ export default function HomePage() {
           )
         })
 
-        if (firstResult) {
+        // Blinking animation - slower on mobile for performance
+        if (firstResult && !prefersReducedMotion) {
           gsap.fromTo(
             firstResult,
             { borderColor: 'rgba(134, 239, 172, 0)' },
             {
               borderColor: 'rgba(134, 239, 172, 0.6)',
-              duration: 1.5,
+              duration: isMobile ? 2 : 1.5, // Slower on mobile
               ease: 'power1.inOut',
               repeat: -1,
               yoyo: true,
@@ -490,12 +506,12 @@ export default function HomePage() {
           )
         })
 
-        // Rotate gear icon continuously to show automation
+        // Rotate gear icon continuously - slower on mobile
         const gearIconElement = integrationsRef.current?.querySelector('.gear-icon')
-        if (gearIconElement) {
+        if (gearIconElement && !prefersReducedMotion) {
           const gearRotation = gsap.to(gearIconElement, {
             rotation: 360,
-            duration: 4,
+            duration: isMobile ? 6 : 4, // Slower rotation on mobile
             repeat: -1,
             ease: 'none',
             transformOrigin: 'center center',
@@ -510,11 +526,11 @@ export default function HomePage() {
           })
         }
 
-        // Blink animation for success icon
-        if (successIcon) {
+        // Blink animation for success icon - slower on mobile
+        if (successIcon && !prefersReducedMotion) {
           gsap.to(successIcon, {
             opacity: 0.5,
-            duration: 1.5,
+            duration: isMobile ? 2 : 1.5, // Slower on mobile
             repeat: -1,
             yoyo: true,
             ease: 'power1.inOut',
@@ -548,16 +564,16 @@ export default function HomePage() {
         })
       }
 
-      // About section scroll animations
+      // About section scroll animations - optimized for mobile
       if (aboutTitleRef.current) {
         gsap.fromTo(
           aboutTitleRef.current,
-          { y: 50, opacity: 0 },
+          { y: isMobile ? 30 : 50, opacity: 0 },
           {
             y: 0,
             opacity: 1,
-            duration: 1,
-            ease: 'power3.out',
+            duration: isMobile ? 0.6 : 1,
+            ease: isMobile ? 'power2.out' : 'power3.out',
             scrollTrigger: {
               trigger: aboutTitleRef.current,
               start: 'top 80%',
@@ -570,12 +586,12 @@ export default function HomePage() {
       if (aboutTextRef.current) {
         gsap.fromTo(
           aboutTextRef.current,
-          { y: 30, opacity: 0 },
+          { y: isMobile ? 20 : 30, opacity: 0 },
           {
             y: 0,
             opacity: 1,
-            duration: 0.8,
-            ease: 'power3.out',
+            duration: isMobile ? 0.5 : 0.8,
+            ease: isMobile ? 'power2.out' : 'power3.out',
             scrollTrigger: {
               trigger: aboutTextRef.current,
               start: 'top 85%',
@@ -585,16 +601,16 @@ export default function HomePage() {
         )
       }
 
-      // FAQ section scroll animations
+      // FAQ section scroll animations - optimized for mobile
       if (faqTitleRef.current) {
         gsap.fromTo(
           faqTitleRef.current,
-          { y: 50, opacity: 0 },
+          { y: isMobile ? 30 : 50, opacity: 0 },
           {
             y: 0,
             opacity: 1,
-            duration: 1,
-            ease: 'power3.out',
+            duration: isMobile ? 0.6 : 1,
+            ease: isMobile ? 'power2.out' : 'power3.out',
             scrollTrigger: {
               trigger: faqTitleRef.current,
               start: 'top 80%',
@@ -626,16 +642,16 @@ export default function HomePage() {
         })
       }
 
-      // CTA section scroll animations
+      // CTA section scroll animations - optimized for mobile
       if (ctaTitleRef.current) {
         gsap.fromTo(
           ctaTitleRef.current,
-          { y: 50, opacity: 0 },
+          { y: isMobile ? 30 : 50, opacity: 0 },
           {
             y: 0,
             opacity: 1,
-            duration: 1,
-            ease: 'power3.out',
+            duration: isMobile ? 0.6 : 1,
+            ease: isMobile ? 'power2.out' : 'power3.out',
             scrollTrigger: {
               trigger: ctaTitleRef.current,
               start: 'top 80%',
@@ -648,12 +664,12 @@ export default function HomePage() {
       if (ctaTextRef.current) {
         gsap.fromTo(
           ctaTextRef.current,
-          { y: 30, opacity: 0 },
+          { y: isMobile ? 20 : 30, opacity: 0 },
           {
             y: 0,
             opacity: 1,
-            duration: 0.8,
-            ease: 'power3.out',
+            duration: isMobile ? 0.5 : 0.8,
+            ease: isMobile ? 'power2.out' : 'power3.out',
             scrollTrigger: {
               trigger: ctaTextRef.current,
               start: 'top 85%',
@@ -666,12 +682,12 @@ export default function HomePage() {
       if (ctaButtonRef.current) {
         gsap.fromTo(
           ctaButtonRef.current,
-          { y: 30, opacity: 0 },
+          { y: isMobile ? 20 : 30, opacity: 0 },
           {
             y: 0,
             opacity: 1,
-            duration: 0.8,
-            ease: 'power3.out',
+            duration: isMobile ? 0.5 : 0.8,
+            ease: isMobile ? 'power2.out' : 'power3.out',
             scrollTrigger: {
               trigger: ctaButtonRef.current,
               start: 'top 85%',
@@ -1405,7 +1421,7 @@ export default function HomePage() {
             '@type': 'ProfessionalService',
             name: 'Brehaut Consulting',
             description: COMPANY_TAGLINE,
-            url: typeof window !== 'undefined' ? window.location.origin : 'https://brehautconsulting.com',
+            url: 'https://brehautconsulting.com',
             telephone: CONTACT_PHONE,
             email: CONTACT_EMAIL,
             areaServed: ['Europe', 'Latin America'],
