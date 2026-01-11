@@ -116,18 +116,15 @@ export default function HomePage() {
         }
       }
 
-      // Optimized carousel animation - simpler on mobile
+      // Constant rotation carousel animation
       if (portfolioCarouselRef.current && !prefersReducedMotion) {
         const images = portfolioCarouselRef.current.querySelectorAll('.portfolio-image')
         const totalImages = images.length
         const radius = isMobile ? 120 : 170
         
         let currentRotation = 0
-        let scrollVelocity = 0
-        let lastScrollY = window.scrollY
-        let lastTime = Date.now()
-        let lastScrollUpdate = 0
         let animationFrameId: number | null = null
+        const rotationSpeed = isMobile ? 0.1 : 0.15 // Slower rotation on mobile
         
         images.forEach((img: any, index: number) => {
           const angle = (index * 360) / totalImages
@@ -163,47 +160,14 @@ export default function HomePage() {
         }
 
         const animate = () => {
-          if (Math.abs(scrollVelocity) > 0.01) {
-            scrollVelocity *= isMobile ? 0.92 : 0.95 // Faster decay on mobile
-            currentRotation += scrollVelocity * (isMobile ? 0.7 : 1) // Slower rotation on mobile
-            updateRotation()
-            animationFrameId = requestAnimationFrame(animate)
-          } else {
-            animationFrameId = null
-          }
-        }
-
-        // Throttle scroll handler more aggressively on mobile
-        const scrollThrottle = isMobile ? 100 : 16
-        const handleScroll = () => {
-          const currentScrollY = window.scrollY
-          const currentTime = Date.now()
-          
-          // Throttle scroll updates on mobile
-          if (currentTime - lastScrollUpdate < scrollThrottle) {
-            return
-          }
-          lastScrollUpdate = currentTime
-          
-          const deltaY = currentScrollY - lastScrollY
-          const deltaTime = Math.max(currentTime - lastTime, 1)
-          
-          scrollVelocity = (deltaY / deltaTime) * (isMobile ? 2 : 3) // Slower velocity on mobile
-          currentRotation += scrollVelocity * (isMobile ? 0.5 : 1)
+          currentRotation += rotationSpeed
           updateRotation()
-          
-          if (!animationFrameId && Math.abs(scrollVelocity) > 0.01) {
-            animationFrameId = requestAnimationFrame(animate)
-          }
-          
-          lastScrollY = currentScrollY
-          lastTime = currentTime
+          animationFrameId = requestAnimationFrame(animate)
         }
 
-        window.addEventListener('scroll', handleScroll, { passive: true })
+        animate()
         
         scrollCleanup = () => {
-          window.removeEventListener('scroll', handleScroll)
           if (animationFrameId) {
             cancelAnimationFrame(animationFrameId)
           }
