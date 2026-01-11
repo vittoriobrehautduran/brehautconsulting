@@ -325,8 +325,8 @@ export default function ServicesPage() {
         </nav>
 
         {/* Services Details Section */}
-        <section ref={servicesRef} className="py-20 px-3 sm:px-4 relative z-10">
-          <div className="container mx-auto max-w-[95rem]">
+        <section ref={servicesRef} className="py-20 px-2 sm:px-3 relative z-10">
+          <div className="container mx-auto max-w-none">
             <div className="space-y-16 sm:space-y-24">
               {SERVICE_DETAILS.map((service, index) => (
                 <article 
@@ -343,7 +343,7 @@ export default function ServicesPage() {
                     <div className="relative z-10">
                       {/* Header with number badge */}
                       <header className="mb-8">
-                        <div className="flex items-start justify-between gap-6 mb-6">
+                        <div className="flex items-start justify-between gap-4 sm:gap-6 mb-6">
                           <div className="flex-1">
                             <div className="inline-block mb-4">
                               <span className="text-sm font-semibold text-blue-400/80 uppercase tracking-wider">
@@ -354,7 +354,7 @@ export default function ServicesPage() {
                               {service.title}
                             </h2>
                           </div>
-                          <div className="flex-shrink-0 w-12 h-12 lg:w-16 lg:h-16 rounded-2xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 border border-white/20 flex items-center justify-center">
+                          <div className="flex-shrink-0 w-12 h-12 lg:w-16 lg:h-16 rounded-2xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 border border-white/20 flex items-center justify-center mt-2 sm:mt-0">
                             <span className="text-2xl lg:text-3xl font-bold text-white/70">{index + 1}</span>
                           </div>
                         </div>
