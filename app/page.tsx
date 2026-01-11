@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Link from 'next/link'
@@ -44,6 +44,7 @@ export default function HomePage() {
   const aboutTextRef = useRef<HTMLParagraphElement>(null)
   const faqRef = useRef<HTMLDivElement>(null)
   const faqTitleRef = useRef<HTMLHeadingElement>(null)
+  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null)
 
   useEffect(() => {
     let scrollCleanup: (() => void) | null = null
@@ -679,10 +680,10 @@ export default function HomePage() {
           ref={heroRef}
           className="min-h-screen flex items-center justify-center px-6 pt-24"
         >
-          <div className="container mx-auto max-w-5xl text-center">
+          <div className="container mx-auto max-w-none md:max-w-5xl text-center">
             <h1
               ref={titleRef}
-              className="glow-title text-6xl md:text-7xl lg:text-8xl font-frank font-bold mb-8 bg-gradient-to-r from-white via-blue-200 to-purple-200 bg-clip-text text-transparent"
+              className="glow-title text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-frank font-bold mb-8 bg-gradient-to-r from-white via-blue-200 to-purple-200 bg-clip-text text-transparent"
             >
               Brehaut Consulting
             </h1>
@@ -713,7 +714,7 @@ export default function HomePage() {
         </section>
 
         {/* Services Section */}
-        <section data-services-section className="py-32 px-6 relative z-10">
+        <section data-services-section className="pt-32 pb-16 px-6 relative z-10">
           <div className="container mx-auto max-w-6xl">
             <h2
               ref={servicesTitleRef}
@@ -726,7 +727,7 @@ export default function HomePage() {
               <div className="hidden lg:block absolute left-[calc(50%-1px)] top-1/2 -translate-y-1/2 w-px h-20 bg-gradient-to-b from-transparent via-white/20 to-transparent z-0"></div>
               
               {/* Left Column - Service Card */}
-              <div className="service-card description-card bg-white/20 rounded-3xl p-10 lg:p-10 hover:bg-white/30 transition-all duration-300 relative z-10 backdrop-blur-sm">
+              <div className="service-card description-card bg-white/30 rounded-3xl p-10 lg:p-10 hover:bg-white/35 transition-all duration-300 relative z-10 backdrop-blur-sm">
                 <h3 className="glow-text text-3xl lg:text-4xl font-heading font-bold mb-4 text-white leading-tight text-center lg:text-left">
                   {SERVICES[0].title}
                 </h3>
@@ -773,7 +774,7 @@ export default function HomePage() {
               {/* Left Column - Service Card */}
               <div 
                 ref={serviceCard2Ref}
-                className="description-card bg-white/20 rounded-3xl p-10 lg:p-14 hover:bg-white/30 transition-all duration-300 relative z-10 backdrop-blur-sm"
+                className="description-card bg-white/30 rounded-3xl p-10 lg:p-14 hover:bg-white/35 transition-all duration-300 relative z-10 backdrop-blur-sm"
               >
                 <h3 className="glow-text text-3xl lg:text-4xl font-heading font-bold mb-6 text-white leading-tight">
                   {SERVICES[1].title}
@@ -878,14 +879,14 @@ export default function HomePage() {
             </div>
 
             {/* Third Service Card */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start mt-20 relative">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6 items-start mt-20 relative">
               {/* Connecting line on desktop - shows relationship between description and visualization */}
               <div className="hidden lg:block absolute left-[calc(50%-1px)] top-1/2 -translate-y-1/2 w-px h-20 bg-gradient-to-b from-transparent via-white/20 to-transparent z-0"></div>
               
               {/* Left Column - Service Card */}
               <div 
                 ref={serviceCard3Ref}
-                className="description-card bg-white/20 rounded-3xl p-10 lg:p-14 hover:bg-white/30 transition-all duration-300 relative z-10 backdrop-blur-sm"
+                className="description-card bg-white/30 rounded-3xl p-10 lg:p-14 hover:bg-white/35 transition-all duration-300 relative z-10 backdrop-blur-sm"
               >
                 <h3 className="glow-text text-3xl lg:text-4xl font-heading font-bold mb-6 text-white leading-tight">
                   {SERVICES[2].title}
@@ -964,7 +965,7 @@ export default function HomePage() {
               {/* Left Column - Service Card */}
               <div 
                 ref={serviceCard4Ref}
-                className="description-card bg-white/20 rounded-3xl p-10 lg:p-14 hover:bg-white/30 transition-all duration-300 relative z-10 backdrop-blur-sm"
+                className="description-card bg-white/30 rounded-3xl p-10 lg:p-14 hover:bg-white/35 transition-all duration-300 relative z-10 backdrop-blur-sm"
               >
                 <h3 className="glow-text text-3xl lg:text-4xl font-heading font-bold mb-6 text-white leading-tight">
                   {SERVICES[3].title}
@@ -1109,7 +1110,7 @@ export default function HomePage() {
               {/* Left Column - Service Card */}
               <div 
                 ref={serviceCard5Ref}
-                className="description-card bg-white/20 rounded-3xl p-10 lg:p-14 hover:bg-white/30 transition-all duration-300 relative z-10 backdrop-blur-sm"
+                className="description-card bg-white/30 rounded-3xl p-10 lg:p-14 hover:bg-white/35 transition-all duration-300 relative z-10 backdrop-blur-sm"
               >
                 <h3 className="glow-text text-3xl lg:text-4xl font-heading font-bold mb-6 text-white leading-tight">
                   {SERVICES[4].title}
@@ -1180,7 +1181,7 @@ export default function HomePage() {
               {/* Left Column - Service Card */}
               <div 
                 ref={serviceCard6Ref}
-                className="description-card bg-white/20 rounded-3xl p-10 lg:p-14 hover:bg-white/30 transition-all duration-300 relative z-10 flex flex-col justify-center backdrop-blur-sm"
+                className="description-card bg-white/30 rounded-3xl p-10 lg:p-14 hover:bg-white/35 transition-all duration-300 relative z-10 flex flex-col justify-center backdrop-blur-sm"
               >
                 <h3 className="glow-text text-3xl lg:text-4xl font-heading font-bold mb-6 text-white leading-tight">
                   {SERVICES[5].title}
@@ -1258,8 +1259,28 @@ export default function HomePage() {
           </div>
         </section>
 
+        {/* CTA Section */}
+        <section className="py-20 px-6 relative z-10">
+          <div className="container mx-auto max-w-4xl text-center">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
+              <Link
+                href="/booking"
+                className="glow-button inline-block px-10 py-4 bg-white text-black rounded-full text-lg font-semibold hover:bg-white/90 shadow-2xl w-full sm:w-auto"
+              >
+                Book a Meeting
+              </Link>
+              <Link
+                href="/services"
+                className="glow-button inline-block px-10 py-4 bg-transparent border-2 border-white text-white rounded-full text-lg font-semibold hover:bg-white/10 shadow-2xl w-full sm:w-auto"
+              >
+                View Services
+              </Link>
+            </div>
+          </div>
+        </section>
+
         {/* About Section */}
-        <section ref={aboutRef} className="py-32 px-6 relative z-10">
+        <section ref={aboutRef} className="pt-16 pb-32 px-6 relative z-10">
           <div className="container mx-auto max-w-4xl">
             <h2
               ref={aboutTitleRef}
@@ -1292,61 +1313,63 @@ export default function HomePage() {
               Frequently Asked Questions
             </h2>
             <div className="space-y-6">
-              <div className="faq-item bg-white/5 border border-white/10 rounded-2xl p-6 lg:p-8">
-                <h3 className="text-2xl font-heading font-bold text-white mb-4">
-                  What services do you offer?
-                </h3>
-                <p className="text-lg text-white/80 leading-relaxed">
-                  We provide website and web application development, conversion optimization, 
-                  local visibility & SEO, advertising & demand capture, analytics & measurement, 
-                  and technical integrations & automation. Our focus is on delivering measurable 
-                  business results through strategic digital solutions.
-                </p>
-              </div>
-
-              <div className="faq-item bg-white/5 border border-white/10 rounded-2xl p-6 lg:p-8">
-                <h3 className="text-2xl font-heading font-bold text-white mb-4">
-                  How do I book a consultation?
-                </h3>
-                <p className="text-lg text-white/80 leading-relaxed">
-                  You can book a consultation meeting directly through our booking system. 
-                  Available time slots are Monday through Thursday. Simply select your preferred 
-                  date and time, fill in your details, and we&apos;ll confirm your meeting.
-                </p>
-              </div>
-
-              <div className="faq-item bg-white/5 border border-white/10 rounded-2xl p-6 lg:p-8">
-                <h3 className="text-2xl font-heading font-bold text-white mb-4">
-                  What geographic areas do you serve?
-                </h3>
-                <p className="text-lg text-white/80 leading-relaxed">
-                  We work with clients globally, with a focus on Europe and Latin America. 
-                  Our services are delivered remotely, allowing us to serve clients regardless 
-                  of location.
-                </p>
-              </div>
-
-              <div className="faq-item bg-white/5 border border-white/10 rounded-2xl p-6 lg:p-8">
-                <h3 className="text-2xl font-heading font-bold text-white mb-4">
-                  How long does a typical project take?
-                </h3>
-                <p className="text-lg text-white/80 leading-relaxed">
-                  Project timelines vary depending on scope and complexity. During our initial 
-                  consultation, we&apos;ll discuss your specific needs and provide a detailed timeline 
-                  and project plan tailored to your goals.
-                </p>
-              </div>
-
-              <div className="faq-item bg-white/5 border border-white/10 rounded-2xl p-6 lg:p-8">
-                <h3 className="text-2xl font-heading font-bold text-white mb-4">
-                  Do you work with small businesses?
-                </h3>
-                <p className="text-lg text-white/80 leading-relaxed">
-                  Yes, we work with businesses of all sizes, from startups to established 
-                  companies. Our approach is scalable and we tailor our services to meet 
-                  your specific needs and budget.
-                </p>
-              </div>
+              {[
+                {
+                  question: 'What services do you offer?',
+                  answer: 'We provide website and web application development, conversion optimization, local visibility & SEO, advertising & demand capture, analytics & measurement, and technical integrations & automation. Our focus is on delivering measurable business results through strategic digital solutions.',
+                },
+                {
+                  question: 'How do I book a consultation?',
+                  answer: 'You can book a consultation meeting directly through our booking system. Available time slots are Monday through Thursday. Simply select your preferred date and time, fill in your details, and we&apos;ll confirm your meeting.',
+                },
+                {
+                  question: 'What geographic areas do you serve?',
+                  answer: 'We work with clients globally, with a focus on Europe and Latin America. Our services are delivered remotely, allowing us to serve clients regardless of location.',
+                },
+                {
+                  question: 'How long does a typical project take?',
+                  answer: 'Project timelines vary depending on scope and complexity. During our initial consultation, we&apos;ll discuss your specific needs and provide a detailed timeline and project plan tailored to your goals.',
+                },
+                {
+                  question: 'Do you work with small businesses?',
+                  answer: 'Yes, we work with businesses of all sizes, from startups to established companies. Our approach is scalable and we tailor our services to meet your specific needs and budget.',
+                },
+              ].map((faq, index) => (
+                <div
+                  key={index}
+                  className="faq-item bg-white/10 border border-white/10 rounded-2xl overflow-hidden transition-all duration-300 cursor-pointer hover:border-white/20"
+                  onClick={() => setOpenFaqIndex(openFaqIndex === index ? null : index)}
+                >
+                  <div className="p-6 lg:p-8">
+                    <div className="flex items-center justify-between gap-4">
+                      <h3 className="text-2xl font-heading font-bold text-white pr-8">
+                        {faq.question}
+                      </h3>
+                      <div className="flex-shrink-0 w-8 h-8 flex items-center justify-center">
+                        <svg
+                          className={`w-6 h-6 text-white/70 transition-transform duration-300 ${
+                            openFaqIndex === index ? 'rotate-180' : ''
+                          }`}
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                        </svg>
+                      </div>
+                    </div>
+                    <div
+                      className={`overflow-hidden transition-all duration-300 ${
+                        openFaqIndex === index ? 'max-h-96 mt-4' : 'max-h-0'
+                      }`}
+                    >
+                      <p className="text-lg text-white/80 leading-relaxed">
+                        {faq.answer}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </section>

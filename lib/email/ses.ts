@@ -24,6 +24,9 @@ export interface BookingEmailData {
 
 function formatTimeSlot(timeSlot: string): string {
   const [start, end] = timeSlot.split('-')
+  if (start === end) {
+    return `${start}:00`
+  }
   return `${start}:00 - ${end}:00`
 }
 

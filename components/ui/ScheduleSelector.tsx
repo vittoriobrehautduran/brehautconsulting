@@ -105,6 +105,9 @@ export default function ScheduleSelector({
 
   const formatTimeSlot = (slot: TimeSlot): string => {
     const [start, end] = slot.split('-')
+    if (start === end) {
+      return `${start}:00`
+    }
     return `${start}:00 - ${end}:00`
   }
 
@@ -147,7 +150,7 @@ export default function ScheduleSelector({
           )}
         >
           <ChevronLeft className="h-5 w-5" />
-          <span className="text-base font-medium">Previous Day</span>
+          <span className="hidden sm:inline text-base font-medium">Previous Day</span>
         </Button>
 
         <div className="flex items-center gap-3 flex-1 justify-center">
@@ -186,7 +189,7 @@ export default function ScheduleSelector({
             "flex items-center gap-2 text-blue-100"
           )}
         >
-          <span className="text-base font-medium">Next Day</span>
+          <span className="hidden sm:inline text-base font-medium">Next Day</span>
           <ChevronRight className="h-5 w-5" />
         </Button>
       </div>
@@ -211,7 +214,7 @@ export default function ScheduleSelector({
                   "py-8 text-lg font-semibold transition-colors",
                   !isAvailable && "opacity-30 cursor-not-allowed border-blue-500/20",
                   !isSelected && !isAvailable && "border-blue-500/20 bg-blue-950/10",
-                  !isSelected && isAvailable && "border-blue-500/40 bg-blue-950/20 hover:bg-blue-900/30 hover:border-blue-400/60 text-blue-100",
+                  !isSelected && isAvailable && "border-blue-500/50 bg-blue-900/40 hover:bg-blue-800/50 hover:border-blue-400/70 text-white",
                   isSelected && "bg-blue-600 text-white hover:bg-blue-700 border-blue-500"
                 )}
               >

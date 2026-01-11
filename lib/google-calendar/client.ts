@@ -133,15 +133,16 @@ export async function createCalendarEvent(
   const calendar = getCalendarClient()
   const primaryCalendarId = calendarId || EVENT_CREATION_CALENDAR_ID
 
-  // Parse time slot (e.g., "13-14" -> 13:00 and 14:00)
+  // Parse time slot (e.g., "13-14" -> 13:00 and 14:00, "16-16" -> 16:00 and 17:00)
   const [startHour, endHour] = timeSlot.split('-').map(Number)
+  const actualEndHour = startHour === endHour ? endHour + 1 : endHour
 
   // Create date objects in Stockholm timezone
   const startDateTime = new Date(date)
   startDateTime.setHours(startHour, 0, 0, 0)
 
   const endDateTime = new Date(date)
-  endDateTime.setHours(endHour, 0, 0, 0)
+  endDateTime.setHours(actualEndHour, 0, 0, 0)
 
   // Convert to ISO strings (Calendar API expects UTC)
   const startTimeISO = startDateTime.toISOString()
@@ -172,6 +173,7 @@ export async function createCalendarEvent(
 // Check if a time slot overlaps with busy periods
 export function isTimeSlotBusy(timeSlot: string, busyPeriods: Array<{ start: string; end: string }>): boolean {
   const [startHour, endHour] = timeSlot.split('-').map(Number)
+  const actualEndHour = startHour === endHour ? endHour + 1 : endHour
 
   return busyPeriods.some((period) => {
     const periodStart = new Date(period.start)
@@ -183,9 +185,9 @@ export function isTimeSlotBusy(timeSlot: string, busyPeriods: Array<{ start: str
     // Check if the busy period overlaps with our time slot
     // Busy period overlaps if it starts before our slot ends and ends after our slot starts
     return (
-      (slotStartHour < endHour && slotEndHour > startHour) ||
+      (slotStartHour < actualEndHour && slotEndHour > startHour) ||
       (slotStartHour === startHour) ||
-      (slotEndHour === endHour)
+      (slotEndHour === actualEndHour)
     )
   })
 }

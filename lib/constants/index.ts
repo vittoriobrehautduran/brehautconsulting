@@ -2,7 +2,7 @@
 
 export const WORK_DAYS = [1, 2, 3, 4] // Monday-Thursday (0 = Sunday, 1 = Monday, etc.)
 
-export const TIME_SLOTS = ['13-14', '16-17', '18-19'] as const
+export const TIME_SLOTS = ['13-14', '16-16', '18-19'] as const
 
 export type TimeSlot = typeof TIME_SLOTS[number]
 

@@ -325,8 +325,8 @@ export default function ServicesPage() {
         </nav>
 
         {/* Services Details Section */}
-        <section ref={servicesRef} className="py-20 px-4 sm:px-6 relative z-10">
-          <div className="container mx-auto max-w-7xl">
+        <section ref={servicesRef} className="py-20 px-3 sm:px-4 relative z-10">
+          <div className="container mx-auto max-w-[95rem]">
             <div className="space-y-16 sm:space-y-24">
               {SERVICE_DETAILS.map((service, index) => (
                 <article 
@@ -354,8 +354,8 @@ export default function ServicesPage() {
                               {service.title}
                             </h2>
                           </div>
-                          <div className="flex-shrink-0 w-16 h-16 lg:w-20 lg:h-20 rounded-2xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 border border-white/20 flex items-center justify-center">
-                            <span className="text-3xl lg:text-4xl font-bold text-white/70">{index + 1}</span>
+                          <div className="flex-shrink-0 w-12 h-12 lg:w-16 lg:h-16 rounded-2xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 border border-white/20 flex items-center justify-center">
+                            <span className="text-2xl lg:text-3xl font-bold text-white/70">{index + 1}</span>
                           </div>
                         </div>
                         

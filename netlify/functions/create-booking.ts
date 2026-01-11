@@ -17,7 +17,7 @@ const bookingSchema = z.object({
   company: z.string().optional(),
   message: z.string().optional(),
   date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, 'Invalid date format'),
-  timeSlot: z.enum(['13-14', '16-17', '18-19'], {
+  timeSlot: z.enum(['13-14', '16-16', '18-19'], {
     errorMap: () => ({ message: 'Invalid time slot' }),
   }),
 })
