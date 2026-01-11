@@ -187,7 +187,7 @@ export default function BookingPage() {
               Meeting Purpose
             </h3>
             <p className="text-lg leading-relaxed">
-              This is a short, focused conversation to understand your business, goals, and current challenges — and to see if we're a good fit to work together.
+              This is a short, focused conversation to understand your business, goals, and current challenges — and to see if we&apos;re a good fit to work together.
             </p>
           </div>
 
@@ -196,7 +196,7 @@ export default function BookingPage() {
               How the Meeting Works
             </h3>
             <p className="text-lg leading-relaxed">
-              The meeting is held online and typically lasts 30 minutes. You'll receive all details by email after booking.
+              The meeting is held online and typically lasts 30 minutes. You&apos;ll receive all details by email after booking.
             </p>
           </div>
 
