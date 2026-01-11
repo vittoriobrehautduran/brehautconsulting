@@ -793,7 +793,7 @@ export default function HomePage() {
                   {/* Flow Diagram - Horizontal Connected Nodes */}
                   <div className="relative w-full h-full flex items-center justify-center">
                     {/* Connection Lines */}
-                    <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ overflow: 'visible' }}>
+                    <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 100 100" preserveAspectRatio="none" style={{ overflow: 'visible' }}>
                       <path
                         d="M 16% 50% L 30% 50%"
                         stroke="rgba(255,255,255,0.15)"
