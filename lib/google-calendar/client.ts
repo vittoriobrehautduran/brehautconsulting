@@ -2,22 +2,34 @@
 
 import { google } from 'googleapis'
 import { TIMEZONE, GOOGLE_CALENDAR_ID, EVENT_CREATION_CALENDAR_ID, CALENDAR_OWNER_EMAIL } from '@/lib/constants'
+import { getSecretFromAWS } from '@/lib/aws/secrets'
 
 let calendarClient: ReturnType<typeof google.calendar> | null = null
 let serviceAccountEmail: string | null = null
+let serviceAccountKey: string | null = null
 
 // Get service account email from credentials
-function getServiceAccountEmail(): string | null {
+async function getServiceAccountEmail(): Promise<string | null> {
   if (serviceAccountEmail) {
     return serviceAccountEmail
   }
 
-  if (!process.env.GOOGLE_SERVICE_ACCOUNT_KEY) {
+  let keyToParse: string | null = null
+
+  if (process.env.AWS_SECRET_NAME) {
+    try {
+      keyToParse = await getSecretFromAWS(process.env.AWS_SECRET_NAME)
+    } catch {
+      return null
+    }
+  } else if (process.env.GOOGLE_SERVICE_ACCOUNT_KEY) {
+    keyToParse = process.env.GOOGLE_SERVICE_ACCOUNT_KEY
+  } else {
     return null
   }
 
   try {
-    const credentials = JSON.parse(process.env.GOOGLE_SERVICE_ACCOUNT_KEY)
+    const credentials = JSON.parse(keyToParse)
     serviceAccountEmail = credentials.client_email || null
     return serviceAccountEmail
   } catch {
@@ -26,17 +38,26 @@ function getServiceAccountEmail(): string | null {
 }
 
 // Initialize Google Calendar client with service account
-function getCalendarClient() {
+async function getCalendarClient() {
   if (calendarClient) {
     return calendarClient
   }
 
-  if (!process.env.GOOGLE_SERVICE_ACCOUNT_KEY) {
-    throw new Error('GOOGLE_SERVICE_ACCOUNT_KEY environment variable is not set')
+  // Get service account key from AWS Secrets Manager or environment variable
+  if (!serviceAccountKey) {
+    if (process.env.AWS_SECRET_NAME) {
+      // Fetch from AWS Secrets Manager
+      serviceAccountKey = await getSecretFromAWS(process.env.AWS_SECRET_NAME)
+    } else if (process.env.GOOGLE_SERVICE_ACCOUNT_KEY) {
+      // Fallback to environment variable (for local development)
+      serviceAccountKey = process.env.GOOGLE_SERVICE_ACCOUNT_KEY
+    } else {
+      throw new Error('GOOGLE_SERVICE_ACCOUNT_KEY or AWS_SECRET_NAME environment variable is not set')
+    }
   }
 
   const auth = new google.auth.GoogleAuth({
-    credentials: JSON.parse(process.env.GOOGLE_SERVICE_ACCOUNT_KEY),
+    credentials: JSON.parse(serviceAccountKey),
     scopes: [
       'https://www.googleapis.com/auth/calendar.readonly',
       'https://www.googleapis.com/auth/calendar.events',
@@ -51,7 +72,7 @@ function getCalendarClient() {
 // Checks both the family calendar and the event creation calendar
 // Filters events to only include those created by vittoriobre@gmail.com, vittorio.brehaut.duran@gmail.com, or the service account
 export async function getBusyTimes(startDate: Date, endDate: Date, calendarId?: string) {
-  const calendar = getCalendarClient()
+  const calendar = await getCalendarClient()
   const primaryCalendarId = calendarId || GOOGLE_CALENDAR_ID
 
   try {
@@ -61,7 +82,7 @@ export async function getBusyTimes(startDate: Date, endDate: Date, calendarId?: 
       'vittorio.brehaut.duran@gmail.com',
     ]
     
-    const serviceAccountEmail = getServiceAccountEmail()
+    const serviceAccountEmail = await getServiceAccountEmail()
     if (serviceAccountEmail) {
       allowedEmails.push(serviceAccountEmail)
     }
@@ -130,7 +151,7 @@ export async function createCalendarEvent(
   message?: string,
   calendarId?: string
 ) {
-  const calendar = getCalendarClient()
+  const calendar = await getCalendarClient()
   const primaryCalendarId = calendarId || EVENT_CREATION_CALENDAR_ID
 
   // Parse time slot (e.g., "13-14" -> 13:00 and 14:00, "16-16" -> 16:00 and 17:00)
