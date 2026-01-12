@@ -1,7 +1,7 @@
 // Google Calendar API client using Service Account authentication
 
 import { google } from 'googleapis'
-import { TIMEZONE, GOOGLE_CALENDAR_ID, EVENT_CREATION_CALENDAR_ID, CALENDAR_OWNER_EMAIL } from '@/lib/constants'
+import { TIMEZONE, GOOGLE_CALENDAR_ID, CALENDAR_OWNER_EMAIL } from '@/lib/constants'
 import { getSecretFromAWS } from '@/lib/aws/secrets'
 
 let calendarClient: ReturnType<typeof google.calendar> | null = null
@@ -86,25 +86,12 @@ export async function getBusyTimes(startDate: Date, endDate: Date, calendarId?: 
   const primaryCalendarId = calendarId || GOOGLE_CALENDAR_ID
 
   try {
-    // List of emails to filter for
-    const allowedEmails = [
-      'vittoriobre@gmail.com',
-      'vittorio.brehaut.duran@gmail.com',
-    ]
-    
-    const serviceAccountEmail = await getServiceAccountEmail()
-    if (serviceAccountEmail) {
-      allowedEmails.push(serviceAccountEmail)
-    }
-    
-    // Convert to lowercase for case-insensitive comparison
+    // Only detect events created by vittoriobre@gmail.com in the family calendar
+    const allowedEmails = ['vittoriobre@gmail.com']
     const allowedEmailsLower = allowedEmails.map(email => email.toLowerCase())
     
-    // Check both calendars: the family calendar and the event creation calendar
+    // Only check the family calendar (all events are created there)
     const calendarsToCheck = [primaryCalendarId]
-    if (EVENT_CREATION_CALENDAR_ID !== primaryCalendarId) {
-      calendarsToCheck.push(EVENT_CREATION_CALENDAR_ID)
-    }
     
     // Get events from all calendars
     const allEvents = []
@@ -162,7 +149,7 @@ export async function createCalendarEvent(
   calendarId?: string
 ) {
   const calendar = await getCalendarClient()
-  const primaryCalendarId = calendarId || EVENT_CREATION_CALENDAR_ID
+  const primaryCalendarId = calendarId || GOOGLE_CALENDAR_ID
 
   // Parse time slot (e.g., "13-14" -> 13:00 and 14:00, "16-16" -> 16:00 and 17:00)
   const [startHour, endHour] = timeSlot.split('-').map(Number)

@@ -7,7 +7,7 @@ import { createBooking, isSlotAvailable } from '../../lib/db/bookings'
 import { createCalendarEvent } from '../../lib/google-calendar/client'
 import { parseDateFromStorage } from '../../lib/google-calendar/utils'
 import { sendBookingConfirmationEmail } from '../../lib/email/ses'
-import { EVENT_CREATION_CALENDAR_ID } from '../../lib/constants'
+import { GOOGLE_CALENDAR_ID } from '../../lib/constants'
 import { z } from 'zod'
 
 // Validation schema for booking request
@@ -97,7 +97,7 @@ export const handler: Handler = async (event, context) => {
 
     // Create event in Google Calendar (non-blocking - don't fail if this errors)
     try {
-      await createCalendarEvent(bookingDate, timeSlot, name, email, company, message, EVENT_CREATION_CALENDAR_ID)
+      await createCalendarEvent(bookingDate, timeSlot, name, email, company, message, GOOGLE_CALENDAR_ID)
     } catch (calendarError) {
       console.error('Error creating calendar event (booking still saved):', calendarError)
       // Continue - booking is already saved in database
