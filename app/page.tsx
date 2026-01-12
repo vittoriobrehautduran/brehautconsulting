@@ -795,7 +795,7 @@ export default function HomePage() {
                     {/* Connection Lines */}
                     <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 100 100" preserveAspectRatio="none" style={{ overflow: 'visible' }}>
                       <path
-                        d="M 16% 50% L 30% 50%"
+                        d="M 16 50 L 30 50"
                         stroke="rgba(255,255,255,0.15)"
                         strokeWidth="1.5"
                         fill="none"
@@ -803,7 +803,7 @@ export default function HomePage() {
                         className="funnel-bar md:hidden"
                       />
                       <path
-                        d="M 30% 50% L 52% 50%"
+                        d="M 30 50 L 52 50"
                         stroke="rgba(255,255,255,0.15)"
                         strokeWidth="1.5"
                         fill="none"
@@ -811,7 +811,7 @@ export default function HomePage() {
                         className="funnel-bar md:hidden"
                       />
                       <path
-                        d="M 52% 50% L 73% 50%"
+                        d="M 52 50 L 73 50"
                         stroke="rgba(255,255,255,0.15)"
                         strokeWidth="1.5"
                         fill="none"
@@ -819,7 +819,7 @@ export default function HomePage() {
                         className="funnel-bar md:hidden"
                       />
                       <path
-                        d="M 15% 50% L 35% 50%"
+                        d="M 15 50 L 35 50"
                         stroke="rgba(255,255,255,0.15)"
                         strokeWidth="1.5"
                         fill="none"
@@ -827,7 +827,7 @@ export default function HomePage() {
                         className="funnel-bar hidden md:block"
                       />
                       <path
-                        d="M 35% 50% L 60% 50%"
+                        d="M 35 50 L 60 50"
                         stroke="rgba(255,255,255,0.15)"
                         strokeWidth="1.5"
                         fill="none"
@@ -835,7 +835,7 @@ export default function HomePage() {
                         className="funnel-bar hidden md:block"
                       />
                       <path
-                        d="M 60% 50% L 85% 50%"
+                        d="M 60 50 L 85 50"
                         stroke="rgba(255,255,255,0.15)"
                         strokeWidth="1.5"
                         fill="none"
