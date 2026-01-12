@@ -66,7 +66,15 @@ export const handler: Handler = async (event, context) => {
     const dateStr = formatDateForStorage(date)
     const availableSlots = await Promise.all(
       TIME_SLOTS.map(async (timeSlot) => {
-        const bookingCount = await getBookingCount(date, timeSlot)
+        let bookingCount = 0
+        try {
+          bookingCount = await getBookingCount(date, timeSlot)
+        } catch (dbError) {
+          console.error('Database error, assuming no bookings:', dbError)
+          // If database fails, assume no bookings (safer to allow booking than block)
+          bookingCount = 0
+        }
+        
         const isAtCapacity = bookingCount >= MAX_BOOKINGS_PER_SLOT
 
         // Find corresponding calendar slot
