@@ -7,21 +7,19 @@ import { getAvailableSlotsForDate, parseDateFromStorage, formatDateForStorage } 
 import { getBookingCount } from '../../lib/db/bookings'
 
 export const handler: Handler = async (event, context) => {
-  // Wrap entire handler to catch any initialization errors
-  try {
-    // Only allow GET requests
-    if (event.httpMethod !== 'GET') {
-      return {
-        statusCode: 405,
-        headers: {
-          'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': '*',
-        },
-        body: JSON.stringify({ error: 'Method not allowed' }),
-      }
+  // Only allow GET requests
+  if (event.httpMethod !== 'GET') {
+    return {
+      statusCode: 405,
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+      },
+      body: JSON.stringify({ error: 'Method not allowed' }),
     }
+  }
 
-    try {
+  try {
     const dateParam = event.queryStringParameters?.date
 
     if (!dateParam) {
@@ -115,34 +113,6 @@ export const handler: Handler = async (event, context) => {
       body: JSON.stringify({
         error: 'Internal server error',
         message: errorMessage,
-      }),
-    }
-  } catch (handlerError) {
-    console.error('Handler error:', handlerError)
-    return {
-      statusCode: 500,
-      headers: {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
-      },
-      body: JSON.stringify({
-        error: 'Function error',
-        message: handlerError instanceof Error ? handlerError.message : 'Unknown error',
-      }),
-    }
-  }
-  } catch (initError) {
-    // Catch any module initialization errors
-    console.error('Function initialization error:', initError)
-    return {
-      statusCode: 500,
-      headers: {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
-      },
-      body: JSON.stringify({
-        error: 'Function initialization failed',
-        message: initError instanceof Error ? initError.message : 'Unknown initialization error',
       }),
     }
   }
