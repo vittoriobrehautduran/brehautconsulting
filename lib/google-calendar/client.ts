@@ -46,8 +46,18 @@ async function getCalendarClient() {
   // Get service account key from AWS Secrets Manager or environment variable
   if (!serviceAccountKey) {
     if (process.env.AWS_SECRET_NAME) {
-      // Fetch from AWS Secrets Manager
-      serviceAccountKey = await getSecretFromAWS(process.env.AWS_SECRET_NAME)
+      try {
+        // Try to fetch from AWS Secrets Manager
+        serviceAccountKey = await getSecretFromAWS(process.env.AWS_SECRET_NAME)
+      } catch (awsError) {
+        console.error('Failed to fetch secret from AWS Secrets Manager, falling back to GOOGLE_SERVICE_ACCOUNT_KEY:', awsError)
+        // Fall back to environment variable if AWS fails
+        if (process.env.GOOGLE_SERVICE_ACCOUNT_KEY) {
+          serviceAccountKey = process.env.GOOGLE_SERVICE_ACCOUNT_KEY
+        } else {
+          throw new Error('AWS Secrets Manager failed and GOOGLE_SERVICE_ACCOUNT_KEY is not set')
+        }
+      }
     } else if (process.env.GOOGLE_SERVICE_ACCOUNT_KEY) {
       // Fallback to environment variable (for local development)
       serviceAccountKey = process.env.GOOGLE_SERVICE_ACCOUNT_KEY

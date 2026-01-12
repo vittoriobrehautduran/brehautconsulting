@@ -29,7 +29,10 @@ export async function getAvailableSlotsForDate(date: Date) {
       }))
   } catch (error) {
     console.error('Error fetching busy times, assuming all slots available:', error)
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error'
+    console.error('Busy times error details:', errorMessage)
     // Continue with empty busy periods if API fails
+    // This allows the function to still return available slots even if calendar check fails
   }
 
   // Check each time slot against busy periods

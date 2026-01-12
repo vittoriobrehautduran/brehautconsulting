@@ -90,6 +90,16 @@ export const handler: Handler = async (event, context) => {
     }
   } catch (error) {
     console.error('Error fetching available slots:', error)
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error'
+    const errorStack = error instanceof Error ? error.stack : undefined
+    
+    // Log full error details for debugging
+    console.error('Full error details:', {
+      message: errorMessage,
+      stack: errorStack,
+      error: JSON.stringify(error, Object.getOwnPropertyNames(error)),
+    })
+    
     return {
       statusCode: 500,
       headers: {
@@ -98,7 +108,7 @@ export const handler: Handler = async (event, context) => {
       },
       body: JSON.stringify({
         error: 'Internal server error',
-        message: error instanceof Error ? error.message : 'Unknown error',
+        message: errorMessage,
       }),
     }
   }
