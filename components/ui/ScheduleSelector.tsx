@@ -104,11 +104,8 @@ export default function ScheduleSelector({
   }
 
   const formatTimeSlot = (slot: TimeSlot): string => {
-    const [start, end] = slot.split('-')
-    if (start === end) {
-      return `${start}:00`
-    }
-    return `${start}:00 - ${end}:00`
+    const [start] = slot.split('-')
+    return `${start}:00`
   }
 
   const getSlotAvailability = (timeSlot: TimeSlot): boolean => {

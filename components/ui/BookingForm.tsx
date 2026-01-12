@@ -99,8 +99,8 @@ export default function BookingForm({
   }
 
   const formatTimeSlot = (slot: TimeSlot): string => {
-    const [start, end] = slot.split('-')
-    return `${start}:00 - ${end}:00`
+    const [start] = slot.split('-')
+    return `${start}:00`
   }
 
   return (
