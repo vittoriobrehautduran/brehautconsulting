@@ -88,8 +88,14 @@ export async function getBusyTimes(startDate: Date, endDate: Date, calendarId?: 
   const primaryCalendarId = calendarId || GOOGLE_CALENDAR_ID
 
   try {
-    // Only detect events created by vittoriobre@gmail.com in the family calendar
+    // Detect events created by vittoriobre@gmail.com and service account in the family calendar
     const allowedEmails = ['vittoriobre@gmail.com']
+    
+    const serviceAccountEmail = await getServiceAccountEmail()
+    if (serviceAccountEmail) {
+      allowedEmails.push(serviceAccountEmail)
+    }
+    
     const allowedEmailsLower = allowedEmails.map(email => email.toLowerCase())
     
     // Only check the family calendar (all events are created there)
