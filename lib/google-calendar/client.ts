@@ -3,6 +3,8 @@
 import { google } from 'googleapis'
 import { TIMEZONE, GOOGLE_CALENDAR_ID, CALENDAR_OWNER_EMAIL } from '@/lib/constants'
 import { getSecretFromAWS } from '@/lib/aws/secrets'
+import { toZonedTime, fromZonedTime } from 'date-fns-tz'
+import { parseISO } from 'date-fns'
 
 let calendarClient: ReturnType<typeof google.calendar> | null = null
 let serviceAccountEmail: string | null = null
@@ -155,16 +157,28 @@ export async function createCalendarEvent(
   const [startHour, endHour] = timeSlot.split('-').map(Number)
   const actualEndHour = startHour === endHour ? endHour + 1 : endHour
 
-  // Create date objects in Stockholm timezone
-  const startDateTime = new Date(date)
-  startDateTime.setHours(startHour, 0, 0, 0)
+  // Convert date to Stockholm timezone to get the correct year/month/day
+  const zonedDate = toZonedTime(date, TIMEZONE)
+  const year = zonedDate.getFullYear()
+  const month = String(zonedDate.getMonth() + 1).padStart(2, '0')
+  const day = String(zonedDate.getDate()).padStart(2, '0')
+  const startHourStr = String(startHour).padStart(2, '0')
+  const endHourStr = String(actualEndHour).padStart(2, '0')
 
-  const endDateTime = new Date(date)
-  endDateTime.setHours(actualEndHour, 0, 0, 0)
+  // Create ISO date strings representing times in Stockholm timezone
+  const startDateTimeStr = `${year}-${month}-${day}T${startHourStr}:00:00`
+  const endDateTimeStr = `${year}-${month}-${day}T${endHourStr}:00:00`
+  
+  // Parse and convert from Stockholm timezone to UTC
+  const startDateTimeStockholm = parseISO(startDateTimeStr)
+  const endDateTimeStockholm = parseISO(endDateTimeStr)
+  
+  const startDateTimeUTC = fromZonedTime(startDateTimeStockholm, TIMEZONE)
+  const endDateTimeUTC = fromZonedTime(endDateTimeStockholm, TIMEZONE)
 
   // Convert to ISO strings (Calendar API expects UTC)
-  const startTimeISO = startDateTime.toISOString()
-  const endTimeISO = endDateTime.toISOString()
+  const startTimeISO = startDateTimeUTC.toISOString()
+  const endTimeISO = endDateTimeUTC.toISOString()
 
   const title = company ? `Meeting: ${name} (${company})` : `Meeting: ${name}`
   const description = `Email: ${email}${message ? `\n\nMessage: ${message}` : ''}`

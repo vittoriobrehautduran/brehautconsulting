@@ -1,6 +1,6 @@
 // Utility functions for Google Calendar integration
 
-import { format, startOfDay, endOfDay } from 'date-fns'
+import { format, startOfDay, endOfDay, parseISO } from 'date-fns'
 import { fromZonedTime, toZonedTime } from 'date-fns-tz'
 import { TIMEZONE, TIME_SLOTS } from '../constants'
 import { getBusyTimes, isTimeSlotBusy } from './client'
@@ -55,7 +55,11 @@ export function formatDateForStorage(date: Date): string {
 // Parse date string (YYYY-MM-DD) to Date object in Stockholm timezone
 export function parseDateFromStorage(dateString: string): Date {
   const [year, month, day] = dateString.split('-').map(Number)
-  const date = new Date(year, month - 1, day)
-  return fromZonedTime(date, TIMEZONE)
+  // Create date string with timezone
+  const dateStringWithTz = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}T00:00:00`
+  // Create a date that we'll interpret as being in Stockholm timezone
+  const dateInStockholm = new Date(dateStringWithTz)
+  // Convert from Stockholm timezone to UTC (fromZonedTime interprets the date as being in the given timezone)
+  return fromZonedTime(dateInStockholm, TIMEZONE)
 }
 
