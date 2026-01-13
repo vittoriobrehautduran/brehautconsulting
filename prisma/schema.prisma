@@ -26,3 +26,13 @@ model Booking {
   @@map("bookings")
 }
 
+model BusyDay {
+  id        String   @id @default(cuid())
+  date      DateTime @unique // Date only (time ignored)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([date])
+  @@map("busy_days")
+}
+

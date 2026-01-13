@@ -230,3 +230,50 @@ export function isTimeSlotBusy(timeSlot: string, busyPeriods: Array<{ start: str
   })
 }
 
+// Create an all-day busy event in Google Calendar
+// This marks the entire day as busy (all time slots will be unavailable)
+// Uses dateTime to ensure compatibility with existing getBusyTimes logic
+export async function createBusyTimeEvent(date: Date, calendarId?: string) {
+  const calendar = await getCalendarClient()
+  const primaryCalendarId = calendarId || GOOGLE_CALENDAR_ID
+
+  // Convert date to Stockholm timezone to get the correct year/month/day
+  const zonedDate = toZonedTime(date, TIMEZONE)
+  const year = zonedDate.getFullYear()
+  const month = String(zonedDate.getMonth() + 1).padStart(2, '0')
+  const day = String(zonedDate.getDate()).padStart(2, '0')
+
+  // Create events covering the entire day (00:00 to 23:59) to ensure all time slots are marked as busy
+  const startDateTimeStr = `${year}-${month}-${day}T00:00:00`
+  const endDateTimeStr = `${year}-${month}-${day}T23:59:59`
+  
+  // Parse and convert from Stockholm timezone to UTC
+  const startDateTimeStockholm = parseISO(startDateTimeStr)
+  const endDateTimeStockholm = parseISO(endDateTimeStr)
+  
+  const startDateTimeUTC = fromZonedTime(startDateTimeStockholm, TIMEZONE)
+  const endDateTimeUTC = fromZonedTime(endDateTimeStockholm, TIMEZONE)
+
+  // Convert to ISO strings (Calendar API expects UTC)
+  const startTimeISO = startDateTimeUTC.toISOString()
+  const endTimeISO = endDateTimeUTC.toISOString()
+
+  const response = await calendar.events.insert({
+    calendarId: primaryCalendarId,
+    requestBody: {
+      summary: 'Busy',
+      description: 'Admin-marked busy time',
+      start: {
+        dateTime: startTimeISO,
+        timeZone: TIMEZONE,
+      },
+      end: {
+        dateTime: endTimeISO,
+        timeZone: TIMEZONE,
+      },
+    },
+  })
+
+  return response.data
+}
+

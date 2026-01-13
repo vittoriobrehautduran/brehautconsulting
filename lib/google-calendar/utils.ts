@@ -4,9 +4,20 @@ import { format, startOfDay, endOfDay, parseISO } from 'date-fns'
 import { fromZonedTime, toZonedTime } from 'date-fns-tz'
 import { TIMEZONE, TIME_SLOTS } from '../constants'
 import { getBusyTimes, isTimeSlotBusy } from './client'
+import { isDateBusy } from '../db/busy-days'
 
 // Get available slots for a specific date
 export async function getAvailableSlotsForDate(date: Date) {
+  // Check if the date is marked as busy in the database first
+  const isDbBusy = await isDateBusy(date)
+  if (isDbBusy) {
+    // If date is busy in database, all slots are unavailable
+    return TIME_SLOTS.map((timeSlot) => ({
+      timeSlot,
+      available: false,
+    }))
+  }
+
   // Convert date to Stockholm timezone for the day boundaries
   const zonedDate = toZonedTime(date, TIMEZONE)
   const dayStart = startOfDay(zonedDate)
