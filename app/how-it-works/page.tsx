@@ -12,6 +12,7 @@ gsap.registerPlugin(ScrollTrigger)
 const SERVICE_DETAILS = [
   {
     title: SERVICES[0].title,
+    label: 'Core Foundation',
     description: SERVICES[0].description,
     details: [
       'Custom website design and development tailored to your brand and business goals',
@@ -66,6 +67,7 @@ const SERVICE_DETAILS = [
   },
   {
     title: SERVICES[3].title,
+    label: 'Growth Driver',
     description: SERVICES[3].description,
     details: [
       'Search engine advertising (Google Ads, Bing Ads)',
@@ -84,6 +86,7 @@ const SERVICE_DETAILS = [
   },
   {
     title: SERVICES[4].title,
+    label: 'Growth Driver',
     description: SERVICES[4].description,
     details: [
       'Analytics setup and configuration (Google Analytics, etc.)',
@@ -121,10 +124,14 @@ const SERVICE_DETAILS = [
 ]
 
 export default function ServicesPage() {
-  const titleRef = useRef<HTMLHeadingElement>(null)
-  const introRef = useRef<HTMLParagraphElement>(null)
+  const introRef = useRef<HTMLDivElement>(null)
+  const howItWorksRef = useRef<HTMLDivElement>(null)
+  const whoForRef = useRef<HTMLDivElement>(null)
+  const systemIntroRef = useRef<HTMLDivElement>(null)
+  const engagementRef = useRef<HTMLDivElement>(null)
   const servicesRef = useRef<HTMLDivElement>(null)
   const serviceCardsRefs = useRef<(HTMLElement | null)[]>([])
+  const sidebarRef = useRef<HTMLElement>(null)
   const [activeSection, setActiveSection] = useState<number>(0)
   const [showScrollTop, setShowScrollTop] = useState<boolean>(false)
 
@@ -140,25 +147,6 @@ export default function ServicesPage() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Title animation
-      if (titleRef.current) {
-        gsap.fromTo(
-          titleRef.current,
-          { y: 50, opacity: 0 },
-          {
-            y: 0,
-            opacity: 1,
-            duration: 1,
-            ease: 'power3.out',
-            scrollTrigger: {
-              trigger: titleRef.current,
-              start: 'top 80%',
-              toggleActions: 'play none none none',
-            },
-          }
-        )
-      }
-
       // Intro text animation
       if (introRef.current) {
         gsap.fromTo(
@@ -178,9 +166,109 @@ export default function ServicesPage() {
         )
       }
 
+      // How It Works section animation
+      if (howItWorksRef.current) {
+        gsap.fromTo(
+          howItWorksRef.current,
+          { y: 50, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.8,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: howItWorksRef.current,
+              start: 'top 80%',
+              toggleActions: 'play none none none',
+            },
+          }
+        )
+      }
+
+      // Who For section animation
+      if (whoForRef.current) {
+        gsap.fromTo(
+          whoForRef.current,
+          { y: 50, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.8,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: whoForRef.current,
+              start: 'top 80%',
+              toggleActions: 'play none none none',
+            },
+          }
+        )
+      }
+
+      // System intro animation
+      if (systemIntroRef.current) {
+        gsap.fromTo(
+          systemIntroRef.current,
+          { y: 50, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.8,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: systemIntroRef.current,
+              start: 'top 80%',
+              toggleActions: 'play none none none',
+            },
+          }
+        )
+      }
+
+      // Engagement models animation
+      if (engagementRef.current) {
+        gsap.fromTo(
+          engagementRef.current,
+          { y: 50, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.8,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: engagementRef.current,
+              start: 'top 80%',
+              toggleActions: 'play none none none',
+            },
+          }
+        )
+      }
+
       // Services cards animation and scroll spy
       if (servicesRef.current) {
         const serviceCards = servicesRef.current.querySelectorAll('.service-card')
+        const firstServiceCard = serviceCards[0]
+        
+        // Sidebar fade-in when first service card enters viewport
+        if (firstServiceCard && sidebarRef.current) {
+          ScrollTrigger.create({
+            trigger: firstServiceCard,
+            start: 'top 80%',
+            onEnter: () => {
+              gsap.to(sidebarRef.current, {
+                opacity: 1,
+                duration: 0.5,
+                ease: 'power2.out',
+              })
+            },
+            onLeaveBack: () => {
+              gsap.to(sidebarRef.current, {
+                opacity: 0,
+                duration: 0.3,
+                ease: 'power2.in',
+              })
+            },
+          })
+        }
+        
         serviceCards.forEach((card: any, index: number) => {
           gsap.fromTo(
             card,
@@ -233,73 +321,184 @@ export default function ServicesPage() {
       <AnimatedBackground />
       <div className="relative min-h-screen flex w-full max-w-full overflow-x-hidden">
         {/* Fixed Left Navigation */}
-        <aside className="hidden lg:block fixed left-0 top-0 h-screen w-64 pt-32 pb-8 px-6 z-40">
+        <aside ref={sidebarRef} className="hidden lg:block fixed left-0 top-0 h-screen w-64 pt-32 pb-8 px-6 z-40" style={{ opacity: 0 }}>
           <nav className="sticky top-32">
             <div className="bg-black/60 backdrop-blur-md rounded-2xl p-6">
               <h3 className="text-sm font-semibold text-white/60 uppercase tracking-wider mb-6">
                 Services
               </h3>
               <ul className="space-y-2">
-                {SERVICE_DETAILS.map((service, index) => {
-                  // Shorten service titles for navigation
-                  const shortTitle = service.title
-                    .replace('Website & Web Application ', '')
-                    .replace('Conversion & Lead ', '')
-                    .replace('Local Visibility & ', '')
-                    .replace('Advertising & Demand ', '')
-                    .replace('Analytics & ', '')
-                    .replace('Technical Integrations & ', '')
-                    .split(' ')[0] + (service.title.includes('&') ? ' & More' : '')
-                  
-                  return (
-                    <li key={index}>
-                      <button
-                        onClick={() => scrollToService(index)}
-                        className="w-full text-left px-4 py-3 rounded-lg transition-all duration-500 relative group"
-                      >
-                        <div className="flex items-center gap-4">
-                          <span className={`text-xs font-semibold w-6 transition-colors duration-500 ${
-                            activeSection === index ? 'text-blue-400' : 'text-white/40'
-                          }`}>
-                            {String(index + 1).padStart(2, '0')}
-                          </span>
-                          <span className={`text-sm font-medium leading-tight flex-1 transition-all duration-500 ${
-                            activeSection === index
-                              ? 'text-white translate-x-2'
-                              : 'text-white/60 group-hover:text-white/90'
-                          }`}>
-                            {shortTitle}
-                          </span>
-                        </div>
-                      </button>
-                    </li>
-                  )
-                })}
+                {SERVICE_DETAILS.map((service, index) => (
+                  <li key={index}>
+                    <button
+                      onClick={() => scrollToService(index)}
+                      className="w-full text-left px-4 py-3 rounded-lg transition-all duration-500 relative group"
+                    >
+                      <div className="flex items-start gap-3">
+                        <span className={`text-xs font-semibold w-6 flex-shrink-0 transition-colors duration-500 pt-0.5 ${
+                          activeSection === index ? 'text-blue-400' : 'text-white/40'
+                        }`}>
+                          {String(index + 1).padStart(2, '0')}
+                        </span>
+                        <span className={`text-xs font-medium leading-relaxed flex-1 transition-all duration-500 ${
+                          activeSection === index
+                            ? 'text-white'
+                            : 'text-white/60 group-hover:text-white/90'
+                        }`}>
+                          {service.title}
+                        </span>
+                      </div>
+                    </button>
+                  </li>
+                ))}
               </ul>
             </div>
           </nav>
         </aside>
 
         {/* Main Content */}
-        <div className="flex-1 lg:ml-64 w-full min-w-0">
-        {/* Hero Section */}
-        <section className="min-h-[60vh] flex items-center justify-center px-4 sm:px-6 pt-32 pb-20">
-          <div className="container mx-auto max-w-4xl text-center">
-            <h1
-              ref={titleRef}
-              className="glow-title text-5xl md:text-6xl lg:text-7xl font-heading font-bold mb-8 text-white"
-            >
-              Our Services
-            </h1>
-            <p
-              ref={introRef}
-              className="text-xl md:text-2xl text-white/90 leading-relaxed max-w-3xl mx-auto mb-6"
-            >
-              Comprehensive digital solutions designed to drive real business results. 
-              We combine technical expertise with strategic thinking to deliver measurable outcomes.
+        <div className="flex-1 lg:ml-64 lg:mr-64 w-full min-w-0">
+        {/* Hero Section - Short positioning intro */}
+        <section className="min-h-[50vh] flex items-center justify-center px-4 sm:px-6 pt-32 pb-16">
+          <div className="w-full max-w-4xl mx-auto text-center">
+            <div ref={introRef} className="space-y-4 max-w-3xl mx-auto">
+              <p className="text-xl md:text-2xl text-white/90 leading-relaxed">
+                Brehaut Consulting helps businesses get more customers by building clear, measurable digital systems.
+              </p>
+              <p className="text-xl md:text-2xl text-white/90 leading-relaxed">
+                The focus is on understanding how customers find you, how they decide to contact you, and how your digital setup supports that journey.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* How It Works Section */}
+        <section ref={howItWorksRef} className="py-20 px-4 sm:px-6 relative z-10">
+          <div className="w-full max-w-4xl mx-auto">
+            <h2 className="glow-title text-4xl md:text-5xl font-heading font-bold mb-6 text-white text-center">
+              How It Works
+            </h2>
+            <p className="text-lg md:text-xl text-white/80 text-center mb-12 max-w-2xl mx-auto">
+              If this approach makes sense,{' '}
+              <Link href="/booking" className="text-white underline underline-offset-4 decoration-white/50 hover:decoration-white transition-colors">
+                the next step is a short conversation
+              </Link>
+              .
             </p>
-            <p className="text-base md:text-lg text-white/80 leading-relaxed max-w-3xl mx-auto">
-              These services are offered as part of focused packages and tailored systems — not as isolated tasks. The scope is adapted to each business and agreed before starting.
+            <div className="space-y-16 max-w-3xl mx-auto">
+              {[
+                {
+                  number: '1',
+                  title: 'Initial Conversation',
+                  description: 'We start with a working session to understand your business, customers, and what\'s actually preventing more enquiries or customers.',
+                },
+                {
+                  number: '2',
+                  title: 'System Design',
+                  description: 'Based on your situation, a clear digital system is defined — only what\'s needed, based on your goals and situation.',
+                },
+                {
+                  number: '3',
+                  title: 'Build & Implementation',
+                  description: 'The agreed components are designed and implemented with a focus on performance, clarity, and long-term reliability.',
+                },
+                {
+                  number: '4',
+                  title: 'Measurement & Improvement',
+                  description: 'Results are tracked and reviewed so the system can be improved over time based on real data.',
+                },
+              ].map((step, index) => (
+                <div
+                  key={index}
+                  className="flex gap-6 md:gap-8"
+                >
+                  <div className="flex-shrink-0 w-12 h-12 md:w-16 md:h-16 rounded-2xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 border border-white/20 flex items-center justify-center">
+                    <span className="text-2xl md:text-3xl font-bold text-white/90">{step.number}</span>
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-2xl md:text-3xl font-heading font-bold text-white mb-4">
+                      {step.title}
+                    </h3>
+                    <p className="text-lg md:text-xl text-white/80 leading-relaxed">
+                      {step.description}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Who This Is For / Not For Section */}
+        <section ref={whoForRef} className="py-20 px-4 sm:px-6 relative z-10">
+          <div className="container mx-auto max-w-4xl">
+            <div className="grid md:grid-cols-2 gap-12 md:gap-16">
+              {/* Who This Is For */}
+              <div>
+                <h2 className="glow-text text-3xl md:text-4xl font-heading font-bold mb-8 text-white">
+                  Who This Is For
+                </h2>
+                <ul className="space-y-4">
+                  {[
+                    'Businesses that want more enquiries, bookings, or customers',
+                    'Owners who care about results, not just design',
+                    'Companies that want clarity instead of guesswork',
+                    'Businesses open to improving how their digital presence works',
+                  ].map((item, index) => (
+                    <li key={index} className="flex items-start gap-4 text-lg text-white/90 leading-relaxed">
+                      <div className="flex-shrink-0 w-6 h-6 rounded-full bg-gradient-to-br from-green-500/30 to-green-600/30 border border-green-400/40 flex items-center justify-center mt-1">
+                        <svg className="w-4 h-4 text-green-300" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                        </svg>
+                      </div>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Who This Is Not For */}
+              <div>
+                <h2 className="glow-text text-3xl md:text-4xl font-heading font-bold mb-8 text-white">
+                  Who This Is Not For
+                </h2>
+                <ul className="space-y-4">
+                  {[
+                    'Businesses looking for the cheapest possible solution',
+                    'One-off tasks with no interest in long-term results',
+                    'Clients who want tools without strategy',
+                  ].map((item, index) => (
+                    <li key={index} className="flex items-start gap-4 text-lg text-white/90 leading-relaxed">
+                      <div className="flex-shrink-0 w-6 h-6 rounded-full bg-gradient-to-br from-red-500/30 to-red-600/30 border border-red-400/40 flex items-center justify-center mt-1">
+                        <svg className="w-4 h-4 text-red-300" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
+                        </svg>
+                      </div>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+            <div className="flex justify-center mt-12">
+              <Link
+                href="/booking"
+                className="glow-button inline-block px-10 py-4 bg-white text-black rounded-full text-lg font-semibold hover:bg-white/90 shadow-2xl"
+              >
+                Book a Meeting
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* The Digital Growth System Intro */}
+        <section ref={systemIntroRef} className="py-16 px-4 sm:px-6 relative z-10">
+          <div className="container mx-auto max-w-4xl text-center">
+            <h2 className="glow-title text-4xl md:text-5xl font-heading font-bold mb-6 text-white">
+              The Digital Growth System
+            </h2>
+            <p className="text-xl md:text-2xl text-white/90 leading-relaxed max-w-3xl mx-auto">
+              Each system is built from the components below. Not every business needs every part, but each component exists to support one goal: measurable customer growth.
             </p>
           </div>
         </section>
@@ -327,6 +526,9 @@ export default function ServicesPage() {
         {/* Services Details Section */}
         <section ref={servicesRef} className="py-20 px-2 sm:px-3 relative z-10">
           <div className="container mx-auto max-w-none">
+            <p className="text-lg md:text-xl text-white/70 text-center mb-12 max-w-3xl mx-auto px-4">
+              Below are the core components that can make up your digital growth system.
+            </p>
             <div className="space-y-16 sm:space-y-24">
               {SERVICE_DETAILS.map((service, index) => (
                 <article 
@@ -350,20 +552,20 @@ export default function ServicesPage() {
                                 Service {index + 1}
                               </span>
                             </div>
-                            <h2 className="glow-text text-4xl lg:text-5xl font-heading font-bold text-white leading-tight">
-                              {service.title}
-                            </h2>
+                            <div className="flex items-baseline gap-3 flex-wrap">
+                              <h2 className="glow-text text-4xl lg:text-5xl font-heading font-bold text-white leading-tight">
+                                {service.title}
+                              </h2>
+                              {service.label && (
+                                <span className="text-sm font-semibold text-white/50 uppercase tracking-wider">
+                                  ({service.label})
+                                </span>
+                              )}
+                            </div>
                           </div>
                           <div className="flex-shrink-0 w-12 h-12 lg:w-16 lg:h-16 rounded-2xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 border border-white/20 flex items-center justify-center mt-2 sm:mt-0">
                             <span className="text-2xl lg:text-3xl font-bold text-white/70">{index + 1}</span>
                           </div>
-                        </div>
-                        
-                        {/* Brief service description - like blog intro */}
-                        <div className="max-w-4xl">
-                          <p className="text-xl lg:text-2xl text-white/95 leading-relaxed font-light">
-                            {service.description}
-                          </p>
                         </div>
                       </header>
 
@@ -445,20 +647,58 @@ export default function ServicesPage() {
           </div>
         </section>
 
+        {/* Ways to Work Together Section */}
+        <section ref={engagementRef} className="py-20 px-4 sm:px-6 relative z-10">
+          <div className="container mx-auto max-w-4xl">
+            <h2 className="glow-title text-4xl md:text-5xl font-heading font-bold mb-8 text-white text-center">
+              Ways to Work Together
+            </h2>
+            <div className="bg-black/40 border border-white/20 rounded-2xl p-8 lg:p-12 backdrop-blur-sm">
+              <p className="text-xl md:text-2xl text-white/90 leading-relaxed mb-8 text-center">
+                Some clients need a complete system. Others need a specific component.
+              </p>
+              <p className="text-lg md:text-xl text-white/80 mb-8 text-center">
+                Engagements can include:
+              </p>
+              <ul className="space-y-4 max-w-2xl mx-auto">
+                {[
+                  'Full system design and implementation',
+                  'Website or web application projects',
+                  'Advertising setup and optimisation',
+                  'Analytics and tracking architecture',
+                  'Ongoing optimisation and support',
+                ].map((item, index) => (
+                  <li key={index} className="flex items-start gap-4 text-lg text-white/90 leading-relaxed">
+                    <div className="flex-shrink-0 w-6 h-6 rounded-full bg-gradient-to-br from-blue-500/30 to-blue-600/30 border border-blue-400/40 flex items-center justify-center mt-1">
+                      <svg className="w-4 h-4 text-blue-300" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                      </svg>
+                    </div>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+              <p className="text-lg md:text-xl text-white/80 leading-relaxed mt-8 text-center">
+                The scope is defined after the initial conversation, based on what will create the most value for your business.
+              </p>
+            </div>
+          </div>
+        </section>
+
         {/* CTA Section */}
         <section className="pt-32 pb-48 px-6 relative z-10">
           <div className="container mx-auto max-w-4xl text-center">
             <h2 className="glow-title text-4xl md:text-5xl font-heading font-bold mb-8 text-white">
-              Ready to Get Started?
+              Next Step
             </h2>
             <p className="text-xl text-white/90 mb-12 max-w-2xl mx-auto">
-              Let&apos;s discuss how we can help transform your digital presence and drive real business results.
+              If this sounds relevant, the next step is a short meeting to understand your business and see if there&apos;s a good fit.
             </p>
             <Link
               href="/booking"
               className="glow-button inline-block px-10 py-4 bg-white text-black rounded-full text-lg font-semibold hover:bg-white/90 shadow-2xl"
             >
-              Book a Consultation
+              Book a Meeting
             </Link>
           </div>
         </section>

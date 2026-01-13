@@ -121,7 +121,8 @@ export default function HomePage() {
       if (portfolioCarouselRef.current && !prefersReducedMotion) {
         const images = portfolioCarouselRef.current.querySelectorAll('.portfolio-image')
         const totalImages = images.length
-        const radius = isMobile ? 120 : 170
+        const isSmallMobile = typeof window !== 'undefined' && window.innerWidth <= 580
+        const radius = isSmallMobile ? 70 : (isMobile ? 95 : 170)
         
         let currentRotation = 0
         let animationFrameId: number | null = null
@@ -154,8 +155,8 @@ export default function HomePage() {
               x: x,
               z: z,
               rotationY: isMobile ? 0 : currentAngle + 90,
-              opacity: frontFacing ? 1 : (isMobile ? 0.6 : 0.4),
-              scale: frontFacing ? 1 : (isMobile ? 0.9 : 0.85),
+              opacity: 1,
+              scale: 1,
             })
           })
         }
@@ -694,7 +695,7 @@ export default function HomePage() {
               {COMPANY_TAGLINE}
             </p>
             <p className="hidden md:block text-lg text-white/80 mb-12 leading-relaxed max-w-3xl mx-auto">
-              We design and build high-performance websites and web applications, supported by growth systems, analytics, and technical integrations — helping businesses attract, convert, and retain customers with clarity and measurable results.
+              We help businesses get more customers through high-performance websites and measurable digital systems — designed to make attraction, conversion, and retention intentional rather than accidental.
             </p>
             <div ref={ctaRef} className="flex flex-col items-center gap-6">
               <Link
@@ -704,7 +705,7 @@ export default function HomePage() {
                 Book a Meeting
               </Link>
               <Link
-                href="/services"
+                href="/how-it-works"
                 className="text-white/70 hover:text-white transition-colors text-base underline underline-offset-4 decoration-white/30 hover:decoration-white/60"
               >
                 View Services
@@ -727,25 +728,29 @@ export default function HomePage() {
               <div className="hidden lg:block absolute left-[calc(50%-1px)] top-1/2 -translate-y-1/2 w-px h-20 bg-gradient-to-b from-transparent via-white/20 to-transparent z-0"></div>
               
               {/* Left Column - Service Card */}
-              <div className="service-card description-card bg-white/30 rounded-3xl p-10 lg:p-10 hover:bg-white/35 transition-all duration-300 relative z-10 backdrop-blur-sm">
-                <h3 className="glow-text text-3xl lg:text-4xl font-heading font-bold mb-4 text-white leading-tight text-center lg:text-left">
-                  {SERVICES[0].title}
-                </h3>
-                <p className="text-lg lg:text-xl text-white/80 leading-relaxed text-center lg:text-left">
-                  {SERVICES[0].description}
-                </p>
+              <div className="service-card description-card bg-gradient-to-br from-black/50 via-black/60 to-black/50 rounded-3xl p-10 lg:p-10 hover:bg-gradient-to-br hover:from-black/55 hover:via-black/65 hover:to-black/55 transition-all duration-300 relative z-10 backdrop-blur-md border border-white/10 hover:border-white/20 overflow-hidden">
+                {/* Colored gradient overlay */}
+                <div className="absolute top-1/2 right-1/2 w-[600px] h-[600px] bg-gradient-to-br from-blue-500/15 to-purple-500/15 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
+                <div className="relative z-10">
+                  <h3 className="glow-text text-3xl lg:text-4xl font-heading font-bold mb-4 text-white leading-tight text-center lg:text-left">
+                    {SERVICES[0].title}
+                  </h3>
+                  <p className="text-lg lg:text-xl text-white/90 leading-relaxed text-center lg:text-left">
+                    {SERVICES[0].description}
+                  </p>
+                </div>
               </div>
 
               {/* Right Column - Portfolio Carousel Visualization */}
               <div 
                 ref={portfolioCarouselRef} 
-                className="relative h-[300px] lg:h-[280px] overflow-visible perspective-1000 z-10"
+                className="relative h-[200px] sm:h-[240px] lg:h-[220px] overflow-visible perspective-1000 z-10"
               >
                 <div className="absolute top-0 left-0 right-0 bottom-0 flex items-center justify-center" style={{ transformStyle: 'preserve-3d', textAlign: 'center' }}>
                   {PORTFOLIO_IMAGES.map((src, index) => (
                     <div
                       key={index}
-                      className="portfolio-image absolute w-full max-w-xs"
+                      className="portfolio-image absolute w-full max-w-[160px] sm:max-w-[200px] lg:max-w-[240px]"
                       style={{ transformStyle: 'preserve-3d' }}
                     >
                       <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-white/20 bg-white/5 backdrop-blur-sm">
@@ -754,7 +759,7 @@ export default function HomePage() {
                           alt={`Portfolio project ${index + 1} - ${src.split('/').pop()?.replace('.png', '').replace(/([A-Z])/g, ' $1').trim()}`}
                           width={800}
                           height={600}
-                          className="w-full h-auto object-cover brightness-75"
+                          className="w-full h-auto object-cover brightness-[0.5]"
                           style={{ transform: 'scaleX(-1)' }}
                         />
                         <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-transparent to-black/40 pointer-events-none" style={{ maskImage: 'radial-gradient(ellipse 80% 100% at center, black 60%, transparent 100%)', WebkitMaskImage: 'radial-gradient(ellipse 80% 100% at center, black 60%, transparent 100%)' }}></div>
@@ -774,14 +779,18 @@ export default function HomePage() {
               {/* Left Column - Service Card */}
               <div 
                 ref={serviceCard2Ref}
-                className="description-card bg-white/30 rounded-3xl p-10 lg:p-14 hover:bg-white/35 transition-all duration-300 relative z-10 backdrop-blur-sm"
+                className="description-card bg-gradient-to-br from-black/50 via-black/60 to-black/50 rounded-3xl p-10 lg:p-14 hover:bg-gradient-to-br hover:from-black/55 hover:via-black/65 hover:to-black/55 transition-all duration-300 relative z-10 backdrop-blur-md border border-white/10 hover:border-white/20 overflow-hidden"
               >
-                <h3 className="glow-text text-3xl lg:text-4xl font-heading font-bold mb-6 text-white leading-tight">
-                  {SERVICES[1].title}
-                </h3>
-                <p className="text-lg lg:text-xl text-white/80 leading-relaxed">
-                  {SERVICES[1].description}
-                </p>
+                {/* Colored gradient overlay */}
+                <div className="absolute top-1/2 right-1/2 w-[600px] h-[600px] bg-gradient-to-br from-blue-500/15 to-purple-500/15 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
+                <div className="relative z-10">
+                  <h3 className="glow-text text-3xl lg:text-4xl font-heading font-bold mb-6 text-white leading-tight">
+                    {SERVICES[1].title}
+                  </h3>
+                  <p className="text-lg lg:text-xl text-white/90 leading-relaxed">
+                    {SERVICES[1].description}
+                  </p>
+                </div>
               </div>
 
               {/* Right Column - Conversion Flow Visualization */}
@@ -886,14 +895,18 @@ export default function HomePage() {
               {/* Left Column - Service Card */}
               <div 
                 ref={serviceCard3Ref}
-                className="description-card bg-white/30 rounded-3xl p-10 lg:p-14 hover:bg-white/35 transition-all duration-300 relative z-10 backdrop-blur-sm"
+                className="description-card bg-gradient-to-br from-black/50 via-black/60 to-black/50 rounded-3xl p-10 lg:p-14 hover:bg-gradient-to-br hover:from-black/55 hover:via-black/65 hover:to-black/55 transition-all duration-300 relative z-10 backdrop-blur-md border border-white/10 hover:border-white/20 overflow-hidden"
               >
-                <h3 className="glow-text text-3xl lg:text-4xl font-heading font-bold mb-6 text-white leading-tight">
-                  {SERVICES[2].title}
-                </h3>
-                <p className="text-lg lg:text-xl text-white/80 leading-relaxed">
-                  {SERVICES[2].description}
-                </p>
+                {/* Colored gradient overlay */}
+                <div className="absolute top-1/2 right-1/2 w-[600px] h-[600px] bg-gradient-to-br from-blue-500/15 to-purple-500/15 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
+                <div className="relative z-10">
+                  <h3 className="glow-text text-3xl lg:text-4xl font-heading font-bold mb-6 text-white leading-tight">
+                    {SERVICES[2].title}
+                  </h3>
+                  <p className="text-lg lg:text-xl text-white/90 leading-relaxed">
+                    {SERVICES[2].description}
+                  </p>
+                </div>
               </div>
 
               {/* Right Column - Search Results Mockup Visualization */}
@@ -965,14 +978,18 @@ export default function HomePage() {
               {/* Left Column - Service Card */}
               <div 
                 ref={serviceCard4Ref}
-                className="description-card bg-white/30 rounded-3xl p-10 lg:p-14 hover:bg-white/35 transition-all duration-300 relative z-10 backdrop-blur-sm"
+                className="description-card bg-gradient-to-br from-black/50 via-black/60 to-black/50 rounded-3xl p-10 lg:p-14 hover:bg-gradient-to-br hover:from-black/55 hover:via-black/65 hover:to-black/55 transition-all duration-300 relative z-10 backdrop-blur-md border border-white/10 hover:border-white/20 overflow-hidden"
               >
-                <h3 className="glow-text text-3xl lg:text-4xl font-heading font-bold mb-6 text-white leading-tight">
-                  {SERVICES[3].title}
-                </h3>
-                <p className="text-lg lg:text-xl text-white/80 leading-relaxed">
-                  {SERVICES[3].description}
-                </p>
+                {/* Colored gradient overlay */}
+                <div className="absolute top-1/2 right-1/2 w-[600px] h-[600px] bg-gradient-to-br from-blue-500/15 to-purple-500/15 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
+                <div className="relative z-10">
+                  <h3 className="glow-text text-3xl lg:text-4xl font-heading font-bold mb-6 text-white leading-tight">
+                    {SERVICES[3].title}
+                  </h3>
+                  <p className="text-lg lg:text-xl text-white/90 leading-relaxed">
+                    {SERVICES[3].description}
+                  </p>
+                </div>
               </div>
 
               {/* Right Column - Ad Platform Icons Visualization */}
@@ -1110,14 +1127,18 @@ export default function HomePage() {
               {/* Left Column - Service Card */}
               <div 
                 ref={serviceCard5Ref}
-                className="description-card bg-white/30 rounded-3xl p-10 lg:p-14 hover:bg-white/35 transition-all duration-300 relative z-10 backdrop-blur-sm"
+                className="description-card bg-gradient-to-br from-black/50 via-black/60 to-black/50 rounded-3xl p-10 lg:p-14 hover:bg-gradient-to-br hover:from-black/55 hover:via-black/65 hover:to-black/55 transition-all duration-300 relative z-10 backdrop-blur-md border border-white/10 hover:border-white/20 overflow-hidden"
               >
-                <h3 className="glow-text text-3xl lg:text-4xl font-heading font-bold mb-6 text-white leading-tight">
-                  {SERVICES[4].title}
-                </h3>
-                <p className="text-lg lg:text-xl text-white/80 leading-relaxed">
-                  {SERVICES[4].description}
-                </p>
+                {/* Colored gradient overlay */}
+                <div className="absolute top-1/2 right-1/2 w-[600px] h-[600px] bg-gradient-to-br from-blue-500/15 to-purple-500/15 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
+                <div className="relative z-10">
+                  <h3 className="glow-text text-3xl lg:text-4xl font-heading font-bold mb-6 text-white leading-tight">
+                    {SERVICES[4].title}
+                  </h3>
+                  <p className="text-lg lg:text-xl text-white/90 leading-relaxed">
+                    {SERVICES[4].description}
+                  </p>
+                </div>
               </div>
 
               {/* Right Column - Analytics Dashboard Visualization */}
@@ -1181,14 +1202,18 @@ export default function HomePage() {
               {/* Left Column - Service Card */}
               <div 
                 ref={serviceCard6Ref}
-                className="description-card bg-white/30 rounded-3xl p-10 lg:p-14 hover:bg-white/35 transition-all duration-300 relative z-10 flex flex-col justify-center backdrop-blur-sm"
+                className="description-card bg-gradient-to-br from-black/50 via-black/60 to-black/50 rounded-3xl p-10 lg:p-14 hover:bg-gradient-to-br hover:from-black/55 hover:via-black/65 hover:to-black/55 transition-all duration-300 relative z-10 flex flex-col justify-center backdrop-blur-md border border-white/10 hover:border-white/20 overflow-hidden"
               >
-                <h3 className="glow-text text-3xl lg:text-4xl font-heading font-bold mb-6 text-white leading-tight">
-                  {SERVICES[5].title}
-                </h3>
-                <p className="text-lg lg:text-xl text-white/80 leading-relaxed">
-                  {SERVICES[5].description}
-                </p>
+                {/* Colored gradient overlay */}
+                <div className="absolute top-1/2 right-1/2 w-[600px] h-[600px] bg-gradient-to-br from-blue-500/15 to-purple-500/15 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
+                <div className="relative z-10">
+                  <h3 className="glow-text text-3xl lg:text-4xl font-heading font-bold mb-6 text-white leading-tight">
+                    {SERVICES[5].title}
+                  </h3>
+                  <p className="text-lg lg:text-xl text-white/90 leading-relaxed">
+                    {SERVICES[5].description}
+                  </p>
+                </div>
               </div>
 
               {/* Right Column - Automation Workflow Visualization */}
@@ -1270,7 +1295,7 @@ export default function HomePage() {
                 Book a Meeting
               </Link>
               <Link
-                href="/services"
+                href="/how-it-works"
                 className="glow-button inline-block px-10 py-4 bg-transparent border-2 border-white text-white rounded-full text-lg font-semibold hover:bg-white/10 shadow-2xl w-full sm:w-auto"
               >
                 View Services

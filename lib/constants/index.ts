@@ -27,30 +27,30 @@ export const CALENDAR_OWNER_EMAIL = process.env.CALENDAR_OWNER_EMAIL || CONTACT_
 export const SERVICES = [
   {
     title: 'Website & Web Application Development',
-    description: 'Design and development of websites and web applications focused on usability, performance, and maintainability.',
+    description: 'Design and development of modern websites and web applications built to support real business goals — not just visual presentation. Every solution is structured around usability, performance, and maintainability, with a clear focus on guiding visitors toward enquiries, bookings, or actions that matter to the business.',
   },
   {
     title: 'Conversion & Lead Optimisation',
-    description: 'Implementation of conversion and lead optimisation systems, ensuring digital traffic results in real business outcomes.',
+    description: 'Improving how visitors interact with your website so more people take action — contact you, book a meeting, or make a purchase. This focuses on reducing friction, clarifying messaging, and aligning the site with how real customers make decisions, turning traffic into measurable business results.',
   },
   {
     title: 'Local Visibility & SEO',
-    description: 'Search optimisation helping businesses be found where customers actively search.',
+    description: 'Search optimisation that helps your business appear where customers actively search for your services. This includes structuring your website and presence so you are visible on Google and map services at the moment potential customers are looking — not just ranking, but relevance.',
   },
   {
     title: 'Advertising & Demand Capture',
-    description: 'Structured advertising around clear conversion goals rather than vanity metrics.',
+    description: 'Structured advertising designed to capture existing demand, not chase vanity metrics. Campaigns are built around clear conversion goals, targeting people who are already ready to enquire, book, or buy — with full visibility into what actually generates results.',
   },
   {
     title: 'Analytics & Measurement',
-    description: 'Analytics and measurement architecture providing reliable insight into performance and customer behaviour.',
+    description: 'Analytics and measurement architecture that shows what\'s working and what isn\'t. This provides clear insight into customer behaviour and performance, allowing decisions to be based on data instead of guesswork — and enabling continuous improvement over time.',
   },
   {
     title: 'Technical Integrations & Automation',
-    description: 'Connecting platforms, tools, and workflows to reduce friction and manual work.',
+    description: 'Connecting platforms, tools, and workflows to reduce manual work and operational friction. From forms and bookings to email and internal systems, integrations are designed to improve efficiency, reliability, and the overall customer journey.',
   },
 ] as const
 
 export const COMPANY_TAGLINE =
-  'First-class digital systems for growth.'
+  'Clear, measurable digital systems for customer growth.'
 

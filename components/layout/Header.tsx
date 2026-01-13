@@ -69,9 +69,9 @@ export default function Header() {
               Home
             </Link>
             <Link
-              href="/services"
+              href="/how-it-works"
               className={`text-base font-medium transition-colors ${
-                isActive('/services') 
+                isActive('/how-it-works') 
                   ? 'text-white underline underline-offset-4 decoration-white' 
                   : 'text-white/70 hover:text-white'
               }`}
@@ -128,10 +128,10 @@ export default function Header() {
                 Home
               </Link>
               <Link
-                href="/services"
+                href="/how-it-works"
                 onClick={closeMenu}
                 className={`text-lg font-medium transition-colors py-2 ${
-                  isActive('/services') 
+                  isActive('/how-it-works') 
                     ? 'text-white underline underline-offset-4 decoration-white' 
                     : 'text-white/70 hover:text-white'
                 }`}
