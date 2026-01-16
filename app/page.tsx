@@ -98,15 +98,17 @@ export default function HomePage() {
       if (servicesRef.current) {
         const serviceCard = servicesRef.current.querySelector('.service-card')
         if (serviceCard) {
+          // Simpler animation on mobile for better performance
+          const slideDistance = isMobile ? 20 : 50
           gsap.fromTo(
             serviceCard,
-            { x: -50, opacity: 0 },
+            { x: -slideDistance, opacity: 0 },
             {
               x: 0,
               opacity: 1,
-              duration: 0.6,
-              ease: 'power2.out',
-              force3D: true,
+              duration: isMobile ? 0.5 : 0.6,
+              ease: isMobile ? 'power1.out' : 'power2.out',
+              force3D: !isMobile, // Disable force3D on mobile to reduce lag
               scrollTrigger: {
                 trigger: serviceCard,
                 start: 'top 80%',
@@ -261,15 +263,17 @@ export default function HomePage() {
       }
 
       if (serviceCard3Ref.current) {
+        // Simpler animation on mobile for better performance
+        const slideDistance = isMobile ? 20 : 50
         gsap.fromTo(
           serviceCard3Ref.current,
-          { x: -50, opacity: 0 },
+          { x: -slideDistance, opacity: 0 },
           {
             x: 0,
             opacity: 1,
-            duration: 0.6,
-            ease: 'power2.out',
-            force3D: true,
+            duration: isMobile ? 0.5 : 0.6,
+            ease: isMobile ? 'power1.out' : 'power2.out',
+            force3D: !isMobile, // Disable force3D on mobile to reduce lag
             scrollTrigger: {
               trigger: serviceCard3Ref.current,
               start: 'top 80%',
@@ -325,15 +329,17 @@ export default function HomePage() {
       }
 
       if (serviceCard4Ref.current) {
+        // Simpler animation on mobile for better performance
+        const slideDistance = isMobile ? 20 : 50
         gsap.fromTo(
           serviceCard4Ref.current,
-          { x: -50, opacity: 0 },
+          { x: -slideDistance, opacity: 0 },
           {
             x: 0,
             opacity: 1,
-            duration: 0.6,
-            ease: 'power2.out',
-            force3D: true,
+            duration: isMobile ? 0.5 : 0.6,
+            ease: isMobile ? 'power1.out' : 'power2.out',
+            force3D: !isMobile, // Disable force3D on mobile to reduce lag
             scrollTrigger: {
               trigger: serviceCard4Ref.current,
               start: 'top 80%',
@@ -367,15 +373,17 @@ export default function HomePage() {
       }
 
       if (serviceCard5Ref.current) {
+        // Simpler animation on mobile for better performance
+        const slideDistance = isMobile ? 20 : 50
         gsap.fromTo(
           serviceCard5Ref.current,
-          { x: -50, opacity: 0 },
+          { x: -slideDistance, opacity: 0 },
           {
             x: 0,
             opacity: 1,
-            duration: 0.6,
-            ease: 'power2.out',
-            force3D: true,
+            duration: isMobile ? 0.5 : 0.6,
+            ease: isMobile ? 'power1.out' : 'power2.out',
+            force3D: !isMobile, // Disable force3D on mobile to reduce lag
             scrollTrigger: {
               trigger: serviceCard5Ref.current,
               start: 'top 80%',
@@ -428,15 +436,17 @@ export default function HomePage() {
       }
 
       if (serviceCard6Ref.current) {
+        // Simpler animation on mobile for better performance
+        const slideDistance = isMobile ? 20 : 50
         gsap.fromTo(
           serviceCard6Ref.current,
-          { x: -50, opacity: 0 },
+          { x: -slideDistance, opacity: 0 },
           {
             x: 0,
             opacity: 1,
-            duration: 0.6,
-            ease: 'power2.out',
-            force3D: true,
+            duration: isMobile ? 0.5 : 0.6,
+            ease: isMobile ? 'power1.out' : 'power2.out',
+            force3D: !isMobile, // Disable force3D on mobile to reduce lag
             scrollTrigger: {
               trigger: serviceCard6Ref.current,
               start: 'top 80%',
@@ -684,7 +694,7 @@ export default function HomePage() {
           <div className="container mx-auto max-w-none md:max-w-5xl text-center">
             <h1
               ref={titleRef}
-              className="glow-title text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-frank font-bold mb-8 bg-gradient-to-r from-white via-blue-200 to-purple-200 bg-clip-text text-transparent"
+              className="glow-title text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-frank font-bold mb-8 bg-gradient-to-r from-white via-blue-200 to-purple-200 bg-clip-text text-transparent pb-2 overflow-visible"
             >
               Brehaut Consulting
             </h1>
@@ -1359,42 +1369,72 @@ export default function HomePage() {
                   question: 'Do you work with small businesses?',
                   answer: 'Yes, we work with businesses of all sizes, from startups to established companies. Our approach is scalable and we tailor our services to meet your specific needs and budget.',
                 },
-              ].map((faq, index) => (
-                <div
-                  key={index}
-                  className="faq-item bg-white/10 border border-white/10 rounded-2xl overflow-hidden transition-all duration-300 cursor-pointer hover:border-white/20"
-                  onClick={() => setOpenFaqIndex(openFaqIndex === index ? null : index)}
-                >
-                  <div className="p-6 lg:p-8">
-                    <div className="flex items-center justify-between gap-4">
-                      <h3 className="text-2xl font-heading font-bold text-white pr-8">
-                        {faq.question}
-                      </h3>
-                      <div className="flex-shrink-0 w-8 h-8 flex items-center justify-center">
-                        <svg
-                          className={`w-6 h-6 text-white/70 transition-transform duration-300 ${
-                            openFaqIndex === index ? 'rotate-180' : ''
-                          }`}
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                        >
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                        </svg>
+              ].map((faq, index) => {
+                const triggerId = `faq-trigger-${index}`
+                const panelId = `faq-panel-${index}`
+                const isOpen = openFaqIndex === index
+
+                const handleToggle = () => {
+                  setOpenFaqIndex(isOpen ? null : index)
+                }
+
+                const handleKeyDown = (e: React.KeyboardEvent) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault()
+                    handleToggle()
+                  }
+                }
+
+                return (
+                  <div
+                    key={index}
+                    className="faq-item bg-white/10 border border-white/10 rounded-2xl overflow-hidden transition-all duration-300 hover:border-white/20"
+                  >
+                    <button
+                      id={triggerId}
+                      type="button"
+                      className="w-full text-left p-6 lg:p-8 cursor-pointer focus:outline-none focus:ring-2 focus:ring-white/50 focus:ring-offset-2 focus:ring-offset-transparent rounded-t-2xl"
+                      onClick={handleToggle}
+                      onKeyDown={handleKeyDown}
+                      aria-expanded={isOpen}
+                      aria-controls={panelId}
+                    >
+                      <div className="flex items-center justify-between gap-4">
+                        <h3 className="text-2xl font-heading font-bold text-white pr-8">
+                          {faq.question}
+                        </h3>
+                        <div className="flex-shrink-0 w-8 h-8 flex items-center justify-center">
+                          <svg
+                            className={`w-6 h-6 text-white/70 transition-transform duration-300 ${
+                              isOpen ? 'rotate-180' : ''
+                            }`}
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                            aria-hidden="true"
+                          >
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                          </svg>
+                        </div>
                       </div>
-                    </div>
+                    </button>
                     <div
+                      id={panelId}
+                      role="region"
+                      aria-labelledby={triggerId}
                       className={`overflow-hidden transition-all duration-300 ${
-                        openFaqIndex === index ? 'max-h-96 mt-4' : 'max-h-0'
+                        isOpen ? 'max-h-96 mt-4' : 'max-h-0'
                       }`}
                     >
-                      <p className="text-lg text-white/80 leading-relaxed">
-                        {faq.answer}
-                      </p>
+                      <div className="px-6 lg:px-8 pb-6 lg:pb-8">
+                        <p className="text-lg text-white/80 leading-relaxed">
+                          {faq.answer}
+                        </p>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                )
+              })}
             </div>
           </div>
         </section>

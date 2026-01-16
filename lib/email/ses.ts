@@ -22,9 +22,54 @@ export interface BookingEmailData {
   company?: string
 }
 
+// Parse time string to minutes (handles "9", "09", "9:00", "09:00" formats)
+function parseTimeToMinutes(timeStr: string): number {
+  const trimmed = timeStr.trim()
+  
+  // If it contains a colon, parse as HH:mm
+  if (trimmed.includes(':')) {
+    const [hours, minutes = '0'] = trimmed.split(':')
+    return parseInt(hours, 10) * 60 + parseInt(minutes, 10)
+  }
+  
+  // Otherwise, treat as hours only
+  return parseInt(trimmed, 10) * 60
+}
+
+// Calculate duration from time slot and return human-readable string
 function formatTimeSlot(timeSlot: string): string {
-  const [start] = timeSlot.split('-')
-  return `${start}:00`
+  const [startStr, endStr] = timeSlot.split('-')
+  
+  if (!startStr || !endStr) {
+    // Fallback if format is unexpected
+    return '1 hour'
+  }
+  
+  const startMinutes = parseTimeToMinutes(startStr)
+  const endMinutes = parseTimeToMinutes(endStr)
+  const durationMinutes = endMinutes - startMinutes
+  
+  // Handle edge case where end is before start (e.g., spans midnight)
+  const totalMinutes = durationMinutes < 0 ? durationMinutes + 24 * 60 : durationMinutes
+  
+  if (totalMinutes === 0) {
+    return '0 minutes'
+  }
+  
+  const hours = Math.floor(totalMinutes / 60)
+  const minutes = totalMinutes % 60
+  
+  const parts: string[] = []
+  
+  if (hours > 0) {
+    parts.push(`${hours} ${hours === 1 ? 'hour' : 'hours'}`)
+  }
+  
+  if (minutes > 0) {
+    parts.push(`${minutes} ${minutes === 1 ? 'minute' : 'minutes'}`)
+  }
+  
+  return parts.join(' ') || '0 minutes'
 }
 
 function formatMeetingDate(date: Date, timeSlot: string): string {

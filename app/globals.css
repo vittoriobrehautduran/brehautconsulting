@@ -35,6 +35,10 @@
   .description-card {
     position: relative;
     transition: box-shadow 0.3s ease;
+    /* Use transform for better performance on mobile */
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
   }
 
   .description-card:hover {
@@ -117,36 +121,24 @@
     animation: bounce-subtle 2s ease-in-out infinite;
   }
 
-  /* Calendar selected date styling */
-  button[aria-selected="true"] {
-    background-color: rgb(37 99 235) !important;
-    background: rgb(37 99 235) !important;
-    color: white !important;
-    font-weight: 600 !important;
-  }
-
-  button[aria-selected="true"]:hover {
-    background-color: rgb(29 78 216) !important;
-    background: rgb(29 78 216) !important;
-    color: white !important;
-  }
-
-  /* Additional selector for react-day-picker selected state */
-  .day_selected,
+  /* Calendar selected date styling - scoped to calendar components only */
+  .rdp-day button[aria-selected="true"],
+  [role="gridcell"] button[aria-selected="true"],
   button.day_selected,
-  [role="gridcell"] button[aria-selected="true"] {
-    background-color: rgb(37 99 235) !important;
-    background: rgb(37 99 235) !important;
-    color: white !important;
-    font-weight: 600 !important;
+  .day_selected {
+    background-color: rgb(37 99 235);
+    background: rgb(37 99 235);
+    color: white;
+    font-weight: 600;
   }
 
-  .day_selected:hover,
+  .rdp-day button[aria-selected="true"]:hover,
+  [role="gridcell"] button[aria-selected="true"]:hover,
   button.day_selected:hover,
-  [role="gridcell"] button[aria-selected="true"]:hover {
-    background-color: rgb(29 78 216) !important;
-    background: rgb(29 78 216) !important;
-    color: white !important;
+  .day_selected:hover {
+    background-color: rgb(29 78 216);
+    background: rgb(29 78 216);
+    color: white;
   }
 
   /* Calendar disabled date styling - gray out entire date slot */
