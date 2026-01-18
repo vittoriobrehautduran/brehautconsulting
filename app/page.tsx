@@ -1339,35 +1339,63 @@ export default function HomePage() {
         </section>
 
         {/* FAQ Section */}
-        <section ref={faqRef} className="py-32 px-6 relative z-10">
+        <section ref={faqRef} className="py-24 px-6 relative z-10">
           <div className="container mx-auto max-w-4xl">
             <h2
               ref={faqTitleRef}
-              className="glow-title text-5xl md:text-6xl font-heading font-bold text-center mb-16 text-white"
+              className="glow-title text-5xl md:text-6xl font-heading font-bold text-center mb-12 text-white"
             >
               Frequently Asked Questions
             </h2>
-            <div className="space-y-6">
+            <div className="space-y-4">
               {[
                 {
-                  question: 'What services do you offer?',
-                  answer: 'We provide website and web application development, conversion optimization, local visibility & SEO, advertising & demand capture, analytics & measurement, and technical integrations & automation. Our focus is on delivering measurable business results through strategic digital solutions.',
+                  question: 'How does working with Brehaut Consulting start?',
+                  answer: 'It starts with a conversation. You book a meeting through our booking system, and we discuss your business, goals, and current challenges. This helps us understand if we&apos;re a good fit and what approach would work best for you.',
                 },
                 {
-                  question: 'How do I book a consultation?',
-                  answer: 'You can book a consultation meeting directly through our booking system. Available time slots are Monday through Thursday. Simply select your preferred date and time, fill in your details, and we&apos;ll confirm your meeting.',
-                },
-                {
-                  question: 'What geographic areas do you serve?',
-                  answer: 'We work with clients globally, with a focus on Europe and Latin America. Our services are delivered remotely, allowing us to serve clients regardless of location.',
+                  question: 'What happens during the first meeting?',
+                  answer: 'We listen to your situation, ask questions about your business and goals, and discuss what you&apos;re trying to achieve. It&apos;s a discovery conversation, not a sales pitch. By the end, you&apos;ll have clarity on whether we can help and what that might look like.',
                 },
                 {
                   question: 'How long does a typical project take?',
-                  answer: 'Project timelines vary depending on scope and complexity. During our initial consultation, we&apos;ll discuss your specific needs and provide a detailed timeline and project plan tailored to your goals.',
+                  answer: 'Timelines depend on scope and complexity. A website project might take 4-8 weeks, while a complete system build could be 2-4 months. We provide a clear timeline during our initial discussion based on your specific needs.',
                 },
                 {
-                  question: 'Do you work with small businesses?',
-                  answer: 'Yes, we work with businesses of all sizes, from startups to established companies. Our approach is scalable and we tailor our services to meet your specific needs and budget.',
+                  question: 'Do I need all services to work with you?',
+                  answer: 'No. Some clients need a complete system, while others need help with a specific part. The scope is defined after understanding your business and goals, and only what creates real value is recommended.',
+                },
+                {
+                  question: 'Can I hire you for just a website or just ads?',
+                  answer: 'Yes. While we often work on integrated systems, we can focus on a single service if that&apos;s what you need. We&apos;ll be honest if we think you&apos;d benefit from additional services, but the decision is yours.',
+                },
+                {
+                  question: 'How is pricing structured?',
+                  answer: 'Pricing is based on project scope, complexity, and goals. We provide clear proposals after understanding your needs, so you know exactly what you&apos;re investing in and why.',
+                },
+                {
+                  question: 'Is this a one-time project or ongoing work?',
+                  answer: 'It depends on what you need. Some clients need a one-time build, while others benefit from ongoing support and optimization. We discuss what makes sense for your situation during our initial conversation.',
+                },
+                {
+                  question: 'Can you guarantee results?',
+                  answer: 'We guarantee our work quality and approach, but we can&apos;t guarantee specific business outcomes since many factors are outside our control. What we can promise is honest communication, strategic thinking, and execution based on proven methods.',
+                },
+                {
+                  question: 'How long does it take to see results?',
+                  answer: 'It varies by service. A new website might show immediate improvements, while SEO and advertising typically take 2-4 months to show meaningful results. We set realistic expectations upfront and track progress transparently.',
+                },
+                {
+                  question: 'What types of businesses do you work with?',
+                  answer: 'We work with businesses of various sizes, from small local companies to larger organizations. The common thread is businesses that want to grow and are ready to invest in systems that drive measurable results.',
+                },
+                {
+                  question: 'Do you work internationally or only locally?',
+                  answer: 'We work with clients globally, with a focus on Europe and Latin America. Our services are delivered remotely, so location isn&apos;t a barrier as long as we can communicate effectively.',
+                },
+                {
+                  question: 'Who owns the website, ads, and data?',
+                  answer: 'You do. The website code, content, and any data collected belong to you. We work with third-party platforms when needed, but you maintain ownership and control of your digital assets.',
                 },
               ].map((faq, index) => {
                 const triggerId = `faq-trigger-${index}`
@@ -1393,19 +1421,19 @@ export default function HomePage() {
                     <button
                       id={triggerId}
                       type="button"
-                      className="w-full text-left p-6 lg:p-8 cursor-pointer focus:outline-none focus:ring-2 focus:ring-white/50 focus:ring-offset-2 focus:ring-offset-transparent rounded-t-2xl"
+                      className="w-full text-left p-4 lg:p-5 cursor-pointer focus:outline-none focus:ring-2 focus:ring-white/50 focus:ring-offset-2 focus:ring-offset-transparent rounded-t-2xl"
                       onClick={handleToggle}
                       onKeyDown={handleKeyDown}
                       aria-expanded={isOpen}
                       aria-controls={panelId}
                     >
-                      <div className="flex items-center justify-between gap-4">
-                        <h3 className="text-2xl font-heading font-bold text-white pr-8">
+                      <div className="flex items-center justify-between gap-3">
+                        <h3 className="text-xl font-heading font-bold text-white pr-4">
                           {faq.question}
                         </h3>
-                        <div className="flex-shrink-0 w-8 h-8 flex items-center justify-center">
+                        <div className="flex-shrink-0 w-6 h-6 flex items-center justify-center">
                           <svg
-                            className={`w-6 h-6 text-white/70 transition-transform duration-300 ${
+                            className={`w-5 h-5 text-white/70 transition-transform duration-300 ${
                               isOpen ? 'rotate-180' : ''
                             }`}
                             fill="none"
@@ -1423,11 +1451,11 @@ export default function HomePage() {
                       role="region"
                       aria-labelledby={triggerId}
                       className={`overflow-hidden transition-all duration-300 ${
-                        isOpen ? 'max-h-96 mt-4' : 'max-h-0'
+                        isOpen ? 'max-h-96 mt-2' : 'max-h-0'
                       }`}
                     >
-                      <div className="px-6 lg:px-8 pb-6 lg:pb-8">
-                        <p className="text-lg text-white/80 leading-relaxed">
+                      <div className="px-4 lg:px-5 pb-4 lg:pb-5">
+                        <p className="text-base text-white/80 leading-relaxed">
                           {faq.answer}
                         </p>
                       </div>
