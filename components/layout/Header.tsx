@@ -76,7 +76,7 @@ export default function Header() {
                   : 'text-white/70 hover:text-white'
               }`}
             >
-              Services
+              How it works
             </Link>
             <Link
               href="/booking"
@@ -136,7 +136,7 @@ export default function Header() {
                     : 'text-white/70 hover:text-white'
                 }`}
               >
-                Services
+                How it works
               </Link>
               <Link
                 href="/booking"
