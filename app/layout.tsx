@@ -74,7 +74,7 @@ export const metadata: Metadata = {
     description: COMPANY_TAGLINE,
     images: [
       {
-        url: '/images/logo.png',
+        url: '/images/logo_favicon.svg',
         width: 1200,
         height: 630,
         alt: 'Brehaut Consulting',
@@ -85,7 +85,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Brehaut Consulting | Technology & Growth Consultancy',
     description: COMPANY_TAGLINE,
-    images: ['/images/logo.png'],
+    images: ['/images/logo_favicon.svg'],
   },
   robots: {
     index: true,
@@ -103,10 +103,14 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: '/images/favicon/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/images/logo_favicon.svg', type: 'image/svg+xml' },
       { url: '/images/favicon/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/images/favicon/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
     ],
-    shortcut: '/images/favicon/favicon.ico',
+    shortcut: [
+      { url: '/images/logo_favicon.svg', type: 'image/svg' },
+      { url: '/images/logo_favicon.svg', type: 'image/svg+xml' },
+    ],
     apple: '/images/favicon/apple-touch-icon.png',
     other: [
       {
