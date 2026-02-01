@@ -1,0 +1,379 @@
+{
+  "common": {
+    "nav": {
+      "home": "Home",
+      "howItWorks": "How it works",
+      "bookMeeting": "Book a Meeting"
+    },
+    "buttons": {
+      "bookMeeting": "Book a Meeting",
+      "viewServices": "How it works",
+      "getStarted": "Book a Meeting",
+      "confirmBooking": "Confirm Booking",
+      "confirming": "Confirming..."
+    },
+    "companyName": "Brehaut Consulting"
+  },
+  "home": {
+    "hero": {
+      "tagline": "Clear, measurable digital systems for customer growth.",
+      "description": "We help small and medium-sized businesses get more customers through high-performance websites, search visibility, and measurable digital marketing systems."
+    },
+    "services": {
+      "title": "What We Offer",
+      "service1": {
+        "title": "Website & Web Application Development",
+        "subtitle": "for Businesses",
+        "description": "Design and development of modern websites and web applications built to support real business goals — not just visual presentation. Every solution is structured around usability, performance, and maintainability, with a clear focus on guiding visitors toward enquiries, bookings, or actions that matter to the business."
+      },
+      "service2": {
+        "title": "Conversion & Lead Optimisation",
+        "subtitle": "Turning Visitors into Enquiries",
+        "description": "Improving how visitors interact with your website so more people take action — contact you, book a meeting, or make a purchase. This focuses on reducing friction, clarifying messaging, and aligning the site with how real customers make decisions, turning traffic into measurable business results."
+      },
+      "service3": {
+        "title": "Local Visibility & SEO",
+        "subtitle": "Being Found on Google When Customers Search",
+        "description": "Search optimisation that helps your business appear where customers actively search for your services. This includes structuring your website and presence so you are visible on Google and map services at the moment potential customers are looking — not just ranking, but relevance."
+      },
+      "service4": {
+        "title": "Advertising & Demand Capture",
+        "subtitle": "Google Ads & High-Intent Traffic",
+        "description": "Structured advertising designed to capture existing demand, not chase vanity metrics. Campaigns are built around clear conversion goals, targeting people who are already ready to enquire, book, or buy — with full visibility into what actually generates results."
+      },
+      "service5": {
+        "title": "Analytics & Measurement",
+        "subtitle": "Understanding What's Actually Working",
+        "description": "Analytics and measurement architecture that shows what's working and what isn't. This provides clear insight into customer behaviour and performance, allowing decisions to be based on data instead of guesswork — and enabling continuous improvement over time."
+      },
+      "service6": {
+        "title": "Technical Integrations & Automation",
+        "subtitle": "Reducing Manual Work & Friction",
+        "description": "Connecting platforms, tools, and workflows to reduce manual work and operational friction. From forms and bookings to email and internal systems, integrations are designed to improve efficiency, reliability, and the overall customer journey."
+      }
+    },
+    "about": {
+      "title": "About Brehaut Consulting",
+      "description1": "We specialize in creating digital solutions that drive real business results. Our approach combines technical expertise with a deep understanding of growth marketing and conversion optimization.",
+      "description2": "Whether you need a modern web application, improved search visibility, strategic advertising, or seamless integrations, we work with you to build systems that scale with your business and deliver measurable outcomes."
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "items": [
+        {
+          "question": "How does working with Brehaut Consulting start?",
+          "answer": "It starts with a conversation. You book a meeting through our booking system, and we discuss your business, goals, and current challenges. This helps us understand if we're a good fit and what approach would work best for you."
+        },
+        {
+          "question": "What happens during the first meeting?",
+          "answer": "We listen to your situation, ask questions about your business and goals, and discuss what you're trying to achieve. It's a discovery conversation, not a sales pitch. By the end, you'll have clarity on whether we can help and what that might look like."
+        },
+        {
+          "question": "How long does a typical project take?",
+          "answer": "Timelines depend on scope and complexity. A website project might take 4-8 weeks, while a complete system build could be 2-4 months. We provide a clear timeline during our initial discussion based on your specific needs."
+        },
+        {
+          "question": "Do I need all services to work with you?",
+          "answer": "No. Some clients need a complete system, while others need help with a specific part. The scope is defined after understanding your business and goals, and only what creates real value is recommended."
+        },
+        {
+          "question": "Can I hire you for just a website or just ads?",
+          "answer": "Yes. While we often work on integrated systems, we can focus on a single service if that's what you need. We'll be honest if we think you'd benefit from additional services, but the decision is yours."
+        },
+        {
+          "question": "How is pricing structured?",
+          "answer": "Pricing is based on project scope, complexity, and goals. We provide clear proposals after understanding your needs, so you know exactly what you're investing in and why."
+        },
+        {
+          "question": "Is this a one-time project or ongoing work?",
+          "answer": "It depends on what you need. Some clients need a one-time build, while others benefit from ongoing support and optimization. We discuss what makes sense for your situation during our initial conversation."
+        },
+        {
+          "question": "Can you guarantee results?",
+          "answer": "We guarantee our work quality and approach, but we can't guarantee specific business outcomes since many factors are outside our control. What we can promise is honest communication, strategic thinking, and execution based on proven methods."
+        },
+        {
+          "question": "How long does it take to see results?",
+          "answer": "It varies by service. A new website might show immediate improvements, while SEO and advertising typically take 2-4 months to show meaningful results. We set realistic expectations upfront and track progress transparently."
+        },
+        {
+          "question": "What types of businesses do you work with?",
+          "answer": "We work with businesses of various sizes, from small local companies to larger organizations. The common thread is businesses that want to grow and are ready to invest in systems that drive measurable results."
+        },
+        {
+          "question": "Do you work internationally or only locally?",
+          "answer": "We work with clients globally, with a focus on Europe and Latin America. Our services are delivered remotely, so location isn't a barrier as long as we can communicate effectively."
+        },
+        {
+          "question": "Who owns the website, ads, and data?",
+          "answer": "You do. The website code, content, and any data collected belong to you. We work with third-party platforms when needed, but you maintain ownership and control of your digital assets."
+        }
+      ]
+    },
+    "cta": {
+      "title": "Ready to Grow?",
+      "description": "Let's discuss how we can help transform your digital presence and drive real business results."
+    }
+  },
+  "services": {
+    "intro": {
+      "line1": "Brehaut Consulting helps businesses get more customers by building clear, measurable digital systems.",
+      "line2": "The focus is on understanding how customers find you, how they decide to contact you, and how your digital setup supports that journey."
+    },
+    "howItWorks": {
+      "title": "How It Works",
+      "description": "If this approach makes sense, {link}.",
+      "linkText": "the next step is a short conversation",
+      "steps": [
+        {
+          "title": "Initial Conversation",
+          "description": "We start with a working session to understand your business, customers, and what's actually preventing more enquiries or customers."
+        },
+        {
+          "title": "System Design",
+          "description": "Based on your situation, a clear digital system is defined — only what's needed, based on your goals and situation."
+        },
+        {
+          "title": "Build & Implementation",
+          "description": "The agreed components are designed and implemented with a focus on performance, clarity, and long-term reliability."
+        },
+        {
+          "title": "Measurement & Improvement",
+          "description": "Results are tracked and reviewed so the system can be improved over time based on real data."
+        }
+      ]
+    },
+    "whoFor": {
+      "for": {
+        "title": "Who This Is For",
+        "items": [
+          "Businesses that want more enquiries, bookings, or customers",
+          "Owners who care about results, not just design",
+          "Companies that want clarity instead of guesswork",
+          "Businesses open to improving how their digital presence works"
+        ]
+      },
+      "notFor": {
+        "title": "Who This Is Not For",
+        "items": [
+          "Businesses looking for the cheapest possible solution",
+          "One-off tasks with no interest in long-term results",
+          "Clients who want tools without strategy"
+        ]
+      }
+    },
+    "system": {
+      "title": "The Digital Growth System",
+      "description": "Each system is built from the components below. Not every business needs every part, but each component exists to support one goal: measurable customer growth.",
+      "intro": "Below are the core components that can make up your digital growth system."
+    },
+    "serviceDetails": {
+      "service1": {
+        "label": "Core Foundation",
+        "whatWeDo": "What We Do",
+        "benefits": "Benefits",
+        "details": [
+          "Custom website design and development tailored to your brand and business goals",
+          "Modern web applications built with scalable architectures and best practices",
+          "Responsive design ensuring optimal experience across all devices",
+          "Performance optimization for fast loading times and smooth user experience",
+          "Content management systems for easy content updates and maintenance",
+          "E-commerce solutions for online stores and digital marketplaces"
+        ],
+        "benefitsList": [
+          "Improved user engagement and conversion rates",
+          "Enhanced brand presence and credibility",
+          "Scalable solutions that grow with your business",
+          "Modern technology stack for future-proof development"
+        ]
+      },
+      "service2": {
+        "whatWeDo": "What We Do",
+        "benefits": "Benefits",
+        "details": [
+          "Conversion rate optimization (CRO) strategies and implementation",
+          "Lead generation system design and optimization",
+          "User experience (UX) analysis and improvements",
+          "A/B testing and data-driven optimization",
+          "Landing page optimization for higher conversion rates",
+          "Funnel analysis and optimization at every stage"
+        ],
+        "benefitsList": [
+          "Higher conversion rates from existing traffic",
+          "More qualified leads and better lead quality",
+          "Improved ROI on marketing investments",
+          "Data-driven decision making for continuous improvement"
+        ]
+      },
+      "service3": {
+        "whatWeDo": "What We Do",
+        "benefits": "Benefits",
+        "details": [
+          "Technical SEO optimization for better search engine visibility",
+          "Local SEO strategies for location-based businesses",
+          "Keyword research and content optimization",
+          "On-page and off-page SEO implementation",
+          "Google Business Profile optimization",
+          "SEO audits and performance tracking"
+        ],
+        "benefitsList": [
+          "Increased organic traffic and visibility",
+          "Better rankings in search engine results",
+          "More qualified leads from search",
+          "Long-term sustainable growth in online presence"
+        ]
+      },
+      "service4": {
+        "label": "Growth Driver",
+        "whatWeDo": "What We Do",
+        "benefits": "Benefits",
+        "details": [
+          "Search engine advertising (Google Ads, Bing Ads)",
+          "Social media advertising (Meta, LinkedIn, etc.)",
+          "Display and retargeting campaigns",
+          "Video advertising strategies",
+          "Campaign setup, optimization, and management",
+          "Conversion tracking and ROI optimization"
+        ],
+        "benefitsList": [
+          "Immediate visibility and traffic generation",
+          "Precise targeting to reach your ideal customers",
+          "Measurable results with clear ROI tracking",
+          "Flexible budgets and scalable campaigns"
+        ]
+      },
+      "service5": {
+        "label": "Growth Driver",
+        "whatWeDo": "What We Do",
+        "benefits": "Benefits",
+        "details": [
+          "Analytics setup and configuration (Google Analytics, etc.)",
+          "Custom dashboard creation for key metrics",
+          "Conversion tracking and goal configuration",
+          "Customer behavior analysis and insights",
+          "Performance reporting and data visualization",
+          "Data integration across multiple platforms"
+        ],
+        "benefitsList": [
+          "Clear visibility into business performance",
+          "Data-driven insights for decision making",
+          "Better understanding of customer behavior",
+          "Optimization opportunities identified through data"
+        ]
+      },
+      "service6": {
+        "whatWeDo": "What We Do",
+        "benefits": "Benefits",
+        "details": [
+          "API integrations between platforms and tools",
+          "Workflow automation to reduce manual work",
+          "CRM and marketing tool integrations",
+          "Data synchronization across systems",
+          "Custom integration development",
+          "Process automation and efficiency improvements"
+        ],
+        "benefitsList": [
+          "Reduced manual work and increased efficiency",
+          "Improved data accuracy and consistency",
+          "Seamless workflows across platforms",
+          "Time and cost savings through automation"
+        ]
+      }
+    },
+    "engagement": {
+      "title": "Ways to Work Together",
+      "description1": "Some clients need a complete system. Others need a specific component.",
+      "description2": "Engagements can include:",
+      "items": [
+        "Full system design and implementation",
+        "Website or web application projects",
+        "Advertising setup and optimisation",
+        "Analytics and tracking architecture",
+        "Ongoing optimisation and support"
+      ],
+      "description3": "The scope is defined after the initial conversation, based on what will create the most value for your business."
+    },
+    "nextStep": {
+      "title": "Next Step",
+      "description": "If this sounds relevant, the next step is a short meeting to understand your business and see if there's a good fit."
+    }
+  },
+  "booking": {
+    "title": "Book a Meeting",
+    "subtitle": "Select a date and time that works for you",
+    "selectedTimeSlot": "Selected Time Slot",
+    "stockholmTime": "Stockholm time",
+    "form": {
+      "name": "Name",
+      "email": "Email",
+      "company": "Company (optional)",
+      "message": "Message (optional)",
+      "required": "*",
+      "errors": {
+        "nameRequired": "Name is required",
+        "emailRequired": "Email is required",
+        "emailInvalid": "Please enter a valid email address",
+        "selectDateTime": "Please select a date and time slot",
+        "submitFailed": "Failed to create booking"
+      }
+    },
+    "success": "Booking confirmed! We look forward to meeting with you.",
+    "info": {
+      "purpose": {
+        "title": "Meeting Purpose",
+        "description": "This is a short, focused conversation to understand your business, goals, and current challenges — and to see if we're a good fit to work together."
+      },
+      "howItWorks": {
+        "title": "How the Meeting Works",
+        "description": "The meeting is held online and typically lasts 30 minutes. You'll receive all details by email after booking."
+      },
+      "rescheduling": {
+        "title": "Rescheduling & Cancellation",
+        "description": "If you need to reschedule or cancel, you can do so up to 24 hours before the meeting. This helps keep availability fair for everyone."
+      }
+    }
+  },
+  "footer": {
+    "contact": {
+      "title": "Contact Us",
+      "description": "Email us for inquiries and consultations"
+    },
+    "location": {
+      "title": "Location",
+      "description": "Serving clients globally",
+      "regions": "Europe & Latin America"
+    },
+    "copyright": "All rights reserved."
+  },
+  "metadata": {
+    "title": "Brehaut Consulting | Technology & Growth Consultancy",
+    "titleTemplate": "%s | Brehaut Consulting",
+    "description": "Clear, measurable digital systems for customer growth.",
+    "keywords": [
+      "technology consultancy",
+      "growth consultancy",
+      "web development",
+      "digital systems",
+      "conversion optimisation",
+      "SEO",
+      "analytics",
+      "automation",
+      "digital marketing",
+      "web applications",
+      "technical integrations",
+      "local visibility",
+      "advertising",
+      "measurement"
+    ],
+    "openGraph": {
+      "siteName": "Brehaut Consulting",
+      "title": "Brehaut Consulting | Technology & Growth Consultancy",
+      "description": "Clear, measurable digital systems for customer growth."
+    },
+    "schema": {
+      "serviceType": "Technology and Growth Consultancy",
+      "catalogName": "Consulting Services"
+    }
+  }
+}
+

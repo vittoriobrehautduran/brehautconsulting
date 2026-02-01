@@ -1,0 +1,379 @@
+{
+  "common": {
+    "nav": {
+      "home": "Hem",
+      "howItWorks": "Så fungerar det",
+      "bookMeeting": "Boka ett möte"
+    },
+    "buttons": {
+      "bookMeeting": "Boka ett möte",
+      "viewServices": "Så fungerar det",
+      "getStarted": "Boka ett möte",
+      "confirmBooking": "Bekräfta bokning",
+      "confirming": "Bekräftar..."
+    },
+    "companyName": "Brehaut Consulting"
+  },
+  "home": {
+    "hero": {
+      "tagline": "Tydliga, mätbara digitala system för kundtillväxt.",
+      "description": "Vi hjälper små och medelstora företag att få fler kunder genom högpresterande webbplatser, söksynlighet och mätbara digitala marknadsföringssystem."
+    },
+    "services": {
+      "title": "Vad vi erbjuder",
+      "service1": {
+        "title": "Webbplats & webbapplikationsutveckling",
+        "subtitle": "för företag",
+        "description": "Design och utveckling av moderna webbplatser och webbapplikationer byggda för att stödja verkliga affärsmål — inte bara visuell presentation. Varje lösning är strukturerad kring användbarhet, prestanda och underhållbarhet, med ett tydligt fokus på att guida besökare mot förfrågningar, bokningar eller åtgärder som betyder något för verksamheten."
+      },
+      "service2": {
+        "title": "Konverterings- & leadoptimering",
+        "subtitle": "Omvandla besökare till förfrågningar",
+        "description": "Förbättra hur besökare interagerar med din webbplats så att fler människor vidtar åtgärder — kontaktar dig, bokar ett möte eller gör ett köp. Detta fokuserar på att minska friktion, klargöra meddelanden och anpassa webbplatsen till hur verkliga kunder fattar beslut, vilket omvandlar trafik till mätbara affärsresultat."
+      },
+      "service3": {
+        "title": "Lokal synlighet & SEO",
+        "subtitle": "Synas på Google när kunder söker",
+        "description": "Sökmotoroptimering som hjälper ditt företag att synas där kunder aktivt söker efter dina tjänster. Detta inkluderar att strukturera din webbplats och närvaro så att du är synlig på Google och karttjänster i det ögonblick potentiella kunder letar — inte bara ranking, utan relevans."
+      },
+      "service4": {
+        "title": "Annonsering & efterfrågefångst",
+        "subtitle": "Google Ads & högintentstrafik",
+        "description": "Strukturerad annonsering designad för att fånga befintlig efterfrågan, inte jaga tomma mätvärden. Kampanjer byggs kring tydliga konverteringsmål, riktade till människor som redan är redo att fråga, boka eller köpa — med full insyn i vad som faktiskt genererar resultat."
+      },
+      "service5": {
+        "title": "Analys & mätning",
+        "subtitle": "Förstå vad som faktiskt fungerar",
+        "description": "Analys- och mätningsarkitektur som visar vad som fungerar och vad som inte gör det. Detta ger tydlig insikt i kundbeteende och prestanda, vilket gör att beslut kan baseras på data istället för gissningar — och möjliggör kontinuerlig förbättring över tid."
+      },
+      "service6": {
+        "title": "Tekniska integrationer & automatisering",
+        "subtitle": "Minska manuellt arbete & friktion",
+        "description": "Ansluta plattformar, verktyg och arbetsflöden för att minska manuellt arbete och operativa friktioner. Från formulär och bokningar till e-post och interna system, integrationer är designade för att förbättra effektivitet, tillförlitlighet och den övergripande kundresan."
+      }
+    },
+    "about": {
+      "title": "Om Brehaut Consulting",
+      "description1": "Vi specialiserar oss på att skapa digitala lösningar som driver verkliga affärsresultat. Vårt tillvägagångssätt kombinerar teknisk expertis med en djup förståelse för tillväxtmarknadsföring och konverteringsoptimering.",
+      "description2": "Oavsett om du behöver en modern webbapplikation, förbättrad söksynlighet, strategisk annonsering eller sömlösa integrationer, arbetar vi med dig för att bygga system som skalas med din verksamhet och levererar mätbara resultat."
+    },
+    "faq": {
+      "title": "Vanliga frågor",
+      "items": [
+        {
+          "question": "Hur börjar man arbeta med Brehaut Consulting?",
+          "answer": "Det börjar med ett samtal. Du bokar ett möte genom vårt bokningssystem, och vi diskuterar din verksamhet, mål och nuvarande utmaningar. Detta hjälper oss att förstå om vi är en bra matchning och vilket tillvägagångssätt som skulle fungera bäst för dig."
+        },
+        {
+          "question": "Vad händer under det första mötet?",
+          "answer": "Vi lyssnar på din situation, ställer frågor om din verksamhet och mål, och diskuterar vad du försöker uppnå. Det är ett upptäcktsamtal, inte en försäljningspresentation. I slutet kommer du att ha klarhet i om vi kan hjälpa och hur det kan se ut."
+        },
+        {
+          "question": "Hur lång tid tar ett typiskt projekt?",
+          "answer": "Tidslinjer beror på omfattning och komplexitet. Ett webbplatsprojekt kan ta 4-8 veckor, medan en komplett systembyggnad kan vara 2-4 månader. Vi ger en tydlig tidslinje under vår första diskussion baserat på dina specifika behov."
+        },
+        {
+          "question": "Behöver jag alla tjänster för att arbeta med er?",
+          "answer": "Nej. Vissa kunder behöver ett komplett system, medan andra behöver hjälp med en specifik del. Omfattningen definieras efter att ha förstått din verksamhet och mål, och endast det som skapar verkligt värde rekommenderas."
+        },
+        {
+          "question": "Kan jag anlita er för bara en webbplats eller bara annonser?",
+          "answer": "Ja. Även om vi ofta arbetar med integrerade system, kan vi fokusera på en enda tjänst om det är vad du behöver. Vi kommer att vara ärliga om vi tror att du skulle dra nytta av ytterligare tjänster, men beslutet är ditt."
+        },
+        {
+          "question": "Hur är prissättningen strukturerad?",
+          "answer": "Prissättning baseras på projektomfattning, komplexitet och mål. Vi ger tydliga förslag efter att ha förstått dina behov, så att du vet exakt vad du investerar i och varför."
+        },
+        {
+          "question": "Är detta ett engångsprojekt eller pågående arbete?",
+          "answer": "Det beror på vad du behöver. Vissa kunder behöver en engångsbyggnad, medan andra drar nytta av pågående support och optimering. Vi diskuterar vad som är meningsfullt för din situation under vårt första samtal."
+        },
+        {
+          "question": "Kan ni garantera resultat?",
+          "answer": "Vi garanterar vår arbetskvalitet och tillvägagångssätt, men vi kan inte garantera specifika affärsresultat eftersom många faktorer är utanför vår kontroll. Vad vi kan lova är ärlig kommunikation, strategiskt tänkande och utförande baserat på beprövade metoder."
+        },
+        {
+          "question": "Hur lång tid tar det innan man ser resultat?",
+          "answer": "Det varierar beroende på tjänst. En ny webbplats kan visa omedelbara förbättringar, medan SEO och annonsering vanligtvis tar 2-4 månader för att visa meningsfulla resultat. Vi sätter realistiska förväntningar i förväg och följer framsteg transparent."
+        },
+        {
+          "question": "Vilka typer av företag arbetar ni med?",
+          "answer": "Vi arbetar med företag av olika storlekar, från små lokala företag till större organisationer. Den gemensamma tråden är företag som vill växa och är redo att investera i system som driver mätbara resultat."
+        },
+        {
+          "question": "Arbetar ni internationellt eller bara lokalt?",
+          "answer": "Vi arbetar med kunder globalt, med fokus på Europa och Latinamerika. Våra tjänster levereras på distans, så plats är inte ett hinder så länge vi kan kommunicera effektivt."
+        },
+        {
+          "question": "Vem äger webbplatsen, annonserna och data?",
+          "answer": "Du gör det. Webbplatskoden, innehållet och all data som samlas in tillhör dig. Vi arbetar med tredjepartsplattformar när det behövs, men du behåller ägande och kontroll över dina digitala tillgångar."
+        }
+      ]
+    },
+    "cta": {
+      "title": "Redo att växa?",
+      "description": "Låt oss diskutera hur vi kan hjälpa till att transformera din digitala närvaro och driva verkliga affärsresultat."
+    }
+  },
+  "services": {
+    "intro": {
+      "line1": "Brehaut Consulting hjälper företag att få fler kunder genom att bygga tydliga, mätbara digitala system.",
+      "line2": "Fokus ligger på att förstå hur kunder hittar dig, hur de beslutar att kontakta dig och hur din digitala uppsättning stödjer den resan."
+    },
+    "howItWorks": {
+      "title": "Så fungerar det",
+      "description": "Om detta tillvägagångssätt är meningsfullt, {link}.",
+      "linkText": "är nästa steg ett kort samtal",
+      "steps": [
+        {
+          "title": "Inledande samtal",
+          "description": "Vi börjar med en arbetssession för att förstå din verksamhet, kunder och vad som faktiskt förhindrar fler förfrågningar eller kunder."
+        },
+        {
+          "title": "Systemdesign",
+          "description": "Baserat på din situation definieras ett tydligt digitalt system — endast det som behövs, baserat på dina mål och situation."
+        },
+        {
+          "title": "Bygg & implementering",
+          "description": "De överenskomna komponenterna designas och implementeras med fokus på prestanda, tydlighet och långsiktig tillförlitlighet."
+        },
+        {
+          "title": "Mätning & förbättring",
+          "description": "Resultat spåras och granskas så att systemet kan förbättras över tid baserat på verkliga data."
+        }
+      ]
+    },
+    "whoFor": {
+      "for": {
+        "title": "För vem detta är",
+        "items": [
+          "Företag som vill ha fler förfrågningar, bokningar eller kunder",
+          "Ägare som bryr sig om resultat, inte bara design",
+          "Företag som vill ha tydlighet istället för gissningar",
+          "Företag öppna för att förbättra hur deras digitala närvaro fungerar"
+        ]
+      },
+      "notFor": {
+        "title": "För vem detta inte är",
+        "items": [
+          "Företag som letar efter den billigaste möjliga lösningen",
+          "Engångsuppgifter utan intresse för långsiktiga resultat",
+          "Kunder som vill ha verktyg utan strategi"
+        ]
+      }
+    },
+    "system": {
+      "title": "Det digitala tillväxtsystemet",
+      "description": "Varje system byggs från komponenterna nedan. Inte varje företag behöver varje del, men varje komponent finns för att stödja ett mål: mätbar kundtillväxt.",
+      "intro": "Nedan finns de centrala komponenterna som kan utgöra ditt digitala tillväxtsystem."
+    },
+    "serviceDetails": {
+      "service1": {
+        "label": "Grundläggande grund",
+        "whatWeDo": "Vad vi gör",
+        "benefits": "Fördelar",
+        "details": [
+          "Anpassad webbplatsdesign och utveckling skräddarsydd efter ditt varumärke och affärsmål",
+          "Moderna webbapplikationer byggda med skalbara arkitekturer och bästa praxis",
+          "Responsiv design som säkerställer optimal upplevelse på alla enheter",
+          "Prestandaoptimering för snabba laddningstider och smidig användarupplevelse",
+          "Innehållshanteringssystem för enkla innehållsuppdateringar och underhåll",
+          "E-handelslösningar för onlinebutiker och digitala marknadsplatser"
+        ],
+        "benefitsList": [
+          "Förbättrad användarengagement och konverteringsfrekvens",
+          "Förbättrat varumärkesnärvaro och trovärdighet",
+          "Skalbara lösningar som växer med din verksamhet",
+          "Modern teknikstack för framtidssäker utveckling"
+        ]
+      },
+      "service2": {
+        "whatWeDo": "Vad vi gör",
+        "benefits": "Fördelar",
+        "details": [
+          "Konverteringsfrekvensoptimering (CRO) strategier och implementering",
+          "Leadgenereringssystemdesign och optimering",
+          "Användarupplevelse (UX) analys och förbättringar",
+          "A/B-testning och datadriven optimering",
+          "Landningssidesoptimering för högre konverteringsfrekvens",
+          "Trattanalys och optimering i varje steg"
+        ],
+        "benefitsList": [
+          "Högre konverteringsfrekvens från befintlig trafik",
+          "Fler kvalificerade leads och bättre leadkvalitet",
+          "Förbättrad ROI på marknadsföringsinvesteringar",
+          "Datadriven beslutsfattande för kontinuerlig förbättring"
+        ]
+      },
+      "service3": {
+        "whatWeDo": "Vad vi gör",
+        "benefits": "Fördelar",
+        "details": [
+          "Teknisk SEO-optimering för bättre sökmotorsynlighet",
+          "Lokal SEO-strategier för platsbaserade företag",
+          "Nyckelordsforskning och innehållsoptimering",
+          "On-page och off-page SEO-implementering",
+          "Google Business Profile-optimering",
+          "SEO-revisioner och prestandaspårning"
+        ],
+        "benefitsList": [
+          "Ökad organisk trafik och synlighet",
+          "Bättre ranking i sökmotorresultat",
+          "Fler kvalificerade leads från sök",
+          "Långsiktig hållbar tillväxt i online närvaro"
+        ]
+      },
+      "service4": {
+        "label": "Tillväxtdrivare",
+        "whatWeDo": "Vad vi gör",
+        "benefits": "Fördelar",
+        "details": [
+          "Sökmotorannonsering (Google Ads, Bing Ads)",
+          "Sociala medierannonsering (Meta, LinkedIn, etc.)",
+          "Display- och remarketingkampanjer",
+          "Videoannonseringsstrategier",
+          "Kampanjinställning, optimering och hantering",
+          "Konverteringsspårning och ROI-optimering"
+        ],
+        "benefitsList": [
+          "Omedelbar synlighet och trafikgenerering",
+          "Exakt riktning för att nå dina idealiska kunder",
+          "Mätbara resultat med tydlig ROI-spårning",
+          "Flexibla budgetar och skalbara kampanjer"
+        ]
+      },
+      "service5": {
+        "label": "Tillväxtdrivare",
+        "whatWeDo": "Vad vi gör",
+        "benefits": "Fördelar",
+        "details": [
+          "Analysinställning och konfiguration (Google Analytics, etc.)",
+          "Anpassad dashboard-skapande för nyckeltal",
+          "Konverteringsspårning och målkonfiguration",
+          "Kundbeteendeanalys och insikter",
+          "Prestandarapportering och datavisualisering",
+          "Dataintegration över flera plattformar"
+        ],
+        "benefitsList": [
+          "Tydlig insyn i affärsprestanda",
+          "Datadrivna insikter för beslutsfattande",
+          "Bättre förståelse av kundbeteende",
+          "Optimiseringsmöjligheter identifierade genom data"
+        ]
+      },
+      "service6": {
+        "whatWeDo": "Vad vi gör",
+        "benefits": "Fördelar",
+        "details": [
+          "API-integrationer mellan plattformar och verktyg",
+          "Arbetsflödesautomatisering för att minska manuellt arbete",
+          "CRM- och marknadsföringsverktygsintegrationer",
+          "Datasynkronisering över system",
+          "Anpassad integrationsutveckling",
+          "Processautomatisering och effektivitetsförbättringar"
+        ],
+        "benefitsList": [
+          "Minskat manuellt arbete och ökad effektivitet",
+          "Förbättrad data noggrannhet och konsistens",
+          "Sömlösa arbetsflöden över plattformar",
+          "Tids- och kostnadsbesparingar genom automatisering"
+        ]
+      }
+    },
+    "engagement": {
+      "title": "Sätt att arbeta tillsammans",
+      "description1": "Vissa kunder behöver ett komplett system. Andra behöver en specifik komponent.",
+      "description2": "Engagemang kan inkludera:",
+      "items": [
+        "Fullständig systemdesign och implementering",
+        "Webbplats- eller webbapplikationsprojekt",
+        "Annonsinställning och optimering",
+        "Analys- och spårningsarkitektur",
+        "Pågående optimering och support"
+      ],
+      "description3": "Omfattningen definieras efter det första samtalet, baserat på vad som kommer att skapa mest värde för din verksamhet."
+    },
+    "nextStep": {
+      "title": "Nästa steg",
+      "description": "Om detta låter relevant är nästa steg ett kort möte för att förstå din verksamhet och se om det finns en bra matchning."
+    }
+  },
+  "booking": {
+    "title": "Boka ett möte",
+    "subtitle": "Välj ett datum och tid som passar dig",
+    "selectedTimeSlot": "Valt tidsintervall",
+    "stockholmTime": "Stockholmstid",
+    "form": {
+      "name": "Namn",
+      "email": "E-post",
+      "company": "Företag (valfritt)",
+      "message": "Meddelande (valfritt)",
+      "required": "*",
+      "errors": {
+        "nameRequired": "Namn krävs",
+        "emailRequired": "E-post krävs",
+        "emailInvalid": "Vänligen ange en giltig e-postadress",
+        "selectDateTime": "Vänligen välj ett datum och tidsintervall",
+        "submitFailed": "Kunde inte skapa bokning"
+      }
+    },
+    "success": "Bokning bekräftad! Vi ser fram emot att träffa dig.",
+    "info": {
+      "purpose": {
+        "title": "Mötesändamål",
+        "description": "Detta är ett kort, fokuserat samtal för att förstå din verksamhet, mål och nuvarande utmaningar — och för att se om vi är en bra matchning att arbeta tillsammans."
+      },
+      "howItWorks": {
+        "title": "Hur mötet fungerar",
+        "description": "Mötet hålls online och varar vanligtvis 30 minuter. Du får alla detaljer via e-post efter bokning."
+      },
+      "rescheduling": {
+        "title": "Ombokning & avbokning",
+        "description": "Om du behöver boka om eller avboka kan du göra det upp till 24 timmar före mötet. Detta hjälper till att hålla tillgängligheten rättvis för alla."
+      }
+    }
+  },
+  "footer": {
+    "contact": {
+      "title": "Kontakta oss",
+      "description": "Mejla oss för förfrågningar och konsultationer"
+    },
+    "location": {
+      "title": "Plats",
+      "description": "Betjänar kunder globalt",
+      "regions": "Europa & Latinamerika"
+    },
+    "copyright": "Alla rättigheter förbehållna."
+  },
+  "metadata": {
+    "title": "Brehaut Consulting | Teknologi- & tillväxtkonsult",
+    "titleTemplate": "%s | Brehaut Consulting",
+    "description": "Tydliga, mätbara digitala system för kundtillväxt.",
+    "keywords": [
+      "teknologikonsult",
+      "tillväxtkonsult",
+      "webbutveckling",
+      "digitala system",
+      "konverteringsoptimering",
+      "SEO",
+      "analys",
+      "automatisering",
+      "digital marknadsföring",
+      "webbapplikationer",
+      "tekniska integrationer",
+      "lokal synlighet",
+      "annonsering",
+      "mätning"
+    ],
+    "openGraph": {
+      "siteName": "Brehaut Consulting",
+      "title": "Brehaut Consulting | Teknologi- & tillväxtkonsult",
+      "description": "Tydliga, mätbara digitala system för kundtillväxt."
+    },
+    "schema": {
+      "serviceType": "Teknologi- och tillväxtkonsult",
+      "catalogName": "Konsulttjänster"
+    }
+  }
+}
+

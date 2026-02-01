@@ -1,15 +1,17 @@
 'use client'
 
 import Image from 'next/image'
-import Link from 'next/link'
+import { Link, usePathname } from '@/i18n/navigation'
+import { useTranslations } from 'next-intl'
 import { useEffect, useRef, useState } from 'react'
-import { usePathname } from 'next/navigation'
 import gsap from 'gsap'
+import LanguageSwitcher from './LanguageSwitcher'
 
 export default function Header() {
   const headerRef = useRef<HTMLElement>(null)
   const pathname = usePathname()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const t = useTranslations('common.nav')
 
   useEffect(() => {
     if (headerRef.current) {
@@ -32,7 +34,10 @@ export default function Header() {
     }
   }, [isMenuOpen])
 
-  const isActive = (path: string) => pathname === path
+  const isActive = (path: string) => {
+    // pathname from next-intl navigation already excludes locale prefix
+    return pathname === path || pathname === `${path}/`
+  }
 
   const closeMenu = () => {
     setIsMenuOpen(false)
@@ -53,7 +58,7 @@ export default function Header() {
               height={40}
               priority
             />
-            <span className="hidden md:inline text-xl font-frank font-bold text-white">
+            <span className="hidden md:inline text-xl font-canela font-bold text-white">
               Brehaut Consulting
             </span>
           </Link>
@@ -66,7 +71,7 @@ export default function Header() {
                   : 'text-white/70 hover:text-white'
               }`}
             >
-              Home
+              {t('home')}
             </Link>
             <Link
               href="/how-it-works"
@@ -76,14 +81,15 @@ export default function Header() {
                   : 'text-white/70 hover:text-white'
               }`}
             >
-              How it works
+              {t('howItWorks')}
             </Link>
             <Link
               href="/booking"
               className="px-6 py-2 bg-white text-black rounded-full font-medium hover:bg-white/90 transition-colors"
             >
-              Book a Meeting
+              {t('bookMeeting')}
             </Link>
+            <LanguageSwitcher />
           </nav>
           {/* Mobile hamburger menu button */}
           <button
@@ -125,7 +131,7 @@ export default function Header() {
                     : 'text-white/70 hover:text-white'
                 }`}
               >
-                Home
+                {t('home')}
               </Link>
               <Link
                 href="/how-it-works"
@@ -136,15 +142,18 @@ export default function Header() {
                     : 'text-white/70 hover:text-white'
                 }`}
               >
-                How it works
+                {t('howItWorks')}
               </Link>
               <Link
                 href="/booking"
                 onClick={closeMenu}
                 className="px-6 py-3 bg-white text-black rounded-full font-medium hover:bg-white/90 transition-colors text-center"
               >
-                Book a Meeting
+                {t('bookMeeting')}
               </Link>
+              <div className="pt-4 border-t border-white/10">
+                <LanguageSwitcher />
+              </div>
             </div>
           </nav>
         </div>

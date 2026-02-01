@@ -2,6 +2,41 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Canela font - Add your Canela font files or use a CDN URL */
+/* If you have Canela font files, uncomment and update the paths */
+/* For now, Canela will fallback to Frank Ruhl Libre via CSS variable */
+/*
+@font-face {
+  font-family: 'Canela';
+  src: url('/fonts/Canela-Regular.woff2') format('woff2'),
+       url('/fonts/Canela-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Canela';
+  src: url('/fonts/Canela-Medium.woff2') format('woff2'),
+       url('/fonts/Canela-Medium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Canela';
+  src: url('/fonts/Canela-Bold.woff2') format('woff2'),
+       url('/fonts/Canela-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+*/
+
+/* Canela font - using Cormorant as substitute (similar elegant serif style) */
+/* If you have actual Canela font files, uncomment the @font-face rules above and update this */
+
 @layer base {
   html {
     scroll-behavior: smooth;
@@ -22,6 +57,24 @@
     width: 100%;
     max-width: 100vw;
     overflow-x: hidden;
+  }
+}
+
+/* Performance optimizations */
+@layer utilities {
+  /* Reduce paint complexity for animations */
+  .portfolio-image,
+  .service-card,
+  .faq-item {
+    will-change: transform, opacity;
+  }
+  
+  /* Optimize font rendering */
+  .glow-title,
+  .glow-text {
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 }
 

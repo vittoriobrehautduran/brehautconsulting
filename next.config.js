@@ -1,9 +1,26 @@
+const withNextIntl = require('next-intl/plugin')(
+  './i18n.ts'
+)
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
     formats: ['image/avif', 'image/webp'],
+    // Optimize image sizes
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
   },
+  // Modern browser targets - remove legacy JavaScript
+  compiler: {
+    removeConsole: process.env.NODE_ENV === 'production',
+  },
+  // Optimize CSS
+  experimental: {
+    optimizeCss: true,
+  },
+  // Modern JavaScript output
+  swcMinify: true,
 }
 
-module.exports = nextConfig
+module.exports = withNextIntl(nextConfig)
 

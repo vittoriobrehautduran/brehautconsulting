@@ -44,8 +44,8 @@ export default function AnimatedBackground() {
     })
     renderer.setClearColor(0x000000, 0)
     renderer.setSize(window.innerWidth, initialHeight)
-    // Lower pixel ratio on mobile for better performance
-    renderer.setPixelRatio(isMobile ? Math.min(window.devicePixelRatio, 1) : Math.min(window.devicePixelRatio, 2))
+    // Optimized pixel ratio - use device pixel ratio but cap it for performance
+    renderer.setPixelRatio(isMobile ? Math.min(window.devicePixelRatio, 1.5) : Math.min(window.devicePixelRatio, 2))
     
     const canvas = renderer.domElement
     canvas.style.pointerEvents = 'none'
@@ -84,8 +84,8 @@ export default function AnimatedBackground() {
 
     const particleTexture = createParticleTexture()
 
-    // Significantly reduce particle count on mobile
-    const particleCount = isMobile ? 60 : 150
+    // Optimized particle count - enough for smooth animation but not too many
+    const particleCount = isMobile ? 80 : 150
     const positions = new Float32Array(particleCount * 3)
     const colors = new Float32Array(particleCount * 3)
 
@@ -124,13 +124,13 @@ export default function AnimatedBackground() {
 
     let time = 0
     let lastFrameTime = performance.now()
-    // Frame skipping on mobile - render every other frame for 30fps instead of 60fps
-    const targetFrameTime = isMobile ? 33 : 16 // 30fps on mobile, 60fps on desktop
+    // Adaptive frame rate - try for 60fps but allow 30fps if needed
+    const targetFrameTime = isMobile ? 20 : 16 // Allow up to 50fps on mobile, 60fps on desktop
 
     const animate = () => {
       frameRef.current = requestAnimationFrame(animate)
 
-      // Frame skipping for mobile
+      // Adaptive frame skipping - only skip if we're ahead of schedule
       const currentTime = performance.now()
       const deltaTime = currentTime - lastFrameTime
       if (deltaTime < targetFrameTime) {
@@ -138,15 +138,15 @@ export default function AnimatedBackground() {
       }
       lastFrameTime = currentTime
 
-      time += 0.003
+      time += isMobile ? 0.005 : 0.003 // Faster time increment on mobile for smoother animation
 
-      // Slower, smoother rotation on mobile
-      const rotationSpeed = isMobile ? 0.0002 : 0.0003
+      // Balanced rotation speed - faster on mobile but still smooth
+      const rotationSpeed = isMobile ? 0.0005 : 0.0003
       particles.rotation.x += rotationSpeed
       particles.rotation.y += rotationSpeed * 1.5
 
-      // Slower camera movement on mobile
-      const cameraSpeed = isMobile ? 0.2 : 0.3
+      // Faster camera movement on mobile for better visual feedback
+      const cameraSpeed = isMobile ? 0.4 : 0.3
       camera.position.x = Math.sin(time * cameraSpeed) * 0.3
       camera.position.y = Math.cos(time * (cameraSpeed * 0.83)) * 0.3
       camera.lookAt(scene.position)

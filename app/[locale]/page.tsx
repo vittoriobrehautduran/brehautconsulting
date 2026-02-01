@@ -1,12 +1,15 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import Link from 'next/link'
+import { Link } from '@/i18n/navigation'
+import { useTranslations } from 'next-intl'
 import Image from 'next/image'
 import AnimatedBackground from '@/components/AnimatedBackground'
-import { COMPANY_TAGLINE, SERVICES, CONTACT_EMAIL, CONTACT_PHONE } from '@/lib/constants'
+import { CONTACT_EMAIL, CONTACT_PHONE } from '@/lib/constants'
+
+// Lazy load GSAP to reduce initial bundle size
+let gsap: any = null
+let ScrollTrigger: any = null
 
 const PORTFOLIO_IMAGES = [
   '/images/Websites/aceplanner.png',
@@ -15,9 +18,15 @@ const PORTFOLIO_IMAGES = [
   '/images/Websites/nordkaliber.png',
 ]
 
-gsap.registerPlugin(ScrollTrigger)
-
 export default function HomePage() {
+  const t = useTranslations('home')
+  const tCommon = useTranslations('common.buttons')
+  const tServices = useTranslations('home.services')
+  const tAbout = useTranslations('home.about')
+  const tFaq = useTranslations('home.faq')
+  const tCta = useTranslations('home.cta')
+  const tMetadata = useTranslations('metadata')
+  
   const heroRef = useRef<HTMLDivElement>(null)
   const titleRef = useRef<HTMLHeadingElement>(null)
   const taglineRef = useRef<HTMLParagraphElement>(null)
@@ -45,8 +54,28 @@ export default function HomePage() {
   const faqRef = useRef<HTMLDivElement>(null)
   const faqTitleRef = useRef<HTMLHeadingElement>(null)
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null)
+  const [gsapLoaded, setGsapLoaded] = useState(false)
+
+  // Lazy load GSAP after initial render to improve LCP
+  useEffect(() => {
+    const loadGSAP = async () => {
+      const gsapModule = await import('gsap')
+      const scrollTriggerModule = await import('gsap/ScrollTrigger')
+      gsap = gsapModule.gsap
+      ScrollTrigger = scrollTriggerModule.ScrollTrigger
+      gsap.registerPlugin(ScrollTrigger)
+      setGsapLoaded(true)
+    }
+    // Load GSAP after a short delay to prioritize LCP
+    const timer = setTimeout(() => {
+      loadGSAP()
+    }, 100)
+    return () => clearTimeout(timer)
+  }, [])
 
   useEffect(() => {
+    if (!gsapLoaded) return
+    
     let scrollCleanup: (() => void) | null = null
     
     // Detect mobile and reduced motion preference
@@ -54,26 +83,34 @@ export default function HomePage() {
     const prefersReducedMotion = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
     
     const ctx = gsap.context(() => {
-      // Hero animations - optimized for mobile
+      // Hero animations - optimized for mobile, use will-change to hint browser
       if (titleRef.current && taglineRef.current && ctaRef.current) {
-        const tl = gsap.timeline()
-        tl.fromTo(
-          titleRef.current,
-          { y: isMobile ? 60 : 100, opacity: 0 },
-          { y: 0, opacity: 1, duration: isMobile ? 0.7 : 1, ease: isMobile ? 'power2.out' : 'power3.out' }
-        )
-          .fromTo(
-            taglineRef.current,
-            { y: isMobile ? 30 : 50, opacity: 0 },
-            { y: 0, opacity: 1, duration: isMobile ? 0.5 : 0.8, ease: isMobile ? 'power2.out' : 'power3.out' },
-            '-=0.5'
+        // Batch DOM reads
+        const title = titleRef.current
+        const tagline = taglineRef.current
+        const cta = ctaRef.current
+        
+        // Use requestAnimationFrame to batch operations and reduce forced reflows
+        requestAnimationFrame(() => {
+          const tl = gsap.timeline()
+          tl.fromTo(
+            title,
+            { y: isMobile ? 60 : 100, opacity: 0 },
+            { y: 0, opacity: 1, duration: isMobile ? 0.7 : 1, ease: isMobile ? 'power2.out' : 'power3.out' }
           )
-          .fromTo(
-            ctaRef.current,
-            { y: isMobile ? 20 : 30, opacity: 0 },
-            { y: 0, opacity: 1, duration: isMobile ? 0.4 : 0.6, ease: isMobile ? 'power2.out' : 'power3.out' },
-            '-=0.4'
-          )
+            .fromTo(
+              tagline,
+              { y: isMobile ? 30 : 50, opacity: 0 },
+              { y: 0, opacity: 1, duration: isMobile ? 0.5 : 0.8, ease: isMobile ? 'power2.out' : 'power3.out' },
+              '-=0.5'
+            )
+            .fromTo(
+              cta,
+              { y: isMobile ? 20 : 30, opacity: 0 },
+              { y: 0, opacity: 1, duration: isMobile ? 0.4 : 0.6, ease: isMobile ? 'power2.out' : 'power3.out' },
+              '-=0.4'
+            )
+        })
       }
 
       // Services section scroll animations
@@ -680,7 +717,7 @@ export default function HomePage() {
         scrollCleanup()
       }
     }
-  }, [])
+  }, [gsapLoaded])
 
   return (
     <>
@@ -694,7 +731,7 @@ export default function HomePage() {
           <div className="container mx-auto max-w-none md:max-w-5xl text-center">
             <h1
               ref={titleRef}
-              className="glow-title text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-frank font-bold mb-8 bg-gradient-to-r from-white via-blue-200 to-purple-200 bg-clip-text text-transparent pb-2 overflow-visible"
+              className="glow-title text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-canela font-bold mb-8 bg-gradient-to-r from-white via-blue-200 to-purple-200 bg-clip-text text-transparent pb-2 overflow-visible tracking-tight"
             >
               Brehaut Consulting
             </h1>
@@ -702,23 +739,23 @@ export default function HomePage() {
               ref={taglineRef}
               className="text-xl md:text-2xl text-white/90 mb-6 md:mb-4 leading-relaxed max-w-4xl mx-auto"
             >
-              {COMPANY_TAGLINE}
+              {t('hero.tagline')}
             </p>
             <p className="hidden md:block text-lg text-white/80 mb-12 leading-relaxed max-w-3xl mx-auto">
-              We help businesses get more customers through high-performance websites and measurable digital systems — designed to make attraction, conversion, and retention intentional rather than accidental.
+              {t('hero.description')}
             </p>
             <div ref={ctaRef} className="flex flex-col items-center gap-6">
               <Link
                 href="/booking"
                 className="glow-button inline-block px-10 py-4 bg-white text-black rounded-full text-lg font-semibold hover:bg-white/90 shadow-2xl"
               >
-                Book a Meeting
+                {tCommon('bookMeeting')}
               </Link>
               <Link
                 href="/how-it-works"
                 className="text-white/70 hover:text-white transition-colors text-base underline underline-offset-4 decoration-white/30 hover:decoration-white/60"
               >
-                View Services
+                {tCommon('viewServices')}
               </Link>
             </div>
           </div>
@@ -731,7 +768,7 @@ export default function HomePage() {
               ref={servicesTitleRef}
               className="glow-title text-5xl md:text-6xl font-heading font-bold text-center mb-20 text-white"
             >
-              What We Offer
+              {tServices('title')}
             </h2>
             <div ref={servicesRef} className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center relative">
               {/* Connecting line on desktop - shows relationship between description and visualization */}
@@ -743,10 +780,13 @@ export default function HomePage() {
                 <div className="absolute top-1/2 right-1/2 w-[600px] h-[600px] bg-gradient-to-br from-blue-500/15 to-purple-500/15 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
                 <div className="relative z-10">
                   <h3 className="glow-text text-3xl lg:text-4xl font-heading font-bold mb-4 text-white leading-tight text-center lg:text-left">
-                    {SERVICES[0].title}
+                    {tServices('service1.title')}
+                    <span className="block text-base lg:text-lg font-normal text-white/60 mt-1">
+                      {tServices('service1.subtitle')}
+                    </span>
                   </h3>
                   <p className="text-lg lg:text-xl text-white/90 leading-relaxed text-center lg:text-left">
-                    {SERVICES[0].description}
+                    {tServices('service1.description')}
                   </p>
                 </div>
               </div>
@@ -767,10 +807,13 @@ export default function HomePage() {
                         <Image
                           src={src}
                           alt={`Portfolio project ${index + 1} - ${src.split('/').pop()?.replace('.png', '').replace(/([A-Z])/g, ' $1').trim()}`}
-                          width={800}
-                          height={600}
+                          width={480}
+                          height={300}
+                          sizes="(max-width: 640px) 160px, (max-width: 1024px) 200px, 240px"
                           className="w-full h-auto object-cover brightness-[0.5]"
                           style={{ transform: 'scaleX(-1)' }}
+                          priority={index === 0}
+                          loading={index === 0 ? 'eager' : 'lazy'}
                         />
                         <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-transparent to-black/40 pointer-events-none" style={{ maskImage: 'radial-gradient(ellipse 80% 100% at center, black 60%, transparent 100%)', WebkitMaskImage: 'radial-gradient(ellipse 80% 100% at center, black 60%, transparent 100%)' }}></div>
                         <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/40 pointer-events-none" style={{ maskImage: 'radial-gradient(ellipse 100% 80% at center, black 60%, transparent 100%)', WebkitMaskImage: 'radial-gradient(ellipse 100% 80% at center, black 60%, transparent 100%)' }}></div>
@@ -795,10 +838,13 @@ export default function HomePage() {
                 <div className="absolute top-1/2 right-1/2 w-[600px] h-[600px] bg-gradient-to-br from-blue-500/15 to-purple-500/15 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
                 <div className="relative z-10">
                   <h3 className="glow-text text-3xl lg:text-4xl font-heading font-bold mb-6 text-white leading-tight">
-                    {SERVICES[1].title}
+                    {tServices('service2.title')}
+                    <span className="block text-base lg:text-lg font-normal text-white/60 mt-1">
+                      {tServices('service2.subtitle')}
+                    </span>
                   </h3>
                   <p className="text-lg lg:text-xl text-white/90 leading-relaxed">
-                    {SERVICES[1].description}
+                    {tServices('service2.description')}
                   </p>
                 </div>
               </div>
@@ -911,10 +957,13 @@ export default function HomePage() {
                 <div className="absolute top-1/2 right-1/2 w-[600px] h-[600px] bg-gradient-to-br from-blue-500/15 to-purple-500/15 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
                 <div className="relative z-10">
                   <h3 className="glow-text text-3xl lg:text-4xl font-heading font-bold mb-6 text-white leading-tight">
-                    {SERVICES[2].title}
+                    {tServices('service3.title')}
+                    <span className="block text-base lg:text-lg font-normal text-white/60 mt-1">
+                      {tServices('service3.subtitle')}
+                    </span>
                   </h3>
                   <p className="text-lg lg:text-xl text-white/90 leading-relaxed">
-                    {SERVICES[2].description}
+                    {tServices('service3.description')}
                   </p>
                 </div>
               </div>
@@ -994,10 +1043,13 @@ export default function HomePage() {
                 <div className="absolute top-1/2 right-1/2 w-[600px] h-[600px] bg-gradient-to-br from-blue-500/15 to-purple-500/15 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
                 <div className="relative z-10">
                   <h3 className="glow-text text-3xl lg:text-4xl font-heading font-bold mb-6 text-white leading-tight">
-                    {SERVICES[3].title}
+                    {tServices('service4.title')}
+                    <span className="block text-base lg:text-lg font-normal text-white/60 mt-1">
+                      {tServices('service4.subtitle')}
+                    </span>
                   </h3>
                   <p className="text-lg lg:text-xl text-white/90 leading-relaxed">
-                    {SERVICES[3].description}
+                    {tServices('service4.description')}
                   </p>
                 </div>
               </div>
@@ -1143,10 +1195,13 @@ export default function HomePage() {
                 <div className="absolute top-1/2 right-1/2 w-[600px] h-[600px] bg-gradient-to-br from-blue-500/15 to-purple-500/15 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
                 <div className="relative z-10">
                   <h3 className="glow-text text-3xl lg:text-4xl font-heading font-bold mb-6 text-white leading-tight">
-                    {SERVICES[4].title}
+                    {tServices('service5.title')}
+                    <span className="block text-base lg:text-lg font-normal text-white/60 mt-1">
+                      {tServices('service5.subtitle')}
+                    </span>
                   </h3>
                   <p className="text-lg lg:text-xl text-white/90 leading-relaxed">
-                    {SERVICES[4].description}
+                    {tServices('service5.description')}
                   </p>
                 </div>
               </div>
@@ -1218,10 +1273,13 @@ export default function HomePage() {
                 <div className="absolute top-1/2 right-1/2 w-[600px] h-[600px] bg-gradient-to-br from-blue-500/15 to-purple-500/15 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
                 <div className="relative z-10">
                   <h3 className="glow-text text-3xl lg:text-4xl font-heading font-bold mb-6 text-white leading-tight">
-                    {SERVICES[5].title}
+                    {tServices('service6.title')}
+                    <span className="block text-base lg:text-lg font-normal text-white/60 mt-1">
+                      {tServices('service6.subtitle')}
+                    </span>
                   </h3>
                   <p className="text-lg lg:text-xl text-white/90 leading-relaxed">
-                    {SERVICES[5].description}
+                    {tServices('service6.description')}
                   </p>
                 </div>
               </div>
@@ -1308,7 +1366,7 @@ export default function HomePage() {
                 href="/how-it-works"
                 className="glow-button inline-block px-10 py-4 bg-transparent border-2 border-white text-white rounded-full text-lg font-semibold hover:bg-white/10 shadow-2xl w-full sm:w-auto"
               >
-                View Services
+                {tCommon('viewServices')}
               </Link>
             </div>
           </div>
@@ -1321,18 +1379,14 @@ export default function HomePage() {
               ref={aboutTitleRef}
               className="glow-title text-5xl md:text-6xl font-heading font-bold text-center mb-12 text-white"
             >
-              About Brehaut Consulting
+              {tAbout('title')}
             </h2>
             <div ref={aboutTextRef} className="prose prose-invert max-w-none">
               <p className="text-xl md:text-2xl text-white/90 text-center leading-relaxed mb-8">
-                We specialize in creating digital solutions that drive real business results. 
-                Our approach combines technical expertise with a deep understanding of growth 
-                marketing and conversion optimization.
+                {tAbout('description1')}
               </p>
               <p className="text-lg md:text-xl text-white/80 text-center leading-relaxed max-w-3xl mx-auto">
-                Whether you need a modern web application, improved search visibility, 
-                strategic advertising, or seamless integrations, we work with you to build 
-                systems that scale with your business and deliver measurable outcomes.
+                {tAbout('description2')}
               </p>
             </div>
           </div>
@@ -1345,59 +1399,13 @@ export default function HomePage() {
               ref={faqTitleRef}
               className="glow-title text-5xl md:text-6xl font-heading font-bold text-center mb-12 text-white"
             >
-              Frequently Asked Questions
+              {tFaq('title')}
             </h2>
             <div className="space-y-4">
-              {[
-                {
-                  question: 'How does working with Brehaut Consulting start?',
-                  answer: 'It starts with a conversation. You book a meeting through our booking system, and we discuss your business, goals, and current challenges. This helps us understand if we&apos;re a good fit and what approach would work best for you.',
-                },
-                {
-                  question: 'What happens during the first meeting?',
-                  answer: 'We listen to your situation, ask questions about your business and goals, and discuss what you&apos;re trying to achieve. It&apos;s a discovery conversation, not a sales pitch. By the end, you&apos;ll have clarity on whether we can help and what that might look like.',
-                },
-                {
-                  question: 'How long does a typical project take?',
-                  answer: 'Timelines depend on scope and complexity. A website project might take 4-8 weeks, while a complete system build could be 2-4 months. We provide a clear timeline during our initial discussion based on your specific needs.',
-                },
-                {
-                  question: 'Do I need all services to work with you?',
-                  answer: 'No. Some clients need a complete system, while others need help with a specific part. The scope is defined after understanding your business and goals, and only what creates real value is recommended.',
-                },
-                {
-                  question: 'Can I hire you for just a website or just ads?',
-                  answer: 'Yes. While we often work on integrated systems, we can focus on a single service if that&apos;s what you need. We&apos;ll be honest if we think you&apos;d benefit from additional services, but the decision is yours.',
-                },
-                {
-                  question: 'How is pricing structured?',
-                  answer: 'Pricing is based on project scope, complexity, and goals. We provide clear proposals after understanding your needs, so you know exactly what you&apos;re investing in and why.',
-                },
-                {
-                  question: 'Is this a one-time project or ongoing work?',
-                  answer: 'It depends on what you need. Some clients need a one-time build, while others benefit from ongoing support and optimization. We discuss what makes sense for your situation during our initial conversation.',
-                },
-                {
-                  question: 'Can you guarantee results?',
-                  answer: 'We guarantee our work quality and approach, but we can&apos;t guarantee specific business outcomes since many factors are outside our control. What we can promise is honest communication, strategic thinking, and execution based on proven methods.',
-                },
-                {
-                  question: 'How long does it take to see results?',
-                  answer: 'It varies by service. A new website might show immediate improvements, while SEO and advertising typically take 2-4 months to show meaningful results. We set realistic expectations upfront and track progress transparently.',
-                },
-                {
-                  question: 'What types of businesses do you work with?',
-                  answer: 'We work with businesses of various sizes, from small local companies to larger organizations. The common thread is businesses that want to grow and are ready to invest in systems that drive measurable results.',
-                },
-                {
-                  question: 'Do you work internationally or only locally?',
-                  answer: 'We work with clients globally, with a focus on Europe and Latin America. Our services are delivered remotely, so location isn&apos;t a barrier as long as we can communicate effectively.',
-                },
-                {
-                  question: 'Who owns the website, ads, and data?',
-                  answer: 'You do. The website code, content, and any data collected belong to you. We work with third-party platforms when needed, but you maintain ownership and control of your digital assets.',
-                },
-              ].map((faq, index) => {
+              {Array.from({ length: 12 }, (_, index) => ({
+                question: tFaq(`items.${index}.question`),
+                answer: tFaq(`items.${index}.answer`),
+              })).map((faq, index) => {
                 const triggerId = `faq-trigger-${index}`
                 const panelId = `faq-panel-${index}`
                 const isOpen = openFaqIndex === index
@@ -1474,20 +1482,20 @@ export default function HomePage() {
               ref={ctaTitleRef}
               className="glow-title text-5xl md:text-6xl font-heading font-bold mb-8 text-white"
             >
-              Ready to Grow?
+              {tCta('title')}
             </h2>
             <p
               ref={ctaTextRef}
               className="text-xl text-white/90 mb-12 max-w-2xl mx-auto"
             >
-              Let&apos;s discuss how we can help transform your digital presence and drive real business results.
+              {tCta('description')}
             </p>
             <div ref={ctaButtonRef}>
               <Link
                 href="/booking"
                 className="glow-button inline-block px-10 py-4 bg-white text-black rounded-full text-lg font-semibold hover:bg-white/90 shadow-2xl"
               >
-                Get Started
+                {tCommon('getStarted')}
               </Link>
             </div>
           </div>
@@ -1500,23 +1508,23 @@ export default function HomePage() {
             '@context': 'https://schema.org',
             '@type': 'ProfessionalService',
             name: 'Brehaut Consulting',
-            description: COMPANY_TAGLINE,
+            description: t('hero.tagline'),
             url: 'https://brehautconsulting.com',
             telephone: CONTACT_PHONE,
             email: CONTACT_EMAIL,
             areaServed: ['Europe', 'Latin America'],
-            serviceType: 'Technology and Growth Consultancy',
+            serviceType: tMetadata('schema.serviceType'),
             hasOfferCatalog: {
               '@type': 'OfferCatalog',
-              name: 'Consulting Services',
-              itemListElement: SERVICES.map((service, index) => ({
-                '@type': 'Offer',
-                itemOffered: {
-                  '@type': 'Service',
-                  name: service.title,
-                  description: service.description,
-                },
-              })),
+              name: tMetadata('schema.catalogName'),
+              itemListElement: [
+                { '@type': 'Offer', itemOffered: { '@type': 'Service', name: tServices('service1.title'), description: tServices('service1.description') } },
+                { '@type': 'Offer', itemOffered: { '@type': 'Service', name: tServices('service2.title'), description: tServices('service2.description') } },
+                { '@type': 'Offer', itemOffered: { '@type': 'Service', name: tServices('service3.title'), description: tServices('service3.description') } },
+                { '@type': 'Offer', itemOffered: { '@type': 'Service', name: tServices('service4.title'), description: tServices('service4.description') } },
+                { '@type': 'Offer', itemOffered: { '@type': 'Service', name: tServices('service5.title'), description: tServices('service5.description') } },
+                { '@type': 'Offer', itemOffered: { '@type': 'Service', name: tServices('service6.title'), description: tServices('service6.description') } },
+              ],
             },
           }),
         }}
