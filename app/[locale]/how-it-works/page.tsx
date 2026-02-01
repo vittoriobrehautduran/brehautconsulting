@@ -1,13 +1,13 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import Link from 'next/link'
+import { Link } from '@/i18n/navigation'
 import AnimatedBackground from '@/components/AnimatedBackground'
 import { SERVICES } from '@/lib/constants'
 
-gsap.registerPlugin(ScrollTrigger)
+// Lazy load GSAP to reduce initial bundle size (consistent with homepage)
+let gsap: any = null
+let ScrollTrigger: any = null
 
 const SERVICE_DETAILS = [
   {
@@ -134,6 +134,24 @@ export default function ServicesPage() {
   const sidebarRef = useRef<HTMLElement>(null)
   const [activeSection, setActiveSection] = useState<number>(0)
   const [showScrollTop, setShowScrollTop] = useState<boolean>(false)
+  const [gsapLoaded, setGsapLoaded] = useState(false)
+
+  // Lazy load GSAP after initial render to improve LCP (consistent with homepage)
+  useEffect(() => {
+    const loadGSAP = async () => {
+      const gsapModule = await import('gsap')
+      const scrollTriggerModule = await import('gsap/ScrollTrigger')
+      gsap = gsapModule.gsap
+      ScrollTrigger = scrollTriggerModule.ScrollTrigger
+      gsap.registerPlugin(ScrollTrigger)
+      setGsapLoaded(true)
+    }
+    // Load GSAP after a short delay to prioritize LCP
+    const timer = setTimeout(() => {
+      loadGSAP()
+    }, 100)
+    return () => clearTimeout(timer)
+  }, [])
 
   useEffect(() => {
     const handleScroll = () => {
@@ -146,6 +164,8 @@ export default function ServicesPage() {
   }, [])
 
   useEffect(() => {
+    if (!gsapLoaded) return
+    
     const ctx = gsap.context(() => {
       // Intro text animation
       if (introRef.current) {
@@ -302,7 +322,7 @@ export default function ServicesPage() {
     return () => {
       ctx.revert()
     }
-  }, [])
+  }, [gsapLoaded])
 
   const scrollToService = (index: number) => {
     const card = serviceCardsRefs.current[index]

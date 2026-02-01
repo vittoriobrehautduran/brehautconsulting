@@ -1,33 +1,45 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
-import * as THREE from 'three'
+import { useEffect, useRef, useState } from 'react'
 
 export default function AnimatedBackground() {
   const mountRef = useRef<HTMLDivElement>(null)
   const frameRef = useRef<number>()
+  const [threeLoaded, setThreeLoaded] = useState(false)
+  
+  // Store Three.js resources in refs so cleanup can access them even if component unmounts during loading
+  const resourcesRef = useRef<{
+    geometry?: any
+    material?: any
+    particleTexture?: any
+    renderer?: any
+    rendererElement?: HTMLCanvasElement
+    resizeTimeout?: NodeJS.Timeout
+  }>({})
 
+  // Lazy load Three.js to reduce initial bundle size
   useEffect(() => {
     if (!mountRef.current) return
 
-    // Detect mobile device and reduced motion preference
-    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) || window.innerWidth < 768
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    import('three').then((THREE) => {
+      // Detect mobile device and reduced motion preference
+      const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) || window.innerWidth < 768
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
-    if (prefersReducedMotion) {
-      return
-    }
+      if (prefersReducedMotion) {
+        return
+      }
 
-    // Use fixed viewport height to avoid jumps when address bar shows/hides
-    const getViewportHeight = () => {
-      return Math.max(
-        document.documentElement.clientHeight || 0,
-        window.innerHeight || 0
-      )
-    }
+      // Use fixed viewport height to avoid jumps when address bar shows/hides
+      const getViewportHeight = () => {
+        return Math.max(
+          document.documentElement.clientHeight || 0,
+          window.innerHeight || 0
+        )
+      }
 
-    const initialHeight = getViewportHeight()
-    const scene = new THREE.Scene()
+      const initialHeight = getViewportHeight()
+      const scene = new THREE.Scene()
     const camera = new THREE.PerspectiveCamera(
       75,
       window.innerWidth / initialHeight,
@@ -56,7 +68,12 @@ export default function AnimatedBackground() {
     canvas.style.height = '100vh'
     canvas.style.zIndex = '-1'
     canvas.style.backgroundColor = 'transparent'
-    mountRef.current.appendChild(canvas)
+    resourcesRef.current.renderer = renderer
+    resourcesRef.current.rendererElement = canvas
+    
+    if (mountRef.current) {
+      mountRef.current.appendChild(canvas)
+    }
     
     renderer.clear()
 
@@ -82,7 +99,8 @@ export default function AnimatedBackground() {
       return new THREE.CanvasTexture(canvas)
     }
 
-    const particleTexture = createParticleTexture()
+      const particleTexture = createParticleTexture()
+      resourcesRef.current.particleTexture = particleTexture
 
     // Optimized particle count - enough for smooth animation but not too many
     const particleCount = isMobile ? 80 : 150
@@ -104,6 +122,7 @@ export default function AnimatedBackground() {
     const geometry = new THREE.BufferGeometry()
     geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3))
     geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3))
+    resourcesRef.current.geometry = geometry
 
     // Use NormalBlending on mobile for better performance
     const material = new THREE.PointsMaterial({
@@ -115,6 +134,7 @@ export default function AnimatedBackground() {
       blending: isMobile ? THREE.NormalBlending : THREE.AdditiveBlending,
       depthWrite: false,
     })
+    resourcesRef.current.material = material
 
     const particles = new THREE.Points(geometry, material)
     scene.add(particles)
@@ -157,50 +177,64 @@ export default function AnimatedBackground() {
     animate()
 
     // Only resize on orientation change, not on scroll (which changes innerHeight on mobile)
-    let resizeTimeout: NodeJS.Timeout | null = null
     let lastWidth = window.innerWidth
 
     const handleResize = () => {
       const currentWidth = window.innerWidth
       const widthDiff = Math.abs(currentWidth - lastWidth)
 
-      if (resizeTimeout) {
-        clearTimeout(resizeTimeout)
+      if (resourcesRef.current.resizeTimeout) {
+        clearTimeout(resourcesRef.current.resizeTimeout)
       }
 
-      resizeTimeout = setTimeout(() => {
+      resourcesRef.current.resizeTimeout = setTimeout(() => {
         // Only resize on significant width change (orientation change)
-        if (widthDiff > 20) {
+        if (widthDiff > 20 && resourcesRef.current.renderer) {
           const newHeight = getViewportHeight()
           camera.aspect = currentWidth / newHeight
           camera.updateProjectionMatrix()
-          renderer.setSize(currentWidth, newHeight)
+          resourcesRef.current.renderer.setSize(currentWidth, newHeight)
           lastWidth = currentWidth
         }
       }, 200)
     }
 
     window.addEventListener('resize', handleResize, { passive: true })
+    
+    setThreeLoaded(true)
 
-    const mountElement = mountRef.current
-    const rendererElement = renderer.domElement
-
+    // Cleanup function - can access resources via ref even if unmounted during loading
     return () => {
       window.removeEventListener('resize', handleResize)
-      if (resizeTimeout) {
-        clearTimeout(resizeTimeout)
+      if (resourcesRef.current.resizeTimeout) {
+        clearTimeout(resourcesRef.current.resizeTimeout)
       }
       if (frameRef.current) {
         cancelAnimationFrame(frameRef.current)
       }
-      if (mountElement && rendererElement) {
-        mountElement.removeChild(rendererElement)
+      if (mountRef.current && resourcesRef.current.rendererElement) {
+        try {
+          mountRef.current.removeChild(resourcesRef.current.rendererElement)
+        } catch (e) {
+          // Element may have already been removed
+        }
       }
-      geometry.dispose()
-      material.dispose()
-      particleTexture.dispose()
-      renderer.dispose()
+      if (resourcesRef.current.geometry) {
+        resourcesRef.current.geometry.dispose()
+      }
+      if (resourcesRef.current.material) {
+        resourcesRef.current.material.dispose()
+      }
+      if (resourcesRef.current.particleTexture) {
+        resourcesRef.current.particleTexture.dispose()
+      }
+      if (resourcesRef.current.renderer) {
+        resourcesRef.current.renderer.dispose()
+      }
+      // Clear refs
+      resourcesRef.current = {}
     }
+    })
   }, [])
 
   return (
