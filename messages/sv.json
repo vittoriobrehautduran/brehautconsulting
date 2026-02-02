@@ -12,7 +12,15 @@
       "confirmBooking": "Bekräfta bokning",
       "confirming": "Bekräftar..."
     },
-    "companyName": "Brehaut Consulting"
+    "companyName": "Brehaut Consulting",
+    "footer": {
+      "contactUs": "Kontakta oss",
+      "emailDescription": "Skicka e-post för förfrågningar och konsultationer",
+      "location": "Plats",
+      "servingClients": "Betjänar kunder globalt",
+      "regions": "Europa & Latinamerika",
+      "copyright": "Alla rättigheter förbehållna."
+    }
   },
   "home": {
     "hero": {
@@ -122,7 +130,7 @@
     },
     "howItWorks": {
       "title": "Så fungerar det",
-      "description": "Om detta tillvägagångssätt är meningsfullt, {link}.",
+      "description": "Om detta tillvägagångssätt är meningsfullt, {link}",
       "linkText": "är nästa steg ett kort samtal",
       "steps": [
         {
@@ -165,7 +173,9 @@
     "system": {
       "title": "Det digitala tillväxtsystemet",
       "description": "Varje system byggs från komponenterna nedan. Inte varje företag behöver varje del, men varje komponent finns för att stödja ett mål: mätbar kundtillväxt.",
-      "intro": "Nedan finns de centrala komponenterna som kan utgöra ditt digitala tillväxtsystem."
+      "intro": "Nedan finns de centrala komponenterna som kan utgöra ditt digitala tillväxtsystem.",
+      "servicesLabel": "Tjänster",
+      "serviceLabel": "Tjänst"
     },
     "serviceDetails": {
       "service1": {
@@ -303,6 +313,11 @@
     "subtitle": "Välj ett datum och tid som passar dig",
     "selectedTimeSlot": "Valt tidsintervall",
     "stockholmTime": "Stockholmstid",
+    "today": "Idag",
+    "tomorrow": "Imorgon",
+    "previousDay": "Föregående dag",
+    "nextDay": "Nästa dag",
+    "availableTimeSlots": "Tillgängliga tidsintervall",
     "form": {
       "name": "Namn",
       "email": "E-post",

@@ -3,6 +3,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { useTranslations } from 'next-intl'
 import ScheduleSelector from '@/components/ui/ScheduleSelector'
 import BookingForm from '@/components/ui/BookingForm'
 import { Alert, AlertDescription } from '@/components/ui/alert'
@@ -36,6 +37,7 @@ function getInitialDate(): Date {
 }
 
 export default function BookingPage() {
+  const t = useTranslations('booking')
   const [selectedDate, setSelectedDate] = useState<Date | null>(getInitialDate())
   const [selectedTimeSlot, setSelectedTimeSlot] = useState<TimeSlot | null>(null)
   const [availableSlots, setAvailableSlots] = useState<AvailableSlotsResponse | null>(null)
@@ -61,14 +63,14 @@ export default function BookingPage() {
         const dateStr = formatDateLocal(selectedDate)
         const response = await fetch(`/.netlify/functions/get-available-slots?date=${dateStr}`)
 
-        if (!response.ok) {
-          throw new Error('Failed to fetch available slots')
-        }
+      if (!response.ok) {
+        throw new Error(t('form.errors.submitFailed'))
+      }
 
         const data: AvailableSlotsResponse = await response.json()
         setAvailableSlots(data)
       } catch (error) {
-        setErrorMessage(error instanceof Error ? error.message : 'Failed to load available slots')
+        setErrorMessage(error instanceof Error ? error.message : t('form.errors.submitFailed'))
         setAvailableSlots(null)
       } finally {
         setIsLoadingSlots(false)
@@ -111,7 +113,7 @@ export default function BookingPage() {
         throw new Error(result.error || 'Failed to create booking')
       }
 
-      setSuccessMessage('Booking confirmed! We look forward to meeting with you.')
+      setSuccessMessage(t('success'))
       setSelectedTimeSlot(null)
 
       // Refresh available slots
@@ -123,9 +125,9 @@ export default function BookingPage() {
           setAvailableSlots(slotsData)
         }
       }
-    } catch (error) {
-      setErrorMessage(error instanceof Error ? error.message : 'Failed to create booking')
-    } finally {
+      } catch (error) {
+        setErrorMessage(error instanceof Error ? error.message : t('form.errors.submitFailed'))
+      } finally {
       setIsSubmitting(false)
     }
   }
@@ -134,10 +136,10 @@ export default function BookingPage() {
     <div className="container max-w-2xl pt-24 pb-10 md:pb-16 px-4">
       <div className="text-center mb-8 md:mb-12">
         <h1 className="text-4xl md:text-5xl font-heading font-bold mb-4 bg-gradient-to-r from-white via-blue-300 to-blue-500 bg-clip-text text-transparent">
-          Book a Meeting
+          {t('title')}
         </h1>
         <p className="text-blue-100/80 max-w-lg mx-auto text-lg">
-          Select a date and time that works for you
+          {t('subtitle')}
         </p>
       </div>
 
@@ -184,28 +186,28 @@ export default function BookingPage() {
         <div className="space-y-6 text-blue-50/90">
           <div>
             <h3 className="text-xl font-heading font-semibold text-blue-200 mb-3">
-              Meeting Purpose
+              {t('info.purpose.title')}
             </h3>
             <p className="text-lg leading-relaxed">
-              This is a short, focused conversation to understand your business, goals, and current challenges — and to see if we&apos;re a good fit to work together.
+              {t('info.purpose.description')}
             </p>
           </div>
 
           <div>
             <h3 className="text-xl font-heading font-semibold text-blue-200 mb-3">
-              How the Meeting Works
+              {t('info.howItWorks.title')}
             </h3>
             <p className="text-lg leading-relaxed">
-              The meeting is held online and typically lasts 30 minutes. You&apos;ll receive all details by email after booking.
+              {t('info.howItWorks.description')}
             </p>
           </div>
 
           <div>
             <h3 className="text-xl font-heading font-semibold text-blue-200 mb-3">
-              Rescheduling & Cancellation
+              {t('info.rescheduling.title')}
             </h3>
             <p className="text-lg leading-relaxed">
-              If you need to reschedule or cancel, you can do so up to 24 hours before the meeting. This helps keep availability fair for everyone.
+              {t('info.rescheduling.description')}
             </p>
           </div>
         </div>

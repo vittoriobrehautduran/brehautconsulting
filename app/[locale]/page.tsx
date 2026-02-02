@@ -1360,7 +1360,7 @@ export default function HomePage() {
                 href="/booking"
                 className="glow-button inline-block px-10 py-4 bg-white text-black rounded-full text-lg font-semibold hover:bg-white/90 shadow-2xl w-full sm:w-auto"
               >
-                Book a Meeting
+                {tCommon('bookMeeting')}
               </Link>
               <Link
                 href="/how-it-works"

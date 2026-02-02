@@ -1,6 +1,7 @@
 "use client"
 
 import * as React from "react"
+import { useTranslations } from 'next-intl'
 import { format, addDays, subDays, startOfDay } from "date-fns"
 import { Calendar as CalendarIcon, ChevronRight, ChevronLeft } from "lucide-react"
 import { WORK_DAYS, TimeSlot, TIME_SLOTS } from "@/lib/constants"
@@ -70,6 +71,7 @@ export default function ScheduleSelector({
   onTimeSlotSelect,
   isLoading = false,
 }: ScheduleSelectorProps) {
+  const t = useTranslations('booking')
   // Use selectedDate directly, or get initial date if not provided
   const currentDate = selectedDate || getInitialDate()
 
@@ -118,12 +120,12 @@ export default function ScheduleSelector({
     const compareDate = startOfDay(date)
     
     if (compareDate.getTime() === today.getTime()) {
-      return "Today"
+      return t('today')
     }
     
     const tomorrow = startOfDay(addDays(today, 1))
     if (compareDate.getTime() === tomorrow.getTime()) {
-      return "Tomorrow"
+      return t('tomorrow')
     }
     
     return format(date, "EEEE, MMMM d")
@@ -147,7 +149,7 @@ export default function ScheduleSelector({
           )}
         >
           <ChevronLeft className="h-5 w-5" />
-          <span className="hidden sm:inline text-base font-medium">Previous Day</span>
+          <span className="hidden sm:inline text-base font-medium">{t('previousDay')}</span>
         </Button>
 
         <div className="flex items-center gap-3 flex-1 justify-center">
@@ -186,7 +188,7 @@ export default function ScheduleSelector({
             "flex items-center gap-2 text-blue-100"
           )}
         >
-          <span className="hidden sm:inline text-base font-medium">Next Day</span>
+          <span className="hidden sm:inline text-base font-medium">{t('nextDay')}</span>
           <ChevronRight className="h-5 w-5" />
         </Button>
       </div>
@@ -194,7 +196,7 @@ export default function ScheduleSelector({
       {/* Time Slots */}
       <div>
         <h3 className="text-2xl font-heading font-semibold mb-5 text-blue-200">
-          Available Time Slots (Stockholm time)
+          {t('availableTimeSlots')} ({t('stockholmTime')})
         </h3>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           {TIME_SLOTS.map((timeSlot) => {

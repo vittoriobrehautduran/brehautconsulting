@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { Link } from '@/i18n/navigation'
+import { useTranslations, useLocale } from 'next-intl'
 import AnimatedBackground from '@/components/AnimatedBackground'
 import { SERVICES } from '@/lib/constants'
 
@@ -9,121 +10,13 @@ import { SERVICES } from '@/lib/constants'
 let gsap: any = null
 let ScrollTrigger: any = null
 
-const SERVICE_DETAILS = [
-  {
-    title: SERVICES[0].title,
-    label: 'Core Foundation',
-    description: SERVICES[0].description,
-    details: [
-      'Custom website design and development tailored to your brand and business goals',
-      'Modern web applications built with scalable architectures and best practices',
-      'Responsive design ensuring optimal experience across all devices',
-      'Performance optimization for fast loading times and smooth user experience',
-      'Content management systems for easy content updates and maintenance',
-      'E-commerce solutions for online stores and digital marketplaces',
-    ],
-    benefits: [
-      'Improved user engagement and conversion rates',
-      'Enhanced brand presence and credibility',
-      'Scalable solutions that grow with your business',
-      'Modern technology stack for future-proof development',
-    ],
-  },
-  {
-    title: SERVICES[1].title,
-    description: SERVICES[1].description,
-    details: [
-      'Conversion rate optimization (CRO) strategies and implementation',
-      'Lead generation system design and optimization',
-      'User experience (UX) analysis and improvements',
-      'A/B testing and data-driven optimization',
-      'Landing page optimization for higher conversion rates',
-      'Funnel analysis and optimization at every stage',
-    ],
-    benefits: [
-      'Higher conversion rates from existing traffic',
-      'More qualified leads and better lead quality',
-      'Improved ROI on marketing investments',
-      'Data-driven decision making for continuous improvement',
-    ],
-  },
-  {
-    title: SERVICES[2].title,
-    description: SERVICES[2].description,
-    details: [
-      'Technical SEO optimization for better search engine visibility',
-      'Local SEO strategies for location-based businesses',
-      'Keyword research and content optimization',
-      'On-page and off-page SEO implementation',
-      'Google Business Profile optimization',
-      'SEO audits and performance tracking',
-    ],
-    benefits: [
-      'Increased organic traffic and visibility',
-      'Better rankings in search engine results',
-      'More qualified leads from search',
-      'Long-term sustainable growth in online presence',
-    ],
-  },
-  {
-    title: SERVICES[3].title,
-    label: 'Growth Driver',
-    description: SERVICES[3].description,
-    details: [
-      'Search engine advertising (Google Ads, Bing Ads)',
-      'Social media advertising (Meta, LinkedIn, etc.)',
-      'Display and retargeting campaigns',
-      'Video advertising strategies',
-      'Campaign setup, optimization, and management',
-      'Conversion tracking and ROI optimization',
-    ],
-    benefits: [
-      'Immediate visibility and traffic generation',
-      'Precise targeting to reach your ideal customers',
-      'Measurable results with clear ROI tracking',
-      'Flexible budgets and scalable campaigns',
-    ],
-  },
-  {
-    title: SERVICES[4].title,
-    label: 'Growth Driver',
-    description: SERVICES[4].description,
-    details: [
-      'Analytics setup and configuration (Google Analytics, etc.)',
-      'Custom dashboard creation for key metrics',
-      'Conversion tracking and goal configuration',
-      'Customer behavior analysis and insights',
-      'Performance reporting and data visualization',
-      'Data integration across multiple platforms',
-    ],
-    benefits: [
-      'Clear visibility into business performance',
-      'Data-driven insights for decision making',
-      'Better understanding of customer behavior',
-      'Optimization opportunities identified through data',
-    ],
-  },
-  {
-    title: SERVICES[5].title,
-    description: SERVICES[5].description,
-    details: [
-      'API integrations between platforms and tools',
-      'Workflow automation to reduce manual work',
-      'CRM and marketing tool integrations',
-      'Data synchronization across systems',
-      'Custom integration development',
-      'Process automation and efficiency improvements',
-    ],
-    benefits: [
-      'Reduced manual work and increased efficiency',
-      'Improved data accuracy and consistency',
-      'Seamless workflows across platforms',
-      'Time and cost savings through automation',
-    ],
-  },
-]
+// Service details will be built from translations
 
 export default function ServicesPage() {
+  const t = useTranslations('services')
+  const tHomeServices = useTranslations('home.services')
+  const tCommon = useTranslations('common.buttons')
+  const locale = useLocale()
   const introRef = useRef<HTMLDivElement>(null)
   const howItWorksRef = useRef<HTMLDivElement>(null)
   const whoForRef = useRef<HTMLDivElement>(null)
@@ -135,6 +28,49 @@ export default function ServicesPage() {
   const [activeSection, setActiveSection] = useState<number>(0)
   const [showScrollTop, setShowScrollTop] = useState<boolean>(false)
   const [gsapLoaded, setGsapLoaded] = useState(false)
+
+  // Build service details from translations
+  const SERVICE_DETAILS = [
+    {
+      title: tHomeServices('service1.title'),
+      label: t('serviceDetails.service1.label'),
+      description: tHomeServices('service1.description'),
+      details: t.raw('serviceDetails.service1.details'),
+      benefits: t.raw('serviceDetails.service1.benefitsList'),
+    },
+    {
+      title: tHomeServices('service2.title'),
+      description: tHomeServices('service2.description'),
+      details: t.raw('serviceDetails.service2.details'),
+      benefits: t.raw('serviceDetails.service2.benefitsList'),
+    },
+    {
+      title: tHomeServices('service3.title'),
+      description: tHomeServices('service3.description'),
+      details: t.raw('serviceDetails.service3.details'),
+      benefits: t.raw('serviceDetails.service3.benefitsList'),
+    },
+    {
+      title: tHomeServices('service4.title'),
+      label: t('serviceDetails.service4.label'),
+      description: tHomeServices('service4.description'),
+      details: t.raw('serviceDetails.service4.details'),
+      benefits: t.raw('serviceDetails.service4.benefitsList'),
+    },
+    {
+      title: tHomeServices('service5.title'),
+      label: t('serviceDetails.service5.label'),
+      description: tHomeServices('service5.description'),
+      details: t.raw('serviceDetails.service5.details'),
+      benefits: t.raw('serviceDetails.service5.benefitsList'),
+    },
+    {
+      title: tHomeServices('service6.title'),
+      description: tHomeServices('service6.description'),
+      details: t.raw('serviceDetails.service6.details'),
+      benefits: t.raw('serviceDetails.service6.benefitsList'),
+    },
+  ]
 
   // Lazy load GSAP after initial render to improve LCP (consistent with homepage)
   useEffect(() => {
@@ -260,6 +196,35 @@ export default function ServicesPage() {
             },
           }
         )
+
+        // Fade out sidebar when "Ways to Work Together" section enters viewport
+        if (sidebarRef.current && servicesRef.current) {
+          ScrollTrigger.create({
+            trigger: engagementRef.current,
+            start: 'top 70%',
+            onEnter: () => {
+              gsap.to(sidebarRef.current, {
+                opacity: 0,
+                duration: 0.5,
+                ease: 'power2.out',
+              })
+            },
+            onLeaveBack: () => {
+              // Fade back in when scrolling back up to services section
+              // Check if services section is in view
+              const servicesRect = servicesRef.current.getBoundingClientRect()
+              const isServicesInView = servicesRect.top < window.innerHeight * 0.8 && servicesRect.bottom > 0
+              
+              if (isServicesInView) {
+                gsap.to(sidebarRef.current, {
+                  opacity: 1,
+                  duration: 0.5,
+                  ease: 'power2.out',
+                })
+              }
+            },
+          })
+        }
       }
 
       // Services cards animation and scroll spy
@@ -345,7 +310,7 @@ export default function ServicesPage() {
           <nav className="sticky top-32">
             <div className="bg-black/60 backdrop-blur-md rounded-2xl p-6">
               <h3 className="text-sm font-semibold text-white/60 uppercase tracking-wider mb-6">
-                Services
+                {t('system.servicesLabel')}
               </h3>
               <ul className="space-y-2">
                 {SERVICE_DETAILS.map((service, index) => (
@@ -383,10 +348,10 @@ export default function ServicesPage() {
           <div className="w-full max-w-4xl mx-auto text-center">
             <div ref={introRef} className="space-y-4 max-w-3xl mx-auto">
               <p className="text-xl md:text-2xl text-white/90 leading-relaxed">
-                Brehaut Consulting helps businesses get more customers by building clear, measurable digital systems.
+                {t('intro.line1')}
               </p>
               <p className="text-xl md:text-2xl text-white/90 leading-relaxed">
-                The focus is on understanding how customers find you, how they decide to contact you, and how your digital setup supports that journey.
+                {t('intro.line2')}
               </p>
             </div>
           </div>
@@ -396,44 +361,35 @@ export default function ServicesPage() {
         <section ref={howItWorksRef} className="py-20 px-4 sm:px-6 relative z-10">
           <div className="w-full max-w-4xl mx-auto">
             <h2 className="glow-title text-4xl md:text-5xl font-heading font-bold mb-6 text-white text-center">
-              How It Works
+              {t('howItWorks.title')}
             </h2>
             <p className="text-lg md:text-xl text-white/80 text-center mb-12 max-w-2xl mx-auto">
-              If this approach makes sense,{' '}
-              <Link href="/booking" className="text-white underline underline-offset-4 decoration-white/50 hover:decoration-white transition-colors">
-                the next step is a short conversation
-              </Link>
-              .
+              {locale === 'sv' ? (
+                <>
+                  Om detta tillvägagångssätt är meningsfullt,{' '}
+                  <Link href="/booking" className="text-white underline underline-offset-4 decoration-white/50 hover:decoration-white transition-colors">
+                    {t('howItWorks.linkText')}
+                  </Link>
+                  .
+                </>
+              ) : (
+                <>
+                  If this approach makes sense,{' '}
+                  <Link href="/booking" className="text-white underline underline-offset-4 decoration-white/50 hover:decoration-white transition-colors">
+                    {t('howItWorks.linkText')}
+                  </Link>
+                  .
+                </>
+              )}
             </p>
             <div className="space-y-16 max-w-3xl mx-auto">
-              {[
-                {
-                  number: '1',
-                  title: 'Initial Conversation',
-                  description: 'We start with a working session to understand your business, customers, and what\'s actually preventing more enquiries or customers.',
-                },
-                {
-                  number: '2',
-                  title: 'System Design',
-                  description: 'Based on your situation, a clear digital system is defined — only what\'s needed, based on your goals and situation.',
-                },
-                {
-                  number: '3',
-                  title: 'Build & Implementation',
-                  description: 'The agreed components are designed and implemented with a focus on performance, clarity, and long-term reliability.',
-                },
-                {
-                  number: '4',
-                  title: 'Measurement & Improvement',
-                  description: 'Results are tracked and reviewed so the system can be improved over time based on real data.',
-                },
-              ].map((step, index) => (
+              {t.raw('howItWorks.steps').map((step: any, index: number) => (
                 <div
                   key={index}
                   className="flex gap-6 md:gap-8"
                 >
                   <div className="flex-shrink-0 w-12 h-12 md:w-16 md:h-16 rounded-2xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 border border-white/20 flex items-center justify-center">
-                    <span className="text-2xl md:text-3xl font-bold text-white/90">{step.number}</span>
+                    <span className="text-2xl md:text-3xl font-bold text-white/90">{index + 1}</span>
                   </div>
                   <div className="flex-1">
                     <h3 className="text-2xl md:text-3xl font-heading font-bold text-white mb-4">
@@ -456,15 +412,10 @@ export default function ServicesPage() {
               {/* Who This Is For */}
               <div>
                 <h2 className="glow-text text-3xl md:text-4xl font-heading font-bold mb-8 text-white">
-                  Who This Is For
+                  {t('whoFor.for.title')}
                 </h2>
                 <ul className="space-y-4">
-                  {[
-                    'Businesses that want more enquiries, bookings, or customers',
-                    'Owners who care about results, not just design',
-                    'Companies that want clarity instead of guesswork',
-                    'Businesses open to improving how their digital presence works',
-                  ].map((item, index) => (
+                  {t.raw('whoFor.for.items').map((item: string, index: number) => (
                     <li key={index} className="flex items-start gap-4 text-lg text-white/90 leading-relaxed">
                       <div className="flex-shrink-0 w-6 h-6 rounded-full bg-gradient-to-br from-green-500/30 to-green-600/30 border border-green-400/40 flex items-center justify-center mt-1">
                         <svg className="w-4 h-4 text-green-300" fill="currentColor" viewBox="0 0 20 20">
@@ -480,14 +431,10 @@ export default function ServicesPage() {
               {/* Who This Is Not For */}
               <div>
                 <h2 className="glow-text text-3xl md:text-4xl font-heading font-bold mb-8 text-white">
-                  Who This Is Not For
+                  {t('whoFor.notFor.title')}
                 </h2>
                 <ul className="space-y-4">
-                  {[
-                    'Businesses looking for the cheapest possible solution',
-                    'One-off tasks with no interest in long-term results',
-                    'Clients who want tools without strategy',
-                  ].map((item, index) => (
+                  {t.raw('whoFor.notFor.items').map((item: string, index: number) => (
                     <li key={index} className="flex items-start gap-4 text-lg text-white/90 leading-relaxed">
                       <div className="flex-shrink-0 w-6 h-6 rounded-full bg-gradient-to-br from-red-500/30 to-red-600/30 border border-red-400/40 flex items-center justify-center mt-1">
                         <svg className="w-4 h-4 text-red-300" fill="currentColor" viewBox="0 0 20 20">
@@ -505,7 +452,7 @@ export default function ServicesPage() {
                 href="/booking"
                 className="glow-button inline-block px-10 py-4 bg-white text-black rounded-full text-lg font-semibold hover:bg-white/90 shadow-2xl"
               >
-                Book a Meeting
+                {tCommon('bookMeeting')}
               </Link>
             </div>
           </div>
@@ -515,10 +462,10 @@ export default function ServicesPage() {
         <section ref={systemIntroRef} className="py-16 px-4 sm:px-6 relative z-10">
           <div className="container mx-auto max-w-4xl text-center">
             <h2 className="glow-title text-4xl md:text-5xl font-heading font-bold mb-6 text-white">
-              The Digital Growth System
+              {t('system.title')}
             </h2>
             <p className="text-xl md:text-2xl text-white/90 leading-relaxed max-w-3xl mx-auto">
-              Each system is built from the components below. Not every business needs every part, but each component exists to support one goal: measurable customer growth.
+              {t('system.description')}
             </p>
           </div>
         </section>
@@ -547,7 +494,7 @@ export default function ServicesPage() {
         <section ref={servicesRef} className="py-20 px-2 sm:px-3 relative z-10">
           <div className="container mx-auto max-w-none">
             <p className="text-lg md:text-xl text-white/70 text-center mb-12 max-w-3xl mx-auto px-4">
-              Below are the core components that can make up your digital growth system.
+              {t('system.intro')}
             </p>
             <div className="space-y-16 sm:space-y-24">
               {SERVICE_DETAILS.map((service, index) => (
@@ -569,7 +516,7 @@ export default function ServicesPage() {
                           <div className="flex-1">
                             <div className="inline-block mb-4">
                               <span className="text-sm font-semibold text-blue-400/80 uppercase tracking-wider">
-                                Service {index + 1}
+                                {t('system.serviceLabel')} {index + 1}
                               </span>
                             </div>
                             <div className="flex items-baseline gap-3 flex-wrap">
@@ -596,11 +543,11 @@ export default function ServicesPage() {
                           <div className="flex items-center gap-3 mb-8">
                             <div className="w-1.5 h-10 bg-gradient-to-b from-blue-400 to-blue-600 rounded-full"></div>
                             <h3 className="text-3xl font-heading font-bold text-white">
-                              What We Do
+                              {t(`serviceDetails.service${index + 1}.whatWeDo`)}
                             </h3>
                           </div>
                           <ul className="space-y-6">
-                            {service.details.map((detail, detailIndex) => (
+                            {service.details.map((detail: string, detailIndex: number) => (
                               <li
                                 key={detailIndex}
                                 className="flex items-start gap-5 text-white/90 leading-relaxed"
@@ -629,11 +576,11 @@ export default function ServicesPage() {
                           <div className="flex items-center gap-3 mb-8">
                             <div className="w-1.5 h-10 bg-gradient-to-b from-purple-400 to-purple-600 rounded-full"></div>
                             <h3 className="text-3xl font-heading font-bold text-white">
-                              Benefits
+                              {t(`serviceDetails.service${index + 1}.benefits`)}
                             </h3>
                           </div>
                           <ul className="space-y-6">
-                            {service.benefits.map((benefit, benefitIndex) => (
+                            {service.benefits.map((benefit: string, benefitIndex: number) => (
                               <li
                                 key={benefitIndex}
                                 className="flex items-start gap-5 text-white/90 leading-relaxed"
@@ -671,23 +618,17 @@ export default function ServicesPage() {
         <section ref={engagementRef} className="py-20 px-4 sm:px-6 relative z-10">
           <div className="container mx-auto max-w-4xl">
             <h2 className="glow-title text-4xl md:text-5xl font-heading font-bold mb-8 text-white text-center">
-              Ways to Work Together
+              {t('engagement.title')}
             </h2>
             <div className="bg-black/40 border border-white/20 rounded-2xl p-8 lg:p-12 backdrop-blur-sm">
               <p className="text-xl md:text-2xl text-white/90 leading-relaxed mb-8 text-center">
-                Some clients need a complete system. Others need a specific component.
+                {t('engagement.description1')}
               </p>
               <p className="text-lg md:text-xl text-white/80 mb-8 text-center">
-                Engagements can include:
+                {t('engagement.description2')}
               </p>
               <ul className="space-y-4 max-w-2xl mx-auto">
-                {[
-                  'Full system design and implementation',
-                  'Website or web application projects',
-                  'Advertising setup and optimisation',
-                  'Analytics and tracking architecture',
-                  'Ongoing optimisation and support',
-                ].map((item, index) => (
+                {t.raw('engagement.items').map((item: string, index: number) => (
                   <li key={index} className="flex items-start gap-4 text-lg text-white/90 leading-relaxed">
                     <div className="flex-shrink-0 w-6 h-6 rounded-full bg-gradient-to-br from-blue-500/30 to-blue-600/30 border border-blue-400/40 flex items-center justify-center mt-1">
                       <svg className="w-4 h-4 text-blue-300" fill="currentColor" viewBox="0 0 20 20">
@@ -699,7 +640,7 @@ export default function ServicesPage() {
                 ))}
               </ul>
               <p className="text-lg md:text-xl text-white/80 leading-relaxed mt-8 text-center">
-                The scope is defined after the initial conversation, based on what will create the most value for your business.
+                {t('engagement.description3')}
               </p>
             </div>
           </div>
@@ -709,16 +650,16 @@ export default function ServicesPage() {
         <section className="pt-32 pb-48 px-6 relative z-10">
           <div className="container mx-auto max-w-4xl text-center">
             <h2 className="glow-title text-4xl md:text-5xl font-heading font-bold mb-8 text-white">
-              Next Step
+              {t('nextStep.title')}
             </h2>
             <p className="text-xl text-white/90 mb-12 max-w-2xl mx-auto">
-              If this sounds relevant, the next step is a short meeting to understand your business and see if there&apos;s a good fit.
+              {t('nextStep.description')}
             </p>
             <Link
               href="/booking"
               className="glow-button inline-block px-10 py-4 bg-white text-black rounded-full text-lg font-semibold hover:bg-white/90 shadow-2xl"
             >
-              Book a Meeting
+              {tCommon('bookMeeting')}
             </Link>
           </div>
         </section>

@@ -3,6 +3,7 @@
 'use client'
 
 import { useState } from 'react'
+import { useTranslations, useLocale } from 'next-intl'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
@@ -35,6 +36,9 @@ export default function BookingForm({
   onSubmit,
   isLoading = false,
 }: BookingFormProps) {
+  const t = useTranslations('booking')
+  const tCommon = useTranslations('common.buttons')
+  const locale = useLocale()
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -62,12 +66,12 @@ export default function BookingForm({
     // Validate required fields
     const newErrors: Record<string, string> = {}
     if (!formData.name.trim()) {
-      newErrors.name = 'Name is required'
+      newErrors.name = t('form.errors.nameRequired')
     }
     if (!formData.email.trim()) {
-      newErrors.email = 'Email is required'
+      newErrors.email = t('form.errors.emailRequired')
     } else if (!validateEmail(formData.email)) {
-      newErrors.email = 'Please enter a valid email address'
+      newErrors.email = t('form.errors.emailInvalid')
     }
 
     if (Object.keys(newErrors).length > 0) {
@@ -76,7 +80,7 @@ export default function BookingForm({
     }
 
     if (!selectedDate || !selectedTimeSlot) {
-      setSubmitError('Please select a date and time slot')
+      setSubmitError(t('form.errors.selectDateTime'))
       return
     }
 
@@ -94,7 +98,7 @@ export default function BookingForm({
       // Reset form on success
       setFormData({ name: '', email: '', company: '', message: '' })
     } catch (error) {
-      setSubmitError(error instanceof Error ? error.message : 'Failed to create booking')
+      setSubmitError(error instanceof Error ? error.message : t('form.errors.submitFailed'))
     }
   }
 
@@ -109,17 +113,17 @@ export default function BookingForm({
         <Card className="border-blue-500/30 bg-blue-950/20">
           <CardContent className="pt-6">
             <Label className="text-base font-medium text-blue-300/80 mb-3 block">
-              Selected Time Slot
+              {t('selectedTimeSlot')}
             </Label>
             <h4 className="text-xl font-semibold mb-2 text-blue-100">
-              {selectedDate.toLocaleDateString('en-US', {
+              {selectedDate.toLocaleDateString(locale === 'sv' ? 'sv-SE' : 'en-US', {
                 weekday: 'long',
                 year: 'numeric',
                 month: 'long',
                 day: 'numeric',
               })}
             </h4>
-            <p className="text-blue-200 font-medium text-lg">{formatTimeSlot(selectedTimeSlot)} (Stockholm time)</p>
+            <p className="text-blue-200 font-medium text-lg">{formatTimeSlot(selectedTimeSlot)} ({t('stockholmTime')})</p>
           </CardContent>
         </Card>
       )}
@@ -133,7 +137,7 @@ export default function BookingForm({
       <div className="space-y-5">
         <div className="space-y-3">
           <Label htmlFor="name" className="text-blue-100 text-base">
-            Name <span className="text-destructive">*</span>
+            {t('form.name')} <span className="text-destructive">{t('form.required')}</span>
           </Label>
           <Input
             id="name"
@@ -150,7 +154,7 @@ export default function BookingForm({
 
         <div className="space-y-3">
           <Label htmlFor="email" className="text-blue-100 text-base">
-            Email <span className="text-destructive">*</span>
+            {t('form.email')} <span className="text-destructive">{t('form.required')}</span>
           </Label>
           <Input
             id="email"
@@ -167,7 +171,7 @@ export default function BookingForm({
         </div>
 
         <div className="space-y-3">
-          <Label htmlFor="company" className="text-blue-100 text-base">Company (optional)</Label>
+          <Label htmlFor="company" className="text-blue-100 text-base">{t('form.company')}</Label>
           <Input
             id="company"
             value={formData.company}
@@ -177,7 +181,7 @@ export default function BookingForm({
         </div>
 
         <div className="space-y-3">
-          <Label htmlFor="message" className="text-blue-100 text-base">Message (optional)</Label>
+          <Label htmlFor="message" className="text-blue-100 text-base">{t('form.message')}</Label>
           <Textarea
             id="message"
             rows={5}
@@ -197,10 +201,10 @@ export default function BookingForm({
         {isLoading ? (
           <>
             <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-            Confirming...
+            {tCommon('confirming')}
           </>
         ) : (
-          'Confirm Booking'
+          tCommon('confirmBooking')
         )}
       </Button>
     </form>

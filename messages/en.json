@@ -12,7 +12,15 @@
       "confirmBooking": "Confirm Booking",
       "confirming": "Confirming..."
     },
-    "companyName": "Brehaut Consulting"
+    "companyName": "Brehaut Consulting",
+    "footer": {
+      "contactUs": "Contact Us",
+      "emailDescription": "Email us for inquiries and consultations",
+      "location": "Location",
+      "servingClients": "Serving clients globally",
+      "regions": "Europe & Latin America",
+      "copyright": "All rights reserved."
+    }
   },
   "home": {
     "hero": {
@@ -122,7 +130,7 @@
     },
     "howItWorks": {
       "title": "How It Works",
-      "description": "If this approach makes sense, {link}.",
+      "description": "If this approach makes sense, {link}",
       "linkText": "the next step is a short conversation",
       "steps": [
         {
@@ -165,7 +173,9 @@
     "system": {
       "title": "The Digital Growth System",
       "description": "Each system is built from the components below. Not every business needs every part, but each component exists to support one goal: measurable customer growth.",
-      "intro": "Below are the core components that can make up your digital growth system."
+      "intro": "Below are the core components that can make up your digital growth system.",
+      "servicesLabel": "Services",
+      "serviceLabel": "Service"
     },
     "serviceDetails": {
       "service1": {
@@ -303,6 +313,11 @@
     "subtitle": "Select a date and time that works for you",
     "selectedTimeSlot": "Selected Time Slot",
     "stockholmTime": "Stockholm time",
+    "today": "Today",
+    "tomorrow": "Tomorrow",
+    "previousDay": "Previous Day",
+    "nextDay": "Next Day",
+    "availableTimeSlots": "Available Time Slots",
     "form": {
       "name": "Name",
       "email": "Email",

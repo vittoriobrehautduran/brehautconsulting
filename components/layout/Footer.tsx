@@ -1,37 +1,56 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
-import gsap from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { useEffect, useRef, useState } from 'react'
+import { useTranslations } from 'next-intl'
 import { CONTACT_EMAIL, CONTACT_PHONE } from '@/lib/constants'
 
-gsap.registerPlugin(ScrollTrigger)
+// Lazy load GSAP to reduce initial bundle size
+let gsap: any = null
+let ScrollTrigger: any = null
 
 export default function Footer() {
   const footerRef = useRef<HTMLElement>(null)
+  const t = useTranslations('common.footer')
+  const [gsapLoaded, setGsapLoaded] = useState(false)
+
+  // Lazy load GSAP after initial render
+  useEffect(() => {
+    const loadGSAP = async () => {
+      const gsapModule = await import('gsap')
+      const scrollTriggerModule = await import('gsap/ScrollTrigger')
+      gsap = gsapModule.gsap
+      ScrollTrigger = scrollTriggerModule.ScrollTrigger
+      gsap.registerPlugin(ScrollTrigger)
+      setGsapLoaded(true)
+    }
+    const timer = setTimeout(() => {
+      loadGSAP()
+    }, 100)
+    return () => clearTimeout(timer)
+  }, [])
 
   useEffect(() => {
-    if (footerRef.current) {
-      gsap.fromTo(
-        footerRef.current,
-        {
-          y: 30,
+    if (!gsapLoaded || !footerRef.current) return
+    
+    gsap.fromTo(
+      footerRef.current,
+      {
+        y: 30,
+      },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 0.8,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: footerRef.current,
+          start: 'top 90%',
+          toggleActions: 'play none none none',
         },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.8,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: footerRef.current,
-            start: 'top 90%',
-            toggleActions: 'play none none none',
-          },
-          immediateRender: false,
-        }
-      )
-    }
-  }, [])
+        immediateRender: false,
+      }
+    )
+  }, [gsapLoaded])
 
   return (
     <footer
@@ -41,11 +60,11 @@ export default function Footer() {
       <div className="container mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
           <div>
-            <h3 className="text-xl font-heading font-bold text-white mb-4">Contact Us</h3>
-            <p className="text-white/70 mb-4">Email us for inquiries and consultations</p>
+            <h3 className="text-xl font-heading font-bold text-white mb-4">{t('contactUs')}</h3>
+            <p className="text-white/70 mb-4">{t('emailDescription')}</p>
             <a
               href={`mailto:${CONTACT_EMAIL}`}
-              className="text-white/90 hover:text-white transition-colors inline-flex items-center gap-2 group mb-3 block"
+              className="text-white/90 hover:text-white transition-colors flex items-center gap-2 group mb-3 block"
             >
               <svg
                 className="w-5 h-5 group-hover:translate-x-1 transition-transform"
@@ -64,7 +83,7 @@ export default function Footer() {
             </a>
             <a
               href={`tel:${CONTACT_PHONE.replace(/\s/g, '')}`}
-              className="text-white/90 hover:text-white transition-colors inline-flex items-center gap-2 group"
+              className="text-white/90 hover:text-white transition-colors flex items-center gap-2 group block"
             >
               <svg
                 className="w-5 h-5 group-hover:translate-x-1 transition-transform"
@@ -83,13 +102,13 @@ export default function Footer() {
             </a>
           </div>
           <div>
-            <h3 className="text-xl font-heading font-bold text-white mb-4">Location</h3>
-            <p className="text-white/70">Serving clients globally</p>
-            <p className="text-white/90 mt-2">Europe & Latin America</p>
+            <h3 className="text-xl font-heading font-bold text-white mb-4">{t('location')}</h3>
+            <p className="text-white/70">{t('servingClients')}</p>
+            <p className="text-white/90 mt-2">{t('regions')}</p>
           </div>
         </div>
         <div className="border-t border-white/10 pt-8 text-center text-white/70">
-          <p>&copy; {new Date().getFullYear()} Brehaut Consulting. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Brehaut Consulting. {t('copyright')}</p>
         </div>
       </div>
     </footer>
