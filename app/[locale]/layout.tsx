@@ -87,30 +87,30 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     },
     icons: {
       icon: [
-        { url: '/images/logo_favicon.svg', type: 'image/svg+xml' },
-        { url: '/images/favicon/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
-        { url: '/images/favicon/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+        { url: '/images/favicon/favicon.svg', type: 'image/svg+xml' },
+        { url: '/images/favicon/favicon.ico', sizes: 'any' },
+        { url: '/images/favicon/favicon-96x96.png', sizes: '96x96', type: 'image/png' },
       ],
       shortcut: [
-        { url: '/images/logo_favicon.svg', type: 'image/svg' },
-        { url: '/images/logo_favicon.svg', type: 'image/svg+xml' },
+        { url: '/images/favicon/favicon.ico', sizes: 'any' },
       ],
       apple: '/images/favicon/apple-touch-icon.png',
       other: [
         {
           rel: 'android-chrome-192x192',
-          url: '/images/favicon/android-chrome-192x192.png',
+          url: '/images/favicon/web-app-manifest-192x192.png',
           sizes: '192x192',
           type: 'image/png',
         },
         {
           rel: 'android-chrome-512x512',
-          url: '/images/favicon/android-chrome-512x512.png',
+          url: '/images/favicon/web-app-manifest-512x512.png',
           sizes: '512x512',
           type: 'image/png',
         },
       ],
     },
+    manifest: '/images/favicon/site.webmanifest',
   }
 }
 
