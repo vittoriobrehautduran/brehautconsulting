@@ -78,6 +78,7 @@ export default function BookingPage() {
     }
 
     fetchAvailableSlots()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedDate])
 
   const handleDateChange = (date: Date | null) => {

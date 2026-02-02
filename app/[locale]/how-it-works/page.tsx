@@ -212,15 +212,17 @@ export default function ServicesPage() {
             onLeaveBack: () => {
               // Fade back in when scrolling back up to services section
               // Check if services section is in view
-              const servicesRect = servicesRef.current.getBoundingClientRect()
-              const isServicesInView = servicesRect.top < window.innerHeight * 0.8 && servicesRect.bottom > 0
-              
-              if (isServicesInView) {
-                gsap.to(sidebarRef.current, {
-                  opacity: 1,
-                  duration: 0.5,
-                  ease: 'power2.out',
-                })
+              if (servicesRef.current && sidebarRef.current) {
+                const servicesRect = servicesRef.current.getBoundingClientRect()
+                const isServicesInView = servicesRect.top < window.innerHeight * 0.8 && servicesRect.bottom > 0
+                
+                if (isServicesInView) {
+                  gsap.to(sidebarRef.current, {
+                    opacity: 1,
+                    duration: 0.5,
+                    ease: 'power2.out',
+                  })
+                }
               }
             },
           })
