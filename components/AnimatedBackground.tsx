@@ -19,7 +19,7 @@ export default function AnimatedBackground() {
 
   // Lazy load Three.js to reduce initial bundle size
   useEffect(() => {
-    if (!mountRef.current) return
+    if (!mountRef.current || typeof window === 'undefined') return
 
     import('three').then((THREE) => {
       // Detect mobile device and reduced motion preference
@@ -234,6 +234,9 @@ export default function AnimatedBackground() {
       // Clear refs
       resourcesRef.current = {}
     }
+    }).catch((error) => {
+      console.error('Failed to load Three.js:', error)
+      // Silently fail - background animation is not critical
     })
   }, [])
 

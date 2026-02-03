@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 import { Link } from '@/i18n/navigation'
 import { useTranslations, useLocale } from 'next-intl'
 import AnimatedBackground from '@/components/AnimatedBackground'
+import { ErrorBoundary } from '@/components/ErrorBoundary'
 import { SERVICES } from '@/lib/constants'
 
 // Lazy load GSAP to reduce initial bundle size (consistent with homepage)
@@ -29,46 +30,46 @@ export default function ServicesPage() {
   const [showScrollTop, setShowScrollTop] = useState<boolean>(false)
   const [gsapLoaded, setGsapLoaded] = useState(false)
 
-  // Build service details from translations
+  // Build service details from translations with error handling
   const SERVICE_DETAILS = [
     {
       title: tHomeServices('service1.title'),
       label: t('serviceDetails.service1.label'),
       description: tHomeServices('service1.description'),
-      details: t.raw('serviceDetails.service1.details'),
-      benefits: t.raw('serviceDetails.service1.benefitsList'),
+      details: Array.isArray(t.raw('serviceDetails.service1.details')) ? t.raw('serviceDetails.service1.details') : [],
+      benefits: Array.isArray(t.raw('serviceDetails.service1.benefitsList')) ? t.raw('serviceDetails.service1.benefitsList') : [],
     },
     {
       title: tHomeServices('service2.title'),
       description: tHomeServices('service2.description'),
-      details: t.raw('serviceDetails.service2.details'),
-      benefits: t.raw('serviceDetails.service2.benefitsList'),
+      details: Array.isArray(t.raw('serviceDetails.service2.details')) ? t.raw('serviceDetails.service2.details') : [],
+      benefits: Array.isArray(t.raw('serviceDetails.service2.benefitsList')) ? t.raw('serviceDetails.service2.benefitsList') : [],
     },
     {
       title: tHomeServices('service3.title'),
       description: tHomeServices('service3.description'),
-      details: t.raw('serviceDetails.service3.details'),
-      benefits: t.raw('serviceDetails.service3.benefitsList'),
+      details: Array.isArray(t.raw('serviceDetails.service3.details')) ? t.raw('serviceDetails.service3.details') : [],
+      benefits: Array.isArray(t.raw('serviceDetails.service3.benefitsList')) ? t.raw('serviceDetails.service3.benefitsList') : [],
     },
     {
       title: tHomeServices('service4.title'),
       label: t('serviceDetails.service4.label'),
       description: tHomeServices('service4.description'),
-      details: t.raw('serviceDetails.service4.details'),
-      benefits: t.raw('serviceDetails.service4.benefitsList'),
+      details: Array.isArray(t.raw('serviceDetails.service4.details')) ? t.raw('serviceDetails.service4.details') : [],
+      benefits: Array.isArray(t.raw('serviceDetails.service4.benefitsList')) ? t.raw('serviceDetails.service4.benefitsList') : [],
     },
     {
       title: tHomeServices('service5.title'),
       label: t('serviceDetails.service5.label'),
       description: tHomeServices('service5.description'),
-      details: t.raw('serviceDetails.service5.details'),
-      benefits: t.raw('serviceDetails.service5.benefitsList'),
+      details: Array.isArray(t.raw('serviceDetails.service5.details')) ? t.raw('serviceDetails.service5.details') : [],
+      benefits: Array.isArray(t.raw('serviceDetails.service5.benefitsList')) ? t.raw('serviceDetails.service5.benefitsList') : [],
     },
     {
       title: tHomeServices('service6.title'),
       description: tHomeServices('service6.description'),
-      details: t.raw('serviceDetails.service6.details'),
-      benefits: t.raw('serviceDetails.service6.benefitsList'),
+      details: Array.isArray(t.raw('serviceDetails.service6.details')) ? t.raw('serviceDetails.service6.details') : [],
+      benefits: Array.isArray(t.raw('serviceDetails.service6.benefitsList')) ? t.raw('serviceDetails.service6.benefitsList') : [],
     },
   ]
 
@@ -100,9 +101,12 @@ export default function ServicesPage() {
   }, [])
 
   useEffect(() => {
-    if (!gsapLoaded) return
+    if (!gsapLoaded || !gsap || !ScrollTrigger) return
     
-    const ctx = gsap.context(() => {
+    let ctx: gsap.Context | null = null
+    
+    try {
+      ctx = gsap.context(() => {
       // Intro text animation
       if (introRef.current) {
         gsap.fromTo(
@@ -284,12 +288,17 @@ export default function ServicesPage() {
           })
         })
       }
-    })
+      })
+    } catch (error) {
+      console.error('GSAP animation error:', error)
+    }
 
     return () => {
-      ctx.revert()
+      if (ctx) {
+        ctx.revert()
+      }
     }
-  }, [gsapLoaded])
+  }, [gsapLoaded, locale])
 
   const scrollToService = (index: number) => {
     const card = serviceCardsRefs.current[index]
@@ -304,8 +313,8 @@ export default function ServicesPage() {
   }
 
   return (
-    <>
-      <AnimatedBackground />
+    <ErrorBoundary>
+      {typeof window !== 'undefined' && <AnimatedBackground />}
       <div className="relative min-h-screen flex w-full max-w-full overflow-x-hidden">
         {/* Fixed Left Navigation */}
         <aside ref={sidebarRef} className="hidden lg:block fixed left-0 top-0 h-screen w-64 pt-32 pb-8 px-6 z-40" style={{ opacity: 0 }}>
@@ -507,7 +516,7 @@ export default function ServicesPage() {
                   }}
                   className="service-card scroll-mt-36 lg:scroll-mt-0"
                 >
-                  <div className="relative overflow-hidden bg-gradient-to-br from-black/60 via-black/70 to-black/60 border border-white/20 rounded-2xl p-8 lg:p-16 backdrop-blur-md hover:border-white/30 transition-all duration-300 shadow-lg shadow-black/40 hover:shadow-xl hover:shadow-black/50">
+                  <div className="relative overflow-visible bg-gradient-to-br from-black/60 via-black/70 to-black/60 border border-white/20 rounded-2xl p-6 sm:p-8 lg:p-12 xl:p-16 backdrop-blur-md hover:border-white/30 transition-all duration-300 shadow-lg shadow-black/40 hover:shadow-xl hover:shadow-black/50">
                     {/* Decorative gradient overlay */}
                     <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
                     
@@ -515,36 +524,36 @@ export default function ServicesPage() {
                       {/* Header with number badge */}
                       <header className="mb-8">
                         <div className="flex items-start justify-between gap-4 sm:gap-6 mb-6">
-                          <div className="flex-1">
+                          <div className="flex-1 min-w-0">
                             <div className="inline-block mb-4">
                               <span className="text-sm font-semibold text-blue-400/80 uppercase tracking-wider">
                                 {t('system.serviceLabel')} {index + 1}
                               </span>
                             </div>
                             <div className="flex items-baseline gap-3 flex-wrap">
-                              <h2 className="glow-text text-4xl lg:text-5xl font-heading font-bold text-white leading-tight">
+                              <h2 className="glow-text text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-white leading-tight break-words">
                                 {service.title}
                               </h2>
                               {service.label && (
-                                <span className="text-sm font-semibold text-white/50 uppercase tracking-wider">
+                                <span className="text-xs sm:text-sm font-semibold text-white/50 uppercase tracking-wider break-words">
                                   ({service.label})
                                 </span>
                               )}
                             </div>
                           </div>
-                          <div className="flex-shrink-0 w-12 h-12 lg:w-16 lg:h-16 rounded-2xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 border border-white/20 flex items-center justify-center mt-2 sm:mt-0">
-                            <span className="text-2xl lg:text-3xl font-bold text-white/70">{index + 1}</span>
+                          <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 lg:w-16 lg:h-16 rounded-2xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 border border-white/20 flex items-center justify-center mt-2 sm:mt-0 ml-2">
+                            <span className="text-xl sm:text-2xl lg:text-3xl font-bold text-white/70">{index + 1}</span>
                           </div>
                         </div>
                       </header>
 
                       {/* Content grid - blog style layout */}
-                      <div className="grid lg:grid-cols-3 gap-12 lg:gap-16 mt-12">
+                      <div className="grid lg:grid-cols-3 gap-8 sm:gap-10 lg:gap-12 xl:gap-16 mt-8 sm:mt-12">
                         {/* What We Do - takes 2 columns */}
                         <div className="lg:col-span-2 space-y-6">
-                          <div className="flex items-center gap-3 mb-8">
-                            <div className="w-1.5 h-10 bg-gradient-to-b from-blue-400 to-blue-600 rounded-full"></div>
-                            <h3 className="text-3xl font-heading font-bold text-white">
+                          <div className="flex items-center gap-3 mb-6 sm:mb-8">
+                            <div className="w-1.5 h-10 bg-gradient-to-b from-blue-400 to-blue-600 rounded-full flex-shrink-0"></div>
+                            <h3 className="text-2xl sm:text-3xl font-heading font-bold text-white break-words">
                               {t(`serviceDetails.service${index + 1}.whatWeDo`)}
                             </h3>
                           </div>
@@ -567,17 +576,17 @@ export default function ServicesPage() {
                                     />
                                   </svg>
                                 </div>
-                                <span className="text-lg lg:text-xl leading-relaxed">{detail}</span>
+                                <span className="text-base sm:text-lg lg:text-xl leading-relaxed break-words">{detail}</span>
                               </li>
                             ))}
                           </ul>
                         </div>
 
                         {/* Benefits - takes 1 column */}
-                        <div className="space-y-6 lg:border-l lg:border-white/10 lg:pl-12">
-                          <div className="flex items-center gap-3 mb-8">
-                            <div className="w-1.5 h-10 bg-gradient-to-b from-purple-400 to-purple-600 rounded-full"></div>
-                            <h3 className="text-3xl font-heading font-bold text-white">
+                        <div className="space-y-6 lg:border-l lg:border-white/10 lg:pl-8 xl:pl-12">
+                          <div className="flex items-center gap-3 mb-6 sm:mb-8">
+                            <div className="w-1.5 h-10 bg-gradient-to-b from-purple-400 to-purple-600 rounded-full flex-shrink-0"></div>
+                            <h3 className="text-2xl sm:text-3xl font-heading font-bold text-white break-words">
                               {t(`serviceDetails.service${index + 1}.benefits`)}
                             </h3>
                           </div>
@@ -602,7 +611,7 @@ export default function ServicesPage() {
                                     />
                                   </svg>
                                 </div>
-                                <span className="text-lg lg:text-xl leading-relaxed">{benefit}</span>
+                                <span className="text-base sm:text-lg lg:text-xl leading-relaxed break-words">{benefit}</span>
                               </li>
                             ))}
                           </ul>
@@ -689,7 +698,7 @@ export default function ServicesPage() {
         )}
         </div>
       </div>
-    </>
+    </ErrorBoundary>
   )
 }
 
