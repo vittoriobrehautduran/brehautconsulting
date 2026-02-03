@@ -22,24 +22,24 @@ export default function AnimatedBackground() {
     if (!mountRef.current || typeof window === 'undefined') return
 
     import('three').then((THREE) => {
-      // Detect mobile device and reduced motion preference
-      const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) || window.innerWidth < 768
-      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    // Detect mobile device and reduced motion preference
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) || window.innerWidth < 768
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
-      if (prefersReducedMotion) {
-        return
-      }
+    if (prefersReducedMotion) {
+      return
+    }
 
-      // Use fixed viewport height to avoid jumps when address bar shows/hides
-      const getViewportHeight = () => {
-        return Math.max(
-          document.documentElement.clientHeight || 0,
-          window.innerHeight || 0
-        )
-      }
+    // Use fixed viewport height to avoid jumps when address bar shows/hides
+    const getViewportHeight = () => {
+      return Math.max(
+        document.documentElement.clientHeight || 0,
+        window.innerHeight || 0
+      )
+    }
 
-      const initialHeight = getViewportHeight()
-      const scene = new THREE.Scene()
+    const initialHeight = getViewportHeight()
+    const scene = new THREE.Scene()
     const camera = new THREE.PerspectiveCamera(
       75,
       window.innerWidth / initialHeight,
@@ -72,7 +72,7 @@ export default function AnimatedBackground() {
     resourcesRef.current.rendererElement = canvas
     
     if (mountRef.current) {
-      mountRef.current.appendChild(canvas)
+    mountRef.current.appendChild(canvas)
     }
     
     renderer.clear()
@@ -99,7 +99,7 @@ export default function AnimatedBackground() {
       return new THREE.CanvasTexture(canvas)
     }
 
-      const particleTexture = createParticleTexture()
+    const particleTexture = createParticleTexture()
       resourcesRef.current.particleTexture = particleTexture
 
     // Optimized particle count - enough for smooth animation but not too many
@@ -200,7 +200,7 @@ export default function AnimatedBackground() {
     }
 
     window.addEventListener('resize', handleResize, { passive: true })
-    
+
     setThreeLoaded(true)
 
     // Cleanup function - can access resources via ref even if unmounted during loading
@@ -230,7 +230,7 @@ export default function AnimatedBackground() {
       }
       if (resourcesRef.current.renderer) {
         resourcesRef.current.renderer.dispose()
-      }
+    }
       // Clear refs
       resourcesRef.current = {}
     }

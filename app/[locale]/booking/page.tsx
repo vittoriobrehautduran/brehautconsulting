@@ -63,9 +63,9 @@ export default function BookingPage() {
         const dateStr = formatDateLocal(selectedDate)
         const response = await fetch(`/.netlify/functions/get-available-slots?date=${dateStr}`)
 
-      if (!response.ok) {
+        if (!response.ok) {
         throw new Error(t('form.errors.submitFailed'))
-      }
+        }
 
         const data: AvailableSlotsResponse = await response.json()
         setAvailableSlots(data)
@@ -126,9 +126,9 @@ export default function BookingPage() {
           setAvailableSlots(slotsData)
         }
       }
-      } catch (error) {
+    } catch (error) {
         setErrorMessage(error instanceof Error ? error.message : t('form.errors.submitFailed'))
-      } finally {
+    } finally {
       setIsSubmitting(false)
     }
   }

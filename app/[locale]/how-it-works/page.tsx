@@ -288,14 +288,14 @@ export default function ServicesPage() {
           })
         })
       }
-      })
+    })
     } catch (error) {
       console.error('GSAP animation error:', error)
     }
 
     return () => {
       if (ctx) {
-        ctx.revert()
+      ctx.revert()
       }
     }
   }, [gsapLoaded, locale])
@@ -385,11 +385,11 @@ export default function ServicesPage() {
                 </>
               ) : (
                 <>
-                  If this approach makes sense,{' '}
-                  <Link href="/booking" className="text-white underline underline-offset-4 decoration-white/50 hover:decoration-white transition-colors">
+              If this approach makes sense,{' '}
+              <Link href="/booking" className="text-white underline underline-offset-4 decoration-white/50 hover:decoration-white transition-colors">
                     {t('howItWorks.linkText')}
-                  </Link>
-                  .
+              </Link>
+              .
                 </>
               )}
             </p>

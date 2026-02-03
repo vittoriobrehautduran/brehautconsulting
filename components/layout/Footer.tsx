@@ -32,24 +32,24 @@ export default function Footer() {
   useEffect(() => {
     if (!gsapLoaded || !footerRef.current) return
     
-    gsap.fromTo(
-      footerRef.current,
-      {
-        y: 30,
-      },
-      {
-        y: 0,
-        opacity: 1,
-        duration: 0.8,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: footerRef.current,
-          start: 'top 90%',
-          toggleActions: 'play none none none',
+      gsap.fromTo(
+        footerRef.current,
+        {
+          y: 30,
         },
-        immediateRender: false,
-      }
-    )
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.8,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: footerRef.current,
+            start: 'top 90%',
+            toggleActions: 'play none none none',
+          },
+          immediateRender: false,
+        }
+      )
   }, [gsapLoaded])
 
   return (

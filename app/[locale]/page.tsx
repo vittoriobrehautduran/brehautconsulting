@@ -775,7 +775,7 @@ export default function HomePage() {
               <div className="hidden lg:block absolute left-[calc(50%-1px)] top-1/2 -translate-y-1/2 w-px h-20 bg-gradient-to-b from-transparent via-white/20 to-transparent z-0"></div>
               
               {/* Left Column - Service Card */}
-              <div className="service-card description-card bg-gradient-to-br from-black/50 via-black/60 to-black/50 rounded-3xl p-10 lg:p-10 hover:bg-gradient-to-br hover:from-black/55 hover:via-black/65 hover:to-black/55 transition-all duration-300 relative z-10 backdrop-blur-md border border-white/10 hover:border-white/20 overflow-hidden">
+              <div className="service-card description-card bg-gradient-to-br from-black/50 via-black/60 to-black/50 rounded-3xl p-10 lg:p-10 hover:bg-gradient-to-br hover:from-black/55 hover:via-black/65 hover:to-black/55 transition-all duration-300 relative z-10 backdrop-blur-md border border-white/20 overflow-hidden shadow-[0_0_15px_rgba(255,255,255,0.1)] hover:border-white/40 hover:shadow-[0_0_25px_rgba(255,255,255,0.25)]">
                 {/* Colored gradient overlay */}
                 <div className="absolute top-1/2 right-1/2 w-[600px] h-[600px] bg-gradient-to-br from-blue-500/15 to-purple-500/15 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
                 <div className="relative z-10">
@@ -832,7 +832,7 @@ export default function HomePage() {
               {/* Left Column - Service Card */}
               <div 
                 ref={serviceCard2Ref}
-                className="description-card bg-gradient-to-br from-black/50 via-black/60 to-black/50 rounded-3xl p-10 lg:p-14 hover:bg-gradient-to-br hover:from-black/55 hover:via-black/65 hover:to-black/55 transition-all duration-300 relative z-10 backdrop-blur-md border border-white/10 hover:border-white/20 overflow-hidden"
+                className="description-card bg-gradient-to-br from-black/50 via-black/60 to-black/50 rounded-3xl p-10 lg:p-14 hover:bg-gradient-to-br hover:from-black/55 hover:via-black/65 hover:to-black/55 transition-all duration-300 relative z-10 backdrop-blur-md border border-white/20 overflow-hidden shadow-[0_0_15px_rgba(255,255,255,0.1)] hover:border-white/40 hover:shadow-[0_0_25px_rgba(255,255,255,0.25)]"
               >
                 {/* Colored gradient overlay */}
                 <div className="absolute top-1/2 right-1/2 w-[600px] h-[600px] bg-gradient-to-br from-blue-500/15 to-purple-500/15 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
@@ -951,7 +951,7 @@ export default function HomePage() {
               {/* Left Column - Service Card */}
               <div 
                 ref={serviceCard3Ref}
-                className="description-card bg-gradient-to-br from-black/50 via-black/60 to-black/50 rounded-3xl p-10 lg:p-14 hover:bg-gradient-to-br hover:from-black/55 hover:via-black/65 hover:to-black/55 transition-all duration-300 relative z-10 backdrop-blur-md border border-white/10 hover:border-white/20 overflow-hidden"
+                className="description-card bg-gradient-to-br from-black/50 via-black/60 to-black/50 rounded-3xl p-10 lg:p-14 hover:bg-gradient-to-br hover:from-black/55 hover:via-black/65 hover:to-black/55 transition-all duration-300 relative z-10 backdrop-blur-md border border-white/20 overflow-hidden shadow-[0_0_15px_rgba(255,255,255,0.1)] hover:border-white/40 hover:shadow-[0_0_25px_rgba(255,255,255,0.25)]"
               >
                 {/* Colored gradient overlay */}
                 <div className="absolute top-1/2 right-1/2 w-[600px] h-[600px] bg-gradient-to-br from-blue-500/15 to-purple-500/15 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
@@ -1037,7 +1037,7 @@ export default function HomePage() {
               {/* Left Column - Service Card */}
               <div 
                 ref={serviceCard4Ref}
-                className="description-card bg-gradient-to-br from-black/50 via-black/60 to-black/50 rounded-3xl p-10 lg:p-14 hover:bg-gradient-to-br hover:from-black/55 hover:via-black/65 hover:to-black/55 transition-all duration-300 relative z-10 backdrop-blur-md border border-white/10 hover:border-white/20 overflow-hidden"
+                className="description-card bg-gradient-to-br from-black/50 via-black/60 to-black/50 rounded-3xl p-10 lg:p-14 hover:bg-gradient-to-br hover:from-black/55 hover:via-black/65 hover:to-black/55 transition-all duration-300 relative z-10 backdrop-blur-md border border-white/20 overflow-hidden shadow-[0_0_15px_rgba(255,255,255,0.1)] hover:border-white/40 hover:shadow-[0_0_25px_rgba(255,255,255,0.25)]"
               >
                 {/* Colored gradient overlay */}
                 <div className="absolute top-1/2 right-1/2 w-[600px] h-[600px] bg-gradient-to-br from-blue-500/15 to-purple-500/15 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
@@ -1189,7 +1189,7 @@ export default function HomePage() {
               {/* Left Column - Service Card */}
               <div 
                 ref={serviceCard5Ref}
-                className="description-card bg-gradient-to-br from-black/50 via-black/60 to-black/50 rounded-3xl p-10 lg:p-14 hover:bg-gradient-to-br hover:from-black/55 hover:via-black/65 hover:to-black/55 transition-all duration-300 relative z-10 backdrop-blur-md border border-white/10 hover:border-white/20 overflow-hidden"
+                className="description-card bg-gradient-to-br from-black/50 via-black/60 to-black/50 rounded-3xl p-10 lg:p-14 hover:bg-gradient-to-br hover:from-black/55 hover:via-black/65 hover:to-black/55 transition-all duration-300 relative z-10 backdrop-blur-md border border-white/20 overflow-hidden shadow-[0_0_15px_rgba(255,255,255,0.1)] hover:border-white/40 hover:shadow-[0_0_25px_rgba(255,255,255,0.25)]"
               >
                 {/* Colored gradient overlay */}
                 <div className="absolute top-1/2 right-1/2 w-[600px] h-[600px] bg-gradient-to-br from-blue-500/15 to-purple-500/15 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
@@ -1402,7 +1402,7 @@ export default function HomePage() {
               {tFaq('title')}
             </h2>
             <div className="space-y-4">
-              {Array.from({ length: 12 }, (_, index) => ({
+              {Array.from({ length: 6 }, (_, index) => ({
                 question: tFaq(`items.${index}.question`),
                 answer: tFaq(`items.${index}.answer`),
               })).map((faq, index) => {

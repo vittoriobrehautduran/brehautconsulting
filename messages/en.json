@@ -77,36 +77,12 @@
           "answer": "We listen to your situation, ask questions about your business and goals, and discuss what you're trying to achieve. It's a discovery conversation, not a sales pitch. By the end, you'll have clarity on whether we can help and what that might look like."
         },
         {
-          "question": "How long does a typical project take?",
-          "answer": "Timelines depend on scope and complexity. A website project might take 4-8 weeks, while a complete system build could be 2-4 months. We provide a clear timeline during our initial discussion based on your specific needs."
-        },
-        {
-          "question": "Do I need all services to work with you?",
-          "answer": "No. Some clients need a complete system, while others need help with a specific part. The scope is defined after understanding your business and goals, and only what creates real value is recommended."
-        },
-        {
           "question": "Can I hire you for just a website or just ads?",
           "answer": "Yes. While we often work on integrated systems, we can focus on a single service if that's what you need. We'll be honest if we think you'd benefit from additional services, but the decision is yours."
         },
         {
           "question": "How is pricing structured?",
           "answer": "Pricing is based on project scope, complexity, and goals. We provide clear proposals after understanding your needs, so you know exactly what you're investing in and why."
-        },
-        {
-          "question": "Is this a one-time project or ongoing work?",
-          "answer": "It depends on what you need. Some clients need a one-time build, while others benefit from ongoing support and optimization. We discuss what makes sense for your situation during our initial conversation."
-        },
-        {
-          "question": "Can you guarantee results?",
-          "answer": "We guarantee our work quality and approach, but we can't guarantee specific business outcomes since many factors are outside our control. What we can promise is honest communication, strategic thinking, and execution based on proven methods."
-        },
-        {
-          "question": "How long does it take to see results?",
-          "answer": "It varies by service. A new website might show immediate improvements, while SEO and advertising typically take 2-4 months to show meaningful results. We set realistic expectations upfront and track progress transparently."
-        },
-        {
-          "question": "What types of businesses do you work with?",
-          "answer": "We work with businesses of various sizes, from small local companies to larger organizations. The common thread is businesses that want to grow and are ready to invest in systems that drive measurable results."
         },
         {
           "question": "Do you work internationally or only locally?",
