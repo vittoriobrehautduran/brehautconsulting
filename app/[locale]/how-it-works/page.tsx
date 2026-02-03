@@ -91,6 +91,8 @@ export default function ServicesPage() {
   }, [])
 
   useEffect(() => {
+    if (typeof window === 'undefined') return
+    
     const handleScroll = () => {
       setShowScrollTop(window.scrollY > 100)
     }
@@ -216,7 +218,7 @@ export default function ServicesPage() {
             onLeaveBack: () => {
               // Fade back in when scrolling back up to services section
               // Check if services section is in view
-              if (servicesRef.current && sidebarRef.current) {
+              if (servicesRef.current && sidebarRef.current && typeof window !== 'undefined') {
                 const servicesRect = servicesRef.current.getBoundingClientRect()
                 const isServicesInView = servicesRect.top < window.innerHeight * 0.8 && servicesRect.bottom > 0
                 
@@ -309,15 +311,17 @@ export default function ServicesPage() {
   }
 
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' })
+    if (typeof window !== 'undefined') {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    }
   }
 
   return (
     <ErrorBoundary>
-      {typeof window !== 'undefined' && <AnimatedBackground />}
+      <AnimatedBackground />
       <div className="relative min-h-screen flex w-full max-w-full overflow-x-hidden">
         {/* Fixed Left Navigation */}
-        <aside ref={sidebarRef} className="hidden lg:block fixed left-0 top-0 h-screen w-64 pt-32 pb-8 px-6 z-40" style={{ opacity: 0 }}>
+        <aside ref={sidebarRef} className="hidden lg:block fixed left-0 top-0 h-screen w-64 pt-32 pb-8 px-6 z-40 opacity-0">
           <nav className="sticky top-32">
             <div className="bg-black/60 backdrop-blur-md rounded-2xl p-6">
               <h3 className="text-sm font-semibold text-white/60 uppercase tracking-wider mb-6">
@@ -503,11 +507,14 @@ export default function ServicesPage() {
 
         {/* Services Details Section */}
         <section ref={servicesRef} className="py-20 px-2 sm:px-3 relative z-10">
-          <div className="container mx-auto max-w-none">
-            <p className="text-lg md:text-xl text-white/70 text-center mb-12 max-w-3xl mx-auto px-4">
+          <div className="w-full max-w-4xl mx-auto mb-12 px-4">
+            <p className="text-lg md:text-xl text-white/70 text-left max-w-3xl mx-auto">
               {t('system.intro')}
             </p>
-            <div className="space-y-16 sm:space-y-24">
+          </div>
+          <div className="lg:-mr-64 lg:pr-0">
+            <div className="mx-auto max-w-none pl-4 sm:pl-6 md:pl-8 lg:pl-0 pr-4 sm:pr-6 md:pr-8 lg:pr-4 xl:pr-6 2xl:pr-8">
+              <div className="space-y-16 sm:space-y-24">
               {SERVICE_DETAILS.map((service, index) => (
                 <article 
                   key={index} 
@@ -516,11 +523,12 @@ export default function ServicesPage() {
                   }}
                   className="service-card scroll-mt-36 lg:scroll-mt-0"
                 >
-                  <div className="relative overflow-visible bg-gradient-to-br from-black/60 via-black/70 to-black/60 border border-white/20 rounded-2xl p-6 sm:p-8 lg:p-12 xl:p-16 backdrop-blur-md hover:border-white/30 transition-all duration-300 shadow-lg shadow-black/40 hover:shadow-xl hover:shadow-black/50">
+                  <div className="relative overflow-hidden bg-gradient-to-br from-black/60 via-black/70 to-black/60 border border-white/20 rounded-2xl backdrop-blur-md hover:border-white/30 transition-all duration-300 shadow-lg shadow-black/40 hover:shadow-xl hover:shadow-black/50">
                     {/* Decorative gradient overlay */}
                     <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
                     
-                    <div className="relative z-10">
+                    {/* Content wrapper with fixed padding to ensure gap from border */}
+                    <div className="relative z-10 p-6 sm:p-8 md:p-10 lg:p-12 xl:p-16 min-[0px]:p-6">
                       {/* Header with number badge */}
                       <header className="mb-8">
                         <div className="flex items-start justify-between gap-4 sm:gap-6 mb-6">
@@ -576,14 +584,14 @@ export default function ServicesPage() {
                                     />
                                   </svg>
                                 </div>
-                                <span className="text-base sm:text-lg lg:text-xl leading-relaxed break-words">{detail}</span>
+                                <span className="text-base sm:text-lg lg:text-xl leading-relaxed break-words" style={{ wordBreak: 'break-word', overflowWrap: 'break-word', hyphens: 'auto' }}>{detail}</span>
                               </li>
                             ))}
                           </ul>
                         </div>
 
                         {/* Benefits - takes 1 column */}
-                        <div className="space-y-6 lg:border-l lg:border-white/10 lg:pl-8 xl:pl-12">
+                        <div className="space-y-6 lg:border-l lg:border-white/10 lg:pl-8 xl:pl-12 pr-4 sm:pr-6 md:pr-8 lg:pr-4 xl:pr-6 2xl:pr-8">
                           <div className="flex items-center gap-3 mb-6 sm:mb-8">
                             <div className="w-1.5 h-10 bg-gradient-to-b from-purple-400 to-purple-600 rounded-full flex-shrink-0"></div>
                             <h3 className="text-2xl sm:text-3xl font-heading font-bold text-white break-words">
@@ -611,7 +619,7 @@ export default function ServicesPage() {
                                     />
                                   </svg>
                                 </div>
-                                <span className="text-base sm:text-lg lg:text-xl leading-relaxed break-words">{benefit}</span>
+                                <span className="text-base sm:text-lg lg:text-xl leading-relaxed break-words" style={{ wordBreak: 'break-word', overflowWrap: 'break-word', hyphens: 'auto' }}>{benefit}</span>
                               </li>
                             ))}
                           </ul>
@@ -621,6 +629,7 @@ export default function ServicesPage() {
                   </div>
                 </article>
               ))}
+              </div>
             </div>
           </div>
         </section>

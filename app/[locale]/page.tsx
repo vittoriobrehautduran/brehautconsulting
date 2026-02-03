@@ -731,7 +731,7 @@ export default function HomePage() {
           <div className="container mx-auto max-w-none md:max-w-5xl text-center">
             <h1
               ref={titleRef}
-              className="glow-title text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-canela font-bold mb-8 bg-gradient-to-r from-white via-blue-200 to-purple-200 bg-clip-text text-transparent pb-2 overflow-visible tracking-tight"
+              className="glow-title text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-canela font-bold mb-8 bg-gradient-to-r from-blue-300 to-purple-400 bg-clip-text text-transparent pb-2 overflow-visible tracking-tight"
             >
               Brehaut Consulting
             </h1>
