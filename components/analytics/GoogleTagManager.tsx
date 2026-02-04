@@ -1,47 +1,31 @@
-'use client'
-
 import Script from 'next/script'
-import { useEffect } from 'react'
 
 interface GoogleTagManagerProps {
   gtmId: string
 }
 
-declare global {
-  interface Window {
-    dataLayer: any[]
-  }
-}
-
 export default function GoogleTagManager({ gtmId }: GoogleTagManagerProps) {
-  useEffect(() => {
-    // Initialize dataLayer before GTM script loads
-    if (typeof window !== 'undefined') {
-      window.dataLayer = window.dataLayer || []
-    }
-  }, [])
-
   if (!gtmId) {
-    console.warn('GTM_ID is not set. Please add NEXT_PUBLIC_GTM_ID to your environment variables.')
+    if (typeof window !== 'undefined') {
+      console.warn('[GTM] GTM_ID is not set. Please add NEXT_PUBLIC_GTM_ID to your environment variables.')
+    }
     return null
   }
 
   return (
     <>
-      {/* Initialize dataLayer before GTM script */}
+      {/* Initialize dataLayer first */}
       <Script
-        id="gtm-datalayer-init"
+        id="gtm-datalayer"
         strategy="beforeInteractive"
         dangerouslySetInnerHTML={{
-          __html: `
-            window.dataLayer = window.dataLayer || [];
-          `,
+          __html: `window.dataLayer = window.dataLayer || [];`,
         }}
       />
-      {/* Google Tag Manager */}
+      {/* Google Tag Manager script */}
       <Script
         id="gtm-script"
-        strategy="afterInteractive"
+        strategy="beforeInteractive"
         dangerouslySetInnerHTML={{
           __html: `
             (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':

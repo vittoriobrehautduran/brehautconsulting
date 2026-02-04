@@ -191,7 +191,7 @@ model Booking {
   status    String   @default("confirmed") // "confirmed", "cancelled"
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-
+  
   @@index([date, timeSlot])
   @@index([email])
   @@map("bookings")
@@ -480,9 +480,9 @@ model BusyDay {
 - ✅ Locale-aware routing (`/[locale]/...`)
 - ✅ Language switcher component
 - ✅ Full translations for all pages:
-  - Home page
+- Home page
   - How it works page
-  - Booking page
+- Booking page
   - Admin page
   - Common components (Header, Footer, buttons)
 - ✅ Metadata translations

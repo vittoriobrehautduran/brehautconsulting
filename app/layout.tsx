@@ -5,6 +5,11 @@ import GoogleTagManager from '@/components/analytics/GoogleTagManager'
 
 const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID || ''
 
+// Debug: Log GTM_ID at build time (remove after verification)
+if (process.env.NODE_ENV === 'development') {
+  console.log('GTM_ID from env:', GTM_ID || 'NOT SET')
+}
+
 const rajdhani = Rajdhani({
   subsets: ['latin'],
   weight: ['400', '500', '600', '700'],
