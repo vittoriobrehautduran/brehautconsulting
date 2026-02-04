@@ -85,7 +85,7 @@ export default function Header() {
             </Link>
             <Link
               href="/booking"
-              className="px-6 py-2 bg-white text-black rounded-full font-medium hover:bg-white/90 transition-colors"
+              className="cta px-6 py-2 bg-white text-black rounded-full font-medium hover:bg-white/90 transition-colors"
             >
               {t('bookMeeting')}
             </Link>

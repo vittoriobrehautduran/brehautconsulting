@@ -2,10 +2,17 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { Link } from '@/i18n/navigation'
-import { useTranslations } from 'next-intl'
+import { useTranslations, useLocale } from 'next-intl'
 import Image from 'next/image'
 import AnimatedBackground from '@/components/AnimatedBackground'
 import { CONTACT_EMAIL, CONTACT_PHONE } from '@/lib/constants'
+import JsonLd from '@/components/schema/JsonLd'
+import {
+  generateOrganizationSchema,
+  generateWebSiteSchema,
+  generateFAQPageSchema,
+  generateServiceSchema,
+} from '@/lib/schema/jsonld'
 
 // Lazy load GSAP to reduce initial bundle size
 let gsap: any = null
@@ -19,6 +26,7 @@ const PORTFOLIO_IMAGES = [
 ]
 
 export default function HomePage() {
+  const locale = useLocale()
   const t = useTranslations('home')
   const tCommon = useTranslations('common.buttons')
   const tServices = useTranslations('home.services')
@@ -747,7 +755,7 @@ export default function HomePage() {
             <div ref={ctaRef} className="flex flex-col items-center gap-6">
               <Link
                 href="/booking"
-                className="glow-button inline-block px-10 py-4 bg-white text-black rounded-full text-lg font-semibold hover:bg-white/90 shadow-2xl"
+                className="glow-button cta inline-block px-10 py-4 bg-white text-black rounded-full text-lg font-semibold hover:bg-white/90 shadow-2xl"
               >
                 {tCommon('bookMeeting')}
               </Link>
@@ -1358,13 +1366,13 @@ export default function HomePage() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
               <Link
                 href="/booking"
-                className="glow-button inline-block px-10 py-4 bg-white text-black rounded-full text-lg font-semibold hover:bg-white/90 shadow-2xl w-full sm:w-auto"
+                className="glow-button cta inline-block px-10 py-4 bg-white text-black rounded-full text-lg font-semibold hover:bg-white/90 shadow-2xl w-full sm:w-auto"
               >
                 {tCommon('bookMeeting')}
               </Link>
               <Link
                 href="/how-it-works"
-                className="glow-button inline-block px-10 py-4 bg-transparent border-2 border-white text-white rounded-full text-lg font-semibold hover:bg-white/10 shadow-2xl w-full sm:w-auto"
+                className="glow-button cta inline-block px-10 py-4 bg-transparent border-2 border-white text-white rounded-full text-lg font-semibold hover:bg-white/10 shadow-2xl w-full sm:w-auto"
               >
                 {tCommon('viewServices')}
               </Link>
@@ -1493,7 +1501,7 @@ export default function HomePage() {
             <div ref={ctaButtonRef}>
               <Link
                 href="/booking"
-                className="glow-button inline-block px-10 py-4 bg-white text-black rounded-full text-lg font-semibold hover:bg-white/90 shadow-2xl"
+                className="glow-button cta inline-block px-10 py-4 bg-white text-black rounded-full text-lg font-semibold hover:bg-white/90 shadow-2xl"
               >
                 {tCommon('getStarted')}
               </Link>
@@ -1501,33 +1509,53 @@ export default function HomePage() {
           </div>
         </section>
       </div>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'ProfessionalService',
-            name: 'Brehaut Consulting',
-            description: t('hero.tagline'),
-            url: 'https://brehautconsulting.com',
-            telephone: CONTACT_PHONE,
-            email: CONTACT_EMAIL,
-            areaServed: ['Europe', 'Latin America'],
-            serviceType: tMetadata('schema.serviceType'),
-            hasOfferCatalog: {
-              '@type': 'OfferCatalog',
-              name: tMetadata('schema.catalogName'),
-              itemListElement: [
-                { '@type': 'Offer', itemOffered: { '@type': 'Service', name: tServices('service1.title'), description: tServices('service1.description') } },
-                { '@type': 'Offer', itemOffered: { '@type': 'Service', name: tServices('service2.title'), description: tServices('service2.description') } },
-                { '@type': 'Offer', itemOffered: { '@type': 'Service', name: tServices('service3.title'), description: tServices('service3.description') } },
-                { '@type': 'Offer', itemOffered: { '@type': 'Service', name: tServices('service4.title'), description: tServices('service4.description') } },
-                { '@type': 'Offer', itemOffered: { '@type': 'Service', name: tServices('service5.title'), description: tServices('service5.description') } },
-                { '@type': 'Offer', itemOffered: { '@type': 'Service', name: tServices('service6.title'), description: tServices('service6.description') } },
-              ],
-            },
-          }),
-        }}
+      
+      {/* JSON-LD Structured Data */}
+      <JsonLd
+        data={[
+          // Organization Schema
+          generateOrganizationSchema(locale),
+          // WebSite Schema
+          generateWebSiteSchema(locale),
+          // Service Schemas (one for each service)
+          generateServiceSchema(
+            tServices('service1.title'),
+            tServices('service1.description'),
+            locale
+          ),
+          generateServiceSchema(
+            tServices('service2.title'),
+            tServices('service2.description'),
+            locale
+          ),
+          generateServiceSchema(
+            tServices('service3.title'),
+            tServices('service3.description'),
+            locale
+          ),
+          generateServiceSchema(
+            tServices('service4.title'),
+            tServices('service4.description'),
+            locale
+          ),
+          generateServiceSchema(
+            tServices('service5.title'),
+            tServices('service5.description'),
+            locale
+          ),
+          generateServiceSchema(
+            tServices('service6.title'),
+            tServices('service6.description'),
+            locale
+          ),
+          // FAQPage Schema
+          generateFAQPageSchema(
+            Array.from({ length: 6 }, (_, index) => ({
+              question: tFaq(`items.${index}.question`),
+              answer: tFaq(`items.${index}.answer`),
+            }))
+          ),
+        ]}
       />
     </>
   )

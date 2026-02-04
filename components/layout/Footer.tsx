@@ -108,7 +108,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="border-t border-white/10 pt-8 text-center text-white/70">
-          <p>&copy; {new Date().getFullYear()} Brehaut Consulting. {t('copyright')}</p>
+          <p>&copy; 2025 Brehaut Consulting. {t('copyright')}</p>
         </div>
       </div>
     </footer>

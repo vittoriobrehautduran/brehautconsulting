@@ -3,7 +3,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { useTranslations } from 'next-intl'
+import { useTranslations, useLocale } from 'next-intl'
 import ScheduleSelector from '@/components/ui/ScheduleSelector'
 import BookingForm from '@/components/ui/BookingForm'
 import { Alert, AlertDescription } from '@/components/ui/alert'
@@ -11,6 +11,12 @@ import { TimeSlot, WORK_DAYS } from '@/lib/constants'
 import { AvailableSlotsResponse, BookingRequest } from '@/types/booking'
 import { Loader2 } from 'lucide-react'
 import { startOfDay, addDays } from 'date-fns'
+import JsonLd from '@/components/schema/JsonLd'
+import {
+  generateEventSchema,
+  generateBreadcrumbListSchema,
+} from '@/lib/schema/jsonld'
+import { trackLeadSubmitted } from '@/lib/analytics/gtm'
 
 // Format date as YYYY-MM-DD in local time (not UTC)
 function formatDateLocal(date: Date): string {
@@ -37,6 +43,7 @@ function getInitialDate(): Date {
 }
 
 export default function BookingPage() {
+  const locale = useLocale()
   const t = useTranslations('booking')
   const [selectedDate, setSelectedDate] = useState<Date | null>(getInitialDate())
   const [selectedTimeSlot, setSelectedTimeSlot] = useState<TimeSlot | null>(null)
@@ -113,6 +120,9 @@ export default function BookingPage() {
       if (!response.ok || !result.success) {
         throw new Error(result.error || 'Failed to create booking')
       }
+
+      // Track successful booking submission
+      trackLeadSubmitted()
 
       setSuccessMessage(t('success'))
       setSelectedTimeSlot(null)
@@ -213,6 +223,25 @@ export default function BookingPage() {
           </div>
         </div>
       </div>
+
+      {/* JSON-LD Structured Data */}
+      <JsonLd
+        data={[
+          // Event Schema for Booking
+          generateEventSchema(locale),
+          // BreadcrumbList Schema
+          generateBreadcrumbListSchema([
+            {
+              name: locale === 'sv' ? 'Hem' : 'Home',
+              url: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://brehautconsulting.com'}/${locale}`,
+            },
+            {
+              name: t('title'),
+              url: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://brehautconsulting.com'}/${locale}/booking`,
+            },
+          ]),
+        ]}
+      />
     </div>
   )
 }

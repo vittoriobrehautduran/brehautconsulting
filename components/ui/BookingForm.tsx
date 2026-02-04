@@ -2,7 +2,7 @@
 
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useTranslations, useLocale } from 'next-intl'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -14,6 +14,7 @@ import { TimeSlot } from '@/lib/constants'
 import { BookingRequest } from '@/types/booking'
 import { Loader2 } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import { trackLeadStarted } from '@/lib/analytics/gtm'
 
 // Format date as YYYY-MM-DD in local time (not UTC)
 function formatDateLocal(date: Date): string {
@@ -47,6 +48,11 @@ export default function BookingForm({
   })
   const [errors, setErrors] = useState<Record<string, string>>({})
   const [submitError, setSubmitError] = useState<string | null>(null)
+
+  // Track lead_started when form becomes visible/interactive
+  useEffect(() => {
+    trackLeadStarted()
+  }, [])
 
   const handleChange = (field: string) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData((prev) => ({ ...prev, [field]: e.target.value }))

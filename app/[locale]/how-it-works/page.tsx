@@ -6,6 +6,11 @@ import { useTranslations, useLocale } from 'next-intl'
 import AnimatedBackground from '@/components/AnimatedBackground'
 import { ErrorBoundary } from '@/components/ErrorBoundary'
 import { SERVICES } from '@/lib/constants'
+import JsonLd from '@/components/schema/JsonLd'
+import {
+  generateBreadcrumbListSchema,
+  generateServiceSchema,
+} from '@/lib/schema/jsonld'
 
 // Lazy load GSAP to reduce initial bundle size (consistent with homepage)
 let gsap: any = null
@@ -465,7 +470,7 @@ export default function ServicesPage() {
             <div className="flex justify-center mt-12">
               <Link
                 href="/booking"
-                className="glow-button inline-block px-10 py-4 bg-white text-black rounded-full text-lg font-semibold hover:bg-white/90 shadow-2xl"
+                className="glow-button cta inline-block px-10 py-4 bg-white text-black rounded-full text-lg font-semibold hover:bg-white/90 shadow-2xl"
               >
                 {tCommon('bookMeeting')}
               </Link>
@@ -677,7 +682,7 @@ export default function ServicesPage() {
             </p>
             <Link
               href="/booking"
-              className="glow-button inline-block px-10 py-4 bg-white text-black rounded-full text-lg font-semibold hover:bg-white/90 shadow-2xl"
+              className="glow-button cta inline-block px-10 py-4 bg-white text-black rounded-full text-lg font-semibold hover:bg-white/90 shadow-2xl"
             >
               {tCommon('bookMeeting')}
             </Link>
@@ -707,6 +712,54 @@ export default function ServicesPage() {
         )}
         </div>
       </div>
+
+      {/* JSON-LD Structured Data */}
+      <JsonLd
+        data={[
+          // BreadcrumbList Schema
+          generateBreadcrumbListSchema([
+            {
+              name: locale === 'sv' ? 'Hem' : 'Home',
+              url: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://brehautconsulting.com'}/${locale}`,
+            },
+            {
+              name: t('system.title'),
+              url: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://brehautconsulting.com'}/${locale}/how-it-works`,
+            },
+          ]),
+          // Service Schemas (detailed versions for each service)
+          generateServiceSchema(
+            tHomeServices('service1.title'),
+            tHomeServices('service1.description'),
+            locale
+          ),
+          generateServiceSchema(
+            tHomeServices('service2.title'),
+            tHomeServices('service2.description'),
+            locale
+          ),
+          generateServiceSchema(
+            tHomeServices('service3.title'),
+            tHomeServices('service3.description'),
+            locale
+          ),
+          generateServiceSchema(
+            tHomeServices('service4.title'),
+            tHomeServices('service4.description'),
+            locale
+          ),
+          generateServiceSchema(
+            tHomeServices('service5.title'),
+            tHomeServices('service5.description'),
+            locale
+          ),
+          generateServiceSchema(
+            tHomeServices('service6.title'),
+            tHomeServices('service6.description'),
+            locale
+          ),
+        ]}
+      />
     </ErrorBoundary>
   )
 }
