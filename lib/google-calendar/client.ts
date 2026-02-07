@@ -82,7 +82,7 @@ async function getCalendarClient() {
 
 // Get busy times for a specific date range
 // Checks both the family calendar and the event creation calendar
-// Filters events to only include those created by vittoriobre@gmail.com, vittorio.brehaut.duran@gmail.com, or the service account
+// Filters events to only include those created by vittoriobre@gmail.com or the service account
 export async function getBusyTimes(startDate: Date, endDate: Date, calendarId?: string) {
   const calendar = await getCalendarClient()
   const primaryCalendarId = calendarId || GOOGLE_CALENDAR_ID

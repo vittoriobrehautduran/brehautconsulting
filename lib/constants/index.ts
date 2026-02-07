@@ -10,7 +10,7 @@ export const MAX_BOOKINGS_PER_SLOT = 3
 
 export const TIMEZONE = 'Europe/Stockholm'
 
-export const CONTACT_EMAIL = 'vittorio.brehaut.duran@gmail.com'
+export const CONTACT_EMAIL = 'contact@brehautconsulting.com'
 export const CONTACT_PHONE = '+46 73 646 30 45'
 
 // Google Calendar ID - use your email address if you shared your calendar with the service account

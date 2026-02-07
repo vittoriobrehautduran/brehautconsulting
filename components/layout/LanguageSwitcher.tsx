@@ -9,6 +9,7 @@ import { useEffect, useRef, useState } from 'react'
 const localeNames: Record<Locale, string> = {
   en: 'English',
   sv: 'Swedish',
+  es: 'Español',
 }
 
 export default function LanguageSwitcher() {

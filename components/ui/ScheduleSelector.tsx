@@ -1,8 +1,9 @@
 "use client"
 
 import * as React from "react"
-import { useTranslations } from 'next-intl'
+import { useTranslations, useLocale } from 'next-intl'
 import { format, addDays, subDays, startOfDay } from "date-fns"
+import { enUS, sv, es, type Locale } from "date-fns/locale"
 import { Calendar as CalendarIcon, ChevronRight, ChevronLeft } from "lucide-react"
 import { WORK_DAYS, TimeSlot, TIME_SLOTS } from "@/lib/constants"
 import { Calendar } from "@/components/ui/calendar"
@@ -72,6 +73,7 @@ export default function ScheduleSelector({
   isLoading = false,
 }: ScheduleSelectorProps) {
   const t = useTranslations('booking')
+  const locale = useLocale()
   // Use selectedDate directly, or get initial date if not provided
   const currentDate = selectedDate || getInitialDate()
 
@@ -128,7 +130,13 @@ export default function ScheduleSelector({
       return t('tomorrow')
     }
     
-    return format(date, "EEEE, MMMM d")
+    const localeMap: Record<string, Locale> = {
+      en: enUS,
+      sv: sv,
+      es: es,
+    }
+    
+    return format(date, "EEEE, MMMM d", { locale: localeMap[locale] || enUS })
   }
 
   const today = startOfDay(new Date())

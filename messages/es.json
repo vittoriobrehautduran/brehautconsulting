@@ -1,0 +1,370 @@
+{
+  "common": {
+    "nav": {
+      "home": "Inicio",
+      "howItWorks": "Cómo funciona",
+      "bookMeeting": "Reservar una reunión"
+    },
+    "buttons": {
+      "bookMeeting": "Reservar una reunión",
+      "viewServices": "Cómo funciona",
+      "getStarted": "Reservar una reunión",
+      "confirmBooking": "Confirmar reserva",
+      "confirming": "Confirmando..."
+    },
+    "companyName": "Brehaut Consulting",
+    "footer": {
+      "contactUs": "Contáctanos",
+      "emailDescription": "Envíanos un correo para consultas y asesorías",
+      "location": "Ubicación",
+      "servingClients": "Atendemos clientes globalmente",
+      "regions": "Europa y América Latina",
+      "copyright": "Todos los derechos reservados."
+    }
+  },
+  "home": {
+    "hero": {
+      "tagline": "Sistemas digitales claros y medibles para el crecimiento de clientes.",
+      "description": "Ayudamos a pequeñas y medianas empresas a conseguir más clientes a través de sitios web de alto rendimiento, visibilidad en búsquedas y sistemas de marketing digital medibles."
+    },
+    "services": {
+      "title": "Lo que ofrecemos",
+      "service1": {
+        "title": "Desarrollo de sitios web y aplicaciones web",
+        "subtitle": "Para empresas",
+        "description": "Diseño y desarrollo de sitios web y aplicaciones web modernos construidos para apoyar objetivos comerciales reales — no solo presentación visual. Cada solución está estructurada en torno a la usabilidad, el rendimiento y la mantenibilidad, con un enfoque claro en guiar a los visitantes hacia consultas, reservas o acciones que importan al negocio."
+      },
+      "service2": {
+        "title": "Optimización de conversión y leads",
+        "subtitle": "Convertir visitantes en consultas",
+        "description": "Mejorar cómo los visitantes interactúan con tu sitio web para que más personas tomen acción — contactarte, reservar una reunión o realizar una compra. Esto se enfoca en reducir la fricción, clarificar los mensajes y alinear el sitio con cómo los clientes reales toman decisiones, convirtiendo el tráfico en resultados comerciales medibles."
+      },
+      "service3": {
+        "title": "Visibilidad local y SEO",
+        "subtitle": "Ser encontrado en Google cuando los clientes buscan",
+        "description": "Optimización de búsqueda que ayuda a tu negocio a aparecer donde los clientes buscan activamente tus servicios. Esto incluye estructurar tu sitio web y presencia para que seas visible en Google y servicios de mapas en el momento en que los clientes potenciales están buscando — no solo ranking, sino relevancia."
+      },
+      "service4": {
+        "title": "Publicidad y captura de demanda",
+        "subtitle": "Google Ads y tráfico de alta intención",
+        "description": "Publicidad estructurada diseñada para capturar la demanda existente, no perseguir métricas vanidosas. Las campañas se construyen en torno a objetivos de conversión claros, dirigidas a personas que ya están listas para consultar, reservar o comprar — con total visibilidad de lo que realmente genera resultados."
+      },
+      "service5": {
+        "title": "Análisis y medición",
+        "subtitle": "Entender qué está funcionando realmente",
+        "description": "Arquitectura de análisis y medición que muestra qué funciona y qué no. Esto proporciona una visión clara del comportamiento del cliente y el rendimiento, permitiendo que las decisiones se basen en datos en lugar de conjeturas — y permitiendo la mejora continua con el tiempo."
+      },
+      "service6": {
+        "title": "Integraciones técnicas y automatización",
+        "subtitle": "Reducir trabajo manual y fricción",
+        "description": "Conectar plataformas, herramientas y flujos de trabajo para reducir el trabajo manual y la fricción operativa. Desde formularios y reservas hasta correo electrónico y sistemas internos, las integraciones están diseñadas para mejorar la eficiencia, la confiabilidad y la experiencia general del cliente."
+      }
+    },
+    "about": {
+      "title": "Acerca de Brehaut Consulting",
+      "description1": "Nos especializamos en crear soluciones digitales que impulsan resultados comerciales reales. Nuestro enfoque combina experiencia técnica con una comprensión profunda del marketing de crecimiento y la optimización de conversión.",
+      "description2": "Ya sea que necesites una aplicación web moderna, mayor visibilidad en búsquedas, publicidad estratégica o integraciones sin problemas, trabajamos contigo para construir sistemas que escalen con tu negocio y entreguen resultados medibles."
+    },
+    "faq": {
+      "title": "Preguntas frecuentes",
+      "items": [
+        {
+          "question": "¿Cómo comienza el trabajo con Brehaut Consulting?",
+          "answer": "Comienza con una conversación. Reservas una reunión a través de nuestro sistema de reservas, y discutimos tu negocio, objetivos y desafíos actuales. Esto nos ayuda a entender si somos una buena opción y qué enfoque funcionaría mejor para ti."
+        },
+        {
+          "question": "¿Qué sucede durante la primera reunión?",
+          "answer": "Escuchamos tu situación, hacemos preguntas sobre tu negocio y objetivos, y discutimos lo que estás tratando de lograr. Es una conversación de descubrimiento, no una presentación de ventas. Al final, tendrás claridad sobre si podemos ayudar y cómo podría verse eso."
+        },
+        {
+          "question": "¿Puedo contratarte solo para un sitio web o solo para anuncios?",
+          "answer": "Sí. Aunque a menudo trabajamos en sistemas integrados, podemos enfocarnos en un solo servicio si eso es lo que necesitas. Seremos honestos si creemos que te beneficiarías de servicios adicionales, pero la decisión es tuya."
+        },
+        {
+          "question": "¿Cómo está estructurado el precio?",
+          "answer": "El precio se basa en el alcance del proyecto, la complejidad y los objetivos. Proporcionamos propuestas claras después de entender tus necesidades, para que sepas exactamente en qué estás invirtiendo y por qué."
+        },
+        {
+          "question": "¿Trabajan internacionalmente o solo localmente?",
+          "answer": "Trabajamos con clientes globalmente, con un enfoque en Europa y América Latina. Nuestros servicios se entregan de forma remota, por lo que la ubicación no es una barrera siempre que podamos comunicarnos efectivamente."
+        },
+        {
+          "question": "¿Quién es dueño del sitio web, los anuncios y los datos?",
+          "answer": "Tú. El código del sitio web, el contenido y cualquier dato recopilado te pertenecen. Trabajamos con plataformas de terceros cuando es necesario, pero mantienes la propiedad y el control de tus activos digitales."
+        }
+      ]
+    },
+    "cta": {
+      "title": "¿Listo para crecer?",
+      "description": "Hablemos de cómo podemos ayudar a transformar tu presencia digital e impulsar resultados comerciales reales."
+    }
+  },
+  "services": {
+    "intro": {
+      "line1": "Brehaut Consulting ayuda a las empresas a conseguir más clientes construyendo sistemas digitales claros y medibles.",
+      "line2": "El enfoque está en entender cómo los clientes te encuentran, cómo deciden contactarte y cómo tu configuración digital apoya ese viaje."
+    },
+    "howItWorks": {
+      "title": "Cómo funciona",
+      "description": "Si este enfoque tiene sentido, {link}",
+      "linkText": "el siguiente paso es una conversación corta",
+      "steps": [
+        {
+          "title": "Conversación inicial",
+          "description": "Comenzamos con una sesión de trabajo para entender tu negocio, clientes y qué está realmente impidiendo más consultas o clientes."
+        },
+        {
+          "title": "Diseño del sistema",
+          "description": "Basado en tu situación, se define un sistema digital claro — solo lo que se necesita, basado en tus objetivos y situación."
+        },
+        {
+          "title": "Construcción e implementación",
+          "description": "Los componentes acordados se diseñan e implementan con un enfoque en el rendimiento, la claridad y la confiabilidad a largo plazo."
+        },
+        {
+          "title": "Medición y mejora",
+          "description": "Los resultados se rastrean y revisan para que el sistema pueda mejorarse con el tiempo basado en datos reales."
+        }
+      ]
+    },
+    "whoFor": {
+      "for": {
+        "title": "Para quién es esto",
+        "items": [
+          "Empresas que quieren más consultas, reservas o clientes",
+          "Propietarios que se preocupan por los resultados, no solo el diseño",
+          "Empresas que quieren claridad en lugar de conjeturas",
+          "Empresas abiertas a mejorar cómo funciona su presencia digital"
+        ]
+      },
+      "notFor": {
+        "title": "Para quién no es esto",
+        "items": [
+          "Empresas que buscan la solución más barata posible",
+          "Tareas únicas sin interés en resultados a largo plazo",
+          "Clientes que quieren herramientas sin estrategia"
+        ]
+      }
+    },
+    "system": {
+      "title": "El sistema de crecimiento digital",
+      "description": "Cada sistema se construye a partir de los componentes a continuación. No todas las empresas necesitan cada parte, pero cada componente existe para apoyar un objetivo: crecimiento medible de clientes.",
+      "intro": "A continuación se encuentran los componentes centrales que pueden formar tu sistema de crecimiento digital.",
+      "servicesLabel": "Servicios",
+      "serviceLabel": "Servicio"
+    },
+    "serviceDetails": {
+      "service1": {
+        "label": "Fundación central",
+        "whatWeDo": "Lo que hacemos",
+        "benefits": "Beneficios",
+        "details": [
+          "Diseño y desarrollo de sitios web personalizados adaptados a tu marca y objetivos comerciales",
+          "Aplicaciones web modernas construidas con arquitecturas escalables y mejores prácticas",
+          "Diseño responsivo que garantiza una experiencia óptima en todos los dispositivos",
+          "Optimización de rendimiento para tiempos de carga rápidos y experiencia de usuario fluida",
+          "Sistemas de gestión de contenido para actualizaciones y mantenimiento fáciles",
+          "Soluciones de comercio electrónico para tiendas en línea y mercados digitales"
+        ],
+        "benefitsList": [
+          "Mayor participación del usuario y tasas de conversión",
+          "Mayor presencia de marca y credibilidad",
+          "Soluciones escalables que crecen con tu negocio",
+          "Stack tecnológico moderno para desarrollo a prueba de futuro"
+        ]
+      },
+      "service2": {
+        "whatWeDo": "Lo que hacemos",
+        "benefits": "Beneficios",
+        "details": [
+          "Estrategias e implementación de optimización de tasa de conversión (CRO)",
+          "Diseño y optimización de sistemas de generación de leads",
+          "Análisis y mejoras de experiencia de usuario (UX)",
+          "Pruebas A/B y optimización basada en datos",
+          "Optimización de páginas de destino para mayores tasas de conversión",
+          "Análisis y optimización de embudos en cada etapa"
+        ],
+        "benefitsList": [
+          "Mayores tasas de conversión del tráfico existente",
+          "Más leads calificados y mejor calidad de leads",
+          "Mejor ROI en inversiones de marketing",
+          "Toma de decisiones basada en datos para mejora continua"
+        ]
+      },
+      "service3": {
+        "whatWeDo": "Lo que hacemos",
+        "benefits": "Beneficios",
+        "details": [
+          "Optimización técnica de SEO para mayor visibilidad en motores de búsqueda",
+          "Estrategias de SEO local para empresas basadas en ubicación",
+          "Investigación de palabras clave y optimización de contenido",
+          "Implementación de SEO on-page y off-page",
+          "Optimización de perfil de Google Business",
+          "Auditorías de SEO y seguimiento de rendimiento"
+        ],
+        "benefitsList": [
+          "Mayor tráfico orgánico y visibilidad",
+          "Mejores rankings en resultados de motores de búsqueda",
+          "Más leads calificados de búsquedas",
+          "Crecimiento sostenible a largo plazo en presencia en línea"
+        ]
+      },
+      "service4": {
+        "label": "Impulsor de crecimiento",
+        "whatWeDo": "Lo que hacemos",
+        "benefits": "Beneficios",
+        "details": [
+          "Publicidad en motores de búsqueda (Google Ads, Bing Ads)",
+          "Publicidad en redes sociales (Meta, LinkedIn, etc.)",
+          "Campañas de display y remarketing",
+          "Estrategias de publicidad en video",
+          "Configuración, optimización y gestión de campañas",
+          "Seguimiento de conversiones y optimización de ROI"
+        ],
+        "benefitsList": [
+          "Visibilidad inmediata y generación de tráfico",
+          "Segmentación precisa para llegar a tus clientes ideales",
+          "Resultados medibles con seguimiento claro de ROI",
+          "Presupuestos flexibles y campañas escalables"
+        ]
+      },
+      "service5": {
+        "label": "Impulsor de crecimiento",
+        "whatWeDo": "Lo que hacemos",
+        "benefits": "Beneficios",
+        "details": [
+          "Configuración y configuración de análisis (Google Analytics, etc.)",
+          "Creación de dashboards personalizados para métricas clave",
+          "Seguimiento de conversiones y configuración de objetivos",
+          "Análisis de comportamiento del cliente e insights",
+          "Informes de rendimiento y visualización de datos",
+          "Integración de datos en múltiples plataformas"
+        ],
+        "benefitsList": [
+          "Visibilidad clara del rendimiento del negocio",
+          "Insights basados en datos para la toma de decisiones",
+          "Mejor comprensión del comportamiento del cliente",
+          "Oportunidades de optimización identificadas a través de datos"
+        ]
+      },
+      "service6": {
+        "whatWeDo": "Lo que hacemos",
+        "benefits": "Beneficios",
+        "details": [
+          "Integraciones de API entre plataformas y herramientas",
+          "Automatización de flujos de trabajo para reducir el trabajo manual",
+          "Integraciones de herramientas de CRM y marketing",
+          "Sincronización de datos entre sistemas",
+          "Desarrollo de integraciones personalizadas",
+          "Automatización de procesos y mejoras de eficiencia"
+        ],
+        "benefitsList": [
+          "Reducción del trabajo manual y mayor eficiencia",
+          "Mayor precisión y consistencia de datos",
+          "Flujos de trabajo sin problemas entre plataformas",
+          "Ahorro de tiempo y costos a través de la automatización"
+        ]
+      }
+    },
+    "engagement": {
+      "title": "Formas de trabajar juntos",
+      "description1": "Algunos clientes necesitan un sistema completo. Otros necesitan un componente específico.",
+      "description2": "Los compromisos pueden incluir:",
+      "items": [
+        "Diseño e implementación de sistema completo",
+        "Proyectos de sitios web o aplicaciones web",
+        "Configuración y optimización de publicidad",
+        "Arquitectura de análisis y seguimiento",
+        "Optimización y soporte continuo"
+      ],
+      "description3": "El alcance se define después de la conversación inicial, basado en lo que creará más valor para tu negocio."
+    },
+    "nextStep": {
+      "title": "Siguiente paso",
+      "description": "Si esto suena relevante, el siguiente paso es una reunión corta para entender tu negocio y ver si hay una buena opción."
+    }
+  },
+  "booking": {
+    "title": "Reservar una reunión",
+    "subtitle": "Selecciona una fecha y hora que te funcione",
+    "selectedTimeSlot": "Franja horaria seleccionada",
+    "stockholmTime": "Hora de Estocolmo",
+    "today": "Hoy",
+    "tomorrow": "Mañana",
+    "previousDay": "Día anterior",
+    "nextDay": "Día siguiente",
+    "availableTimeSlots": "Franjas horarias disponibles",
+    "form": {
+      "name": "Nombre",
+      "email": "Correo electrónico",
+      "company": "Empresa (opcional)",
+      "message": "Mensaje (opcional)",
+      "required": "*",
+      "errors": {
+        "nameRequired": "El nombre es obligatorio",
+        "emailRequired": "El correo electrónico es obligatorio",
+        "emailInvalid": "Por favor ingresa una dirección de correo electrónico válida",
+        "selectDateTime": "Por favor selecciona una fecha y franja horaria",
+        "submitFailed": "Error al crear la reserva"
+      }
+    },
+    "success": "¡Reserva confirmada! Esperamos reunirnos contigo.",
+    "info": {
+      "purpose": {
+        "title": "Propósito de la reunión",
+        "description": "Esta es una conversación corta y enfocada para entender tu negocio, objetivos y desafíos actuales — y para ver si somos una buena opción para trabajar juntos."
+      },
+      "howItWorks": {
+        "title": "Cómo funciona la reunión",
+        "description": "La reunión se realiza en línea y típicamente dura 30 minutos. Recibirás todos los detalles por correo electrónico después de la reserva."
+      },
+      "rescheduling": {
+        "title": "Reprogramación y cancelación",
+        "description": "Si necesitas reprogramar o cancelar, puedes hacerlo hasta 24 horas antes de la reunión. Esto ayuda a mantener la disponibilidad justa para todos."
+      }
+    }
+  },
+  "footer": {
+    "contact": {
+      "title": "Contáctanos",
+      "description": "Envíanos un correo para consultas y asesorías"
+    },
+    "location": {
+      "title": "Ubicación",
+      "description": "Atendemos clientes globalmente",
+      "regions": "Europa y América Latina"
+    },
+    "copyright": "Todos los derechos reservados."
+  },
+  "metadata": {
+    "title": "Brehaut Consulting | Consultoría de Tecnología y Crecimiento",
+    "titleTemplate": "%s | Brehaut Consulting",
+    "description": "Sistemas digitales claros y medibles para el crecimiento de clientes.",
+    "keywords": [
+      "consultoría tecnológica",
+      "consultoría de crecimiento",
+      "desarrollo web",
+      "sistemas digitales",
+      "optimización de conversión",
+      "SEO",
+      "análisis",
+      "automatización",
+      "marketing digital",
+      "aplicaciones web",
+      "integraciones técnicas",
+      "visibilidad local",
+      "publicidad",
+      "medición"
+    ],
+    "openGraph": {
+      "siteName": "Brehaut Consulting",
+      "title": "Brehaut Consulting | Consultoría de Tecnología y Crecimiento",
+      "description": "Sistemas digitales claros y medibles para el crecimiento de clientes."
+    },
+    "schema": {
+      "serviceType": "Consultoría de Tecnología y Crecimiento",
+      "catalogName": "Servicios de Consultoría"
+    }
+  }
+}
+

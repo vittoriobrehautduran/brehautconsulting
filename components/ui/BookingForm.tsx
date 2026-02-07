@@ -122,12 +122,15 @@ export default function BookingForm({
               {t('selectedTimeSlot')}
             </Label>
             <h4 className="text-xl font-semibold mb-2 text-blue-100">
-              {selectedDate.toLocaleDateString(locale === 'sv' ? 'sv-SE' : 'en-US', {
-                weekday: 'long',
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric',
-              })}
+              {selectedDate.toLocaleDateString(
+                locale === 'sv' ? 'sv-SE' : locale === 'es' ? 'es-ES' : 'en-US',
+                {
+                  weekday: 'long',
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric',
+                }
+              )}
             </h4>
             <p className="text-blue-200 font-medium text-lg">{formatTimeSlot(selectedTimeSlot)} ({t('stockholmTime')})</p>
           </CardContent>
