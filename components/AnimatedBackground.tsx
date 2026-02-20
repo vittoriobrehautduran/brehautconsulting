@@ -9,9 +9,18 @@ export default function AnimatedBackground() {
   
   // Store Three.js resources in refs so cleanup can access them even if component unmounts during loading
   const resourcesRef = useRef<{
-    geometry?: any
-    material?: any
-    particleTexture?: any
+    gridLines?: any[]
+    gridLinesWithMaterials?: Array<{
+      line: any
+      material: any
+      baseOpacity: number
+      lineY?: number
+      lineX?: number
+      isHorizontal: boolean
+    }>
+    networkLines?: any[]
+    lightParticles?: any[]
+    lightTexture?: any
     renderer?: any
     rendererElement?: HTMLCanvasElement
     resizeTimeout?: NodeJS.Timeout
@@ -40,11 +49,17 @@ export default function AnimatedBackground() {
 
     const initialHeight = getViewportHeight()
     const scene = new THREE.Scene()
-    const camera = new THREE.PerspectiveCamera(
-      75,
-      window.innerWidth / initialHeight,
-      0.4,
-      10000
+    
+    // Use orthographic camera for 2D grid - better for flat grid patterns
+    const aspect = window.innerWidth / initialHeight
+    const viewSize = Math.max(window.innerWidth, initialHeight) * 0.8
+    const camera = new THREE.OrthographicCamera(
+      -viewSize * aspect / 2,
+      viewSize * aspect / 2,
+      viewSize / 2,
+      -viewSize / 2,
+      0.1,
+      1000
     )
     
     // Optimize renderer settings for mobile
@@ -54,6 +69,7 @@ export default function AnimatedBackground() {
       premultipliedAlpha: false,
       powerPreference: 'high-performance'
     })
+    // Transparent background so CSS gradient shows through
     renderer.setClearColor(0x000000, 0)
     renderer.setSize(window.innerWidth, initialHeight)
     // Optimized pixel ratio - use device pixel ratio but cap it for performance
@@ -77,67 +93,148 @@ export default function AnimatedBackground() {
     
     renderer.clear()
 
-    camera.position.z = 5
+    // Position camera to see the grid plane
+    camera.position.z = 100
 
-    const createParticleTexture = () => {
-      const canvas = document.createElement('canvas')
-      // Smaller texture on mobile
-      const size = isMobile ? 64 : 128
-      canvas.width = size
-      canvas.height = size
-      const context = canvas.getContext('2d')!
+    // Create subtle grid and network lines - more spaced out
+    const gridLines: any[] = []
+    const networkLines: any[] = []
+    const gridSize = isMobile ? 120 : 180
+    // Calculate grid extent to match camera view
+    const gridExtentX = viewSize * aspect
+    const gridExtentY = viewSize
+    const gridStepsX = Math.floor(gridExtentX / gridSize)
+    const gridStepsY = Math.floor(gridExtentY / gridSize)
+    
+    // Subtle color with blue-purple tint, brighter base
+    const lineColor = new THREE.Color(0.7, 0.75, 0.9) // Brighter soft blue-purple
+    const gridOpacity = 0.35 // More visible base opacity for grid
+    const networkOpacity = 0.15 // Slightly lower for network connections
 
-      const gradient = context.createRadialGradient(size/2, size/2, 0, size/2, size/2, size/2)
-      gradient.addColorStop(0, 'rgba(255, 255, 255, 1.0)')
-      gradient.addColorStop(0.3, 'rgba(246, 200, 255, 0.6)')
-      gradient.addColorStop(0.6, 'rgba(228, 200, 255, 0.2)')
-      gradient.addColorStop(1, 'rgba(228, 200, 255, 0)')
-      
-      context.fillStyle = gradient
-      context.fillRect(0, 0, size, size)
-      
-      return new THREE.CanvasTexture(canvas)
-    }
-
-    const particleTexture = createParticleTexture()
-      resourcesRef.current.particleTexture = particleTexture
-
-    // Optimized particle count - enough for smooth animation but not too many
-    const particleCount = isMobile ? 80 : 150
-    const positions = new Float32Array(particleCount * 3)
-    const colors = new Float32Array(particleCount * 3)
-
-    for (let i = 0; i < particleCount * 3; i += 3) {
-      positions[i] = (Math.random() - 0.5) * 30
-      positions[i + 1] = (Math.random() - 0.5) * 30
-      positions[i + 2] = (Math.random() - 0.5) * 20
-
-      const color = new THREE.Color()
-      color.setHSL(0.55 + Math.random() * 0.1, 0.4, 0.4 + Math.random() * 0.2)
-      colors[i] = color.r
-      colors[i + 1] = color.g
-      colors[i + 2] = color.b
-    }
-
-    const geometry = new THREE.BufferGeometry()
-    geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3))
-    geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3))
-    resourcesRef.current.geometry = geometry
-
-    // Use NormalBlending on mobile for better performance
-    const material = new THREE.PointsMaterial({
-      size: isMobile ? 1.5 : 2,
-      map: particleTexture,
-      vertexColors: true,
+    // Create grid lines material - linewidth doesn't work in WebGL, removed
+    // Store base opacity for dynamic updates
+    const baseGridOpacity = gridOpacity
+    const gridMaterial = new THREE.LineBasicMaterial({
+      color: lineColor,
       transparent: true,
-      opacity: 0.5,
-      blending: isMobile ? THREE.NormalBlending : THREE.AdditiveBlending,
-      depthWrite: false,
+      opacity: gridOpacity
     })
-    resourcesRef.current.material = material
+    
+    // Store grid lines with their materials for dynamic opacity updates
+    const gridLinesWithMaterials: Array<{
+      line: any
+      material: any
+      baseOpacity: number
+      lineY?: number
+      lineX?: number
+      isHorizontal: boolean
+    }> = []
 
-    const particles = new THREE.Points(geometry, material)
-    scene.add(particles)
+    // Create network lines material
+    const networkMaterial = new THREE.LineBasicMaterial({
+      color: lineColor,
+      transparent: true,
+      opacity: networkOpacity
+    })
+
+
+    // Create horizontal grid lines
+    for (let i = -gridStepsY; i <= gridStepsY; i++) {
+      const y = i * gridSize
+      const points = [
+        new THREE.Vector3(-gridExtentX, y, 0),
+        new THREE.Vector3(gridExtentX, y, 0)
+      ]
+      const geometry = new THREE.BufferGeometry().setFromPoints(points)
+      // Create new material instance for each line to ensure independent control
+      const lineMaterial = new THREE.LineBasicMaterial({
+        color: lineColor.clone(),
+        transparent: true,
+        opacity: baseGridOpacity
+      })
+      const line = new THREE.Line(geometry, lineMaterial)
+      scene.add(line)
+      gridLines.push(line)
+      gridLinesWithMaterials.push({ 
+        line, 
+        material: lineMaterial, 
+        baseOpacity: baseGridOpacity,
+        lineY: y,
+        isHorizontal: true
+      })
+    }
+
+    // Create vertical grid lines
+    for (let i = -gridStepsX; i <= gridStepsX; i++) {
+      const x = i * gridSize
+      const points = [
+        new THREE.Vector3(x, -gridExtentY, 0),
+        new THREE.Vector3(x, gridExtentY, 0)
+      ]
+      const geometry = new THREE.BufferGeometry().setFromPoints(points)
+      // Create new material instance for each line to ensure independent control
+      const lineMaterial = new THREE.LineBasicMaterial({
+        color: lineColor.clone(),
+        transparent: true,
+        opacity: baseGridOpacity
+      })
+      const line = new THREE.Line(geometry, lineMaterial)
+      scene.add(line)
+      gridLines.push(line)
+      gridLinesWithMaterials.push({ 
+        line, 
+        material: lineMaterial, 
+        baseOpacity: baseGridOpacity,
+        lineX: x,
+        isHorizontal: false
+      })
+    }
+
+    // Create network/system architecture connecting lines
+    // Connect some grid points to create a subtle network pattern
+    const networkPoints: any[] = []
+    const networkDensity = isMobile ? 0.15 : 0.2 // Fewer connections on mobile
+    
+    for (let x = -gridStepsX; x <= gridStepsX; x += 2) {
+      for (let y = -gridStepsY; y <= gridStepsY; y += 2) {
+        if (Math.random() < networkDensity) {
+          networkPoints.push(new THREE.Vector3(x * gridSize, y * gridSize, 0))
+        }
+      }
+    }
+
+    // Connect nearby points to create system architecture feel
+    for (let i = 0; i < networkPoints.length; i++) {
+      const point = networkPoints[i]
+      const connections: any[] = []
+      
+      for (let j = i + 1; j < networkPoints.length; j++) {
+        const otherPoint = networkPoints[j]
+        const distance = point.distanceTo(otherPoint)
+        const maxConnectionDistance = gridSize * 3
+        
+        if (distance <= maxConnectionDistance && Math.random() < 0.3) {
+          connections.push(otherPoint)
+        }
+      }
+      
+      // Limit connections per point for cleaner look
+      connections.slice(0, 2).forEach(connectedPoint => {
+        const geometry = new THREE.BufferGeometry().setFromPoints([point, connectedPoint])
+        const line = new THREE.Line(geometry, networkMaterial)
+        scene.add(line)
+        networkLines.push(line)
+      })
+    }
+
+    resourcesRef.current.gridLines = gridLines
+    resourcesRef.current.gridLinesWithMaterials = gridLinesWithMaterials
+    resourcesRef.current.networkLines = networkLines
+
+    // Position camera to look at grid center - static position for stability
+    camera.position.set(0, 0, 100)
+    camera.lookAt(0, 0, 0)
+    camera.updateProjectionMatrix()
 
     renderer.clear()
     renderer.render(scene, camera)
@@ -145,7 +242,7 @@ export default function AnimatedBackground() {
     let time = 0
     let lastFrameTime = performance.now()
     // Adaptive frame rate - try for 60fps but allow 30fps if needed
-    const targetFrameTime = isMobile ? 20 : 16 // Allow up to 50fps on mobile, 60fps on desktop
+    const targetFrameTime = isMobile ? 20 : 16
 
     const animate = () => {
       frameRef.current = requestAnimationFrame(animate)
@@ -158,18 +255,45 @@ export default function AnimatedBackground() {
       }
       lastFrameTime = currentTime
 
-      time += isMobile ? 0.005 : 0.003 // Faster time increment on mobile for smoother animation
+      // Update grid lines with subtle pulsating effect - no lights, just time-based pulsing
+      const delta = (deltaTime / 1000) // Normalize to seconds
+      const pulseSpeed = 2.5 // Speed of pulsing effect
+      const pulseAmount = 0.3 // Pulse variation (30%)
+      
+      if (resourcesRef.current.gridLinesWithMaterials) {
+        resourcesRef.current.gridLinesWithMaterials.forEach((gridLineData: any, index: number) => {
+          if (!gridLineData.material) return
+          
+          // Create pulsing based on line position and time
+          // Each line pulses slightly out of phase for a wave-like effect
+          const linePhase = (gridLineData.isHorizontal ? gridLineData.lineY : gridLineData.lineX) * 0.01
+          const pulseValue = Math.sin(time * pulseSpeed + linePhase + index * 0.1) // Range: -1 to 1
+          const pulse = pulseValue * pulseAmount + 1.0 // Range: 0.7 to 1.3
+          
+          // Apply brightness variation - pulse directly affects opacity
+          const brightness = pulse // pulse ranges from 0.7 to 1.3
+          const newOpacity = Math.min(1.0, gridLineData.baseOpacity * brightness)
+          gridLineData.material.opacity = newOpacity
+          
+          // Color shift - make lines whiter when brighter
+          const whiteness = Math.max(0, pulseValue) * 0.5 // Only whiten on positive pulse, up to 50%
+          const baseR = 0.7
+          const baseG = 0.75
+          const baseB = 0.9
+          gridLineData.material.color.setRGB(
+            Math.min(1.0, baseR + whiteness),
+            Math.min(1.0, baseG + whiteness),
+            Math.min(1.0, baseB + whiteness * 0.3) // Keep some blue tint but allow more whiteness
+          )
+        })
+      }
 
-      // Balanced rotation speed - faster on mobile but still smooth
-      const rotationSpeed = isMobile ? 0.0005 : 0.0003
-      particles.rotation.x += rotationSpeed
-      particles.rotation.y += rotationSpeed * 1.5
+      time += delta
 
-      // Faster camera movement on mobile for better visual feedback
-      const cameraSpeed = isMobile ? 0.4 : 0.3
-      camera.position.x = Math.sin(time * cameraSpeed) * 0.3
-      camera.position.y = Math.cos(time * (cameraSpeed * 0.83)) * 0.3
-      camera.lookAt(scene.position)
+      // Keep camera static for now - no movement to avoid view issues
+      // Grid will be static and always visible
+      camera.position.set(0, 0, 100)
+      camera.lookAt(0, 0, 0)
 
       renderer.render(scene, camera)
     }
@@ -191,7 +315,12 @@ export default function AnimatedBackground() {
         // Only resize on significant width change (orientation change)
         if (widthDiff > 20 && resourcesRef.current.renderer) {
           const newHeight = getViewportHeight()
-          camera.aspect = currentWidth / newHeight
+          const newAspect = currentWidth / newHeight
+          const newViewSize = Math.max(currentWidth, newHeight) * 0.8
+          camera.left = -newViewSize * newAspect / 2
+          camera.right = newViewSize * newAspect / 2
+          camera.top = newViewSize / 2
+          camera.bottom = -newViewSize / 2
           camera.updateProjectionMatrix()
           resourcesRef.current.renderer.setSize(currentWidth, newHeight)
           lastWidth = currentWidth
@@ -219,14 +348,18 @@ export default function AnimatedBackground() {
           // Element may have already been removed
         }
       }
-      if (resourcesRef.current.geometry) {
-        resourcesRef.current.geometry.dispose()
+      // Dispose of all geometries and materials
+      if (resourcesRef.current.gridLines) {
+        resourcesRef.current.gridLines.forEach(line => {
+          if (line.geometry) line.geometry.dispose()
+          if (line.material) line.material.dispose()
+        })
       }
-      if (resourcesRef.current.material) {
-        resourcesRef.current.material.dispose()
-      }
-      if (resourcesRef.current.particleTexture) {
-        resourcesRef.current.particleTexture.dispose()
+      if (resourcesRef.current.networkLines) {
+        resourcesRef.current.networkLines.forEach(line => {
+          if (line.geometry) line.geometry.dispose()
+          if (line.material) line.material.dispose()
+        })
       }
       if (resourcesRef.current.renderer) {
         resourcesRef.current.renderer.dispose()
@@ -241,10 +374,21 @@ export default function AnimatedBackground() {
   }, [])
 
   return (
-    <div
-      ref={mountRef}
-      className="fixed inset-0 pointer-events-none"
-      style={{ zIndex: -1, height: '100vh' }}
-    />
+    <>
+      {/* Enhanced gradient background with depth */}
+      <div
+        className="fixed inset-0 pointer-events-none"
+        style={{
+          zIndex: -2,
+          height: '100vh',
+          background: 'linear-gradient(135deg, #030507 0%, #0a0d12 25%, #0d1117 50%, #0a0d12 75%, #030507 100%)'
+        }}
+      />
+      <div
+        ref={mountRef}
+        className="fixed inset-0 pointer-events-none"
+        style={{ zIndex: -1, height: '100vh' }}
+      />
+    </>
   )
 }
