@@ -106,9 +106,11 @@ export default function AnimatedBackground() {
     const gridStepsX = Math.floor(gridExtentX / gridSize)
     const gridStepsY = Math.floor(gridExtentY / gridSize)
     
-    // Subtle color with blue-purple tint, brighter base
-    const lineColor = new THREE.Color(0.7, 0.75, 0.9) // Brighter soft blue-purple
-    const gridOpacity = 0.35 // More visible base opacity for grid
+    // Subtle color with blue-purple tint, adjust brightness for mobile
+    const lineColor = isMobile 
+      ? new THREE.Color(0.55, 0.6, 0.75) // Less bright for mobile
+      : new THREE.Color(0.7, 0.75, 0.9) // Brighter for desktop
+    const gridOpacity = isMobile ? 0.25 : 0.35 // Lower opacity for mobile
     const networkOpacity = 0.15 // Slightly lower for network connections
 
     // Create grid lines material - linewidth doesn't work in WebGL, removed
@@ -275,11 +277,12 @@ export default function AnimatedBackground() {
           const newOpacity = Math.min(1.0, gridLineData.baseOpacity * brightness)
           gridLineData.material.opacity = newOpacity
           
-          // Color shift - make lines whiter when brighter
-          const whiteness = Math.max(0, pulseValue) * 0.5 // Only whiten on positive pulse, up to 50%
-          const baseR = 0.7
-          const baseG = 0.75
-          const baseB = 0.9
+          // Color shift - make lines whiter when brighter, less intense on mobile
+          const whitenessMultiplier = isMobile ? 0.3 : 0.5 // Less whiteness on mobile
+          const whiteness = Math.max(0, pulseValue) * whitenessMultiplier
+          const baseR = isMobile ? 0.55 : 0.7
+          const baseG = isMobile ? 0.6 : 0.75
+          const baseB = isMobile ? 0.75 : 0.9
           gridLineData.material.color.setRGB(
             Math.min(1.0, baseR + whiteness),
             Math.min(1.0, baseG + whiteness),
