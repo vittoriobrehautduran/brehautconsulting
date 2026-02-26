@@ -3,10 +3,9 @@
 import * as React from "react"
 import { useTranslations, useLocale } from 'next-intl'
 import { format, addDays, subDays, startOfDay } from "date-fns"
-import { enUS, sv, es, type Locale } from "date-fns/locale"
+import { type Locale } from "date-fns/locale"
 import { Calendar as CalendarIcon, ChevronRight, ChevronLeft } from "lucide-react"
 import { WORK_DAYS, TimeSlot, TIME_SLOTS } from "@/lib/constants"
-import { Calendar } from "@/components/ui/calendar"
 import { Button } from "@/components/ui/button"
 import {
   Popover,
@@ -15,6 +14,14 @@ import {
 } from "@/components/ui/popover"
 import { cn } from "@/lib/utils"
 import { AvailableSlot } from "@/types/booking"
+
+// Lazy load Calendar component to reduce initial bundle size
+// Wrap the named export as default for React.lazy
+const LazyCalendar = React.lazy(() => 
+  import("@/components/ui/calendar").then(module => ({ 
+    default: module.Calendar 
+  }))
+)
 
 interface ScheduleSelectorProps {
   selectedDate: Date | null
@@ -117,6 +124,27 @@ export default function ScheduleSelector({
     return slot?.available ?? false
   }
 
+  const [dateLocale, setDateLocale] = React.useState<Locale | null>(null)
+
+  // Dynamically load only the needed date-fns locale
+  React.useEffect(() => {
+    const loadLocale = async () => {
+      let localeModule: { default: Locale }
+      switch (locale) {
+        case 'sv':
+          localeModule = await import('date-fns/locale/sv')
+          break
+        case 'es':
+          localeModule = await import('date-fns/locale/es')
+          break
+        default:
+          localeModule = await import('date-fns/locale/en-US')
+      }
+      setDateLocale(localeModule.default)
+    }
+    loadLocale()
+  }, [locale])
+
   const formatDisplayDate = (date: Date): string => {
     const today = startOfDay(new Date())
     const compareDate = startOfDay(date)
@@ -130,13 +158,12 @@ export default function ScheduleSelector({
       return t('tomorrow')
     }
     
-    const localeMap: Record<string, Locale> = {
-      en: enUS,
-      sv: sv,
-      es: es,
+    if (!dateLocale) {
+      // Fallback to English format while locale loads
+      return format(date, "EEEE, MMMM d")
     }
     
-    return format(date, "EEEE, MMMM d", { locale: localeMap[locale] || enUS })
+    return format(date, "EEEE, MMMM d", { locale: dateLocale })
   }
 
   const today = startOfDay(new Date())
@@ -176,13 +203,15 @@ export default function ScheduleSelector({
               </Button>
             </PopoverTrigger>
             <PopoverContent className="w-auto p-0 bg-black border-blue-500/30 text-white" align="start">
-              <Calendar
-                mode="single"
-                selected={currentDate}
-                onSelect={handleCalendarDateSelect}
-                disabled={shouldDisableDate}
-                initialFocus
-              />
+              <React.Suspense fallback={<div className="p-4 text-center text-white/70 text-sm">Loading calendar...</div>}>
+                <LazyCalendar
+                  mode="single"
+                  selected={currentDate}
+                  onSelect={handleCalendarDateSelect}
+                  disabled={shouldDisableDate}
+                  initialFocus
+                />
+              </React.Suspense>
             </PopoverContent>
           </Popover>
         </div>
