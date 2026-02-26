@@ -52,7 +52,7 @@ export default function Header() {
         <div className="container mx-auto px-6 py-4 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity" onClick={closeMenu}>
             <Image
-              src="/images/brehautconsultinglogo.svg"
+              src="/images/bclogorefined.png"
               alt="Brehaut Consulting Logo"
               width={40}
               height={40}
