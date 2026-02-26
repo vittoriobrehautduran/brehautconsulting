@@ -129,7 +129,7 @@ export default function ScheduleSelector({
   // Dynamically load only the needed date-fns locale
   React.useEffect(() => {
     const loadLocale = async () => {
-      let localeModule: { default: Locale }
+      let localeModule: any
       switch (locale) {
         case 'sv':
           localeModule = await import('date-fns/locale/sv')
@@ -140,7 +140,8 @@ export default function ScheduleSelector({
         default:
           localeModule = await import('date-fns/locale/en-US')
       }
-      setDateLocale(localeModule.default)
+      // date-fns locales export both default and named exports
+      setDateLocale(localeModule.default || localeModule)
     }
     loadLocale()
   }, [locale])
