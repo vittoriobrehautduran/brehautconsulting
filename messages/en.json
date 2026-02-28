@@ -106,7 +106,7 @@
     },
     "howItWorks": {
       "title": "How It Works",
-      "description": "If this approach makes sense, {link}",
+      "description": "If this approach makes sense, <link>the next step is a short conversation</link>.",
       "linkText": "the next step is a short conversation",
       "steps": [
         {

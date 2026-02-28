@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link } from '@/i18n/navigation'
 import { useTranslations, useLocale } from 'next-intl'
-import Image from 'next/image'
 import AnimatedBackground from '@/components/AnimatedBackground'
 import { CONTACT_EMAIL, CONTACT_PHONE } from '@/lib/constants'
 import JsonLd from '@/components/schema/JsonLd'
@@ -17,13 +16,6 @@ import {
 // Lazy load GSAP to reduce initial bundle size
 let gsap: any = null
 let ScrollTrigger: any = null
-
-const PORTFOLIO_IMAGES = [
-  '/images/Websites/aceplanner.png',
-  '/images/Websites/stgofineart.png',
-  '/images/Websites/nuvepet.png',
-  '/images/Websites/nordkaliber.png',
-]
 
 export default function HomePage() {
   const locale = useLocale()
@@ -164,61 +156,99 @@ export default function HomePage() {
         }
       }
 
-      // Constant rotation carousel animation
+      // Website mockup with animated cursor
       if (portfolioCarouselRef.current && !prefersReducedMotion) {
-        const images = portfolioCarouselRef.current.querySelectorAll('.portfolio-image')
-        const totalImages = images.length
-        const isSmallMobile = typeof window !== 'undefined' && window.innerWidth <= 580
-        const radius = isSmallMobile ? 70 : (isMobile ? 95 : 170)
+        const cursor = portfolioCarouselRef.current.querySelector('.animated-cursor')
+        const clickableElements = portfolioCarouselRef.current.querySelectorAll('.clickable-element')
         
-        let currentRotation = 0
-        let animationFrameId: number | null = null
-        const rotationSpeed = isMobile ? 0.1 : 0.15 // Slower rotation on mobile
-        
-        images.forEach((img: any, index: number) => {
-          const angle = (index * 360) / totalImages
-          const x = Math.cos((angle * Math.PI) / 180) * radius
-          const z = isMobile ? 0 : Math.sin((angle * Math.PI) / 180) * radius // Flatten on mobile
+        if (cursor && clickableElements.length > 0) {
+          // Initial cursor position
+          gsap.set(cursor, { x: 0, y: 0, opacity: 1 })
           
-          gsap.set(img, {
-            x: x,
-            z: z,
-            rotationY: isMobile ? 0 : angle + 90, // No 3D rotation on mobile
-            transformOrigin: 'center center',
-            transformStyle: isMobile ? 'flat' : 'preserve-3d',
-          })
-        })
-
-        const updateRotation = () => {
-          images.forEach((img: any, index: number) => {
-            const baseAngle = (index * 360) / totalImages
-            const currentAngle = baseAngle + currentRotation
-            const x = Math.cos((currentAngle * Math.PI) / 180) * radius
-            const z = isMobile ? 0 : Math.sin((currentAngle * Math.PI) / 180) * radius
+          // Define click points (relative to the website mockup)
+          const clickPoints = [
+            { x: -60, y: -40 },   // Top navigation item 1
+            { x: -20, y: -40 },   // Top navigation item 2
+            { x: 20, y: -40 },    // Top navigation item 3
+            { x: 50, y: -40 },    // Top navigation item 4
+            { x: -30, y: 20 },    // Left card
+            { x: 30, y: 20 },     // Right card
+          ]
+          
+          let currentPointIndex = 0
+          let animationTimeline: gsap.core.Timeline | null = null
+          
+          const createClickSequence = () => {
+            if (!cursor) return
             
-            const frontFacing = Math.abs(Math.sin((currentAngle * Math.PI) / 180)) < 0.3
+            const timeline = gsap.timeline({ repeat: -1, repeatDelay: 1 })
             
-            gsap.set(img, {
-              x: x,
-              z: z,
-              rotationY: isMobile ? 0 : currentAngle + 90,
-              opacity: 1,
-              scale: 1,
+            clickPoints.forEach((point, index) => {
+              const targetElement = clickableElements[index % clickableElements.length]
+              
+              // Move cursor to position
+              timeline.to(cursor, {
+                x: point.x,
+                y: point.y,
+                duration: isMobile ? 1.2 : 0.8,
+                ease: 'power2.inOut',
+              })
+              
+              // Hover effect on element
+              if (targetElement) {
+                timeline.to(targetElement, {
+                  scale: 1.05,
+                  opacity: 0.9,
+                  duration: 0.2,
+                  ease: 'power2.out',
+                }, '-=0.3')
+              }
+              
+              // Click animation (cursor presses down)
+              timeline.to(cursor, {
+                scale: 0.9,
+                duration: 0.1,
+                ease: 'power2.out',
+              })
+              timeline.to(cursor, {
+                scale: 1,
+                duration: 0.1,
+                ease: 'power2.in',
+              })
+              
+              // Click ripple effect
+              if (targetElement) {
+                timeline.to(targetElement, {
+                  scale: 1,
+                  opacity: 1,
+                  duration: 0.3,
+                  ease: 'power2.out',
+                }, '-=0.1')
+              }
+              
+              // Brief pause before next movement
+              timeline.to({}, { duration: 0.5 })
             })
-          })
-        }
-
-        const animate = () => {
-          currentRotation += rotationSpeed
-          updateRotation()
-          animationFrameId = requestAnimationFrame(animate)
-        }
-
-        animate()
-        
-        scrollCleanup = () => {
-          if (animationFrameId) {
-            cancelAnimationFrame(animationFrameId)
+            
+            animationTimeline = timeline
+            
+            // Start animation when section is visible
+            ScrollTrigger.create({
+              trigger: portfolioCarouselRef.current,
+              start: 'top 80%',
+              onEnter: () => timeline.play(),
+              onLeave: () => timeline.pause(),
+              onEnterBack: () => timeline.play(),
+              onLeaveBack: () => timeline.pause(),
+            })
+          }
+          
+          createClickSequence()
+          
+          scrollCleanup = () => {
+            if (animationTimeline) {
+              animationTimeline.kill()
+            }
           }
         }
       }
@@ -799,35 +829,69 @@ export default function HomePage() {
                 </div>
               </div>
 
-              {/* Right Column - Portfolio Carousel Visualization */}
+              {/* Right Column - Website Mockup with Animated Cursor */}
               <div 
                 ref={portfolioCarouselRef} 
-                className="relative h-[200px] sm:h-[240px] lg:h-[220px] overflow-visible perspective-1000 z-10"
+                className="relative h-[200px] sm:h-[240px] lg:h-[220px] overflow-visible z-10"
               >
-                <div className="absolute top-0 left-0 right-0 bottom-0 flex items-center justify-center" style={{ transformStyle: 'preserve-3d', textAlign: 'center' }}>
-                  {PORTFOLIO_IMAGES.map((src, index) => (
-                    <div
-                      key={index}
-                      className="portfolio-image absolute w-full max-w-[160px] sm:max-w-[200px] lg:max-w-[240px]"
-                      style={{ transformStyle: 'preserve-3d' }}
-                    >
-                      <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-white/20 bg-white/5 backdrop-blur-sm">
-                        <Image
-                          src={src}
-                          alt={`Portfolio project ${index + 1} - ${src.split('/').pop()?.replace('.png', '').replace(/([A-Z])/g, ' $1').trim()}`}
-                          width={480}
-                          height={300}
-                          sizes="(max-width: 640px) 160px, (max-width: 1024px) 200px, 240px"
-                          className="w-full h-auto object-cover brightness-[0.5]"
-                          style={{ transform: 'scaleX(-1)' }}
-                          priority={index === 0}
-                          loading={index === 0 ? 'eager' : 'lazy'}
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-transparent to-black/40 pointer-events-none" style={{ maskImage: 'radial-gradient(ellipse 80% 100% at center, black 60%, transparent 100%)', WebkitMaskImage: 'radial-gradient(ellipse 80% 100% at center, black 60%, transparent 100%)' }}></div>
-                        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/40 pointer-events-none" style={{ maskImage: 'radial-gradient(ellipse 100% 80% at center, black 60%, transparent 100%)', WebkitMaskImage: 'radial-gradient(ellipse 100% 80% at center, black 60%, transparent 100%)' }}></div>
+                <div className="absolute top-0 left-0 right-0 bottom-0 flex items-center justify-center">
+                  {/* Website Mockup */}
+                  <div className="relative w-full max-w-[280px] sm:max-w-[320px] lg:max-w-[360px] h-full bg-gradient-to-br from-white/10 via-white/8 to-white/5 rounded-2xl border-2 border-white/20 backdrop-blur-md shadow-2xl overflow-hidden p-3 sm:p-4">
+                    {/* Browser Bar */}
+                    <div className="flex items-center gap-2 mb-2 sm:mb-3">
+                      <div className="flex gap-1.5">
+                        <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-red-500/60"></div>
+                        <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-yellow-500/60"></div>
+                        <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-green-500/60"></div>
+                      </div>
+                      <div className="flex-1 h-4 sm:h-5 bg-white/10 rounded-full px-2 sm:px-3 flex items-center">
+                        <div className="h-1.5 sm:h-2 w-3/4 bg-white/20 rounded"></div>
                       </div>
                     </div>
-                  ))}
+                    
+                    {/* Navigation Bar */}
+                    <div className="flex items-center gap-2 sm:gap-3 mb-2 sm:mb-3">
+                      <div className="clickable-element h-3 sm:h-4 w-12 sm:w-16 bg-white/15 rounded hover:bg-white/25 transition-colors"></div>
+                      <div className="clickable-element h-3 sm:h-4 w-10 sm:w-14 bg-white/15 rounded hover:bg-white/25 transition-colors"></div>
+                      <div className="clickable-element h-3 sm:h-4 w-14 sm:w-18 bg-white/15 rounded hover:bg-white/25 transition-colors"></div>
+                      <div className="clickable-element h-3 sm:h-4 w-10 sm:w-14 bg-white/15 rounded hover:bg-white/25 transition-colors"></div>
+                    </div>
+                    
+                    {/* Main Content Area */}
+                    <div className="space-y-2 sm:space-y-3">
+                      {/* Hero Section */}
+                      <div className="h-8 sm:h-10 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-lg flex items-center justify-center">
+                        <div className="h-2 sm:h-3 w-24 sm:w-32 bg-white/30 rounded"></div>
+                      </div>
+                      
+                      {/* Content Cards */}
+                      <div className="grid grid-cols-2 gap-2 sm:gap-3">
+                        <div className="clickable-element bg-white/8 rounded-lg p-2 sm:p-3 border border-white/10 hover:border-white/20 transition-colors">
+                          <div className="h-2 sm:h-3 w-3/4 bg-white/25 rounded mb-1.5 sm:mb-2"></div>
+                          <div className="h-1.5 sm:h-2 w-full bg-white/15 rounded mb-1"></div>
+                          <div className="h-1.5 sm:h-2 w-5/6 bg-white/15 rounded"></div>
+                        </div>
+                        <div className="clickable-element bg-white/8 rounded-lg p-2 sm:p-3 border border-white/10 hover:border-white/20 transition-colors">
+                          <div className="h-2 sm:h-3 w-3/4 bg-white/25 rounded mb-1.5 sm:mb-2"></div>
+                          <div className="h-1.5 sm:h-2 w-full bg-white/15 rounded mb-1"></div>
+                          <div className="h-1.5 sm:h-2 w-5/6 bg-white/15 rounded"></div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    {/* Animated Cursor */}
+                    <div className="animated-cursor absolute top-1/2 left-1/2 pointer-events-none z-50" style={{ transform: 'translate(-50%, -50%)' }}>
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" className="drop-shadow-lg">
+                        <path
+                          d="M3 3L10.07 19.97L12.58 12.58L19.97 10.07L3 3Z"
+                          fill="white"
+                          stroke="rgba(0,0,0,0.5)"
+                          strokeWidth="1"
+                          className="cursor-pointer"
+                        />
+                      </svg>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

@@ -106,7 +106,7 @@
     },
     "howItWorks": {
       "title": "Cómo funciona",
-      "description": "Si este enfoque tiene sentido, {link}",
+      "description": "Si este enfoque tiene sentido, <link>el siguiente paso es una conversación corta</link>.",
       "linkText": "el siguiente paso es una conversación corta",
       "steps": [
         {

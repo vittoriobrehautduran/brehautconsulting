@@ -106,7 +106,7 @@
     },
     "howItWorks": {
       "title": "Så fungerar det",
-      "description": "Om detta tillvägagångssätt är meningsfullt, {link}",
+      "description": "Om detta tillvägagångssätt är meningsfullt, <link>är nästa steg ett kort samtal</link>.",
       "linkText": "är nästa steg ett kort samtal",
       "steps": [
         {

@@ -328,7 +328,7 @@ export default function ServicesPage() {
         {/* Fixed Left Navigation */}
         <aside ref={sidebarRef} className="hidden lg:block fixed left-0 top-0 h-screen w-64 pt-32 pb-8 px-6 z-40 opacity-0">
           <nav className="sticky top-32">
-            <div className="bg-black/60 backdrop-blur-md rounded-2xl p-6">
+            <div className="bg-black/60 backdrop-blur-md rounded-2xl p-5">
               <h3 className="text-sm font-semibold text-white/60 uppercase tracking-wider mb-6">
                 {t('system.servicesLabel')}
               </h3>
@@ -337,7 +337,7 @@ export default function ServicesPage() {
                   <li key={index}>
                     <button
                       onClick={() => scrollToService(index)}
-                      className="w-full text-left px-4 py-3 rounded-lg transition-all duration-500 relative group"
+                      className="w-full text-left px-3 py-3 rounded-lg transition-all duration-500 relative group"
                     >
                       <div className="flex items-start gap-3">
                         <span className={`text-xs font-semibold w-6 flex-shrink-0 transition-colors duration-500 pt-0.5 ${
@@ -345,7 +345,7 @@ export default function ServicesPage() {
                         }`}>
                           {String(index + 1).padStart(2, '0')}
                         </span>
-                        <span className={`text-xs font-medium leading-relaxed flex-1 transition-all duration-500 ${
+                        <span className={`text-xs font-medium leading-relaxed flex-1 transition-all duration-500 break-words min-w-0 ${
                           activeSection === index
                             ? 'text-white'
                             : 'text-white/60 group-hover:text-white/90'
@@ -384,23 +384,13 @@ export default function ServicesPage() {
               {t('howItWorks.title')}
             </h2>
             <p className="text-lg md:text-xl text-white/80 text-center mb-12 max-w-2xl mx-auto">
-              {locale === 'sv' ? (
-                <>
-                  Om detta tillvägagångssätt är meningsfullt,{' '}
+              {t.rich('howItWorks.description', {
+                link: (chunks) => (
                   <Link href="/booking" className="text-white underline underline-offset-4 decoration-white/50 hover:decoration-white transition-colors">
-                    {t('howItWorks.linkText')}
+                    {chunks}
                   </Link>
-                  .
-                </>
-              ) : (
-                <>
-              If this approach makes sense,{' '}
-              <Link href="/booking" className="text-white underline underline-offset-4 decoration-white/50 hover:decoration-white transition-colors">
-                    {t('howItWorks.linkText')}
-              </Link>
-              .
-                </>
-              )}
+                ),
+              })}
             </p>
             <div className="space-y-16 max-w-3xl mx-auto">
               {t.raw('howItWorks.steps').map((step: any, index: number) => (
@@ -645,7 +635,7 @@ export default function ServicesPage() {
             <h2 className="glow-title text-4xl md:text-5xl font-heading font-bold mb-8 text-white text-center">
               {t('engagement.title')}
             </h2>
-            <div className="bg-black/40 border border-white/20 rounded-2xl p-8 lg:p-12 backdrop-blur-sm">
+            <div className="bg-black/40 border border-white/20 rounded-2xl p-6 sm:p-8 lg:p-12 backdrop-blur-sm">
               <p className="text-xl md:text-2xl text-white/90 leading-relaxed mb-8 text-center">
                 {t('engagement.description1')}
               </p>
@@ -654,13 +644,13 @@ export default function ServicesPage() {
               </p>
               <ul className="space-y-4 max-w-2xl mx-auto">
                 {t.raw('engagement.items').map((item: string, index: number) => (
-                  <li key={index} className="flex items-start gap-4 text-lg text-white/90 leading-relaxed">
+                  <li key={index} className="flex items-start gap-3 sm:gap-4 text-lg text-white/90 leading-relaxed">
                     <div className="flex-shrink-0 w-6 h-6 rounded-full bg-gradient-to-br from-blue-500/30 to-blue-600/30 border border-blue-400/40 flex items-center justify-center mt-1">
                       <svg className="w-4 h-4 text-blue-300" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                       </svg>
                     </div>
-                    <span>{item}</span>
+                    <span className="break-words min-w-0 pr-1 sm:pr-0">{item}</span>
                   </li>
                 ))}
               </ul>
