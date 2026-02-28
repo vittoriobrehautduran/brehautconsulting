@@ -783,17 +783,17 @@ export default function HomePage() {
               <div className="hidden lg:block absolute left-[calc(50%-1px)] top-1/2 -translate-y-1/2 w-px h-20 bg-gradient-to-b from-transparent via-white/20 to-transparent z-0"></div>
               
               {/* Left Column - Service Card */}
-              <div className="service-card description-card bg-gradient-to-br from-black/50 via-black/60 to-black/50 rounded-3xl p-10 lg:p-10 hover:bg-gradient-to-br hover:from-black/55 hover:via-black/65 hover:to-black/55 transition-all duration-300 relative z-10 backdrop-blur-md border border-white/20 overflow-hidden shadow-[0_0_15px_rgba(255,255,255,0.1)] hover:border-white/40 hover:shadow-[0_0_25px_rgba(255,255,255,0.25)]">
+              <div className="service-card description-card bg-gradient-to-br from-black/50 via-black/60 to-black/50 rounded-3xl p-6 lg:p-10 hover:bg-gradient-to-br hover:from-black/55 hover:via-black/65 hover:to-black/55 transition-all duration-300 relative z-10 backdrop-blur-md border border-white/20 overflow-hidden shadow-[0_0_15px_rgba(255,255,255,0.1)] hover:border-white/40 hover:shadow-[0_0_25px_rgba(255,255,255,0.25)]">
                 {/* Colored gradient overlay */}
                 <div className="absolute top-1/2 right-1/2 w-[600px] h-[600px] bg-gradient-to-br from-blue-500/15 to-purple-500/15 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
                 <div className="relative z-10">
-                  <h3 className="glow-text text-3xl lg:text-4xl font-heading font-bold mb-4 text-white leading-tight text-center lg:text-left">
+                  <h3 className="glow-text text-3xl lg:text-4xl font-heading font-bold mb-4 text-white leading-tight text-center lg:text-left break-words pr-1 lg:pr-0">
                     {tServices('service1.title')}
-                    <span className="block text-base lg:text-lg font-normal text-white/60 mt-1">
+                    <span className="block text-base lg:text-lg font-normal text-white/60 mt-1 break-words">
                       {tServices('service1.subtitle')}
                     </span>
                   </h3>
-                  <p className="text-lg lg:text-xl text-white/90 leading-relaxed text-center lg:text-left">
+                  <p className="text-lg lg:text-xl text-white/90 leading-relaxed text-left">
                     {tServices('service1.description')}
                   </p>
                 </div>
