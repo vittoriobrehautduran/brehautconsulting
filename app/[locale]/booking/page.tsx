@@ -118,6 +118,7 @@ export default function BookingPage() {
       const result = await response.json()
 
       if (!response.ok || !result.success) {
+        console.error('Booking failed:', result)
         throw new Error(result.error || 'Failed to create booking')
       }
 

@@ -92,14 +92,22 @@ export default function BookingForm({
 
     try {
       const dateStr = formatDateLocal(selectedDate)
-      await onSubmit({
+      const bookingData: BookingRequest = {
         name: formData.name.trim(),
         email: formData.email.trim(),
-        company: formData.company.trim() || undefined,
-        message: formData.message.trim() || undefined,
         date: dateStr,
         timeSlot: selectedTimeSlot,
-      })
+      }
+      
+      // Only include optional fields if they have values
+      if (formData.company.trim()) {
+        bookingData.company = formData.company.trim()
+      }
+      if (formData.message.trim()) {
+        bookingData.message = formData.message.trim()
+      }
+      
+      await onSubmit(bookingData)
 
       // Reset form on success
       setFormData({ name: '', email: '', company: '', message: '' })

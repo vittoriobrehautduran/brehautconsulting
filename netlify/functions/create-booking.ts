@@ -39,9 +39,13 @@ export const handler: Handler = async (event, context) => {
     // Parse request body
     const body = JSON.parse(event.body || '{}')
 
+    // Log received data for debugging
+    console.log('Received booking request:', JSON.stringify(body, null, 2))
+
     // Validate request
     const validationResult = bookingSchema.safeParse(body)
     if (!validationResult.success) {
+      console.error('Validation failed:', JSON.stringify(validationResult.error.errors, null, 2))
       return {
         statusCode: 400,
         headers: {
@@ -51,6 +55,7 @@ export const handler: Handler = async (event, context) => {
         body: JSON.stringify({
           success: false,
           error: validationResult.error.errors[0].message,
+          details: validationResult.error.errors,
         }),
       }
     }
