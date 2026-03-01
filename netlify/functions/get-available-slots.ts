@@ -5,6 +5,7 @@ import { prisma } from '../../lib/db/client'
 import { TIME_SLOTS, WORK_DAYS, MAX_BOOKINGS_PER_SLOT, TIMEZONE } from '../../lib/constants'
 import { getAvailableSlotsForDate, parseDateFromStorage, formatDateForStorage } from '../../lib/google-calendar/utils'
 import { getBookingCount } from '../../lib/db/bookings'
+import { toZonedTime } from 'date-fns-tz'
 
 export const handler: Handler = async (event, context) => {
   // Only allow GET requests
@@ -33,9 +34,10 @@ export const handler: Handler = async (event, context) => {
       }
     }
 
-    // Parse and validate date
-    const date = new Date(dateParam)
-    if (isNaN(date.getTime())) {
+    // Parse date using the same method as bookings (YYYY-MM-DD format)
+    // This ensures we're querying the database with the same date format
+    const parsedDate = parseDateFromStorage(dateParam)
+    if (isNaN(parsedDate.getTime())) {
       return {
         statusCode: 400,
         headers: {
@@ -46,8 +48,9 @@ export const handler: Handler = async (event, context) => {
       }
     }
 
-    // Check if date is a work day (Monday-Thursday)
-    const dayOfWeek = date.getDay()
+    // Check if date is a work day (Monday-Thursday) in Stockholm timezone
+    const dateInStockholm = toZonedTime(parsedDate, TIMEZONE)
+    const dayOfWeek = dateInStockholm.getDay()
     if (!WORK_DAYS.includes(dayOfWeek)) {
       return {
         statusCode: 400,
@@ -60,15 +63,16 @@ export const handler: Handler = async (event, context) => {
     }
 
     // Get available slots from Google Calendar
-    const calendarSlots = await getAvailableSlotsForDate(date)
+    const calendarSlots = await getAvailableSlotsForDate(parsedDate)
 
     // Check database for booking counts
-    const dateStr = formatDateForStorage(date)
+    // Use the parsed date to ensure we're querying with the same format as stored in DB
     const availableSlots = await Promise.all(
       TIME_SLOTS.map(async (timeSlot) => {
         let bookingCount = 0
         try {
-          bookingCount = await getBookingCount(date, timeSlot)
+          bookingCount = await getBookingCount(parsedDate, timeSlot)
+          console.log(`Slot ${timeSlot} on ${dateParam}: ${bookingCount} bookings (max: ${MAX_BOOKINGS_PER_SLOT})`)
         } catch (dbError) {
           console.error('Database error, assuming no bookings:', dbError)
           // If database fails, assume no bookings (safer to allow booking than block)
@@ -82,9 +86,12 @@ export const handler: Handler = async (event, context) => {
         const isCalendarBusy = calendarSlot ? !calendarSlot.available : false
 
         // Slot is available only if not at capacity AND not busy in calendar
+        const isAvailable = !isAtCapacity && !isCalendarBusy
+        console.log(`Slot ${timeSlot}: available=${isAvailable} (capacity=${!isAtCapacity}, calendar=${!isCalendarBusy})`)
+        
         return {
           timeSlot,
-          available: !isAtCapacity && !isCalendarBusy,
+          available: isAvailable,
         }
       })
     )

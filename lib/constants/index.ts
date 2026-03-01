@@ -6,7 +6,7 @@ export const TIME_SLOTS = ['13-14', '16-17', '18-19'] as const
 
 export type TimeSlot = typeof TIME_SLOTS[number]
 
-export const MAX_BOOKINGS_PER_SLOT = 3
+export const MAX_BOOKINGS_PER_SLOT = 1
 
 export const TIMEZONE = 'Europe/Stockholm'
 
