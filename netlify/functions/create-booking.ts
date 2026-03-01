@@ -9,6 +9,7 @@ import { parseDateFromStorage } from '../../lib/google-calendar/utils'
 import { sendBookingConfirmationEmail } from '../../lib/email/ses'
 import { GOOGLE_CALENDAR_ID } from '../../lib/constants'
 import { z } from 'zod'
+import { toZonedTime } from 'date-fns-tz'
 
 // Validation schema for booking request
 const bookingSchema = z.object({
@@ -86,12 +87,17 @@ export const handler: Handler = async (event, context) => {
     const { name, email, company, message, date, timeSlot } = validationResult.data
 
     // Parse date string to Date object in Stockholm timezone
-    const bookingDate = parseDateFromStorage(date)
-    console.log('Parsed booking date:', bookingDate.toISOString(), 'Day of week:', bookingDate.getDay())
+    const bookingDateUTC = parseDateFromStorage(date)
+    console.log('Parsed booking date (UTC):', bookingDateUTC.toISOString())
+
+    // Convert to Stockholm timezone to check the day of week correctly
+    // This ensures we check the day in the user's timezone, not UTC
+    const bookingDateInStockholm = toZonedTime(bookingDateUTC, TIMEZONE)
+    const dayOfWeek = bookingDateInStockholm.getDay()
+    console.log('Date in Stockholm timezone:', bookingDateInStockholm.toISOString(), 'Day of week:', dayOfWeek)
+    console.log('WORK_DAYS:', WORK_DAYS)
 
     // Check if date is a work day (Monday-Thursday)
-    const dayOfWeek = bookingDate.getDay()
-    console.log('Day of week:', dayOfWeek, 'WORK_DAYS:', WORK_DAYS)
     if (!WORK_DAYS.includes(dayOfWeek)) {
       console.log('Date is not a work day')
       return {
@@ -108,6 +114,9 @@ export const handler: Handler = async (event, context) => {
     }
     
     console.log('Date is a work day, checking slot availability')
+
+    // Use the UTC date for all operations (database, calendar, etc.)
+    const bookingDate = bookingDateUTC
 
     // Check if slot is still available
     const slotAvailable = await isSlotAvailable(bookingDate, timeSlot)
