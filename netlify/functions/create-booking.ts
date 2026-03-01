@@ -37,7 +37,23 @@ export const handler: Handler = async (event, context) => {
 
   try {
     // Parse request body
-    const body = JSON.parse(event.body || '{}')
+    let body
+    try {
+      body = JSON.parse(event.body || '{}')
+    } catch (parseError) {
+      console.error('Failed to parse request body:', parseError)
+      return {
+        statusCode: 400,
+        headers: {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*',
+        },
+        body: JSON.stringify({
+          success: false,
+          error: 'Invalid request body',
+        }),
+      }
+    }
 
     // Log received data for debugging
     console.log('Received booking request:', JSON.stringify(body, null, 2))
@@ -45,7 +61,13 @@ export const handler: Handler = async (event, context) => {
     // Validate request
     const validationResult = bookingSchema.safeParse(body)
     if (!validationResult.success) {
-      console.error('Validation failed:', JSON.stringify(validationResult.error.errors, null, 2))
+      const errorDetails = validationResult.error.errors.map(err => ({
+        path: err.path.join('.'),
+        message: err.message,
+        code: err.code,
+      }))
+      console.error('Validation failed:', JSON.stringify(errorDetails, null, 2))
+      console.error('Full validation error:', JSON.stringify(validationResult.error, null, 2))
       return {
         statusCode: 400,
         headers: {
@@ -55,19 +77,23 @@ export const handler: Handler = async (event, context) => {
         body: JSON.stringify({
           success: false,
           error: validationResult.error.errors[0].message,
-          details: validationResult.error.errors,
+          details: errorDetails,
         }),
       }
     }
 
+    console.log('Validation passed')
     const { name, email, company, message, date, timeSlot } = validationResult.data
 
     // Parse date string to Date object in Stockholm timezone
     const bookingDate = parseDateFromStorage(date)
+    console.log('Parsed booking date:', bookingDate.toISOString(), 'Day of week:', bookingDate.getDay())
 
     // Check if date is a work day (Monday-Thursday)
     const dayOfWeek = bookingDate.getDay()
+    console.log('Day of week:', dayOfWeek, 'WORK_DAYS:', WORK_DAYS)
     if (!WORK_DAYS.includes(dayOfWeek)) {
+      console.log('Date is not a work day')
       return {
         statusCode: 400,
         headers: {
@@ -80,6 +106,8 @@ export const handler: Handler = async (event, context) => {
         }),
       }
     }
+    
+    console.log('Date is a work day, checking slot availability')
 
     // Check if slot is still available
     const slotAvailable = await isSlotAvailable(bookingDate, timeSlot)
