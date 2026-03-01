@@ -7,11 +7,17 @@ import { parseDateFromStorage, formatDateForStorage } from '@/lib/google-calenda
 // Check if a slot is available (not at capacity and date is valid)
 export async function isSlotAvailable(date: Date, timeSlot: TimeSlot): Promise<boolean> {
   const dateStr = formatDateForStorage(date)
+  const parsedDate = parseDateFromStorage(dateStr)
+
+  // Handle legacy '16-16' time slot - treat it the same as '16-17'
+  const timeSlotsToCheck = timeSlot === '16-17' ? ['16-17', '16-16'] : [timeSlot]
 
   const bookingCount = await prisma.booking.count({
     where: {
-      date: parseDateFromStorage(dateStr),
-      timeSlot,
+      date: parsedDate,
+      timeSlot: {
+        in: timeSlotsToCheck,
+      },
       status: 'confirmed',
     },
   })
@@ -22,11 +28,17 @@ export async function isSlotAvailable(date: Date, timeSlot: TimeSlot): Promise<b
 // Get booking count for a specific date and time slot
 export async function getBookingCount(date: Date, timeSlot: TimeSlot): Promise<number> {
   const dateStr = formatDateForStorage(date)
+  const parsedDate = parseDateFromStorage(dateStr)
+
+  // Handle legacy '16-16' time slot - treat it the same as '16-17'
+  const timeSlotsToCheck = timeSlot === '16-17' ? ['16-17', '16-16'] : [timeSlot]
 
   return await prisma.booking.count({
     where: {
-      date: parseDateFromStorage(dateStr),
-      timeSlot,
+      date: parsedDate,
+      timeSlot: {
+        in: timeSlotsToCheck,
+      },
       status: 'confirmed',
     },
   })
