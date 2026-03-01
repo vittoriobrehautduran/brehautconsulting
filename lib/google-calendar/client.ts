@@ -159,7 +159,7 @@ export async function createCalendarEvent(
   const calendar = await getCalendarClient()
   const primaryCalendarId = calendarId || GOOGLE_CALENDAR_ID
 
-  // Parse time slot (e.g., "13-14" -> 13:00 and 14:00, "16-16" -> 16:00 and 17:00)
+  // Parse time slot (e.g., "13-14" -> 13:00 and 14:00, "16-17" -> 16:00 and 17:00)
   const [startHour, endHour] = timeSlot.split('-').map(Number)
   const actualEndHour = startHour === endHour ? endHour + 1 : endHour
 
