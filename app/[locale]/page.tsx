@@ -31,6 +31,7 @@ export default function HomePage() {
   const heroRef = useRef<HTMLDivElement>(null)
   const titleRef = useRef<HTMLHeadingElement>(null)
   const taglineRef = useRef<HTMLParagraphElement>(null)
+  const descriptionRef = useRef<HTMLParagraphElement>(null)
   const ctaRef = useRef<HTMLDivElement>(null)
   const servicesRef = useRef<HTMLDivElement>(null)
   const servicesTitleRef = useRef<HTMLHeadingElement>(null)
@@ -93,33 +94,92 @@ export default function HomePage() {
     const prefersReducedMotion = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
     
     const ctx = gsap.context(() => {
-      // Hero animations - optimized for mobile, use will-change to hint browser
+      // Hero animations - majestic smooth fade-in
       if (titleRef.current && taglineRef.current && ctaRef.current) {
-        // Batch DOM reads
         const title = titleRef.current
         const tagline = taglineRef.current
         const cta = ctaRef.current
+        const description = descriptionRef.current
         
         // Use requestAnimationFrame to batch operations and reduce forced reflows
         requestAnimationFrame(() => {
-          const tl = gsap.timeline()
+          const tl = gsap.timeline({ defaults: { ease: 'power4.out' } })
+          
+          // Title - majestic entrance with scale and fade
           tl.fromTo(
             title,
-            { y: isMobile ? 60 : 100, opacity: 0 },
-            { y: 0, opacity: 1, duration: isMobile ? 0.7 : 1, ease: isMobile ? 'power2.out' : 'power3.out' }
+            { 
+              y: isMobile ? 40 : 80, 
+              opacity: 0, 
+              scale: 0.95,
+              filter: 'blur(10px)'
+            },
+            { 
+              y: 0, 
+              opacity: 1, 
+              scale: 1,
+              filter: 'blur(0px)',
+              duration: isMobile ? 0.9 : 1.2,
+              ease: 'power4.out'
+            }
           )
-            .fromTo(
-              tagline,
-              { y: isMobile ? 30 : 50, opacity: 0 },
-              { y: 0, opacity: 1, duration: isMobile ? 0.5 : 0.8, ease: isMobile ? 'power2.out' : 'power3.out' },
-              '-=0.5'
-            )
-            .fromTo(
-              cta,
-              { y: isMobile ? 20 : 30, opacity: 0 },
-              { y: 0, opacity: 1, duration: isMobile ? 0.4 : 0.6, ease: isMobile ? 'power2.out' : 'power3.out' },
+          // Tagline - smooth fade in after title
+          .fromTo(
+            tagline,
+            { 
+              y: isMobile ? 30 : 50, 
+              opacity: 0,
+              filter: 'blur(8px)'
+            },
+            { 
+              y: 0, 
+              opacity: 1,
+              filter: 'blur(0px)',
+              duration: isMobile ? 0.7 : 0.9,
+              ease: 'power3.out'
+            },
+            '-=0.5'
+          )
+          
+          // Description - elegant fade (only if exists on desktop)
+          if (description) {
+            tl.fromTo(
+              description,
+              { 
+                y: isMobile ? 20 : 40, 
+                opacity: 0,
+                filter: 'blur(6px)'
+              },
+              { 
+                y: 0, 
+                opacity: 1,
+                filter: 'blur(0px)',
+                duration: isMobile ? 0.6 : 0.7,
+                ease: 'power3.out'
+              },
               '-=0.4'
             )
+          }
+          
+          // CTA - final elegant entrance
+          tl.fromTo(
+            cta,
+            { 
+              y: isMobile ? 20 : 30, 
+              opacity: 0,
+              scale: 0.98,
+              filter: 'blur(4px)'
+            },
+            { 
+              y: 0, 
+              opacity: 1,
+              scale: 1,
+              filter: 'blur(0px)',
+              duration: isMobile ? 0.5 : 0.7,
+              ease: 'power3.out'
+            },
+            '-=0.3'
+          )
         })
       }
 
@@ -143,24 +203,55 @@ export default function HomePage() {
       }
 
       if (servicesRef.current) {
-        const serviceCard = servicesRef.current.querySelector('.service-card')
-        if (serviceCard) {
-          // Simpler animation on mobile for better performance
-          const slideDistance = isMobile ? 20 : 50
+        const serviceCards = servicesRef.current.querySelectorAll('.service-card')
+        const portfolioCarousel = portfolioCarouselRef.current
+        
+        // Animate all service cards with subtle smooth fade-in
+        serviceCards.forEach((card: any, index: number) => {
           gsap.fromTo(
-            serviceCard,
-            { x: -slideDistance, opacity: 0 },
+            card,
+            { 
+              y: 30, 
+              opacity: 0,
+              filter: 'blur(4px)'
+            },
             {
-              x: 0,
+              y: 0,
               opacity: 1,
-              duration: isMobile ? 0.5 : 0.6,
-              ease: isMobile ? 'power1.out' : 'power2.out',
-              force3D: !isMobile, // Disable force3D on mobile to reduce lag
+              filter: 'blur(0px)',
+              duration: 0.8,
+              ease: 'power2.out',
               scrollTrigger: {
-                trigger: serviceCard,
-                start: 'top 80%',
+                trigger: card,
+                start: 'top 85%',
                 toggleActions: 'play none none none',
               },
+              delay: index * 0.1,
+            }
+          )
+        })
+        
+        // Animate the portfolio carousel/mockup with fade-in
+        if (portfolioCarousel) {
+          gsap.fromTo(
+            portfolioCarousel,
+            { 
+              y: 30, 
+              opacity: 0,
+              filter: 'blur(4px)'
+            },
+            {
+              y: 0,
+              opacity: 1,
+              filter: 'blur(0px)',
+              duration: 0.8,
+              ease: 'power2.out',
+              scrollTrigger: {
+                trigger: portfolioCarousel,
+                start: 'top 85%',
+                toggleActions: 'play none none none',
+              },
+              delay: serviceCards.length * 0.1,
             }
           )
         }
@@ -347,21 +438,38 @@ export default function HomePage() {
         }
       }
 
+      if (serviceCard2Ref.current) {
+        gsap.fromTo(
+          serviceCard2Ref.current,
+          { y: 30, opacity: 0, filter: 'blur(4px)' },
+          {
+            y: 0,
+            opacity: 1,
+            filter: 'blur(0px)',
+            duration: 0.8,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: serviceCard2Ref.current,
+              start: 'top 85%',
+              toggleActions: 'play none none none',
+            },
+          }
+        )
+      }
+
       if (serviceCard3Ref.current) {
-        // Simpler animation on mobile for better performance
-        const slideDistance = isMobile ? 20 : 50
         gsap.fromTo(
           serviceCard3Ref.current,
-          { x: -slideDistance, opacity: 0 },
+          { y: 30, opacity: 0, filter: 'blur(4px)' },
           {
-            x: 0,
+            y: 0,
             opacity: 1,
-            duration: isMobile ? 0.5 : 0.6,
-            ease: isMobile ? 'power1.out' : 'power2.out',
-            force3D: !isMobile, // Disable force3D on mobile to reduce lag
+            filter: 'blur(0px)',
+            duration: 0.8,
+            ease: 'power2.out',
             scrollTrigger: {
               trigger: serviceCard3Ref.current,
-              start: 'top 80%',
+              start: 'top 85%',
               toggleActions: 'play none none none',
             },
           }
@@ -414,20 +522,18 @@ export default function HomePage() {
       }
 
       if (serviceCard4Ref.current) {
-        // Simpler animation on mobile for better performance
-        const slideDistance = isMobile ? 20 : 50
         gsap.fromTo(
           serviceCard4Ref.current,
-          { x: -slideDistance, opacity: 0 },
+          { y: 30, opacity: 0, filter: 'blur(4px)' },
           {
-            x: 0,
+            y: 0,
             opacity: 1,
-            duration: isMobile ? 0.5 : 0.6,
-            ease: isMobile ? 'power1.out' : 'power2.out',
-            force3D: !isMobile, // Disable force3D on mobile to reduce lag
+            filter: 'blur(0px)',
+            duration: 0.8,
+            ease: 'power2.out',
             scrollTrigger: {
               trigger: serviceCard4Ref.current,
-              start: 'top 80%',
+              start: 'top 85%',
               toggleActions: 'play none none none',
             },
           }
@@ -458,20 +564,18 @@ export default function HomePage() {
       }
 
       if (serviceCard5Ref.current) {
-        // Simpler animation on mobile for better performance
-        const slideDistance = isMobile ? 20 : 50
         gsap.fromTo(
           serviceCard5Ref.current,
-          { x: -slideDistance, opacity: 0 },
+          { y: 30, opacity: 0, filter: 'blur(4px)' },
           {
-            x: 0,
+            y: 0,
             opacity: 1,
-            duration: isMobile ? 0.5 : 0.6,
-            ease: isMobile ? 'power1.out' : 'power2.out',
-            force3D: !isMobile, // Disable force3D on mobile to reduce lag
+            filter: 'blur(0px)',
+            duration: 0.8,
+            ease: 'power2.out',
             scrollTrigger: {
               trigger: serviceCard5Ref.current,
-              start: 'top 80%',
+              start: 'top 85%',
               toggleActions: 'play none none none',
             },
           }
@@ -521,20 +625,18 @@ export default function HomePage() {
       }
 
       if (serviceCard6Ref.current) {
-        // Simpler animation on mobile for better performance
-        const slideDistance = isMobile ? 20 : 50
         gsap.fromTo(
           serviceCard6Ref.current,
-          { x: -slideDistance, opacity: 0 },
+          { y: 30, opacity: 0, filter: 'blur(4px)' },
           {
-            x: 0,
+            y: 0,
             opacity: 1,
-            duration: isMobile ? 0.5 : 0.6,
-            ease: isMobile ? 'power1.out' : 'power2.out',
-            force3D: !isMobile, // Disable force3D on mobile to reduce lag
+            filter: 'blur(0px)',
+            duration: 0.8,
+            ease: 'power2.out',
             scrollTrigger: {
               trigger: serviceCard6Ref.current,
-              start: 'top 80%',
+              start: 'top 85%',
               toggleActions: 'play none none none',
             },
           }
@@ -779,20 +881,20 @@ export default function HomePage() {
           <div className="container mx-auto max-w-none md:max-w-5xl text-center">
             <h1
               ref={titleRef}
-              className="glow-title text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-canela font-bold mb-8 bg-gradient-to-r from-blue-300 to-purple-400 bg-clip-text text-transparent pb-2 overflow-visible tracking-tight"
+              className="glow-title text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-canela font-bold mb-8 bg-gradient-to-r from-blue-300 to-purple-400 bg-clip-text text-transparent pb-2 overflow-visible tracking-tight opacity-0"
             >
               Brehaut Consulting
             </h1>
             <p
               ref={taglineRef}
-              className="text-xl md:text-2xl text-white/90 mb-6 md:mb-4 leading-relaxed max-w-4xl mx-auto"
+              className="text-xl md:text-2xl text-white/90 mb-6 md:mb-4 leading-relaxed max-w-4xl mx-auto opacity-0"
             >
               {t('hero.tagline')}
             </p>
-            <p className="hidden md:block text-lg text-white/80 mb-12 leading-relaxed max-w-3xl mx-auto">
+            <p ref={descriptionRef} className="hidden md:block text-lg text-white/80 mb-12 leading-relaxed max-w-3xl mx-auto opacity-0">
               {t('hero.description')}
             </p>
-            <div ref={ctaRef} className="flex flex-col items-center gap-6">
+            <div ref={ctaRef} className="flex flex-col items-center gap-6 opacity-0">
               <Link
                 href="/booking"
                 className="glow-button cta inline-block px-10 py-4 bg-white text-black rounded-full text-lg font-semibold hover:bg-white/90 shadow-2xl"
@@ -823,7 +925,7 @@ export default function HomePage() {
               <div className="hidden lg:block absolute left-[calc(50%-1px)] top-1/2 -translate-y-1/2 w-px h-20 bg-gradient-to-b from-transparent via-white/20 to-transparent z-0"></div>
               
               {/* Left Column - Service Card */}
-              <div className="service-card description-card bg-gradient-to-br from-black/50 via-black/60 to-black/50 rounded-3xl p-6 lg:p-10 hover:bg-gradient-to-br hover:from-black/55 hover:via-black/65 hover:to-black/55 transition-all duration-300 relative z-10 backdrop-blur-md border border-white/20 overflow-hidden shadow-[0_0_15px_rgba(255,255,255,0.1)] hover:border-white/40 hover:shadow-[0_0_25px_rgba(255,255,255,0.25)]">
+              <div className="service-card description-card bg-gradient-to-br from-black/50 via-black/60 to-black/50 rounded-3xl p-6 lg:p-10 hover:bg-gradient-to-br hover:from-black/55 hover:via-black/65 hover:to-black/55 transition-all duration-300 relative z-10 backdrop-blur-md border border-white/20 overflow-hidden shadow-[0_0_15px_rgba(255,255,255,0.1)] hover:border-white/40 hover:shadow-[0_0_25px_rgba(255,255,255,0.25)] opacity-0">
                 {/* Colored gradient overlay */}
                 <div className="absolute top-1/2 right-1/2 w-[600px] h-[600px] bg-gradient-to-br from-blue-500/15 to-purple-500/15 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
                 <div className="relative z-10">
@@ -842,7 +944,7 @@ export default function HomePage() {
               {/* Right Column - Website Mockup with Animated Cursor */}
               <div 
                 ref={portfolioCarouselRef} 
-                className="relative h-[200px] sm:h-[240px] lg:h-[220px] overflow-visible z-10"
+                className="relative h-[200px] sm:h-[240px] lg:h-[220px] overflow-visible z-10 opacity-0"
               >
                 <div className="absolute top-0 left-0 right-0 bottom-0 flex items-center justify-center">
                   {/* Website Mockup */}
@@ -914,7 +1016,7 @@ export default function HomePage() {
               {/* Left Column - Service Card */}
               <div 
                 ref={serviceCard2Ref}
-                className="description-card bg-gradient-to-br from-black/50 via-black/60 to-black/50 rounded-3xl p-10 lg:p-14 hover:bg-gradient-to-br hover:from-black/55 hover:via-black/65 hover:to-black/55 transition-all duration-300 relative z-10 backdrop-blur-md border border-white/20 overflow-hidden shadow-[0_0_15px_rgba(255,255,255,0.1)] hover:border-white/40 hover:shadow-[0_0_25px_rgba(255,255,255,0.25)]"
+                className="description-card bg-gradient-to-br from-black/50 via-black/60 to-black/50 rounded-3xl p-10 lg:p-14 hover:bg-gradient-to-br hover:from-black/55 hover:via-black/65 hover:to-black/55 transition-all duration-300 relative z-10 backdrop-blur-md border border-white/20 overflow-hidden shadow-[0_0_15px_rgba(255,255,255,0.1)] hover:border-white/40 hover:shadow-[0_0_25px_rgba(255,255,255,0.25)] opacity-0"
               >
                 {/* Colored gradient overlay */}
                 <div className="absolute top-1/2 right-1/2 w-[600px] h-[600px] bg-gradient-to-br from-blue-500/15 to-purple-500/15 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
@@ -1033,7 +1135,7 @@ export default function HomePage() {
               {/* Left Column - Service Card */}
               <div 
                 ref={serviceCard3Ref}
-                className="description-card bg-gradient-to-br from-black/50 via-black/60 to-black/50 rounded-3xl p-10 lg:p-14 hover:bg-gradient-to-br hover:from-black/55 hover:via-black/65 hover:to-black/55 transition-all duration-300 relative z-10 backdrop-blur-md border border-white/20 overflow-hidden shadow-[0_0_15px_rgba(255,255,255,0.1)] hover:border-white/40 hover:shadow-[0_0_25px_rgba(255,255,255,0.25)]"
+                className="description-card bg-gradient-to-br from-black/50 via-black/60 to-black/50 rounded-3xl p-10 lg:p-14 hover:bg-gradient-to-br hover:from-black/55 hover:via-black/65 hover:to-black/55 transition-all duration-300 relative z-10 backdrop-blur-md border border-white/20 overflow-hidden shadow-[0_0_15px_rgba(255,255,255,0.1)] hover:border-white/40 hover:shadow-[0_0_25px_rgba(255,255,255,0.25)] opacity-0"
               >
                 {/* Colored gradient overlay */}
                 <div className="absolute top-1/2 right-1/2 w-[600px] h-[600px] bg-gradient-to-br from-blue-500/15 to-purple-500/15 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
@@ -1119,7 +1221,7 @@ export default function HomePage() {
               {/* Left Column - Service Card */}
               <div 
                 ref={serviceCard4Ref}
-                className="description-card bg-gradient-to-br from-black/50 via-black/60 to-black/50 rounded-3xl p-10 lg:p-14 hover:bg-gradient-to-br hover:from-black/55 hover:via-black/65 hover:to-black/55 transition-all duration-300 relative z-10 backdrop-blur-md border border-white/20 overflow-hidden shadow-[0_0_15px_rgba(255,255,255,0.1)] hover:border-white/40 hover:shadow-[0_0_25px_rgba(255,255,255,0.25)]"
+                className="description-card bg-gradient-to-br from-black/50 via-black/60 to-black/50 rounded-3xl p-10 lg:p-14 hover:bg-gradient-to-br hover:from-black/55 hover:via-black/65 hover:to-black/55 transition-all duration-300 relative z-10 backdrop-blur-md border border-white/20 overflow-hidden shadow-[0_0_15px_rgba(255,255,255,0.1)] hover:border-white/40 hover:shadow-[0_0_25px_rgba(255,255,255,0.25)] opacity-0"
               >
                 {/* Colored gradient overlay */}
                 <div className="absolute top-1/2 right-1/2 w-[600px] h-[600px] bg-gradient-to-br from-blue-500/15 to-purple-500/15 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
@@ -1271,7 +1373,7 @@ export default function HomePage() {
               {/* Left Column - Service Card */}
               <div 
                 ref={serviceCard5Ref}
-                className="description-card bg-gradient-to-br from-black/50 via-black/60 to-black/50 rounded-3xl p-10 lg:p-14 hover:bg-gradient-to-br hover:from-black/55 hover:via-black/65 hover:to-black/55 transition-all duration-300 relative z-10 backdrop-blur-md border border-white/20 overflow-hidden shadow-[0_0_15px_rgba(255,255,255,0.1)] hover:border-white/40 hover:shadow-[0_0_25px_rgba(255,255,255,0.25)]"
+                className="description-card bg-gradient-to-br from-black/50 via-black/60 to-black/50 rounded-3xl p-10 lg:p-14 hover:bg-gradient-to-br hover:from-black/55 hover:via-black/65 hover:to-black/55 transition-all duration-300 relative z-10 backdrop-blur-md border border-white/20 overflow-hidden shadow-[0_0_15px_rgba(255,255,255,0.1)] hover:border-white/40 hover:shadow-[0_0_25px_rgba(255,255,255,0.25)] opacity-0"
               >
                 {/* Colored gradient overlay */}
                 <div className="absolute top-1/2 right-1/2 w-[600px] h-[600px] bg-gradient-to-br from-blue-500/15 to-purple-500/15 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
@@ -1349,7 +1451,7 @@ export default function HomePage() {
               {/* Left Column - Service Card */}
               <div 
                 ref={serviceCard6Ref}
-                className="description-card bg-gradient-to-br from-black/50 via-black/60 to-black/50 rounded-3xl p-10 lg:p-14 hover:bg-gradient-to-br hover:from-black/55 hover:via-black/65 hover:to-black/55 transition-all duration-300 relative z-10 flex flex-col justify-center backdrop-blur-md border border-white/10 hover:border-white/20 overflow-hidden"
+                className="description-card bg-gradient-to-br from-black/50 via-black/60 to-black/50 rounded-3xl p-10 lg:p-14 hover:bg-gradient-to-br hover:from-black/55 hover:via-black/65 hover:to-black/55 transition-all duration-300 relative z-10 flex flex-col justify-center backdrop-blur-md border border-white/10 hover:border-white/20 overflow-hidden opacity-0"
               >
                 {/* Colored gradient overlay */}
                 <div className="absolute top-1/2 right-1/2 w-[600px] h-[600px] bg-gradient-to-br from-blue-500/15 to-purple-500/15 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
