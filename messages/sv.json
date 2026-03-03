@@ -3,7 +3,8 @@
     "nav": {
       "home": "Hem",
       "howItWorks": "Så fungerar det",
-      "bookMeeting": "Boka ett möte"
+      "bookMeeting": "Boka ett möte",
+      "call": "Ring"
     },
     "buttons": {
       "bookMeeting": "Boka ett möte",
@@ -309,6 +310,7 @@
       }
     },
     "success": "Bokning bekräftad! Vi ser fram emot att träffa dig.",
+    "callAlternative": "Eller ring oss så hittar vi en tid som passar oss båda.",
     "info": {
       "purpose": {
         "title": "Mötesändamål",

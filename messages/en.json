@@ -3,7 +3,8 @@
     "nav": {
       "home": "Home",
       "howItWorks": "How it works",
-      "bookMeeting": "Book a Meeting"
+      "bookMeeting": "Book a Meeting",
+      "call": "Call"
     },
     "buttons": {
       "bookMeeting": "Book a Meeting",
@@ -309,6 +310,7 @@
       }
     },
     "success": "Booking confirmed! We look forward to meeting with you.",
+    "callAlternative": "Or call us and we'll find a time that works for both of us.",
     "info": {
       "purpose": {
         "title": "Meeting Purpose",

@@ -3,7 +3,8 @@
     "nav": {
       "home": "Inicio",
       "howItWorks": "Cómo funciona",
-      "bookMeeting": "Reservar una reunión"
+      "bookMeeting": "Reservar una reunión",
+      "call": "Llamar"
     },
     "buttons": {
       "bookMeeting": "Reservar una reunión",
@@ -309,6 +310,7 @@
       }
     },
     "success": "¡Reserva confirmada! Esperamos reunirnos contigo.",
+    "callAlternative": "O llámanos y encontraremos un horario que funcione para ambos.",
     "info": {
       "purpose": {
         "title": "Propósito de la reunión",

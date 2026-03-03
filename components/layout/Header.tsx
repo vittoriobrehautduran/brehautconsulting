@@ -6,11 +6,13 @@ import { useTranslations } from 'next-intl'
 import { useEffect, useRef, useState } from 'react'
 import gsap from 'gsap'
 import LanguageSwitcher from './LanguageSwitcher'
+import { CONTACT_PHONE } from '@/lib/constants'
 
 export default function Header() {
   const headerRef = useRef<HTMLElement>(null)
   const pathname = usePathname()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [showPhoneIcon, setShowPhoneIcon] = useState(true)
   const t = useTranslations('common.nav')
 
   useEffect(() => {
@@ -33,6 +35,14 @@ export default function Header() {
       document.body.style.overflow = 'unset'
     }
   }, [isMenuOpen])
+
+  // Alternating phone icon/text display
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setShowPhoneIcon((prev) => !prev)
+    }, 6000)
+    return () => clearInterval(interval)
+  }, [])
 
   const isActive = (path: string) => {
     // pathname from next-intl navigation already excludes locale prefix
@@ -83,6 +93,39 @@ export default function Header() {
             >
               {t('howItWorks')}
             </Link>
+            <a
+              href={`tel:${CONTACT_PHONE.replace(/\s/g, '')}`}
+              className="flex items-center gap-2 px-4 py-2 text-white/90 hover:text-white transition-colors text-sm font-medium border border-white/20 rounded-full hover:border-white/40"
+            >
+              <div className="relative w-5 h-5 flex items-center justify-center">
+                <svg
+                  className={`w-5 h-5 absolute transition-all duration-500 ease-in-out ${
+                    showPhoneIcon
+                      ? 'opacity-100 scale-100'
+                      : 'opacity-0 scale-90'
+                  }`}
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                  />
+                </svg>
+                <span
+                  className={`transition-all duration-500 ease-in-out ${
+                    showPhoneIcon
+                      ? 'opacity-0 scale-90'
+                      : 'opacity-100 scale-100'
+                  }`}
+                >
+                  {t('call')}
+                </span>
+              </div>
+            </a>
             <Link
               href="/booking"
               className="cta px-6 py-2 bg-white text-black rounded-full font-medium hover:bg-white/90 transition-colors"
@@ -144,6 +187,40 @@ export default function Header() {
               >
                 {t('howItWorks')}
               </Link>
+              <a
+                href={`tel:${CONTACT_PHONE.replace(/\s/g, '')}`}
+                onClick={closeMenu}
+                className="flex items-center justify-center gap-2 px-4 py-3 text-white/90 hover:text-white transition-colors text-base font-medium border border-white/20 rounded-full hover:border-white/40"
+              >
+                <div className="relative w-5 h-5 flex items-center justify-center">
+                  <svg
+                    className={`w-5 h-5 absolute transition-all duration-500 ease-in-out ${
+                      showPhoneIcon
+                        ? 'opacity-100 scale-100'
+                        : 'opacity-0 scale-90'
+                    }`}
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                    />
+                  </svg>
+                  <span
+                    className={`transition-all duration-500 ease-in-out ${
+                      showPhoneIcon
+                        ? 'opacity-0 scale-90'
+                        : 'opacity-100 scale-100'
+                    }`}
+                  >
+                    {t('call')}
+                  </span>
+                </div>
+              </a>
               <Link
                 href="/booking"
                 onClick={closeMenu}
