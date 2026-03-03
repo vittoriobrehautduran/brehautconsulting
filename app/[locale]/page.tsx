@@ -207,51 +207,60 @@ export default function HomePage() {
         const portfolioCarousel = portfolioCarouselRef.current
         
         // Animate all service cards with subtle smooth fade-in
+        // Optimized for mobile: smaller slide distance, no blur, faster easing
         serviceCards.forEach((card: any, index: number) => {
+          const slideDistance = isMobile ? 15 : 30
+          const animationProps = isMobile 
+            ? { y: slideDistance, opacity: 0 }
+            : { y: slideDistance, opacity: 0, filter: 'blur(4px)' }
+          
+          const animationTo = isMobile
+            ? { y: 0, opacity: 1 }
+            : { y: 0, opacity: 1, filter: 'blur(0px)' }
+          
           gsap.fromTo(
             card,
-            { 
-              y: 30, 
-              opacity: 0,
-              filter: 'blur(4px)'
-            },
+            animationProps,
             {
-              y: 0,
-              opacity: 1,
-              filter: 'blur(0px)',
-              duration: 0.8,
-              ease: 'power2.out',
+              ...animationTo,
+              duration: isMobile ? 0.6 : 0.8,
+              ease: isMobile ? 'power1.out' : 'power2.out',
+              force3D: true,
               scrollTrigger: {
                 trigger: card,
                 start: 'top 85%',
                 toggleActions: 'play none none none',
               },
-              delay: index * 0.1,
+              delay: index * 0.08,
             }
           )
         })
         
         // Animate the portfolio carousel/mockup with fade-in
         if (portfolioCarousel) {
+          const slideDistance = isMobile ? 15 : 30
+          const animationProps = isMobile 
+            ? { y: slideDistance, opacity: 0 }
+            : { y: slideDistance, opacity: 0, filter: 'blur(4px)' }
+          
+          const animationTo = isMobile
+            ? { y: 0, opacity: 1 }
+            : { y: 0, opacity: 1, filter: 'blur(0px)' }
+          
           gsap.fromTo(
             portfolioCarousel,
-            { 
-              y: 30, 
-              opacity: 0,
-              filter: 'blur(4px)'
-            },
+            animationProps,
             {
-              y: 0,
-              opacity: 1,
-              filter: 'blur(0px)',
-              duration: 0.8,
-              ease: 'power2.out',
+              ...animationTo,
+              duration: isMobile ? 0.6 : 0.8,
+              ease: isMobile ? 'power1.out' : 'power2.out',
+              force3D: true,
               scrollTrigger: {
                 trigger: portfolioCarousel,
                 start: 'top 85%',
                 toggleActions: 'play none none none',
               },
-              delay: serviceCards.length * 0.1,
+              delay: serviceCards.length * 0.08,
             }
           )
         }
@@ -439,15 +448,23 @@ export default function HomePage() {
       }
 
       if (serviceCard2Ref.current) {
+        const slideDistance = isMobile ? 15 : 30
+        const animationProps = isMobile 
+          ? { y: slideDistance, opacity: 0 }
+          : { y: slideDistance, opacity: 0, filter: 'blur(4px)' }
+        
+        const animationTo = isMobile
+          ? { y: 0, opacity: 1 }
+          : { y: 0, opacity: 1, filter: 'blur(0px)' }
+        
         gsap.fromTo(
           serviceCard2Ref.current,
-          { y: 30, opacity: 0, filter: 'blur(4px)' },
+          animationProps,
           {
-            y: 0,
-            opacity: 1,
-            filter: 'blur(0px)',
-            duration: 0.8,
-            ease: 'power2.out',
+            ...animationTo,
+            duration: isMobile ? 0.6 : 0.8,
+            ease: isMobile ? 'power1.out' : 'power2.out',
+            force3D: true,
             scrollTrigger: {
               trigger: serviceCard2Ref.current,
               start: 'top 85%',
@@ -458,15 +475,23 @@ export default function HomePage() {
       }
 
       if (serviceCard3Ref.current) {
+        const slideDistance = isMobile ? 15 : 30
+        const animationProps = isMobile 
+          ? { y: slideDistance, opacity: 0 }
+          : { y: slideDistance, opacity: 0, filter: 'blur(4px)' }
+        
+        const animationTo = isMobile
+          ? { y: 0, opacity: 1 }
+          : { y: 0, opacity: 1, filter: 'blur(0px)' }
+        
         gsap.fromTo(
           serviceCard3Ref.current,
-          { y: 30, opacity: 0, filter: 'blur(4px)' },
+          animationProps,
           {
-            y: 0,
-            opacity: 1,
-            filter: 'blur(0px)',
-            duration: 0.8,
-            ease: 'power2.out',
+            ...animationTo,
+            duration: isMobile ? 0.6 : 0.8,
+            ease: isMobile ? 'power1.out' : 'power2.out',
+            force3D: true,
             scrollTrigger: {
               trigger: serviceCard3Ref.current,
               start: 'top 85%',
@@ -522,15 +547,23 @@ export default function HomePage() {
       }
 
       if (serviceCard4Ref.current) {
+        const slideDistance = isMobile ? 15 : 30
+        const animationProps = isMobile 
+          ? { y: slideDistance, opacity: 0 }
+          : { y: slideDistance, opacity: 0, filter: 'blur(4px)' }
+        
+        const animationTo = isMobile
+          ? { y: 0, opacity: 1 }
+          : { y: 0, opacity: 1, filter: 'blur(0px)' }
+        
         gsap.fromTo(
           serviceCard4Ref.current,
-          { y: 30, opacity: 0, filter: 'blur(4px)' },
+          animationProps,
           {
-            y: 0,
-            opacity: 1,
-            filter: 'blur(0px)',
-            duration: 0.8,
-            ease: 'power2.out',
+            ...animationTo,
+            duration: isMobile ? 0.6 : 0.8,
+            ease: isMobile ? 'power1.out' : 'power2.out',
+            force3D: true,
             scrollTrigger: {
               trigger: serviceCard4Ref.current,
               start: 'top 85%',
@@ -564,15 +597,23 @@ export default function HomePage() {
       }
 
       if (serviceCard5Ref.current) {
+        const slideDistance = isMobile ? 15 : 30
+        const animationProps = isMobile 
+          ? { y: slideDistance, opacity: 0 }
+          : { y: slideDistance, opacity: 0, filter: 'blur(4px)' }
+        
+        const animationTo = isMobile
+          ? { y: 0, opacity: 1 }
+          : { y: 0, opacity: 1, filter: 'blur(0px)' }
+        
         gsap.fromTo(
           serviceCard5Ref.current,
-          { y: 30, opacity: 0, filter: 'blur(4px)' },
+          animationProps,
           {
-            y: 0,
-            opacity: 1,
-            filter: 'blur(0px)',
-            duration: 0.8,
-            ease: 'power2.out',
+            ...animationTo,
+            duration: isMobile ? 0.6 : 0.8,
+            ease: isMobile ? 'power1.out' : 'power2.out',
+            force3D: true,
             scrollTrigger: {
               trigger: serviceCard5Ref.current,
               start: 'top 85%',
@@ -625,15 +666,23 @@ export default function HomePage() {
       }
 
       if (serviceCard6Ref.current) {
+        const slideDistance = isMobile ? 15 : 30
+        const animationProps = isMobile 
+          ? { y: slideDistance, opacity: 0 }
+          : { y: slideDistance, opacity: 0, filter: 'blur(4px)' }
+        
+        const animationTo = isMobile
+          ? { y: 0, opacity: 1 }
+          : { y: 0, opacity: 1, filter: 'blur(0px)' }
+        
         gsap.fromTo(
           serviceCard6Ref.current,
-          { y: 30, opacity: 0, filter: 'blur(4px)' },
+          animationProps,
           {
-            y: 0,
-            opacity: 1,
-            filter: 'blur(0px)',
-            duration: 0.8,
-            ease: 'power2.out',
+            ...animationTo,
+            duration: isMobile ? 0.6 : 0.8,
+            ease: isMobile ? 'power1.out' : 'power2.out',
+            force3D: true,
             scrollTrigger: {
               trigger: serviceCard6Ref.current,
               start: 'top 85%',
