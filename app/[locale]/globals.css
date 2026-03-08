@@ -62,13 +62,6 @@
 
 /* Performance optimizations */
 @layer utilities {
-  /* Reduce paint complexity for animations */
-  .portfolio-image,
-  .service-card,
-  .faq-item {
-    will-change: transform, opacity;
-  }
-  
   /* Optimize font rendering */
   .glow-title,
   .glow-text {
@@ -102,14 +95,8 @@
     text-shadow: 0 0 8px rgba(147, 197, 253, 0.3), 0 0 12px rgba(196, 181, 253, 0.2);
   }
 
-  @media (prefers-reduced-motion: no-preference) {
-    .glow-text {
-      animation: text-glow 4s ease-in-out infinite;
-    }
-  }
-
   .glow-title {
-    text-shadow: 0 0 12px rgba(147, 197, 253, 0.25), 0 0 20px rgba(196, 181, 253, 0.15);
+    text-shadow: 0 0 8px rgba(147, 197, 253, 0.2), 0 0 12px rgba(196, 181, 253, 0.12);
   }
 
   @media (prefers-reduced-motion: no-preference) {
@@ -131,7 +118,6 @@
 
   /* Reduce animation intensity on mobile instead of disabling */
   @media (max-width: 768px) {
-    .glow-text,
     .glow-title,
     .glow-button {
       animation-duration: 6s !important; /* Slower animations */
@@ -154,10 +140,10 @@
 
   @keyframes title-glow {
     0%, 100% {
-      text-shadow: 0 0 12px rgba(147, 197, 253, 0.25), 0 0 20px rgba(196, 181, 253, 0.15);
+      text-shadow: 0 0 8px rgba(147, 197, 253, 0.2), 0 0 12px rgba(196, 181, 253, 0.12);
     }
     50% {
-      text-shadow: 0 0 18px rgba(147, 197, 253, 0.35), 0 0 28px rgba(196, 181, 253, 0.22);
+      text-shadow: 0 0 10px rgba(147, 197, 253, 0.25), 0 0 15px rgba(196, 181, 253, 0.15);
     }
   }
 

@@ -659,8 +659,8 @@ export default function ServicesPage() {
                                 {t('system.serviceLabel')} {index + 1}
                               </span>
                             </div>
-                            <div className="flex items-baseline gap-3 flex-wrap">
-                              <h2 className="glow-text text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-white leading-tight break-words">
+                            <div className="flex items-baseline gap-3 flex-wrap pr-2">
+                              <h2 className="glow-text text-xl sm:text-2xl md:text-3xl lg:text-4xl font-heading font-bold text-white leading-tight break-words hyphens-auto">
                                 {service.title}
                               </h2>
                               {service.label && (

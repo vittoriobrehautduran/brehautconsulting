@@ -259,7 +259,8 @@ export default function HomePage() {
       }
 
       if (servicesRef.current) {
-        const serviceCards = servicesRef.current.querySelectorAll('.service-card')
+        // Select all service cards in the full services section, not just the first grid row.
+        const serviceCards = document.querySelectorAll('[data-services-section] .service-card')
         const portfolioCarousel = portfolioCarouselRef.current
         
         // Mobile optimization: reduce animations, no blur, simpler easing
@@ -547,73 +548,7 @@ export default function HomePage() {
         }
       }
 
-      if (serviceCard2Ref.current) {
-        if (isLowEndDevice) {
-          gsap.set(serviceCard2Ref.current, { opacity: 1 })
-        } else {
-          if (isMobile) {
-            (serviceCard2Ref.current as HTMLElement).style.willChange = 'transform, opacity'
-          }
-          
-          const slideDistance = isMobile ? 10 : 30
-          gsap.fromTo(
-            serviceCard2Ref.current,
-            { y: slideDistance, opacity: 0 },
-            {
-              y: 0,
-              opacity: 1,
-              duration: isMobile ? 0.5 : 0.8,
-              ease: isMobile ? 'linear' : 'power2.out',
-              force3D: true,
-              scrollTrigger: {
-                trigger: serviceCard2Ref.current,
-                start: 'top 90%',
-                toggleActions: 'play none none none',
-                once: true,
-              },
-              onComplete: () => {
-                if (isMobile) {
-                  (serviceCard2Ref.current as HTMLElement).style.willChange = 'auto'
-                }
-              }
-            }
-          )
-        }
-      }
 
-      if (serviceCard3Ref.current) {
-        if (isLowEndDevice) {
-          gsap.set(serviceCard3Ref.current, { opacity: 1 })
-        } else {
-          if (isMobile) {
-            (serviceCard3Ref.current as HTMLElement).style.willChange = 'transform, opacity'
-          }
-          
-          const slideDistance = isMobile ? 10 : 30
-          gsap.fromTo(
-            serviceCard3Ref.current,
-            { y: slideDistance, opacity: 0 },
-            {
-              y: 0,
-              opacity: 1,
-              duration: isMobile ? 0.5 : 0.8,
-              ease: isMobile ? 'linear' : 'power2.out',
-              force3D: true,
-              scrollTrigger: {
-                trigger: serviceCard3Ref.current,
-                start: 'top 90%',
-                toggleActions: 'play none none none',
-                once: true,
-              },
-              onComplete: () => {
-                if (isMobile) {
-                  (serviceCard3Ref.current as HTMLElement).style.willChange = 'auto'
-                }
-              }
-            }
-          )
-        }
-      }
 
       if (searchResultsRef.current) {
         const results = searchResultsRef.current.querySelectorAll('.search-result')
@@ -660,39 +595,6 @@ export default function HomePage() {
         }
       }
 
-      if (serviceCard4Ref.current) {
-        if (isLowEndDevice) {
-          gsap.set(serviceCard4Ref.current, { opacity: 1 })
-        } else {
-          if (isMobile) {
-            (serviceCard4Ref.current as HTMLElement).style.willChange = 'transform, opacity'
-          }
-          
-          const slideDistance = isMobile ? 10 : 30
-          gsap.fromTo(
-            serviceCard4Ref.current,
-            { y: slideDistance, opacity: 0 },
-            {
-              y: 0,
-              opacity: 1,
-              duration: isMobile ? 0.5 : 0.8,
-              ease: isMobile ? 'linear' : 'power2.out',
-              force3D: true,
-              scrollTrigger: {
-                trigger: serviceCard4Ref.current,
-                start: 'top 90%',
-                toggleActions: 'play none none none',
-                once: true,
-              },
-              onComplete: () => {
-                if (isMobile) {
-                  (serviceCard4Ref.current as HTMLElement).style.willChange = 'auto'
-                }
-              }
-            }
-          )
-        }
-      }
 
       if (roiChartRef.current) {
         const adFormats = roiChartRef.current.querySelectorAll('.ad-format')
@@ -717,39 +619,6 @@ export default function HomePage() {
         })
       }
 
-      if (serviceCard5Ref.current) {
-        if (isLowEndDevice) {
-          gsap.set(serviceCard5Ref.current, { opacity: 1 })
-        } else {
-          if (isMobile) {
-            (serviceCard5Ref.current as HTMLElement).style.willChange = 'transform, opacity'
-          }
-          
-          const slideDistance = isMobile ? 10 : 30
-          gsap.fromTo(
-            serviceCard5Ref.current,
-            { y: slideDistance, opacity: 0 },
-            {
-              y: 0,
-              opacity: 1,
-              duration: isMobile ? 0.5 : 0.8,
-              ease: isMobile ? 'linear' : 'power2.out',
-              force3D: true,
-              scrollTrigger: {
-                trigger: serviceCard5Ref.current,
-                start: 'top 90%',
-                toggleActions: 'play none none none',
-                once: true,
-              },
-              onComplete: () => {
-                if (isMobile) {
-                  (serviceCard5Ref.current as HTMLElement).style.willChange = 'auto'
-                }
-              }
-            }
-          )
-        }
-      }
 
       if (analyticsDashboardRef.current) {
         const metricCards = analyticsDashboardRef.current.querySelectorAll('.metric-card')
@@ -793,39 +662,6 @@ export default function HomePage() {
         })
       }
 
-      if (serviceCard6Ref.current) {
-        if (isLowEndDevice) {
-          gsap.set(serviceCard6Ref.current, { opacity: 1 })
-        } else {
-          if (isMobile) {
-            (serviceCard6Ref.current as HTMLElement).style.willChange = 'transform, opacity'
-          }
-          
-          const slideDistance = isMobile ? 10 : 30
-          gsap.fromTo(
-            serviceCard6Ref.current,
-            { y: slideDistance, opacity: 0 },
-            {
-              y: 0,
-              opacity: 1,
-              duration: isMobile ? 0.5 : 0.8,
-              ease: isMobile ? 'linear' : 'power2.out',
-              force3D: true,
-              scrollTrigger: {
-                trigger: serviceCard6Ref.current,
-                start: 'top 90%',
-                toggleActions: 'play none none none',
-                once: true,
-              },
-              onComplete: () => {
-                if (isMobile) {
-                  (serviceCard6Ref.current as HTMLElement).style.willChange = 'auto'
-                }
-              }
-            }
-          )
-        }
-      }
 
       if (integrationsRef.current) {
         const automationSteps = integrationsRef.current.querySelectorAll('.automation-step')
@@ -1105,12 +941,13 @@ export default function HomePage() {
         {/* Hero Section */}
         <section
           ref={heroRef}
-          className="min-h-screen flex items-center justify-center px-6 pt-24"
+          className="min-h-screen flex items-center justify-center px-6 pt-24 overflow-visible"
         >
-          <div className="container mx-auto max-w-none md:max-w-5xl text-center">
+          <div className="container mx-auto max-w-none md:max-w-5xl text-center overflow-visible">
             <h1
               ref={titleRef}
-              className="glow-title text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-canela font-bold mb-8 bg-gradient-to-r from-blue-300 to-purple-400 bg-clip-text text-transparent pb-2 overflow-visible tracking-tight opacity-0"
+              className="glow-title text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-canela font-bold mb-8 bg-gradient-to-r from-blue-300 to-purple-400 bg-clip-text text-transparent pb-4 tracking-tight opacity-0 relative z-20 leading-tight"
+              style={{ paddingBottom: '1rem', lineHeight: '1.1' }}
             >
               Brehaut Consulting
             </h1>
@@ -1157,8 +994,8 @@ export default function HomePage() {
               <div className="service-card description-card bg-gradient-to-br from-black/50 via-black/60 to-black/50 rounded-3xl p-6 lg:p-10 hover:bg-gradient-to-br hover:from-black/55 hover:via-black/65 hover:to-black/55 transition-all duration-300 relative z-10 backdrop-blur-md border border-white/20 overflow-hidden shadow-[0_0_15px_rgba(255,255,255,0.1)] hover:border-white/40 hover:shadow-[0_0_25px_rgba(255,255,255,0.25)] opacity-0">
                 {/* Colored gradient overlay */}
                 <div className="absolute top-1/2 right-1/2 w-[600px] h-[600px] bg-gradient-to-br from-blue-500/15 to-purple-500/15 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
-                <div className="relative z-10">
-                  <h3 className="glow-text text-3xl lg:text-4xl font-heading font-bold mb-4 text-white leading-tight text-center lg:text-left break-words pr-1 lg:pr-0">
+                <div className="relative z-10 pr-2">
+                  <h3 className="glow-text text-2xl sm:text-3xl lg:text-3xl font-heading font-bold mb-4 text-white leading-tight text-left break-words hyphens-auto">
                     {tServices('service1.title')}
                     <span className="block text-base lg:text-lg font-normal text-white/60 mt-1 break-words">
                       {tServices('service1.subtitle')}
@@ -1245,12 +1082,12 @@ export default function HomePage() {
               {/* Left Column - Service Card */}
               <div 
                 ref={serviceCard2Ref}
-                className="description-card bg-gradient-to-br from-black/50 via-black/60 to-black/50 rounded-3xl p-10 lg:p-14 hover:bg-gradient-to-br hover:from-black/55 hover:via-black/65 hover:to-black/55 transition-all duration-300 relative z-10 backdrop-blur-md border border-white/20 overflow-hidden shadow-[0_0_15px_rgba(255,255,255,0.1)] hover:border-white/40 hover:shadow-[0_0_25px_rgba(255,255,255,0.25)] opacity-0"
+                className="service-card description-card bg-gradient-to-br from-black/50 via-black/60 to-black/50 rounded-3xl p-10 lg:p-14 hover:bg-gradient-to-br hover:from-black/55 hover:via-black/65 hover:to-black/55 transition-all duration-300 relative z-10 backdrop-blur-md border border-white/20 overflow-hidden shadow-[0_0_15px_rgba(255,255,255,0.1)] hover:border-white/40 hover:shadow-[0_0_25px_rgba(255,255,255,0.25)] opacity-0"
               >
                 {/* Colored gradient overlay */}
                 <div className="absolute top-1/2 right-1/2 w-[600px] h-[600px] bg-gradient-to-br from-blue-500/15 to-purple-500/15 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
-                <div className="relative z-10">
-                  <h3 className="glow-text text-3xl lg:text-4xl font-heading font-bold mb-6 text-white leading-tight">
+                <div className="relative z-10 pr-2">
+                  <h3 className="glow-text text-2xl sm:text-3xl lg:text-3xl font-heading font-bold mb-6 text-white leading-tight break-words hyphens-auto">
                     {tServices('service2.title')}
                     <span className="block text-base lg:text-lg font-normal text-white/60 mt-1">
                       {tServices('service2.subtitle')}
@@ -1364,12 +1201,12 @@ export default function HomePage() {
               {/* Left Column - Service Card */}
               <div 
                 ref={serviceCard3Ref}
-                className="description-card bg-gradient-to-br from-black/50 via-black/60 to-black/50 rounded-3xl p-10 lg:p-14 hover:bg-gradient-to-br hover:from-black/55 hover:via-black/65 hover:to-black/55 transition-all duration-300 relative z-10 backdrop-blur-md border border-white/20 overflow-hidden shadow-[0_0_15px_rgba(255,255,255,0.1)] hover:border-white/40 hover:shadow-[0_0_25px_rgba(255,255,255,0.25)] opacity-0"
+                className="service-card description-card bg-gradient-to-br from-black/50 via-black/60 to-black/50 rounded-3xl p-10 lg:p-14 hover:bg-gradient-to-br hover:from-black/55 hover:via-black/65 hover:to-black/55 transition-all duration-300 relative z-10 backdrop-blur-md border border-white/20 overflow-hidden shadow-[0_0_15px_rgba(255,255,255,0.1)] hover:border-white/40 hover:shadow-[0_0_25px_rgba(255,255,255,0.25)] opacity-0"
               >
                 {/* Colored gradient overlay */}
                 <div className="absolute top-1/2 right-1/2 w-[600px] h-[600px] bg-gradient-to-br from-blue-500/15 to-purple-500/15 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
-                <div className="relative z-10">
-                  <h3 className="glow-text text-3xl lg:text-4xl font-heading font-bold mb-6 text-white leading-tight">
+                <div className="relative z-10 pr-2">
+                  <h3 className="glow-text text-2xl sm:text-3xl lg:text-3xl font-heading font-bold mb-6 text-white leading-tight break-words hyphens-auto">
                     {tServices('service3.title')}
                     <span className="block text-base lg:text-lg font-normal text-white/60 mt-1">
                       {tServices('service3.subtitle')}
@@ -1450,12 +1287,12 @@ export default function HomePage() {
               {/* Left Column - Service Card */}
               <div 
                 ref={serviceCard4Ref}
-                className="description-card bg-gradient-to-br from-black/50 via-black/60 to-black/50 rounded-3xl p-10 lg:p-14 hover:bg-gradient-to-br hover:from-black/55 hover:via-black/65 hover:to-black/55 transition-all duration-300 relative z-10 backdrop-blur-md border border-white/20 overflow-hidden shadow-[0_0_15px_rgba(255,255,255,0.1)] hover:border-white/40 hover:shadow-[0_0_25px_rgba(255,255,255,0.25)] opacity-0"
+                className="service-card description-card bg-gradient-to-br from-black/50 via-black/60 to-black/50 rounded-3xl p-10 lg:p-14 hover:bg-gradient-to-br hover:from-black/55 hover:via-black/65 hover:to-black/55 transition-all duration-300 relative z-10 backdrop-blur-md border border-white/20 overflow-hidden shadow-[0_0_15px_rgba(255,255,255,0.1)] hover:border-white/40 hover:shadow-[0_0_25px_rgba(255,255,255,0.25)] opacity-0"
               >
                 {/* Colored gradient overlay */}
                 <div className="absolute top-1/2 right-1/2 w-[600px] h-[600px] bg-gradient-to-br from-blue-500/15 to-purple-500/15 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
-                <div className="relative z-10">
-                  <h3 className="glow-text text-3xl lg:text-4xl font-heading font-bold mb-6 text-white leading-tight">
+                <div className="relative z-10 pr-2">
+                  <h3 className="glow-text text-2xl sm:text-3xl lg:text-3xl font-heading font-bold mb-6 text-white leading-tight break-words hyphens-auto">
                     {tServices('service4.title')}
                     <span className="block text-base lg:text-lg font-normal text-white/60 mt-1">
                       {tServices('service4.subtitle')}
@@ -1602,12 +1439,12 @@ export default function HomePage() {
               {/* Left Column - Service Card */}
               <div 
                 ref={serviceCard5Ref}
-                className="description-card bg-gradient-to-br from-black/50 via-black/60 to-black/50 rounded-3xl p-10 lg:p-14 hover:bg-gradient-to-br hover:from-black/55 hover:via-black/65 hover:to-black/55 transition-all duration-300 relative z-10 backdrop-blur-md border border-white/20 overflow-hidden shadow-[0_0_15px_rgba(255,255,255,0.1)] hover:border-white/40 hover:shadow-[0_0_25px_rgba(255,255,255,0.25)] opacity-0"
+                className="service-card description-card bg-gradient-to-br from-black/50 via-black/60 to-black/50 rounded-3xl p-10 lg:p-14 hover:bg-gradient-to-br hover:from-black/55 hover:via-black/65 hover:to-black/55 transition-all duration-300 relative z-10 backdrop-blur-md border border-white/20 overflow-hidden shadow-[0_0_15px_rgba(255,255,255,0.1)] hover:border-white/40 hover:shadow-[0_0_25px_rgba(255,255,255,0.25)] opacity-0"
               >
                 {/* Colored gradient overlay */}
                 <div className="absolute top-1/2 right-1/2 w-[600px] h-[600px] bg-gradient-to-br from-blue-500/15 to-purple-500/15 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
-                <div className="relative z-10">
-                  <h3 className="glow-text text-3xl lg:text-4xl font-heading font-bold mb-6 text-white leading-tight">
+                <div className="relative z-10 pr-2">
+                  <h3 className="glow-text text-2xl sm:text-3xl lg:text-3xl font-heading font-bold mb-6 text-white leading-tight break-words hyphens-auto">
                     {tServices('service5.title')}
                     <span className="block text-base lg:text-lg font-normal text-white/60 mt-1">
                       {tServices('service5.subtitle')}
@@ -1680,12 +1517,12 @@ export default function HomePage() {
               {/* Left Column - Service Card */}
               <div 
                 ref={serviceCard6Ref}
-                className="description-card bg-gradient-to-br from-black/50 via-black/60 to-black/50 rounded-3xl p-10 lg:p-14 hover:bg-gradient-to-br hover:from-black/55 hover:via-black/65 hover:to-black/55 transition-all duration-300 relative z-10 flex flex-col justify-center backdrop-blur-md border border-white/10 hover:border-white/20 overflow-hidden opacity-0"
+                className="service-card description-card bg-gradient-to-br from-black/50 via-black/60 to-black/50 rounded-3xl p-10 lg:p-14 hover:bg-gradient-to-br hover:from-black/55 hover:via-black/65 hover:to-black/55 transition-all duration-300 relative z-10 flex flex-col justify-center backdrop-blur-md border border-white/10 hover:border-white/20 overflow-hidden opacity-0"
               >
                 {/* Colored gradient overlay */}
                 <div className="absolute top-1/2 right-1/2 w-[600px] h-[600px] bg-gradient-to-br from-blue-500/15 to-purple-500/15 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
-                <div className="relative z-10">
-                  <h3 className="glow-text text-3xl lg:text-4xl font-heading font-bold mb-6 text-white leading-tight">
+                <div className="relative z-10 pr-2">
+                  <h3 className="glow-text text-2xl sm:text-3xl lg:text-3xl font-heading font-bold mb-6 text-white leading-tight break-words hyphens-auto">
                     {tServices('service6.title')}
                     <span className="block text-base lg:text-lg font-normal text-white/60 mt-1">
                       {tServices('service6.subtitle')}
