@@ -93,176 +93,276 @@ export default function HomePage() {
     const isMobile = typeof window !== 'undefined' && (window.innerWidth < 768 || /iPhone|iPad|iPod|Android/i.test(navigator.userAgent))
     const prefersReducedMotion = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
     
+    // Detect low-end devices (for disabling heavy animations)
+    const isLowEndDevice = typeof window !== 'undefined' && (
+      /Android.*Chrome\/[0-5][0-9]/.test(navigator.userAgent) ||
+      /iPhone.*OS [0-9]_[0-2]/.test(navigator.userAgent) ||
+      (navigator.hardwareConcurrency && navigator.hardwareConcurrency < 4) ||
+      ('deviceMemory' in navigator && (navigator as any).deviceMemory && (navigator as any).deviceMemory < 4)
+    )
+    
+    // Throttle ScrollTrigger refresh rate on mobile for better performance
+    if (isMobile && ScrollTrigger) {
+      ScrollTrigger.config({ limitCallbacks: true })
+    }
+    
     const ctx = gsap.context(() => {
-      // Hero animations - majestic smooth fade-in
+      // Hero animations - majestic smooth fade-in (optimized for mobile)
       if (titleRef.current && taglineRef.current && ctaRef.current) {
         const title = titleRef.current
         const tagline = taglineRef.current
         const cta = ctaRef.current
         const description = descriptionRef.current
         
-        // Use requestAnimationFrame to batch operations and reduce forced reflows
-        requestAnimationFrame(() => {
-          const tl = gsap.timeline({ defaults: { ease: 'power4.out' } })
+        // Skip blur and complex effects on mobile/low-end devices
+        if (isLowEndDevice) {
+          gsap.set([title, tagline, description, cta].filter(Boolean), { opacity: 1 })
+        } else {
+          // Add will-change hints for mobile
+          if (isMobile) {
+            [title, tagline, description, cta].filter(Boolean).forEach((el) => {
+              if (el) (el as HTMLElement).style.willChange = 'transform, opacity'
+            })
+          }
           
-          // Title - majestic entrance with scale and fade
-          tl.fromTo(
-            title,
-            { 
-              y: isMobile ? 40 : 80, 
-              opacity: 0, 
-              scale: 0.95,
-              filter: 'blur(10px)'
-            },
-            { 
-              y: 0, 
-              opacity: 1, 
-              scale: 1,
-              filter: 'blur(0px)',
-              duration: isMobile ? 0.9 : 1.2,
-              ease: 'power4.out'
-            }
-          )
-          // Tagline - smooth fade in after title
-          .fromTo(
-            tagline,
-            { 
-              y: isMobile ? 30 : 50, 
-              opacity: 0,
-              filter: 'blur(8px)'
-            },
-            { 
-              y: 0, 
-              opacity: 1,
-              filter: 'blur(0px)',
-              duration: isMobile ? 0.7 : 0.9,
-              ease: 'power3.out'
-            },
-            '-=0.5'
-          )
-          
-          // Description - elegant fade (only if exists on desktop)
-          if (description) {
+          // Use requestAnimationFrame to batch operations and reduce forced reflows
+          requestAnimationFrame(() => {
+            const tl = gsap.timeline({ defaults: { ease: isMobile ? 'power2.out' : 'power4.out' } })
+            
+            // Title - majestic entrance (simplified on mobile)
+            const titleProps = isMobile 
+              ? { y: 30, opacity: 0 }
+              : { y: 80, opacity: 0, scale: 0.95, filter: 'blur(10px)' }
+            
+            const titleTo = isMobile
+              ? { y: 0, opacity: 1 }
+              : { y: 0, opacity: 1, scale: 1, filter: 'blur(0px)' }
+            
             tl.fromTo(
-              description,
-              { 
-                y: isMobile ? 20 : 40, 
-                opacity: 0,
-                filter: 'blur(6px)'
-              },
-              { 
-                y: 0, 
-                opacity: 1,
-                filter: 'blur(0px)',
-                duration: isMobile ? 0.6 : 0.7,
-                ease: 'power3.out'
+              title,
+              titleProps,
+              {
+                ...titleTo,
+                duration: isMobile ? 0.7 : 1.2,
+                ease: isMobile ? 'power2.out' : 'power4.out',
+                force3D: true
+              }
+            )
+            
+            // Tagline - smooth fade in after title
+            const taglineProps = isMobile
+              ? { y: 20, opacity: 0 }
+              : { y: 50, opacity: 0, filter: 'blur(8px)' }
+            
+            const taglineTo = isMobile
+              ? { y: 0, opacity: 1 }
+              : { y: 0, opacity: 1, filter: 'blur(0px)' }
+            
+            tl.fromTo(
+              tagline,
+              taglineProps,
+              {
+                ...taglineTo,
+                duration: isMobile ? 0.5 : 0.9,
+                ease: isMobile ? 'power1.out' : 'power3.out',
+                force3D: true
               },
               '-=0.4'
             )
-          }
-          
-          // CTA - final elegant entrance
-          tl.fromTo(
-            cta,
-            { 
-              y: isMobile ? 20 : 30, 
-              opacity: 0,
-              scale: 0.98,
-              filter: 'blur(4px)'
-            },
-            { 
-              y: 0, 
-              opacity: 1,
-              scale: 1,
-              filter: 'blur(0px)',
-              duration: isMobile ? 0.5 : 0.7,
-              ease: 'power3.out'
-            },
-            '-=0.3'
-          )
-        })
+            
+            // Description - elegant fade (only if exists on desktop)
+            if (description) {
+              const descProps = isMobile
+                ? { y: 15, opacity: 0 }
+                : { y: 40, opacity: 0, filter: 'blur(6px)' }
+              
+              const descTo = isMobile
+                ? { y: 0, opacity: 1 }
+                : { y: 0, opacity: 1, filter: 'blur(0px)' }
+              
+              tl.fromTo(
+                description,
+                descProps,
+                {
+                  ...descTo,
+                  duration: isMobile ? 0.4 : 0.7,
+                  ease: isMobile ? 'power1.out' : 'power3.out',
+                  force3D: true
+                },
+                '-=0.3'
+              )
+            }
+            
+            // CTA - final elegant entrance
+            const ctaProps = isMobile
+              ? { y: 15, opacity: 0 }
+              : { y: 30, opacity: 0, scale: 0.98, filter: 'blur(4px)' }
+            
+            const ctaTo = isMobile
+              ? { y: 0, opacity: 1 }
+              : { y: 0, opacity: 1, scale: 1, filter: 'blur(0px)' }
+            
+            tl.fromTo(
+              cta,
+              ctaProps,
+              {
+                ...ctaTo,
+                duration: isMobile ? 0.4 : 0.7,
+                ease: isMobile ? 'power1.out' : 'power3.out',
+                force3D: true,
+                onComplete: () => {
+                  if (isMobile) {
+                    [title, tagline, description, cta].filter(Boolean).forEach((el) => {
+                      if (el) (el as HTMLElement).style.willChange = 'auto'
+                    })
+                  }
+                }
+              },
+              '-=0.2'
+            )
+          })
+        }
       }
 
       // Services section scroll animations
       if (servicesTitleRef.current) {
-        gsap.fromTo(
-          servicesTitleRef.current,
-          { y: 50, opacity: 0 },
-          {
-            y: 0,
-            opacity: 1,
-            duration: 1,
-            ease: 'power3.out',
-            scrollTrigger: {
-              trigger: servicesTitleRef.current,
-              start: 'top 80%',
-              toggleActions: 'play none none none',
-            },
+        if (!isLowEndDevice) {
+          if (isMobile) {
+            (servicesTitleRef.current as HTMLElement).style.willChange = 'transform, opacity'
           }
-        )
+          
+          gsap.fromTo(
+            servicesTitleRef.current,
+            { y: isMobile ? 20 : 50, opacity: 0 },
+            {
+              y: 0,
+              opacity: 1,
+              duration: isMobile ? 0.5 : 1,
+              ease: isMobile ? 'linear' : 'power3.out',
+              force3D: true,
+              scrollTrigger: {
+                trigger: servicesTitleRef.current,
+                start: 'top 90%',
+                toggleActions: 'play none none none',
+                once: true,
+              },
+              onComplete: () => {
+                if (isMobile) {
+                  (servicesTitleRef.current as HTMLElement).style.willChange = 'auto'
+                }
+              }
+            }
+          )
+        } else {
+          gsap.set(servicesTitleRef.current, { opacity: 1 })
+        }
       }
 
       if (servicesRef.current) {
         const serviceCards = servicesRef.current.querySelectorAll('.service-card')
         const portfolioCarousel = portfolioCarouselRef.current
         
-        // Animate all service cards with subtle smooth fade-in
-        // Optimized for mobile: smaller slide distance, no blur, faster easing
-        serviceCards.forEach((card: any, index: number) => {
-          const slideDistance = isMobile ? 15 : 30
-          const animationProps = isMobile 
-            ? { y: slideDistance, opacity: 0 }
-            : { y: slideDistance, opacity: 0, filter: 'blur(4px)' }
-          
-          const animationTo = isMobile
-            ? { y: 0, opacity: 1 }
-            : { y: 0, opacity: 1, filter: 'blur(0px)' }
-          
-          gsap.fromTo(
-            card,
-            animationProps,
-            {
-              ...animationTo,
-              duration: isMobile ? 0.6 : 0.8,
-              ease: isMobile ? 'power1.out' : 'power2.out',
-              force3D: true,
-              scrollTrigger: {
-                trigger: card,
-                start: 'top 85%',
-                toggleActions: 'play none none none',
-              },
-              delay: index * 0.08,
+        // Mobile optimization: reduce animations, no blur, simpler easing
+        if (isLowEndDevice) {
+          // Skip animations on very low-end devices
+          serviceCards.forEach((card: any) => {
+            gsap.set(card, { opacity: 1 })
+          })
+          if (portfolioCarousel) {
+            gsap.set(portfolioCarousel, { opacity: 1 })
+          }
+        } else {
+          // Animate all service cards - optimized for mobile
+          serviceCards.forEach((card: any, index: number) => {
+            // Add will-change hint for better performance
+            if (isMobile) {
+              (card as HTMLElement).style.willChange = 'transform, opacity'
             }
-          )
-        })
-        
-        // Animate the portfolio carousel/mockup with fade-in
-        if (portfolioCarousel) {
-          const slideDistance = isMobile ? 15 : 30
-          const animationProps = isMobile 
-            ? { y: slideDistance, opacity: 0 }
-            : { y: slideDistance, opacity: 0, filter: 'blur(4px)' }
-          
-          const animationTo = isMobile
-            ? { y: 0, opacity: 1 }
-            : { y: 0, opacity: 1, filter: 'blur(0px)' }
-          
-          gsap.fromTo(
-            portfolioCarousel,
-            animationProps,
-            {
-              ...animationTo,
-              duration: isMobile ? 0.6 : 0.8,
-              ease: isMobile ? 'power1.out' : 'power2.out',
-              force3D: true,
-              scrollTrigger: {
-                trigger: portfolioCarousel,
-                start: 'top 85%',
-                toggleActions: 'play none none none',
-              },
-              delay: serviceCards.length * 0.08,
+            
+            const slideDistance = isMobile ? 10 : 30
+            const maxAnimate = isMobile ? 2 : serviceCards.length // Animate fewer on mobile
+            
+            if (index < maxAnimate) {
+              gsap.fromTo(
+                card,
+                { 
+                  y: slideDistance, 
+                  opacity: 0 
+                },
+                {
+                  y: 0,
+                  opacity: 1,
+                  duration: isMobile ? 0.5 : 0.8,
+                  ease: isMobile ? 'linear' : 'power2.out',
+                  force3D: true,
+                  scrollTrigger: {
+                    trigger: card,
+                    start: 'top 90%',
+                    toggleActions: 'play none none none',
+                    once: true,
+                  },
+                  delay: isMobile ? 0 : index * 0.1,
+                  onComplete: () => {
+                    if (isMobile) {
+                      (card as HTMLElement).style.willChange = 'auto'
+                    }
+                  }
+                }
+              )
+            } else {
+              // Just fade in remaining cards on mobile
+              gsap.fromTo(
+                card,
+                { opacity: 0 },
+                {
+                  opacity: 1,
+                  duration: 0.4,
+                  ease: 'linear',
+                  scrollTrigger: {
+                    trigger: card,
+                    start: 'top 90%',
+                    toggleActions: 'play none none none',
+                    once: true,
+                  },
+                }
+              )
             }
-          )
+          })
+          
+          // Animate the portfolio carousel/mockup
+          if (portfolioCarousel) {
+            if (isMobile) {
+              (portfolioCarousel as HTMLElement).style.willChange = 'transform, opacity'
+            }
+            
+            const slideDistance = isMobile ? 10 : 30
+            gsap.fromTo(
+              portfolioCarousel,
+              { 
+                y: slideDistance, 
+                opacity: 0 
+              },
+              {
+                y: 0,
+                opacity: 1,
+                duration: isMobile ? 0.5 : 0.8,
+                ease: isMobile ? 'linear' : 'power2.out',
+                force3D: true,
+                scrollTrigger: {
+                  trigger: portfolioCarousel,
+                  start: 'top 90%',
+                  toggleActions: 'play none none none',
+                  once: true,
+                },
+                delay: isMobile ? 0 : serviceCards.length * 0.1,
+                onComplete: () => {
+                  if (isMobile) {
+                    (portfolioCarousel as HTMLElement).style.willChange = 'auto'
+                  }
+                }
+              }
+            )
+          }
         }
       }
 
@@ -448,57 +548,71 @@ export default function HomePage() {
       }
 
       if (serviceCard2Ref.current) {
-        const slideDistance = isMobile ? 15 : 30
-        const animationProps = isMobile 
-          ? { y: slideDistance, opacity: 0 }
-          : { y: slideDistance, opacity: 0, filter: 'blur(4px)' }
-        
-        const animationTo = isMobile
-          ? { y: 0, opacity: 1 }
-          : { y: 0, opacity: 1, filter: 'blur(0px)' }
-        
-        gsap.fromTo(
-          serviceCard2Ref.current,
-          animationProps,
-          {
-            ...animationTo,
-            duration: isMobile ? 0.6 : 0.8,
-            ease: isMobile ? 'power1.out' : 'power2.out',
-            force3D: true,
-            scrollTrigger: {
-              trigger: serviceCard2Ref.current,
-              start: 'top 85%',
-              toggleActions: 'play none none none',
-            },
+        if (isLowEndDevice) {
+          gsap.set(serviceCard2Ref.current, { opacity: 1 })
+        } else {
+          if (isMobile) {
+            (serviceCard2Ref.current as HTMLElement).style.willChange = 'transform, opacity'
           }
-        )
+          
+          const slideDistance = isMobile ? 10 : 30
+          gsap.fromTo(
+            serviceCard2Ref.current,
+            { y: slideDistance, opacity: 0 },
+            {
+              y: 0,
+              opacity: 1,
+              duration: isMobile ? 0.5 : 0.8,
+              ease: isMobile ? 'linear' : 'power2.out',
+              force3D: true,
+              scrollTrigger: {
+                trigger: serviceCard2Ref.current,
+                start: 'top 90%',
+                toggleActions: 'play none none none',
+                once: true,
+              },
+              onComplete: () => {
+                if (isMobile) {
+                  (serviceCard2Ref.current as HTMLElement).style.willChange = 'auto'
+                }
+              }
+            }
+          )
+        }
       }
 
       if (serviceCard3Ref.current) {
-        const slideDistance = isMobile ? 15 : 30
-        const animationProps = isMobile 
-          ? { y: slideDistance, opacity: 0 }
-          : { y: slideDistance, opacity: 0, filter: 'blur(4px)' }
-        
-        const animationTo = isMobile
-          ? { y: 0, opacity: 1 }
-          : { y: 0, opacity: 1, filter: 'blur(0px)' }
-        
-        gsap.fromTo(
-          serviceCard3Ref.current,
-          animationProps,
-          {
-            ...animationTo,
-            duration: isMobile ? 0.6 : 0.8,
-            ease: isMobile ? 'power1.out' : 'power2.out',
-            force3D: true,
-            scrollTrigger: {
-              trigger: serviceCard3Ref.current,
-              start: 'top 85%',
-              toggleActions: 'play none none none',
-            },
+        if (isLowEndDevice) {
+          gsap.set(serviceCard3Ref.current, { opacity: 1 })
+        } else {
+          if (isMobile) {
+            (serviceCard3Ref.current as HTMLElement).style.willChange = 'transform, opacity'
           }
-        )
+          
+          const slideDistance = isMobile ? 10 : 30
+          gsap.fromTo(
+            serviceCard3Ref.current,
+            { y: slideDistance, opacity: 0 },
+            {
+              y: 0,
+              opacity: 1,
+              duration: isMobile ? 0.5 : 0.8,
+              ease: isMobile ? 'linear' : 'power2.out',
+              force3D: true,
+              scrollTrigger: {
+                trigger: serviceCard3Ref.current,
+                start: 'top 90%',
+                toggleActions: 'play none none none',
+                once: true,
+              },
+              onComplete: () => {
+                if (isMobile) {
+                  (serviceCard3Ref.current as HTMLElement).style.willChange = 'auto'
+                }
+              }
+            }
+          )
+        }
       }
 
       if (searchResultsRef.current) {
@@ -547,30 +661,37 @@ export default function HomePage() {
       }
 
       if (serviceCard4Ref.current) {
-        const slideDistance = isMobile ? 15 : 30
-        const animationProps = isMobile 
-          ? { y: slideDistance, opacity: 0 }
-          : { y: slideDistance, opacity: 0, filter: 'blur(4px)' }
-        
-        const animationTo = isMobile
-          ? { y: 0, opacity: 1 }
-          : { y: 0, opacity: 1, filter: 'blur(0px)' }
-        
-        gsap.fromTo(
-          serviceCard4Ref.current,
-          animationProps,
-          {
-            ...animationTo,
-            duration: isMobile ? 0.6 : 0.8,
-            ease: isMobile ? 'power1.out' : 'power2.out',
-            force3D: true,
-            scrollTrigger: {
-              trigger: serviceCard4Ref.current,
-              start: 'top 85%',
-              toggleActions: 'play none none none',
-            },
+        if (isLowEndDevice) {
+          gsap.set(serviceCard4Ref.current, { opacity: 1 })
+        } else {
+          if (isMobile) {
+            (serviceCard4Ref.current as HTMLElement).style.willChange = 'transform, opacity'
           }
-        )
+          
+          const slideDistance = isMobile ? 10 : 30
+          gsap.fromTo(
+            serviceCard4Ref.current,
+            { y: slideDistance, opacity: 0 },
+            {
+              y: 0,
+              opacity: 1,
+              duration: isMobile ? 0.5 : 0.8,
+              ease: isMobile ? 'linear' : 'power2.out',
+              force3D: true,
+              scrollTrigger: {
+                trigger: serviceCard4Ref.current,
+                start: 'top 90%',
+                toggleActions: 'play none none none',
+                once: true,
+              },
+              onComplete: () => {
+                if (isMobile) {
+                  (serviceCard4Ref.current as HTMLElement).style.willChange = 'auto'
+                }
+              }
+            }
+          )
+        }
       }
 
       if (roiChartRef.current) {
@@ -597,30 +718,37 @@ export default function HomePage() {
       }
 
       if (serviceCard5Ref.current) {
-        const slideDistance = isMobile ? 15 : 30
-        const animationProps = isMobile 
-          ? { y: slideDistance, opacity: 0 }
-          : { y: slideDistance, opacity: 0, filter: 'blur(4px)' }
-        
-        const animationTo = isMobile
-          ? { y: 0, opacity: 1 }
-          : { y: 0, opacity: 1, filter: 'blur(0px)' }
-        
-        gsap.fromTo(
-          serviceCard5Ref.current,
-          animationProps,
-          {
-            ...animationTo,
-            duration: isMobile ? 0.6 : 0.8,
-            ease: isMobile ? 'power1.out' : 'power2.out',
-            force3D: true,
-            scrollTrigger: {
-              trigger: serviceCard5Ref.current,
-              start: 'top 85%',
-              toggleActions: 'play none none none',
-            },
+        if (isLowEndDevice) {
+          gsap.set(serviceCard5Ref.current, { opacity: 1 })
+        } else {
+          if (isMobile) {
+            (serviceCard5Ref.current as HTMLElement).style.willChange = 'transform, opacity'
           }
-        )
+          
+          const slideDistance = isMobile ? 10 : 30
+          gsap.fromTo(
+            serviceCard5Ref.current,
+            { y: slideDistance, opacity: 0 },
+            {
+              y: 0,
+              opacity: 1,
+              duration: isMobile ? 0.5 : 0.8,
+              ease: isMobile ? 'linear' : 'power2.out',
+              force3D: true,
+              scrollTrigger: {
+                trigger: serviceCard5Ref.current,
+                start: 'top 90%',
+                toggleActions: 'play none none none',
+                once: true,
+              },
+              onComplete: () => {
+                if (isMobile) {
+                  (serviceCard5Ref.current as HTMLElement).style.willChange = 'auto'
+                }
+              }
+            }
+          )
+        }
       }
 
       if (analyticsDashboardRef.current) {
@@ -666,30 +794,37 @@ export default function HomePage() {
       }
 
       if (serviceCard6Ref.current) {
-        const slideDistance = isMobile ? 15 : 30
-        const animationProps = isMobile 
-          ? { y: slideDistance, opacity: 0 }
-          : { y: slideDistance, opacity: 0, filter: 'blur(4px)' }
-        
-        const animationTo = isMobile
-          ? { y: 0, opacity: 1 }
-          : { y: 0, opacity: 1, filter: 'blur(0px)' }
-        
-        gsap.fromTo(
-          serviceCard6Ref.current,
-          animationProps,
-          {
-            ...animationTo,
-            duration: isMobile ? 0.6 : 0.8,
-            ease: isMobile ? 'power1.out' : 'power2.out',
-            force3D: true,
-            scrollTrigger: {
-              trigger: serviceCard6Ref.current,
-              start: 'top 85%',
-              toggleActions: 'play none none none',
-            },
+        if (isLowEndDevice) {
+          gsap.set(serviceCard6Ref.current, { opacity: 1 })
+        } else {
+          if (isMobile) {
+            (serviceCard6Ref.current as HTMLElement).style.willChange = 'transform, opacity'
           }
-        )
+          
+          const slideDistance = isMobile ? 10 : 30
+          gsap.fromTo(
+            serviceCard6Ref.current,
+            { y: slideDistance, opacity: 0 },
+            {
+              y: 0,
+              opacity: 1,
+              duration: isMobile ? 0.5 : 0.8,
+              ease: isMobile ? 'linear' : 'power2.out',
+              force3D: true,
+              scrollTrigger: {
+                trigger: serviceCard6Ref.current,
+                start: 'top 90%',
+                toggleActions: 'play none none none',
+                once: true,
+              },
+              onComplete: () => {
+                if (isMobile) {
+                  (serviceCard6Ref.current as HTMLElement).style.willChange = 'auto'
+                }
+              }
+            }
+          )
+        }
       }
 
       if (integrationsRef.current) {
@@ -856,57 +991,102 @@ export default function HomePage() {
 
       // CTA section scroll animations - optimized for mobile
       if (ctaTitleRef.current) {
-        gsap.fromTo(
-          ctaTitleRef.current,
-          { y: isMobile ? 30 : 50, opacity: 0 },
-          {
-            y: 0,
-            opacity: 1,
-            duration: isMobile ? 0.6 : 1,
-            ease: isMobile ? 'power2.out' : 'power3.out',
-            scrollTrigger: {
-              trigger: ctaTitleRef.current,
-              start: 'top 80%',
-              toggleActions: 'play none none none',
-            },
+        if (!isLowEndDevice) {
+          if (isMobile) {
+            (ctaTitleRef.current as HTMLElement).style.willChange = 'transform, opacity'
           }
-        )
+          
+          gsap.fromTo(
+            ctaTitleRef.current,
+            { y: isMobile ? 15 : 50, opacity: 0 },
+            {
+              y: 0,
+              opacity: 1,
+              duration: isMobile ? 0.5 : 1,
+              ease: isMobile ? 'linear' : 'power3.out',
+              force3D: true,
+              scrollTrigger: {
+                trigger: ctaTitleRef.current,
+                start: 'top 90%',
+                toggleActions: 'play none none none',
+                once: true,
+              },
+              onComplete: () => {
+                if (isMobile) {
+                  (ctaTitleRef.current as HTMLElement).style.willChange = 'auto'
+                }
+              }
+            }
+          )
+        } else {
+          gsap.set(ctaTitleRef.current, { opacity: 1 })
+        }
       }
 
       if (ctaTextRef.current) {
-        gsap.fromTo(
-          ctaTextRef.current,
-          { y: isMobile ? 20 : 30, opacity: 0 },
-          {
-            y: 0,
-            opacity: 1,
-            duration: isMobile ? 0.5 : 0.8,
-            ease: isMobile ? 'power2.out' : 'power3.out',
-            scrollTrigger: {
-              trigger: ctaTextRef.current,
-              start: 'top 85%',
-              toggleActions: 'play none none none',
-            },
+        if (!isLowEndDevice) {
+          if (isMobile) {
+            (ctaTextRef.current as HTMLElement).style.willChange = 'transform, opacity'
           }
-        )
+          
+          gsap.fromTo(
+            ctaTextRef.current,
+            { y: isMobile ? 10 : 30, opacity: 0 },
+            {
+              y: 0,
+              opacity: 1,
+              duration: isMobile ? 0.4 : 0.8,
+              ease: isMobile ? 'linear' : 'power3.out',
+              force3D: true,
+              scrollTrigger: {
+                trigger: ctaTextRef.current,
+                start: 'top 90%',
+                toggleActions: 'play none none none',
+                once: true,
+              },
+              onComplete: () => {
+                if (isMobile) {
+                  (ctaTextRef.current as HTMLElement).style.willChange = 'auto'
+                }
+              }
+            }
+          )
+        } else {
+          gsap.set(ctaTextRef.current, { opacity: 1 })
+        }
       }
 
       if (ctaButtonRef.current) {
-        gsap.fromTo(
-          ctaButtonRef.current,
-          { y: isMobile ? 20 : 30, opacity: 0 },
-          {
-            y: 0,
-            opacity: 1,
-            duration: isMobile ? 0.5 : 0.8,
-            ease: isMobile ? 'power2.out' : 'power3.out',
-            scrollTrigger: {
-              trigger: ctaButtonRef.current,
-              start: 'top 85%',
-              toggleActions: 'play none none none',
-            },
+        if (!isLowEndDevice) {
+          if (isMobile) {
+            (ctaButtonRef.current as HTMLElement).style.willChange = 'transform, opacity'
           }
-        )
+          
+          gsap.fromTo(
+            ctaButtonRef.current,
+            { y: isMobile ? 10 : 30, opacity: 0 },
+            {
+              y: 0,
+              opacity: 1,
+              duration: isMobile ? 0.4 : 0.8,
+              ease: isMobile ? 'linear' : 'power3.out',
+              force3D: true,
+              scrollTrigger: {
+                trigger: ctaButtonRef.current,
+                start: 'top 90%',
+                toggleActions: 'play none none none',
+                once: true,
+              },
+              onComplete: () => {
+                if (isMobile) {
+                  (ctaButtonRef.current as HTMLElement).style.willChange = 'auto'
+                }
+              }
+            }
+          )
+        } else {
+          gsap.set(ctaButtonRef.current, { opacity: 1 })
+        }
       }
     })
 

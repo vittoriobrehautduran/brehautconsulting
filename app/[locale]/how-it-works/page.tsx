@@ -110,103 +110,192 @@ export default function ServicesPage() {
   useEffect(() => {
     if (!gsapLoaded || !gsap || !ScrollTrigger) return
     
+    // Detect mobile and low-end devices
+    const isMobile = typeof window !== 'undefined' && (window.innerWidth < 768 || /iPhone|iPad|iPod|Android/i.test(navigator.userAgent))
+    const isLowEndDevice = typeof window !== 'undefined' && (
+      /Android.*Chrome\/[0-5][0-9]/.test(navigator.userAgent) ||
+      /iPhone.*OS [0-9]_[0-2]/.test(navigator.userAgent) ||
+      (navigator.hardwareConcurrency && navigator.hardwareConcurrency < 4) ||
+      ('deviceMemory' in navigator && (navigator as any).deviceMemory && (navigator as any).deviceMemory < 4)
+    )
+    
+    // Throttle ScrollTrigger on mobile
+    if (isMobile && ScrollTrigger) {
+      ScrollTrigger.config({ limitCallbacks: true })
+    }
+    
     let ctx: gsap.Context | null = null
     
     try {
       ctx = gsap.context(() => {
       // Intro text animation
       if (introRef.current) {
-        gsap.fromTo(
-          introRef.current,
-          { y: 30, opacity: 0 },
-          {
-            y: 0,
-            opacity: 1,
-            duration: 0.8,
-            ease: 'power3.out',
-            scrollTrigger: {
-              trigger: introRef.current,
-              start: 'top 85%',
-              toggleActions: 'play none none none',
-            },
+        if (!isLowEndDevice) {
+          if (isMobile) {
+            (introRef.current as HTMLElement).style.willChange = 'transform, opacity'
           }
-        )
+          
+          gsap.fromTo(
+            introRef.current,
+            { y: isMobile ? 15 : 30, opacity: 0 },
+            {
+              y: 0,
+              opacity: 1,
+              duration: isMobile ? 0.5 : 0.8,
+              ease: isMobile ? 'linear' : 'power3.out',
+              force3D: true,
+              scrollTrigger: {
+                trigger: introRef.current,
+                start: 'top 90%',
+                toggleActions: 'play none none none',
+                once: true,
+              },
+              onComplete: () => {
+                if (isMobile) {
+                  (introRef.current as HTMLElement).style.willChange = 'auto'
+                }
+              }
+            }
+          )
+        } else {
+          gsap.set(introRef.current, { opacity: 1 })
+        }
       }
 
       // How It Works section animation
       if (howItWorksRef.current) {
-        gsap.fromTo(
-          howItWorksRef.current,
-          { y: 50, opacity: 0 },
-          {
-            y: 0,
-            opacity: 1,
-            duration: 0.8,
-            ease: 'power3.out',
-            scrollTrigger: {
-              trigger: howItWorksRef.current,
-              start: 'top 80%',
-              toggleActions: 'play none none none',
-            },
+        if (!isLowEndDevice) {
+          if (isMobile) {
+            (howItWorksRef.current as HTMLElement).style.willChange = 'transform, opacity'
           }
-        )
+          
+          gsap.fromTo(
+            howItWorksRef.current,
+            { y: isMobile ? 20 : 50, opacity: 0 },
+            {
+              y: 0,
+              opacity: 1,
+              duration: isMobile ? 0.5 : 0.8,
+              ease: isMobile ? 'linear' : 'power3.out',
+              force3D: true,
+              scrollTrigger: {
+                trigger: howItWorksRef.current,
+                start: 'top 90%',
+                toggleActions: 'play none none none',
+                once: true,
+              },
+              onComplete: () => {
+                if (isMobile) {
+                  (howItWorksRef.current as HTMLElement).style.willChange = 'auto'
+                }
+              }
+            }
+          )
+        } else {
+          gsap.set(howItWorksRef.current, { opacity: 1 })
+        }
       }
 
       // Who For section animation
       if (whoForRef.current) {
-        gsap.fromTo(
-          whoForRef.current,
-          { y: 50, opacity: 0 },
-          {
-            y: 0,
-            opacity: 1,
-            duration: 0.8,
-            ease: 'power3.out',
-            scrollTrigger: {
-              trigger: whoForRef.current,
-              start: 'top 80%',
-              toggleActions: 'play none none none',
-            },
+        if (!isLowEndDevice) {
+          if (isMobile) {
+            (whoForRef.current as HTMLElement).style.willChange = 'transform, opacity'
           }
-        )
+          
+          gsap.fromTo(
+            whoForRef.current,
+            { y: isMobile ? 20 : 50, opacity: 0 },
+            {
+              y: 0,
+              opacity: 1,
+              duration: isMobile ? 0.5 : 0.8,
+              ease: isMobile ? 'linear' : 'power3.out',
+              force3D: true,
+              scrollTrigger: {
+                trigger: whoForRef.current,
+                start: 'top 90%',
+                toggleActions: 'play none none none',
+                once: true,
+              },
+              onComplete: () => {
+                if (isMobile) {
+                  (whoForRef.current as HTMLElement).style.willChange = 'auto'
+                }
+              }
+            }
+          )
+        } else {
+          gsap.set(whoForRef.current, { opacity: 1 })
+        }
       }
 
       // System intro animation
       if (systemIntroRef.current) {
-        gsap.fromTo(
-          systemIntroRef.current,
-          { y: 50, opacity: 0 },
-          {
-            y: 0,
-            opacity: 1,
-            duration: 0.8,
-            ease: 'power3.out',
-            scrollTrigger: {
-              trigger: systemIntroRef.current,
-              start: 'top 80%',
-              toggleActions: 'play none none none',
-            },
+        if (!isLowEndDevice) {
+          if (isMobile) {
+            (systemIntroRef.current as HTMLElement).style.willChange = 'transform, opacity'
           }
-        )
+          
+          gsap.fromTo(
+            systemIntroRef.current,
+            { y: isMobile ? 20 : 50, opacity: 0 },
+            {
+              y: 0,
+              opacity: 1,
+              duration: isMobile ? 0.5 : 0.8,
+              ease: isMobile ? 'linear' : 'power3.out',
+              force3D: true,
+              scrollTrigger: {
+                trigger: systemIntroRef.current,
+                start: 'top 90%',
+                toggleActions: 'play none none none',
+                once: true,
+              },
+              onComplete: () => {
+                if (isMobile) {
+                  (systemIntroRef.current as HTMLElement).style.willChange = 'auto'
+                }
+              }
+            }
+          )
+        } else {
+          gsap.set(systemIntroRef.current, { opacity: 1 })
+        }
       }
 
       // Engagement models animation
       if (engagementRef.current) {
-        gsap.fromTo(
-          engagementRef.current,
-          { y: 50, opacity: 0 },
-          {
-            y: 0,
-            opacity: 1,
-            duration: 0.8,
-            ease: 'power3.out',
-            scrollTrigger: {
-              trigger: engagementRef.current,
-              start: 'top 80%',
-              toggleActions: 'play none none none',
-            },
+        if (!isLowEndDevice) {
+          if (isMobile) {
+            (engagementRef.current as HTMLElement).style.willChange = 'transform, opacity'
           }
-        )
+          
+          gsap.fromTo(
+            engagementRef.current,
+            { y: isMobile ? 20 : 50, opacity: 0 },
+            {
+              y: 0,
+              opacity: 1,
+              duration: isMobile ? 0.5 : 0.8,
+              ease: isMobile ? 'linear' : 'power3.out',
+              force3D: true,
+              scrollTrigger: {
+                trigger: engagementRef.current,
+                start: 'top 90%',
+                toggleActions: 'play none none none',
+                once: true,
+              },
+              onComplete: () => {
+                if (isMobile) {
+                  (engagementRef.current as HTMLElement).style.willChange = 'auto'
+                }
+              }
+            }
+          )
+        } else {
+          gsap.set(engagementRef.current, { opacity: 1 })
+        }
 
         // Fade out sidebar when "Ways to Work Together" section enters viewport
         if (sidebarRef.current && servicesRef.current) {
@@ -268,22 +357,59 @@ export default function ServicesPage() {
         }
         
         serviceCards.forEach((card: any, index: number) => {
-          gsap.fromTo(
-            card,
-            { y: 50, opacity: 0 },
-            {
-              y: 0,
-              opacity: 1,
-              duration: 0.8,
-              ease: 'power3.out',
-              scrollTrigger: {
-                trigger: card,
-                start: 'top 80%',
-                toggleActions: 'play none none none',
-              },
-              delay: index * 0.1,
+          if (isLowEndDevice) {
+            gsap.set(card, { opacity: 1 })
+          } else {
+            if (isMobile) {
+              (card as HTMLElement).style.willChange = 'transform, opacity'
             }
-          )
+            
+            const slideDistance = isMobile ? 10 : 50
+            const maxAnimate = isMobile ? 3 : serviceCards.length
+            
+            if (index < maxAnimate) {
+              gsap.fromTo(
+                card,
+                { y: slideDistance, opacity: 0 },
+                {
+                  y: 0,
+                  opacity: 1,
+                  duration: isMobile ? 0.5 : 0.8,
+                  ease: isMobile ? 'linear' : 'power3.out',
+                  force3D: true,
+                  scrollTrigger: {
+                    trigger: card,
+                    start: 'top 90%',
+                    toggleActions: 'play none none none',
+                    once: true,
+                  },
+                  delay: isMobile ? 0 : index * 0.1,
+                  onComplete: () => {
+                    if (isMobile) {
+                      (card as HTMLElement).style.willChange = 'auto'
+                    }
+                  }
+                }
+              )
+            } else {
+              // Just fade in remaining cards on mobile
+              gsap.fromTo(
+                card,
+                { opacity: 0 },
+                {
+                  opacity: 1,
+                  duration: 0.4,
+                  ease: 'linear',
+                  scrollTrigger: {
+                    trigger: card,
+                    start: 'top 90%',
+                    toggleActions: 'play none none none',
+                    once: true,
+                  },
+                }
+              )
+            }
+          }
 
           // Scroll spy for active section
           ScrollTrigger.create({

@@ -58,9 +58,8 @@ module.exports = {
       },
       fontFamily: {
         sans: ['var(--font-inter)', 'sans-serif'],
-        heading: ['var(--font-rajdhani)', 'sans-serif'],
-        frank: ['var(--font-frank-ruhl-libre)', 'serif'],
-        canela: ['var(--font-canela)', 'var(--font-frank-ruhl-libre)', 'serif'],
+        heading: ['var(--font-space-grotesk)', 'sans-serif'],
+        canela: ['var(--font-playfair)', 'serif'],
       },
       keyframes: {
         "accordion-down": {

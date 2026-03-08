@@ -1,5 +1,5 @@
 import { ReactNode } from 'react'
-import { Rajdhani, Inter, Frank_Ruhl_Libre, Cormorant } from 'next/font/google'
+import { Space_Grotesk, Inter, Playfair_Display } from 'next/font/google'
 import './[locale]/globals.css'
 import GoogleTagManager from '@/components/analytics/GoogleTagManager'
 
@@ -10,10 +10,19 @@ if (process.env.NODE_ENV === 'development') {
   console.log('GTM_ID from env:', GTM_ID || 'NOT SET')
 }
 
-const rajdhani = Rajdhani({
+// Space Grotesk - modern, technical font with character (for headings)
+const spaceGrotesk = Space_Grotesk({
   subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
-  variable: '--font-rajdhani',
+  weight: ['500', '600', '700'],
+  variable: '--font-space-grotesk',
+  display: 'swap',
+})
+
+// Playfair Display - elegant serif with technical edge (for title)
+const playfairDisplay = Playfair_Display({
+  subsets: ['latin'],
+  weight: ['600', '700'],
+  variable: '--font-playfair',
   display: 'swap',
 })
 
@@ -24,29 +33,13 @@ const inter = Inter({
   display: 'swap',
 })
 
-const frankRuhlLibre = Frank_Ruhl_Libre({
-  subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700', '800', '900'],
-  variable: '--font-frank-ruhl-libre',
-  display: 'swap',
-})
-
-// Canela font - using Cormorant as a similar elegant serif substitute
-// Cormorant is very similar to Canela in style (elegant, refined serif)
-const canela = Cormorant({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
-  variable: '--font-canela',
-  display: 'swap',
-})
-
 export default function RootLayout({
   children,
 }: {
   children: ReactNode
 }) {
   return (
-    <html lang="en" className={`${rajdhani.variable} ${inter.variable} ${frankRuhlLibre.variable} ${canela.variable}`}>
+    <html lang="en" className={`${spaceGrotesk.variable} ${playfairDisplay.variable} ${inter.variable}`}>
       <body className="min-h-screen bg-black font-sans antialiased text-white overflow-x-hidden">
         <GoogleTagManager gtmId={GTM_ID} />
         {children}
