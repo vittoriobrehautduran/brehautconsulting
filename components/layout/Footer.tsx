@@ -55,7 +55,7 @@ export default function Footer() {
   return (
     <footer
       ref={footerRef}
-      className="border-t border-white/10 bg-black/90 backdrop-blur-sm py-12 px-6 relative z-10"
+      className="border-t border-white/10 bg-black/90 md:backdrop-blur-sm py-12 px-6 relative z-10"
     >
       <div className="container mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
