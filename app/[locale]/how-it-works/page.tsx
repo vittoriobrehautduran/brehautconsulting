@@ -454,7 +454,7 @@ export default function ServicesPage() {
         {/* Fixed Left Navigation */}
         <aside ref={sidebarRef} className="hidden lg:block fixed left-0 top-0 h-screen w-64 pt-32 pb-8 px-6 z-40 opacity-0">
           <nav className="sticky top-32">
-            <div className="bg-black/60 backdrop-blur-md rounded-2xl p-5">
+            <div className="bg-black/75 md:backdrop-blur-md rounded-2xl p-5">
               <h3 className="text-sm font-semibold text-white/60 uppercase tracking-wider mb-6">
                 {t('system.servicesLabel')}
               </h3>
@@ -607,7 +607,7 @@ export default function ServicesPage() {
         </section>
 
         {/* Mobile Navigation - Sticky at top */}
-        <nav className="lg:hidden sticky top-20 z-30 bg-black/70 backdrop-blur-md border-t border-b border-white/15 py-2.5">
+        <nav className="lg:hidden sticky top-20 z-30 bg-black/85 border-t border-b border-white/15 py-2.5">
           <div className="flex gap-1.5 justify-center px-2">
             {SERVICE_DETAILS.map((service, index) => (
               <button
@@ -644,7 +644,7 @@ export default function ServicesPage() {
                   }}
                   className="service-card scroll-mt-36 lg:scroll-mt-0"
                 >
-                  <div className="relative overflow-hidden bg-gradient-to-br from-black/60 via-black/70 to-black/60 border border-white/20 rounded-2xl backdrop-blur-md hover:border-white/30 transition-all duration-300 shadow-lg shadow-black/40 hover:shadow-xl hover:shadow-black/50">
+                  <div className="relative overflow-hidden bg-gradient-to-br from-black/70 via-black/80 to-black/70 border border-white/20 rounded-2xl md:backdrop-blur-md hover:border-white/30 transition-all duration-300 shadow-lg shadow-black/40 hover:shadow-xl hover:shadow-black/50">
                     {/* Decorative gradient overlay */}
                     <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
                     
@@ -761,7 +761,7 @@ export default function ServicesPage() {
             <h2 className="glow-title text-4xl md:text-5xl font-heading font-bold mb-8 text-white text-center">
               {t('engagement.title')}
             </h2>
-            <div className="bg-black/40 border border-white/20 rounded-2xl p-6 sm:p-8 lg:p-12 backdrop-blur-sm">
+            <div className="bg-black/60 border border-white/20 rounded-2xl p-6 sm:p-8 lg:p-12 md:backdrop-blur-sm">
               <p className="text-xl md:text-2xl text-white/90 leading-relaxed mb-8 text-center">
                 {t('engagement.description1')}
               </p>
