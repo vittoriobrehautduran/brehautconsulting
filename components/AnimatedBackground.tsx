@@ -2,7 +2,7 @@
 
 export default function AnimatedBackground() {
   return (
-    <div className="fixed inset-0 pointer-events-none -z-10">
+    <div className="absolute inset-0 md:fixed pointer-events-none -z-10">
       {/* Base gradient background */}
       <div
         className="absolute inset-0"
@@ -13,7 +13,7 @@ export default function AnimatedBackground() {
       
       {/* Subtle animated gradient overlay */}
       <div
-        className="absolute inset-0 opacity-30 animate-pulse-slow"
+        className="absolute inset-0 opacity-20 md:opacity-30 md:animate-pulse-slow"
         style={{
           background: 'radial-gradient(ellipse at top, rgba(59, 130, 246, 0.15) 0%, transparent 50%), radial-gradient(ellipse at bottom, rgba(139, 92, 246, 0.15) 0%, transparent 50%)',
         }}
