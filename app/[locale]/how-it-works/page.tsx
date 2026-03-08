@@ -809,7 +809,7 @@ export default function ServicesPage() {
         {showScrollTop && (
           <button
             onClick={scrollToTop}
-            className="lg:hidden fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-40 w-11 h-11 bg-black/50 backdrop-blur-md border border-white/5 rounded-full flex items-center justify-center text-white/50 hover:text-white/70 hover:border-white/10 transition-all duration-300 group"
+            className="lg:hidden fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-40 w-11 h-11 bg-black/85 border border-white/10 rounded-full flex items-center justify-center text-white/60 hover:text-white/80 hover:border-white/20 transition-all duration-300 group"
           >
             <svg
               className="w-4 h-4 transform group-hover:-translate-y-0.5 transition-transform animate-jump-periodic"
