@@ -135,28 +135,28 @@ export default function ServicesPage() {
             (introRef.current as HTMLElement).style.willChange = 'transform, opacity'
           }
           
-          gsap.fromTo(
-            introRef.current,
+        gsap.fromTo(
+          introRef.current,
             { y: isMobile ? 15 : 30, opacity: 0 },
-            {
-              y: 0,
-              opacity: 1,
+          {
+            y: 0,
+            opacity: 1,
               duration: isMobile ? 0.5 : 0.8,
               ease: isMobile ? 'linear' : 'power3.out',
               force3D: true,
-              scrollTrigger: {
-                trigger: introRef.current,
+            scrollTrigger: {
+              trigger: introRef.current,
                 start: 'top 90%',
-                toggleActions: 'play none none none',
+              toggleActions: 'play none none none',
                 once: true,
-              },
+            },
               onComplete: () => {
                 if (isMobile) {
                   (introRef.current as HTMLElement).style.willChange = 'auto'
                 }
               }
-            }
-          )
+          }
+        )
         } else {
           gsap.set(introRef.current, { opacity: 1 })
         }
@@ -169,28 +169,28 @@ export default function ServicesPage() {
             (howItWorksRef.current as HTMLElement).style.willChange = 'transform, opacity'
           }
           
-          gsap.fromTo(
-            howItWorksRef.current,
+        gsap.fromTo(
+          howItWorksRef.current,
             { y: isMobile ? 20 : 50, opacity: 0 },
-            {
-              y: 0,
-              opacity: 1,
+          {
+            y: 0,
+            opacity: 1,
               duration: isMobile ? 0.5 : 0.8,
               ease: isMobile ? 'linear' : 'power3.out',
               force3D: true,
-              scrollTrigger: {
-                trigger: howItWorksRef.current,
+            scrollTrigger: {
+              trigger: howItWorksRef.current,
                 start: 'top 90%',
-                toggleActions: 'play none none none',
+              toggleActions: 'play none none none',
                 once: true,
-              },
+            },
               onComplete: () => {
                 if (isMobile) {
                   (howItWorksRef.current as HTMLElement).style.willChange = 'auto'
                 }
               }
-            }
-          )
+          }
+        )
         } else {
           gsap.set(howItWorksRef.current, { opacity: 1 })
         }
@@ -203,28 +203,28 @@ export default function ServicesPage() {
             (whoForRef.current as HTMLElement).style.willChange = 'transform, opacity'
           }
           
-          gsap.fromTo(
-            whoForRef.current,
+        gsap.fromTo(
+          whoForRef.current,
             { y: isMobile ? 20 : 50, opacity: 0 },
-            {
-              y: 0,
-              opacity: 1,
+          {
+            y: 0,
+            opacity: 1,
               duration: isMobile ? 0.5 : 0.8,
               ease: isMobile ? 'linear' : 'power3.out',
               force3D: true,
-              scrollTrigger: {
-                trigger: whoForRef.current,
+            scrollTrigger: {
+              trigger: whoForRef.current,
                 start: 'top 90%',
-                toggleActions: 'play none none none',
+              toggleActions: 'play none none none',
                 once: true,
-              },
+            },
               onComplete: () => {
                 if (isMobile) {
                   (whoForRef.current as HTMLElement).style.willChange = 'auto'
                 }
               }
-            }
-          )
+          }
+        )
         } else {
           gsap.set(whoForRef.current, { opacity: 1 })
         }
@@ -237,28 +237,28 @@ export default function ServicesPage() {
             (systemIntroRef.current as HTMLElement).style.willChange = 'transform, opacity'
           }
           
-          gsap.fromTo(
-            systemIntroRef.current,
+        gsap.fromTo(
+          systemIntroRef.current,
             { y: isMobile ? 20 : 50, opacity: 0 },
-            {
-              y: 0,
-              opacity: 1,
+          {
+            y: 0,
+            opacity: 1,
               duration: isMobile ? 0.5 : 0.8,
               ease: isMobile ? 'linear' : 'power3.out',
               force3D: true,
-              scrollTrigger: {
-                trigger: systemIntroRef.current,
+            scrollTrigger: {
+              trigger: systemIntroRef.current,
                 start: 'top 90%',
-                toggleActions: 'play none none none',
+              toggleActions: 'play none none none',
                 once: true,
-              },
+            },
               onComplete: () => {
                 if (isMobile) {
                   (systemIntroRef.current as HTMLElement).style.willChange = 'auto'
                 }
               }
-            }
-          )
+          }
+        )
         } else {
           gsap.set(systemIntroRef.current, { opacity: 1 })
         }
@@ -271,28 +271,28 @@ export default function ServicesPage() {
             (engagementRef.current as HTMLElement).style.willChange = 'transform, opacity'
           }
           
-          gsap.fromTo(
-            engagementRef.current,
+        gsap.fromTo(
+          engagementRef.current,
             { y: isMobile ? 20 : 50, opacity: 0 },
-            {
-              y: 0,
-              opacity: 1,
+          {
+            y: 0,
+            opacity: 1,
               duration: isMobile ? 0.5 : 0.8,
               ease: isMobile ? 'linear' : 'power3.out',
               force3D: true,
-              scrollTrigger: {
-                trigger: engagementRef.current,
+            scrollTrigger: {
+              trigger: engagementRef.current,
                 start: 'top 90%',
-                toggleActions: 'play none none none',
+              toggleActions: 'play none none none',
                 once: true,
-              },
+            },
               onComplete: () => {
                 if (isMobile) {
                   (engagementRef.current as HTMLElement).style.willChange = 'auto'
                 }
               }
-            }
-          )
+          }
+        )
         } else {
           gsap.set(engagementRef.current, { opacity: 1 })
         }
@@ -368,12 +368,12 @@ export default function ServicesPage() {
             const maxAnimate = isMobile ? 3 : serviceCards.length
             
             if (index < maxAnimate) {
-              gsap.fromTo(
-                card,
+          gsap.fromTo(
+            card,
                 { y: slideDistance, opacity: 0 },
-                {
-                  y: 0,
-                  opacity: 1,
+            {
+              y: 0,
+              opacity: 1,
                   duration: isMobile ? 0.5 : 0.8,
                   ease: isMobile ? 'linear' : 'power3.out',
                   force3D: true,
@@ -400,12 +400,12 @@ export default function ServicesPage() {
                   opacity: 1,
                   duration: 0.4,
                   ease: 'linear',
-                  scrollTrigger: {
-                    trigger: card,
+              scrollTrigger: {
+                trigger: card,
                     start: 'top 90%',
-                    toggleActions: 'play none none none',
+                toggleActions: 'play none none none',
                     once: true,
-                  },
+              },
                 }
               )
             }
@@ -490,13 +490,13 @@ export default function ServicesPage() {
         {/* Main Content */}
         <div className="flex-1 lg:ml-64 lg:mr-64 w-full min-w-0">
         {/* Hero Section - Short positioning intro */}
-        <section className="min-h-[50vh] flex items-center justify-center px-4 sm:px-6 pt-32 pb-16">
+        <section className="min-h-[50vh] flex items-center justify-center px-4 sm:px-6 pt-24 sm:pt-32 pb-12 sm:pb-16">
           <div className="w-full max-w-4xl mx-auto text-center">
             <div ref={introRef} className="space-y-4 max-w-3xl mx-auto">
-              <p className="text-xl md:text-2xl text-white/90 leading-relaxed">
+              <p className="text-lg sm:text-xl md:text-2xl text-white/90 leading-relaxed">
                 {t('intro.line1')}
               </p>
-              <p className="text-xl md:text-2xl text-white/90 leading-relaxed">
+              <p className="text-lg sm:text-xl md:text-2xl text-white/90 leading-relaxed">
                 {t('intro.line2')}
               </p>
             </div>
@@ -504,12 +504,12 @@ export default function ServicesPage() {
         </section>
 
         {/* How It Works Section */}
-        <section ref={howItWorksRef} className="py-20 px-4 sm:px-6 relative z-10">
+        <section ref={howItWorksRef} className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 relative z-10">
           <div className="w-full max-w-4xl mx-auto">
-            <h2 className="glow-title text-4xl md:text-5xl font-heading font-bold mb-6 text-white text-center">
+            <h2 className="glow-title text-3xl sm:text-4xl md:text-5xl font-heading font-bold mb-4 sm:mb-6 text-white text-center">
               {t('howItWorks.title')}
             </h2>
-            <p className="text-lg md:text-xl text-white/80 text-center mb-12 max-w-2xl mx-auto">
+            <p className="text-base sm:text-lg md:text-xl text-white/80 text-center mb-8 sm:mb-12 max-w-2xl mx-auto">
               {t.rich('howItWorks.description', {
                 link: (chunks) => (
                   <Link href="/booking" className="text-white underline underline-offset-4 decoration-white/50 hover:decoration-white transition-colors">
@@ -518,20 +518,20 @@ export default function ServicesPage() {
                 ),
               })}
             </p>
-            <div className="space-y-16 max-w-3xl mx-auto">
+            <div className="space-y-12 sm:space-y-16 max-w-3xl mx-auto">
               {t.raw('howItWorks.steps').map((step: any, index: number) => (
                 <div
                   key={index}
-                  className="flex gap-6 md:gap-8"
+                  className="flex gap-4 sm:gap-6 md:gap-8"
                 >
-                  <div className="flex-shrink-0 w-12 h-12 md:w-16 md:h-16 rounded-2xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 border border-white/20 flex items-center justify-center">
-                    <span className="text-2xl md:text-3xl font-bold text-white/90">{index + 1}</span>
+                  <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 md:w-16 md:h-16 rounded-2xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 border border-white/20 flex items-center justify-center">
+                    <span className="text-xl sm:text-2xl md:text-3xl font-bold text-white/90">{index + 1}</span>
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-2xl md:text-3xl font-heading font-bold text-white mb-4">
+                    <h3 className="text-xl sm:text-2xl md:text-3xl font-heading font-bold text-white mb-3 sm:mb-4">
                       {step.title}
                     </h3>
-                    <p className="text-lg md:text-xl text-white/80 leading-relaxed">
+                    <p className="text-base sm:text-lg md:text-xl text-white/80 leading-relaxed">
                       {step.description}
                     </p>
                   </div>
@@ -542,17 +542,17 @@ export default function ServicesPage() {
         </section>
 
         {/* Who This Is For / Not For Section */}
-        <section ref={whoForRef} className="py-20 px-4 sm:px-6 relative z-10">
+        <section ref={whoForRef} className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 relative z-10">
           <div className="container mx-auto max-w-4xl">
-            <div className="grid md:grid-cols-2 gap-12 md:gap-16">
+            <div className="grid md:grid-cols-2 gap-8 sm:gap-12 md:gap-16">
               {/* Who This Is For */}
               <div>
-                <h2 className="glow-text text-3xl md:text-4xl font-heading font-bold mb-8 text-white">
+                <h2 className="glow-text text-2xl sm:text-3xl md:text-4xl font-heading font-bold mb-6 sm:mb-8 text-white">
                   {t('whoFor.for.title')}
                 </h2>
                 <ul className="space-y-4">
                   {t.raw('whoFor.for.items').map((item: string, index: number) => (
-                    <li key={index} className="flex items-start gap-4 text-lg text-white/90 leading-relaxed">
+                    <li key={index} className="flex items-start gap-3 sm:gap-4 text-base sm:text-lg text-white/90 leading-relaxed">
                       <div className="flex-shrink-0 w-6 h-6 rounded-full bg-gradient-to-br from-green-500/30 to-green-600/30 border border-green-400/40 flex items-center justify-center mt-1">
                         <svg className="w-4 h-4 text-green-300" fill="currentColor" viewBox="0 0 20 20">
                           <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
@@ -566,12 +566,12 @@ export default function ServicesPage() {
 
               {/* Who This Is Not For */}
               <div>
-                <h2 className="glow-text text-3xl md:text-4xl font-heading font-bold mb-8 text-white">
+                <h2 className="glow-text text-2xl sm:text-3xl md:text-4xl font-heading font-bold mb-6 sm:mb-8 text-white">
                   {t('whoFor.notFor.title')}
                 </h2>
                 <ul className="space-y-4">
                   {t.raw('whoFor.notFor.items').map((item: string, index: number) => (
-                    <li key={index} className="flex items-start gap-4 text-lg text-white/90 leading-relaxed">
+                    <li key={index} className="flex items-start gap-3 sm:gap-4 text-base sm:text-lg text-white/90 leading-relaxed">
                       <div className="flex-shrink-0 w-6 h-6 rounded-full bg-gradient-to-br from-red-500/30 to-red-600/30 border border-red-400/40 flex items-center justify-center mt-1">
                         <svg className="w-4 h-4 text-red-300" fill="currentColor" viewBox="0 0 20 20">
                           <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
@@ -595,12 +595,12 @@ export default function ServicesPage() {
         </section>
 
         {/* The Digital Growth System Intro */}
-        <section ref={systemIntroRef} className="py-16 px-4 sm:px-6 relative z-10">
+        <section ref={systemIntroRef} className="py-12 sm:py-16 px-4 sm:px-6 relative z-10">
           <div className="container mx-auto max-w-4xl text-center">
-            <h2 className="glow-title text-4xl md:text-5xl font-heading font-bold mb-6 text-white">
+            <h2 className="glow-title text-3xl sm:text-4xl md:text-5xl font-heading font-bold mb-4 sm:mb-6 text-white">
               {t('system.title')}
             </h2>
-            <p className="text-xl md:text-2xl text-white/90 leading-relaxed max-w-3xl mx-auto">
+            <p className="text-lg sm:text-xl md:text-2xl text-white/90 leading-relaxed max-w-3xl mx-auto">
               {t('system.description')}
             </p>
           </div>
@@ -627,15 +627,15 @@ export default function ServicesPage() {
         </nav>
 
         {/* Services Details Section */}
-        <section ref={servicesRef} className="py-20 px-2 sm:px-3 relative z-10">
-          <div className="w-full max-w-4xl mx-auto mb-12 px-4">
-            <p className="text-lg md:text-xl text-white/70 text-left max-w-3xl mx-auto">
+        <section ref={servicesRef} className="py-12 sm:py-16 md:py-20 px-2 sm:px-3 relative z-10">
+          <div className="w-full max-w-4xl mx-auto mb-8 sm:mb-12 px-4">
+            <p className="text-base sm:text-lg md:text-xl text-white/70 text-left max-w-3xl mx-auto">
               {t('system.intro')}
             </p>
           </div>
           <div className="lg:-mr-64 lg:pr-0">
             <div className="mx-auto max-w-none pl-4 sm:pl-6 md:pl-8 lg:pl-0 pr-4 sm:pr-6 md:pr-8 lg:pr-4 xl:pr-6 2xl:pr-8">
-              <div className="space-y-16 sm:space-y-24">
+              <div className="space-y-12 sm:space-y-16 md:space-y-24">
               {SERVICE_DETAILS.map((service, index) => (
                 <article 
                   key={index} 
@@ -649,17 +649,17 @@ export default function ServicesPage() {
                     <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
                     
                     {/* Content wrapper with fixed padding to ensure gap from border */}
-                    <div className="relative z-10 p-6 sm:p-8 md:p-10 lg:p-12 xl:p-16 min-[0px]:p-6">
+                    <div className="relative z-10 p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12 2xl:p-16">
                       {/* Header with number badge */}
-                      <header className="mb-8">
-                        <div className="flex items-start justify-between gap-4 sm:gap-6 mb-6">
+                      <header className="mb-6 sm:mb-8">
+                        <div className="flex items-start justify-between gap-3 sm:gap-4 md:gap-6 mb-4 sm:mb-6">
                           <div className="flex-1 min-w-0">
-                            <div className="inline-block mb-4">
-                              <span className="text-sm font-semibold text-blue-400/80 uppercase tracking-wider">
+                            <div className="inline-block mb-3 sm:mb-4">
+                              <span className="text-xs sm:text-sm font-semibold text-blue-400/80 uppercase tracking-wider">
                                 {t('system.serviceLabel')} {index + 1}
                               </span>
                             </div>
-                            <div className="flex items-baseline gap-3 flex-wrap pr-2">
+                            <div className="flex items-baseline gap-2 sm:gap-3 flex-wrap pr-2">
                               <h2 className="glow-text text-xl sm:text-2xl md:text-3xl lg:text-4xl font-heading font-bold text-white leading-tight break-words hyphens-auto">
                                 {service.title}
                               </h2>
@@ -679,18 +679,18 @@ export default function ServicesPage() {
                       {/* Content grid - blog style layout */}
                       <div className="grid lg:grid-cols-3 gap-8 sm:gap-10 lg:gap-12 xl:gap-16 mt-8 sm:mt-12">
                         {/* What We Do - takes 2 columns */}
-                        <div className="lg:col-span-2 space-y-6">
-                          <div className="flex items-center gap-3 mb-6 sm:mb-8">
-                            <div className="w-1.5 h-10 bg-gradient-to-b from-blue-400 to-blue-600 rounded-full flex-shrink-0"></div>
-                            <h3 className="text-2xl sm:text-3xl font-heading font-bold text-white break-words">
+                        <div className="lg:col-span-2 space-y-4 sm:space-y-6">
+                          <div className="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6 md:mb-8">
+                            <div className="w-1.5 h-8 sm:h-10 bg-gradient-to-b from-blue-400 to-blue-600 rounded-full flex-shrink-0"></div>
+                            <h3 className="text-xl sm:text-2xl md:text-3xl font-heading font-bold text-white break-words">
                               {t(`serviceDetails.service${index + 1}.whatWeDo`)}
                             </h3>
                           </div>
-                          <ul className="space-y-6">
+                          <ul className="space-y-4 sm:space-y-6">
                             {service.details.map((detail: string, detailIndex: number) => (
                               <li
                                 key={detailIndex}
-                                className="flex items-start gap-5 text-white/90 leading-relaxed"
+                                className="flex items-start gap-3 sm:gap-4 md:gap-5 text-white/90 leading-relaxed"
                               >
                                 <div className="flex-shrink-0 w-7 h-7 rounded-full bg-gradient-to-br from-blue-500/30 to-blue-600/30 border border-blue-400/40 flex items-center justify-center mt-1">
                                   <svg
@@ -705,25 +705,25 @@ export default function ServicesPage() {
                                     />
                                   </svg>
                                 </div>
-                                <span className="text-base sm:text-lg lg:text-xl leading-relaxed break-words" style={{ wordBreak: 'break-word', overflowWrap: 'break-word', hyphens: 'auto' }}>{detail}</span>
+                                <span className="text-base sm:text-lg md:text-xl leading-relaxed break-words" style={{ wordBreak: 'break-word', overflowWrap: 'break-word', hyphens: 'auto' }}>{detail}</span>
                               </li>
                             ))}
                           </ul>
                         </div>
 
                         {/* Benefits - takes 1 column */}
-                        <div className="space-y-6 lg:border-l lg:border-white/10 lg:pl-8 xl:pl-12 pr-4 sm:pr-6 md:pr-8 lg:pr-4 xl:pr-6 2xl:pr-8">
-                          <div className="flex items-center gap-3 mb-6 sm:mb-8">
-                            <div className="w-1.5 h-10 bg-gradient-to-b from-purple-400 to-purple-600 rounded-full flex-shrink-0"></div>
-                            <h3 className="text-2xl sm:text-3xl font-heading font-bold text-white break-words">
+                        <div className="space-y-4 sm:space-y-6 lg:border-l lg:border-white/10 lg:pl-6 xl:pl-8 2xl:pl-12 pr-2 sm:pr-4 md:pr-6 lg:pr-4 xl:pr-6 2xl:pr-8">
+                          <div className="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6 md:mb-8">
+                            <div className="w-1.5 h-8 sm:h-10 bg-gradient-to-b from-purple-400 to-purple-600 rounded-full flex-shrink-0"></div>
+                            <h3 className="text-xl sm:text-2xl md:text-3xl font-heading font-bold text-white break-words">
                               {t(`serviceDetails.service${index + 1}.benefits`)}
                             </h3>
                           </div>
-                          <ul className="space-y-6">
+                          <ul className="space-y-4 sm:space-y-6">
                             {service.benefits.map((benefit: string, benefitIndex: number) => (
                               <li
                                 key={benefitIndex}
-                                className="flex items-start gap-5 text-white/90 leading-relaxed"
+                                className="flex items-start gap-3 sm:gap-4 md:gap-5 text-white/90 leading-relaxed"
                               >
                                 <div className="flex-shrink-0 w-7 h-7 rounded-full bg-gradient-to-br from-purple-500/30 to-purple-600/30 border border-purple-400/40 flex items-center justify-center mt-1">
                                   <svg
@@ -756,21 +756,21 @@ export default function ServicesPage() {
         </section>
 
         {/* Ways to Work Together Section */}
-        <section ref={engagementRef} className="py-20 px-4 sm:px-6 relative z-10">
+        <section ref={engagementRef} className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 relative z-10">
           <div className="container mx-auto max-w-4xl">
-            <h2 className="glow-title text-4xl md:text-5xl font-heading font-bold mb-8 text-white text-center">
+            <h2 className="glow-title text-3xl sm:text-4xl md:text-5xl font-heading font-bold mb-6 sm:mb-8 text-white text-center">
               {t('engagement.title')}
             </h2>
-            <div className="bg-black/60 border border-white/20 rounded-2xl p-6 sm:p-8 lg:p-12 md:backdrop-blur-sm">
-              <p className="text-xl md:text-2xl text-white/90 leading-relaxed mb-8 text-center">
+            <div className="bg-black/60 border border-white/20 rounded-2xl p-4 sm:p-6 md:p-8 lg:p-12 md:backdrop-blur-sm">
+              <p className="text-lg sm:text-xl md:text-2xl text-white/90 leading-relaxed mb-6 sm:mb-8 text-center">
                 {t('engagement.description1')}
               </p>
-              <p className="text-lg md:text-xl text-white/80 mb-8 text-center">
+              <p className="text-base sm:text-lg md:text-xl text-white/80 mb-6 sm:mb-8 text-center">
                 {t('engagement.description2')}
               </p>
               <ul className="space-y-4 max-w-2xl mx-auto">
                 {t.raw('engagement.items').map((item: string, index: number) => (
-                  <li key={index} className="flex items-start gap-3 sm:gap-4 text-lg text-white/90 leading-relaxed">
+                  <li key={index} className="flex items-start gap-3 sm:gap-4 text-base sm:text-lg text-white/90 leading-relaxed">
                     <div className="flex-shrink-0 w-6 h-6 rounded-full bg-gradient-to-br from-blue-500/30 to-blue-600/30 border border-blue-400/40 flex items-center justify-center mt-1">
                       <svg className="w-4 h-4 text-blue-300" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
@@ -780,7 +780,7 @@ export default function ServicesPage() {
                   </li>
                 ))}
               </ul>
-              <p className="text-lg md:text-xl text-white/80 leading-relaxed mt-8 text-center">
+              <p className="text-base sm:text-lg md:text-xl text-white/80 leading-relaxed mt-6 sm:mt-8 text-center">
                 {t('engagement.description3')}
               </p>
             </div>
@@ -788,17 +788,17 @@ export default function ServicesPage() {
         </section>
 
         {/* CTA Section */}
-        <section className="pt-32 pb-48 px-6 relative z-10">
+        <section className="pt-20 sm:pt-24 md:pt-32 pb-32 sm:pb-40 md:pb-48 px-4 sm:px-6 relative z-10">
           <div className="container mx-auto max-w-4xl text-center">
-            <h2 className="glow-title text-4xl md:text-5xl font-heading font-bold mb-8 text-white">
+            <h2 className="glow-title text-3xl sm:text-4xl md:text-5xl font-heading font-bold mb-6 sm:mb-8 text-white">
               {t('nextStep.title')}
             </h2>
-            <p className="text-xl text-white/90 mb-12 max-w-2xl mx-auto">
+            <p className="text-lg sm:text-xl text-white/90 mb-8 sm:mb-12 max-w-2xl mx-auto">
               {t('nextStep.description')}
             </p>
             <Link
               href="/booking"
-              className="glow-button cta inline-block px-10 py-4 bg-white text-black rounded-full text-lg font-semibold hover:bg-white/90 shadow-2xl"
+              className="glow-button cta inline-block px-8 sm:px-10 py-3 sm:py-4 bg-white text-black rounded-full text-base sm:text-lg font-semibold hover:bg-white/90 shadow-2xl w-full sm:w-auto"
             >
               {tCommon('bookMeeting')}
             </Link>
