@@ -56,9 +56,9 @@
         "description": "Analytics and measurement architecture that shows what's working and what isn't. This provides clear insight into customer behaviour and performance, allowing decisions to be based on data instead of guesswork — and enabling continuous improvement over time."
       },
       "service6": {
-        "title": "Technical Integrations & Automation",
-        "subtitle": "Reducing Manual Work & Friction",
-        "description": "Connecting platforms, tools, and workflows to reduce manual work and operational friction. From forms and bookings to email and internal systems, integrations are designed to improve efficiency, reliability, and the overall customer journey."
+        "title": "Automation & AI Solutions",
+        "subtitle": "Workflows, Integrations, and AI Assistants",
+        "description": "We build practical automations that save time and reduce manual work, including workflow automation, AI chatbots, AI marketing assistants, and custom integrations."
       }
     },
     "about": {
@@ -254,16 +254,17 @@
         "details": [
           "API integrations between platforms and tools",
           "Workflow automation to reduce manual work",
-          "CRM and marketing tool integrations",
+          "AI chatbot setup for customer support and lead qualification",
+          "AI marketing assistant workflows for content and campaign support",
           "Data synchronization across systems",
-          "Custom integration development",
-          "Process automation and efficiency improvements"
+          "Custom integration development"
         ],
         "benefitsList": [
           "Reduced manual work and increased efficiency",
           "Improved data accuracy and consistency",
           "Seamless workflows across platforms",
-          "Time and cost savings through automation"
+          "Faster response times for leads and support requests",
+          "Time and cost savings through automation and AI"
         ]
       }
     },

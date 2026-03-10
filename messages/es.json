@@ -56,9 +56,9 @@
         "description": "Arquitectura de análisis y medición que muestra qué funciona y qué no. Esto proporciona una visión clara del comportamiento del cliente y el rendimiento, permitiendo que las decisiones se basen en datos en lugar de conjeturas — y permitiendo la mejora continua con el tiempo."
       },
       "service6": {
-        "title": "Integraciones técnicas y automatización",
-        "subtitle": "Reducir trabajo manual y fricción",
-        "description": "Conectar plataformas, herramientas y flujos de trabajo para reducir el trabajo manual y la fricción operativa. Desde formularios y reservas hasta correo electrónico y sistemas internos, las integraciones están diseñadas para mejorar la eficiencia, la confiabilidad y la experiencia general del cliente."
+        "title": "Soluciones de automatización e IA",
+        "subtitle": "Flujos de trabajo, integraciones y asistentes de IA",
+        "description": "Creamos automatizaciones prácticas que ahorran tiempo y reducen el trabajo manual, incluyendo automatización de flujos de trabajo, chatbots con IA, asistentes de marketing con IA e integraciones personalizadas."
       }
     },
     "about": {
@@ -254,16 +254,17 @@
         "details": [
           "Integraciones de API entre plataformas y herramientas",
           "Automatización de flujos de trabajo para reducir el trabajo manual",
-          "Integraciones de herramientas de CRM y marketing",
+          "Configuración de chatbots con IA para soporte al cliente y calificación de leads",
+          "Flujos de asistentes de marketing con IA para contenido y soporte de campañas",
           "Sincronización de datos entre sistemas",
-          "Desarrollo de integraciones personalizadas",
-          "Automatización de procesos y mejoras de eficiencia"
+          "Desarrollo de integraciones personalizadas"
         ],
         "benefitsList": [
           "Reducción del trabajo manual y mayor eficiencia",
           "Mayor precisión y consistencia de datos",
           "Flujos de trabajo sin problemas entre plataformas",
-          "Ahorro de tiempo y costos a través de la automatización"
+          "Tiempos de respuesta más rápidos para leads y solicitudes de soporte",
+          "Ahorro de tiempo y costos a través de la automatización y la IA"
         ]
       }
     },

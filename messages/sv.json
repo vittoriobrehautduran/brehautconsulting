@@ -56,9 +56,9 @@
         "description": "Analys- och mätningsarkitektur som visar vad som fungerar och vad som inte gör det. Detta ger tydlig insikt i kundbeteende och prestanda, vilket gör att beslut kan baseras på data istället för gissningar — och möjliggör kontinuerlig förbättring över tid."
       },
       "service6": {
-        "title": "Tekniska integrationer & automatisering",
-        "subtitle": "Minska manuellt arbete & friktion",
-        "description": "Ansluta plattformar, verktyg och arbetsflöden för att minska manuellt arbete och operativa friktioner. Från formulär och bokningar till e-post och interna system, integrationer är designade för att förbättra effektivitet, tillförlitlighet och den övergripande kundresan."
+        "title": "Automations- och AI-lösningar",
+        "subtitle": "Arbetsflöden, integrationer och AI-assistenter",
+        "description": "Vi bygger praktiska automatiseringar som sparar tid och minskar manuellt arbete, inklusive arbetsflödesautomatisering, AI-chatbotar, AI-marknadsföringsassistenter och skräddarsydda integrationer."
       }
     },
     "about": {
@@ -254,16 +254,17 @@
         "details": [
           "API-integrationer mellan plattformar och verktyg",
           "Arbetsflödesautomatisering för att minska manuellt arbete",
-          "CRM- och marknadsföringsverktygsintegrationer",
+          "Konfiguration av AI-chatbotar för kundsupport och kvalificering av leads",
+          "AI-marknadsföringsassistentflöden för innehåll och kampanjstöd",
           "Datasynkronisering över system",
-          "Anpassad integrationsutveckling",
-          "Processautomatisering och effektivitetsförbättringar"
+          "Anpassad integrationsutveckling"
         ],
         "benefitsList": [
           "Minskat manuellt arbete och ökad effektivitet",
           "Förbättrad data noggrannhet och konsistens",
           "Sömlösa arbetsflöden över plattformar",
-          "Tids- och kostnadsbesparingar genom automatisering"
+          "Snabbare svarstider för leads och supportförfrågningar",
+          "Tids- och kostnadsbesparingar genom automatisering och AI"
         ]
       }
     },
