@@ -17,9 +17,7 @@ export default function BlocksHowItWorks() {
   const tCommonRoot = useTranslations('common')
 
   const steps = (t.raw('howItWorks.steps') as Step[]) || []
-  const forItems = (t.raw('whoFor.for.items') as string[]) || []
-  const notForItems = (t.raw('whoFor.notFor.items') as string[]) || []
-  const engagementItems = (t.raw('engagement.items') as string[]) || []
+  const fitItems = (t.raw('whoFor.items') as string[]) || []
 
   return (
     <div className="blocks-site blocks-site--page">
@@ -30,13 +28,11 @@ export default function BlocksHowItWorks() {
           <header className="blocks-site__page-intro" aria-labelledby="hiw-h">
             <h1 id="hiw-h">{t('howItWorks.title')}</h1>
             <p>{t('intro.line1')}</p>
-            <p>{t('intro.line2')}</p>
           </header>
 
           <section className="blocks-site__panel" aria-labelledby="hiw-steps-h">
             <div className="blocks-site__panel-head">
               <h2 id="hiw-steps-h">{tBlocks('howItWorks.processTitle')}</h2>
-              <p>{tBlocks('howItWorks.processLede')}</p>
             </div>
             <ol className="blocks-site__steps">
               {steps.map((step, index) => (
@@ -56,32 +52,17 @@ export default function BlocksHowItWorks() {
           <section className="blocks-site__panel" aria-labelledby="hiw-who-h">
             <div className="blocks-site__panel-head">
               <h2 id="hiw-who-h">{tBlocks('howItWorks.fitTitle')}</h2>
-              <p>{tBlocks('howItWorks.fitLede')}</p>
             </div>
-            <div className="blocks-site__split">
-              <div className="blocks-site__card">
-                <h3>{t('whoFor.for.title')}</h3>
-                <ul className="blocks-site__plain-list">
-                  {forItems.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
-              </div>
-              <div className="blocks-site__card blocks-site__card--muted">
-                <h3>{t('whoFor.notFor.title')}</h3>
-                <ul className="blocks-site__plain-list blocks-site__plain-list--muted">
-                  {notForItems.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
-              </div>
-            </div>
+            <ul className="blocks-site__plain-list">
+              {fitItems.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
           </section>
 
           <section className="blocks-site__panel" id="system" aria-labelledby="hiw-system-h">
             <div className="blocks-site__panel-head">
               <h2 id="hiw-system-h">{t('system.title')}</h2>
-              <p>{t('system.description')}</p>
             </div>
 
             <ul className="blocks-site__service-links">
@@ -118,18 +99,11 @@ export default function BlocksHowItWorks() {
           </section>
 
           <section className="blocks-site__panel" aria-labelledby="hiw-next-h">
-            <div className="blocks-site__panel-head">
-              <h2 id="hiw-next-h">{t('nextStep.title')}</h2>
-              <p>{t('nextStep.description')}</p>
-            </div>
-            <div className="blocks-site__card">
-              <h3>{t('engagement.title')}</h3>
-              <p className="blocks-site__lede">{t('engagement.description1')}</p>
-              <ul className="blocks-site__plain-list blocks-site__plain-list--inline">
-                {engagementItems.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
+            <div className="blocks-site__close-block">
+              <div>
+                <h2 id="hiw-next-h">{t('nextStep.title')}</h2>
+                <p>{t('nextStep.description')}</p>
+              </div>
               <Link
                 className="blocks-scroll__cta blocks-scroll__cta--solid"
                 href={sitePath('contact')}

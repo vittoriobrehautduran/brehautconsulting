@@ -34,34 +34,34 @@
   "home": {
     "hero": {
       "tagline": "Clear, measurable digital systems for customer growth.",
-      "description": "We help small and medium-sized businesses get more customers through high-performance websites, search visibility, and measurable digital marketing systems."
+      "description": "We help small and medium-sized businesses get more customers with fast websites, search visibility and measurable marketing."
     },
     "services": {
-      "title": "What We Offer",
+      "title": "What we do",
       "service1": {
-        "title": "Website & Web Application Development",
-        "subtitle": "For Businesses",
-        "description": "Design and development of modern websites and web applications built to support real business goals — not just visual presentation. Every solution is structured around usability, performance, and maintainability, with a clear focus on guiding visitors toward enquiries, bookings, or actions that matter to the business."
+        "title": "Websites & Web Apps",
+        "subtitle": "Built to bring in customers",
+        "description": "Fast, clear websites and web apps designed to turn visitors into enquiries."
       },
       "service3": {
-        "title": "Local Visibility & SEO",
-        "subtitle": "Being Found on Google When Customers Search",
-        "description": "Search optimisation that helps your business appear where customers actively search for your services. This includes structuring your website and presence so you are visible on Google and map services at the moment potential customers are looking — not just ranking, but relevance."
+        "title": "SEO & Local Visibility",
+        "subtitle": "Be found when customers search",
+        "description": "We make sure you show up on Google and Maps when people look for what you offer."
       },
       "service4": {
-        "title": "Advertising & Demand Capture",
-        "subtitle": "Google Ads & High-Intent Traffic",
-        "description": "Structured advertising designed to capture existing demand, not chase vanity metrics. Campaigns are built around clear conversion goals, targeting people who are already ready to enquire, book, or buy — with full visibility into what actually generates results."
+        "title": "Advertising",
+        "subtitle": "Ads that bring real enquiries",
+        "description": "Campaigns aimed at people ready to buy, with clear tracking of what pays off."
       },
       "service5": {
-        "title": "Analytics & Measurement",
-        "subtitle": "Understanding What's Actually Working",
-        "description": "Analytics and measurement architecture that shows what's working and what isn't. This provides clear insight into customer behaviour and performance, allowing decisions to be based on data instead of guesswork — and enabling continuous improvement over time."
+        "title": "Analytics & Tracking",
+        "subtitle": "See what actually works",
+        "description": "Simple tracking that shows which pages and campaigns bring customers."
       },
       "service6": {
-        "title": "Automation & AI Solutions",
-        "subtitle": "Workflows, Integrations, and AI Assistants",
-        "description": "We build practical automations that save time and reduce manual work, including workflow automation, AI chatbots, AI marketing assistants, and custom integrations."
+        "title": "Automation & AI",
+        "subtitle": "Less manual work",
+        "description": "Workflows, integrations and AI assistants that save your team hours every week."
       }
     },
     "work": {
@@ -82,209 +82,154 @@
       ]
     },
     "about": {
-      "title": "About Brehaut Consulting",
-      "description1": "We specialize in creating digital solutions that drive real business results. Our approach combines technical expertise with a deep understanding of growth marketing and conversion optimization.",
-      "description2": "Whether you need a modern web application, improved search visibility, strategic advertising, or seamless integrations, we work with you to build systems that scale with your business and deliver measurable outcomes."
+      "title": "About us",
+      "description1": "We build digital systems that bring in customers: websites, search, ads, tracking and automation.",
+      "description2": "Clear scope, solid work and results you can measure."
     },
     "faq": {
       "title": "Frequently Asked Questions",
       "items": [
         {
-          "question": "How does working with Brehaut Consulting start?",
-          "answer": "It starts with a conversation. You reach out through the contact form, and we discuss your business, goals, and current challenges. This helps us understand if we're a good fit and what approach would work best for you."
+          "question": "How do we get started?",
+          "answer": "Send us a message. We'll set up a short call to understand your business and see if we're a good fit."
         },
         {
-          "question": "What happens during the first meeting?",
-          "answer": "We listen to your situation, ask questions about your business and goals, and discuss what you're trying to achieve. It's a discovery conversation, not a sales pitch. By the end, you'll have clarity on whether we can help and what that might look like."
+          "question": "Can I hire you for just one thing?",
+          "answer": "Yes. A website, ads or anything else on its own is fine."
         },
         {
-          "question": "Can I hire you for just a website or just ads?",
-          "answer": "Yes. While we often work on integrated systems, we can focus on a single service if that's what you need. We'll be honest if we think you'd benefit from additional services, but the decision is yours."
+          "question": "How is pricing set?",
+          "answer": "Per project, based on scope. You get a clear proposal before any work starts."
         },
         {
-          "question": "How is pricing structured?",
-          "answer": "Pricing is based on project scope, complexity, and goals. We provide clear proposals after understanding your needs, so you know exactly what you're investing in and why."
+          "question": "Do you work remotely?",
+          "answer": "Yes. We work with clients across Europe and Latin America, fully remote."
         },
         {
-          "question": "Do you work internationally or only locally?",
-          "answer": "We work with clients globally, with a focus on Europe and Latin America. Our services are delivered remotely, so location isn't a barrier as long as we can communicate effectively."
-        },
-        {
-          "question": "Who owns the website, ads, and data?",
-          "answer": "You do. The website code, content, and any data collected belong to you. We work with third-party platforms when needed, but you maintain ownership and control of your digital assets."
+          "question": "Who owns the website and data?",
+          "answer": "You do. The code, content and data are yours."
         }
       ]
     },
     "cta": {
-      "description": "Let's discuss how we can help transform your digital presence and drive real business results."
+      "description": "Have a project in mind? Let's talk."
     }
   },
   "services": {
     "intro": {
-      "line1": "Brehaut Consulting helps businesses get more customers by building clear, measurable digital systems.",
-      "line2": "The focus is on understanding how customers find you, how they decide to contact you, and how your digital setup supports that journey."
+      "line1": "A simple process from first call to measurable results."
     },
     "howItWorks": {
       "title": "How It Works",
-      "description": "If this approach makes sense, <link>the next step is a short conversation</link>.",
-      "linkText": "the next step is a short conversation",
       "steps": [
         {
-          "title": "Initial Conversation",
-          "description": "We start with a working session to understand your business, customers, and what's actually preventing more enquiries or customers."
+          "title": "Talk",
+          "description": "A short call to understand your business and goals."
         },
         {
-          "title": "System Design",
-          "description": "Based on your situation, a clear digital system is defined — only what's needed, based on your goals and situation."
+          "title": "Plan",
+          "description": "We define what you need, and nothing more."
         },
         {
-          "title": "Build & Implementation",
-          "description": "The agreed components are designed and implemented with a focus on performance, clarity, and long-term reliability."
+          "title": "Build",
+          "description": "We design and build it: fast and reliable."
         },
         {
-          "title": "Measurement & Improvement",
-          "description": "Results are tracked and reviewed so the system can be improved over time based on real data."
+          "title": "Improve",
+          "description": "We track results and keep improving."
         }
       ]
     },
     "whoFor": {
-      "for": {
-        "title": "Who This Is For",
-        "items": [
-          "Businesses that want more enquiries, bookings, or customers",
-          "Owners who care about results, not just design",
-          "Companies that want clarity instead of guesswork",
-          "Businesses open to improving how their digital presence works"
-        ]
-      },
-      "notFor": {
-        "title": "Who This Is Not For",
-        "items": [
-          "Businesses looking for the cheapest possible solution",
-          "One-off tasks with no interest in long-term results",
-          "Clients who want tools without strategy"
-        ]
-      }
+      "items": [
+        "Want more enquiries or customers",
+        "Care about results, not just looks",
+        "Want a long-term partner"
+      ]
     },
     "system": {
-      "title": "The Digital Growth System",
-      "description": "Each system is built from the components below. Not every business needs every part, but each component exists to support one goal: measurable customer growth.",
-      "intro": "Below are the core components that can make up your digital growth system.",
-      "servicesLabel": "Services",
-      "serviceLabel": "Service"
+      "title": "Services"
     },
     "serviceDetails": {
       "service1": {
-        "label": "Core Foundation",
-        "whatWeDo": "What We Do",
-        "benefits": "Benefits",
+        "whatWeDo": "What we do",
+        "benefits": "What you get",
         "details": [
-          "Custom website design and development tailored to your brand and business goals",
-          "Modern web applications built with scalable architectures and best practices",
-          "Responsive design ensuring optimal experience across all devices",
-          "Performance optimization for fast loading times and smooth user experience",
-          "Content management systems for easy content updates and maintenance",
-          "E-commerce solutions for online stores and digital marketplaces"
+          "Custom websites and web apps",
+          "Online stores",
+          "Fast on every device",
+          "Easy content editing"
         ],
         "benefitsList": [
-          "Improved user engagement and conversion rates",
-          "Enhanced brand presence and credibility",
-          "Scalable solutions that grow with your business",
-          "Modern technology stack for future-proof development"
+          "More enquiries from the same traffic",
+          "A site that's easy to grow",
+          "A credible first impression"
         ]
       },
       "service3": {
-        "whatWeDo": "What We Do",
-        "benefits": "Benefits",
+        "whatWeDo": "What we do",
+        "benefits": "What you get",
         "details": [
-          "Technical SEO optimization for better search engine visibility",
-          "Local SEO strategies for location-based businesses",
-          "Keyword research and content optimization",
-          "On-page and off-page SEO implementation",
-          "Google Business Profile optimization",
-          "SEO audits and performance tracking"
+          "Technical SEO",
+          "Google Business Profile",
+          "Keyword research and content",
+          "Audits and progress tracking"
         ],
         "benefitsList": [
-          "Increased organic traffic and visibility",
-          "Better rankings in search engine results",
-          "More qualified leads from search",
-          "Long-term sustainable growth in online presence"
+          "More visitors from search",
+          "Higher rankings for what you offer",
+          "Leads that keep coming"
         ]
       },
       "service4": {
-        "label": "Growth Driver",
-        "whatWeDo": "What We Do",
-        "benefits": "Benefits",
+        "whatWeDo": "What we do",
+        "benefits": "What you get",
         "details": [
-          "Search engine advertising (Google Ads, Bing Ads)",
-          "Social media advertising (Meta, LinkedIn, etc.)",
-          "Display and retargeting campaigns",
-          "Video advertising strategies",
-          "Campaign setup, optimization, and management",
-          "Conversion tracking and ROI optimization"
+          "Google Ads and Bing Ads",
+          "Meta and LinkedIn ads",
+          "Retargeting",
+          "Conversion tracking"
         ],
         "benefitsList": [
-          "Immediate visibility and traffic generation",
-          "Precise targeting to reach your ideal customers",
-          "Measurable results with clear ROI tracking",
-          "Flexible budgets and scalable campaigns"
+          "Visible from day one",
+          "Reach people ready to buy",
+          "Clear return on spend"
         ]
       },
       "service5": {
-        "label": "Growth Driver",
-        "whatWeDo": "What We Do",
-        "benefits": "Benefits",
+        "whatWeDo": "What we do",
+        "benefits": "What you get",
         "details": [
-          "Analytics setup and configuration (Google Analytics, etc.)",
-          "Custom dashboard creation for key metrics",
-          "Conversion tracking and goal configuration",
-          "Customer behavior analysis and insights",
-          "Performance reporting and data visualization",
-          "Data integration across multiple platforms"
+          "Google Analytics setup",
+          "Conversion tracking",
+          "Simple dashboards",
+          "Regular reports"
         ],
         "benefitsList": [
-          "Clear visibility into business performance",
-          "Data-driven insights for decision making",
-          "Better understanding of customer behavior",
-          "Optimization opportunities identified through data"
+          "Know what brings customers",
+          "Decisions based on data",
+          "Budget spent where it works"
         ]
       },
       "service6": {
-        "whatWeDo": "What We Do",
-        "benefits": "Benefits",
+        "whatWeDo": "What we do",
+        "benefits": "What you get",
         "details": [
-          "API integrations between platforms and tools",
-          "Workflow automation to reduce manual work",
-          "AI chatbot setup for customer support and lead qualification",
-          "AI marketing assistant workflows for content and campaign support",
-          "Data synchronization across systems",
-          "Custom integration development"
+          "Workflow automation",
+          "AI chatbots for support and leads",
+          "AI assistants for marketing",
+          "Integrations between your tools"
         ],
         "benefitsList": [
-          "Reduced manual work and increased efficiency",
-          "Improved data accuracy and consistency",
-          "Seamless workflows across platforms",
-          "Faster response times for leads and support requests",
-          "Time and cost savings through automation and AI"
+          "Hours saved every week",
+          "Faster replies to leads",
+          "Fewer manual errors"
         ]
       }
     },
-    "engagement": {
-      "title": "Ways to Work Together",
-      "description1": "Some clients need a complete system. Others need a specific component.",
-      "description2": "Engagements can include:",
-      "items": [
-        "Full system design and implementation",
-        "Website or web application projects",
-        "Advertising setup and optimisation",
-        "Analytics and tracking architecture",
-        "Ongoing optimisation and support"
-      ],
-      "description3": "The scope is defined after the initial conversation, based on what will create the most value for your business."
-    },
     "nextStep": {
-      "title": "Next Step",
-      "description": "If this sounds relevant, the next step is a short meeting to understand your business and see if there's a good fit."
+      "title": "Next step",
+      "description": "Start with a short call."
     }
   },
   "contact": {
@@ -297,7 +242,7 @@
       "company": "Company",
       "website": "Website (optional)",
       "interest": "What are you interested in?",
-      "wholeSystem": "The whole digital growth system",
+      "wholeSystem": "All of the above",
       "other": "Other",
       "message": "Message",
       "messageHint": "Goals, timeline, or anything else that helps.",
@@ -361,30 +306,28 @@
     "closeMenu": "Close menu",
     "howItWorks": {
       "processTitle": "The process",
-      "processLede": "Four clear stages from the first conversation to ongoing improvement.",
-      "fitTitle": "Fit",
-      "fitLede": "Honest about who this work helps — and who it doesn’t."
+      "fitTitle": "A good fit if you…"
     },
     "serviceNext": {
       "service1": {
         "title": "Build yours",
-        "body": "Tell us what the site or app needs to do for the business — we shape the stack and the build around that."
+        "body": "Tell us what the site needs to do. We'll take it from there."
       },
       "service3": {
         "title": "Get found",
-        "body": "If customers already search for what you offer, we make sure you show up clearly — on Google, maps, and the pages that convert."
+        "body": "Let's make sure customers find you first."
       },
       "service4": {
         "title": "Capture demand",
-        "body": "People already looking for what you sell should land on a clear offer — we set the campaigns, tracking, and landing path so spend turns into enquiries."
+        "body": "Turn ad spend into enquiries."
       },
       "service5": {
         "title": "See what works",
-        "body": "Measurement should answer simple questions — which pages, campaigns, and paths actually bring enquiries — so you can spend time and budget on what moves the business."
+        "body": "Find out what actually brings customers."
       },
       "service6": {
         "title": "Automate the busywork",
-        "body": "Start with the repetitive handoffs that slow the team down — then wire in assistants and integrations that keep leads and data moving without constant manual work."
+        "body": "Start with the task that takes the most time."
       }
     },
     "scrollHint": "Scroll"

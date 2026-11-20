@@ -34,34 +34,34 @@
   "home": {
     "hero": {
       "tagline": "Sistemas digitales claros y medibles para el crecimiento de clientes.",
-      "description": "Ayudamos a pequeñas y medianas empresas a conseguir más clientes a través de sitios web de alto rendimiento, visibilidad en búsquedas y sistemas de marketing digital medibles."
+      "description": "Ayudamos a pequeñas y medianas empresas a conseguir más clientes con sitios web rápidos, visibilidad en búsquedas y marketing medible."
     },
     "services": {
-      "title": "Lo que ofrecemos",
+      "title": "Lo que hacemos",
       "service1": {
-        "title": "Desarrollo de sitios web y aplicaciones web",
-        "subtitle": "Para empresas",
-        "description": "Diseño y desarrollo de sitios web y aplicaciones web modernos construidos para apoyar objetivos comerciales reales — no solo presentación visual. Cada solución está estructurada en torno a la usabilidad, el rendimiento y la mantenibilidad, con un enfoque claro en guiar a los visitantes hacia consultas, reservas o acciones que importan al negocio."
+        "title": "Sitios web y apps",
+        "subtitle": "Hechos para traer clientes",
+        "description": "Sitios web y apps rápidos y claros, pensados para convertir visitas en consultas."
       },
       "service3": {
-        "title": "Visibilidad local y SEO",
-        "subtitle": "Ser encontrado en Google cuando los clientes buscan",
-        "description": "Optimización de búsqueda que ayuda a tu negocio a aparecer donde los clientes buscan activamente tus servicios. Esto incluye estructurar tu sitio web y presencia para que seas visible en Google y servicios de mapas en el momento en que los clientes potenciales están buscando — no solo ranking, sino relevancia."
+        "title": "SEO y visibilidad local",
+        "subtitle": "Aparece cuando te buscan",
+        "description": "Hacemos que aparezcas en Google y Maps cuando buscan lo que ofreces."
       },
       "service4": {
-        "title": "Publicidad y captura de demanda",
-        "subtitle": "Google Ads y tráfico de alta intención",
-        "description": "Publicidad estructurada diseñada para capturar la demanda existente, no perseguir métricas vanidosas. Las campañas se construyen en torno a objetivos de conversión claros, dirigidas a personas que ya están listas para consultar, reservar o comprar — con total visibilidad de lo que realmente genera resultados."
+        "title": "Publicidad",
+        "subtitle": "Anuncios que traen consultas reales",
+        "description": "Campañas dirigidas a quien está listo para comprar, midiendo qué funciona."
       },
       "service5": {
-        "title": "Análisis y medición",
-        "subtitle": "Entender qué está funcionando realmente",
-        "description": "Arquitectura de análisis y medición que muestra qué funciona y qué no. Esto proporciona una visión clara del comportamiento del cliente y el rendimiento, permitiendo que las decisiones se basen en datos en lugar de conjeturas — y permitiendo la mejora continua con el tiempo."
+        "title": "Analítica y medición",
+        "subtitle": "Mira qué funciona de verdad",
+        "description": "Medición simple que muestra qué páginas y campañas traen clientes."
       },
       "service6": {
-        "title": "Soluciones de automatización e IA",
-        "subtitle": "Flujos de trabajo, integraciones y asistentes de IA",
-        "description": "Creamos automatizaciones prácticas que ahorran tiempo y reducen el trabajo manual, incluyendo automatización de flujos de trabajo, chatbots con IA, asistentes de marketing con IA e integraciones personalizadas."
+        "title": "Automatización e IA",
+        "subtitle": "Menos trabajo manual",
+        "description": "Flujos, integraciones y asistentes de IA que ahorran horas a tu equipo cada semana."
       }
     },
     "work": {
@@ -82,209 +82,154 @@
       ]
     },
     "about": {
-      "title": "Acerca de Brehaut Consulting",
-      "description1": "Nos especializamos en crear soluciones digitales que impulsan resultados comerciales reales. Nuestro enfoque combina experiencia técnica con una comprensión profunda del marketing de crecimiento y la optimización de conversión.",
-      "description2": "Ya sea que necesites una aplicación web moderna, mayor visibilidad en búsquedas, publicidad estratégica o integraciones sin problemas, trabajamos contigo para construir sistemas que escalen con tu negocio y entreguen resultados medibles."
+      "title": "Sobre nosotros",
+      "description1": "Creamos sistemas digitales que traen clientes: sitios web, búsqueda, anuncios, medición y automatización.",
+      "description2": "Alcance claro, trabajo sólido y resultados medibles."
     },
     "faq": {
       "title": "Preguntas frecuentes",
       "items": [
         {
-          "question": "¿Cómo empieza a trabajar con Brehaut Consulting?",
-          "answer": "Empieza con una conversación. Nos escribes a través del formulario de contacto y hablamos de tu negocio, objetivos y retos actuales. Así entendemos si encajamos y qué enfoque tiene más sentido."
+          "question": "¿Cómo empezamos?",
+          "answer": "Escríbenos. Agendamos una llamada corta para entender tu negocio y ver si encajamos."
         },
         {
-          "question": "¿Qué pasa en la primera reunión?",
-          "answer": "Escuchamos tu situación, preguntamos sobre el negocio y los objetivos, y hablamos de lo que quieres lograr. Es una conversación de descubrimiento, no un discurso de ventas. Al final tendrás claridad sobre si podemos ayudar y cómo podría verse."
+          "question": "¿Puedo contrataros para una sola cosa?",
+          "answer": "Sí. Un sitio web, anuncios o cualquier otro servicio por separado."
         },
         {
-          "question": "¿Puedo contratarte solo para un sitio web o solo para anuncios?",
-          "answer": "Sí. Aunque a menudo trabajamos en sistemas integrados, podemos enfocarnos en un solo servicio si eso es lo que necesitas. Seremos honestos si creemos que te beneficiarías de servicios adicionales, pero la decisión es tuya."
+          "question": "¿Cómo se fija el precio?",
+          "answer": "Por proyecto, según el alcance. Recibes una propuesta clara antes de empezar."
         },
         {
-          "question": "¿Cómo está estructurado el precio?",
-          "answer": "El precio se basa en el alcance del proyecto, la complejidad y los objetivos. Proporcionamos propuestas claras después de entender tus necesidades, para que sepas exactamente en qué estás invirtiendo y por qué."
+          "question": "¿Trabajáis en remoto?",
+          "answer": "Sí. Trabajamos con clientes de Europa y Latinoamérica, totalmente en remoto."
         },
         {
-          "question": "¿Trabajan internacionalmente o solo localmente?",
-          "answer": "Trabajamos con clientes globalmente, con un enfoque en Europa y América Latina. Nuestros servicios se entregan de forma remota, por lo que la ubicación no es una barrera siempre que podamos comunicarnos efectivamente."
-        },
-        {
-          "question": "¿Quién es dueño del sitio web, los anuncios y los datos?",
-          "answer": "Tú. El código del sitio web, el contenido y cualquier dato recopilado te pertenecen. Trabajamos con plataformas de terceros cuando es necesario, pero mantienes la propiedad y el control de tus activos digitales."
+          "question": "¿De quién es el sitio web y los datos?",
+          "answer": "Tuyos. El código, el contenido y los datos te pertenecen."
         }
       ]
     },
     "cta": {
-      "description": "Hablemos de cómo podemos ayudar a transformar tu presencia digital e impulsar resultados comerciales reales."
+      "description": "¿Tienes un proyecto en mente? Hablemos."
     }
   },
   "services": {
     "intro": {
-      "line1": "Brehaut Consulting ayuda a las empresas a conseguir más clientes construyendo sistemas digitales claros y medibles.",
-      "line2": "El enfoque está en entender cómo los clientes te encuentran, cómo deciden contactarte y cómo tu configuración digital apoya ese viaje."
+      "line1": "Un proceso simple, de la primera llamada a resultados medibles."
     },
     "howItWorks": {
       "title": "Cómo funciona",
-      "description": "Si este enfoque tiene sentido, <link>el siguiente paso es una conversación corta</link>.",
-      "linkText": "el siguiente paso es una conversación corta",
       "steps": [
         {
-          "title": "Conversación inicial",
-          "description": "Comenzamos con una sesión de trabajo para entender tu negocio, clientes y qué está realmente impidiendo más consultas o clientes."
+          "title": "Hablar",
+          "description": "Una llamada corta para entender tu negocio y tus objetivos."
         },
         {
-          "title": "Diseño del sistema",
-          "description": "Basado en tu situación, se define un sistema digital claro — solo lo que se necesita, basado en tus objetivos y situación."
+          "title": "Planificar",
+          "description": "Definimos lo que necesitas, y nada más."
         },
         {
-          "title": "Construcción e implementación",
-          "description": "Los componentes acordados se diseñan e implementan con un enfoque en el rendimiento, la claridad y la confiabilidad a largo plazo."
+          "title": "Construir",
+          "description": "Diseñamos y construimos: rápido y fiable."
         },
         {
-          "title": "Medición y mejora",
-          "description": "Los resultados se rastrean y revisan para que el sistema pueda mejorarse con el tiempo basado en datos reales."
+          "title": "Mejorar",
+          "description": "Medimos resultados y seguimos mejorando."
         }
       ]
     },
     "whoFor": {
-      "for": {
-        "title": "Para quién es esto",
-        "items": [
-          "Empresas que quieren más consultas, reservas o clientes",
-          "Propietarios que se preocupan por los resultados, no solo el diseño",
-          "Empresas que quieren claridad en lugar de conjeturas",
-          "Empresas abiertas a mejorar cómo funciona su presencia digital"
-        ]
-      },
-      "notFor": {
-        "title": "Para quién no es esto",
-        "items": [
-          "Empresas que buscan la solución más barata posible",
-          "Tareas únicas sin interés en resultados a largo plazo",
-          "Clientes que quieren herramientas sin estrategia"
-        ]
-      }
+      "items": [
+        "Quieres más consultas o clientes",
+        "Te importan los resultados, no solo el diseño",
+        "Buscas un socio a largo plazo"
+      ]
     },
     "system": {
-      "title": "El sistema de crecimiento digital",
-      "description": "Cada sistema se construye a partir de los componentes a continuación. No todas las empresas necesitan cada parte, pero cada componente existe para apoyar un objetivo: crecimiento medible de clientes.",
-      "intro": "A continuación se encuentran los componentes centrales que pueden formar tu sistema de crecimiento digital.",
-      "servicesLabel": "Servicios",
-      "serviceLabel": "Servicio"
+      "title": "Servicios"
     },
     "serviceDetails": {
       "service1": {
-        "label": "Fundación central",
         "whatWeDo": "Lo que hacemos",
-        "benefits": "Beneficios",
+        "benefits": "Lo que obtienes",
         "details": [
-          "Diseño y desarrollo de sitios web personalizados adaptados a tu marca y objetivos comerciales",
-          "Aplicaciones web modernas construidas con arquitecturas escalables y mejores prácticas",
-          "Diseño responsivo que garantiza una experiencia óptima en todos los dispositivos",
-          "Optimización de rendimiento para tiempos de carga rápidos y experiencia de usuario fluida",
-          "Sistemas de gestión de contenido para actualizaciones y mantenimiento fáciles",
-          "Soluciones de comercio electrónico para tiendas en línea y mercados digitales"
+          "Sitios web y apps a medida",
+          "Tiendas online",
+          "Rápidos en cualquier dispositivo",
+          "Contenido fácil de editar"
         ],
         "benefitsList": [
-          "Mayor participación del usuario y tasas de conversión",
-          "Mayor presencia de marca y credibilidad",
-          "Soluciones escalables que crecen con tu negocio",
-          "Stack tecnológico moderno para desarrollo a prueba de futuro"
+          "Más consultas con el mismo tráfico",
+          "Un sitio fácil de ampliar",
+          "Una primera impresión creíble"
         ]
       },
       "service3": {
         "whatWeDo": "Lo que hacemos",
-        "benefits": "Beneficios",
+        "benefits": "Lo que obtienes",
         "details": [
-          "Optimización técnica de SEO para mayor visibilidad en motores de búsqueda",
-          "Estrategias de SEO local para empresas basadas en ubicación",
-          "Investigación de palabras clave y optimización de contenido",
-          "Implementación de SEO on-page y off-page",
-          "Optimización de perfil de Google Business",
-          "Auditorías de SEO y seguimiento de rendimiento"
+          "SEO técnico",
+          "Perfil de Empresa en Google",
+          "Palabras clave y contenido",
+          "Auditorías y seguimiento"
         ],
         "benefitsList": [
-          "Mayor tráfico orgánico y visibilidad",
-          "Mejores rankings en resultados de motores de búsqueda",
-          "Más leads calificados de búsquedas",
-          "Crecimiento sostenible a largo plazo en presencia en línea"
+          "Más visitas desde búsquedas",
+          "Mejores posiciones para lo que ofreces",
+          "Consultas que siguen llegando"
         ]
       },
       "service4": {
-        "label": "Impulsor de crecimiento",
         "whatWeDo": "Lo que hacemos",
-        "benefits": "Beneficios",
+        "benefits": "Lo que obtienes",
         "details": [
-          "Publicidad en motores de búsqueda (Google Ads, Bing Ads)",
-          "Publicidad en redes sociales (Meta, LinkedIn, etc.)",
-          "Campañas de display y remarketing",
-          "Estrategias de publicidad en video",
-          "Configuración, optimización y gestión de campañas",
-          "Seguimiento de conversiones y optimización de ROI"
+          "Google Ads y Bing Ads",
+          "Anuncios en Meta y LinkedIn",
+          "Retargeting",
+          "Seguimiento de conversiones"
         ],
         "benefitsList": [
-          "Visibilidad inmediata y generación de tráfico",
-          "Segmentación precisa para llegar a tus clientes ideales",
-          "Resultados medibles con seguimiento claro de ROI",
-          "Presupuestos flexibles y campañas escalables"
+          "Visible desde el primer día",
+          "Llegas a quien está listo para comprar",
+          "Retorno claro de la inversión"
         ]
       },
       "service5": {
-        "label": "Impulsor de crecimiento",
         "whatWeDo": "Lo que hacemos",
-        "benefits": "Beneficios",
+        "benefits": "Lo que obtienes",
         "details": [
-          "Configuración y configuración de análisis (Google Analytics, etc.)",
-          "Creación de dashboards personalizados para métricas clave",
-          "Seguimiento de conversiones y configuración de objetivos",
-          "Análisis de comportamiento del cliente e insights",
-          "Informes de rendimiento y visualización de datos",
-          "Integración de datos en múltiples plataformas"
+          "Configuración de Google Analytics",
+          "Seguimiento de conversiones",
+          "Paneles simples",
+          "Informes periódicos"
         ],
         "benefitsList": [
-          "Visibilidad clara del rendimiento del negocio",
-          "Insights basados en datos para la toma de decisiones",
-          "Mejor comprensión del comportamiento del cliente",
-          "Oportunidades de optimización identificadas a través de datos"
+          "Sabes qué trae clientes",
+          "Decisiones basadas en datos",
+          "Presupuesto donde funciona"
         ]
       },
       "service6": {
         "whatWeDo": "Lo que hacemos",
-        "benefits": "Beneficios",
+        "benefits": "Lo que obtienes",
         "details": [
-          "Integraciones de API entre plataformas y herramientas",
-          "Automatización de flujos de trabajo para reducir el trabajo manual",
-          "Configuración de chatbots con IA para soporte al cliente y calificación de leads",
-          "Flujos de asistentes de marketing con IA para contenido y soporte de campañas",
-          "Sincronización de datos entre sistemas",
-          "Desarrollo de integraciones personalizadas"
+          "Automatización de flujos de trabajo",
+          "Chatbots de IA para soporte y leads",
+          "Asistentes de IA para marketing",
+          "Integraciones entre tus herramientas"
         ],
         "benefitsList": [
-          "Reducción del trabajo manual y mayor eficiencia",
-          "Mayor precisión y consistencia de datos",
-          "Flujos de trabajo sin problemas entre plataformas",
-          "Tiempos de respuesta más rápidos para leads y solicitudes de soporte",
-          "Ahorro de tiempo y costos a través de la automatización y la IA"
+          "Horas ahorradas cada semana",
+          "Respuestas más rápidas a los leads",
+          "Menos errores manuales"
         ]
       }
     },
-    "engagement": {
-      "title": "Formas de trabajar juntos",
-      "description1": "Algunos clientes necesitan un sistema completo. Otros necesitan un componente específico.",
-      "description2": "Los compromisos pueden incluir:",
-      "items": [
-        "Diseño e implementación de sistema completo",
-        "Proyectos de sitios web o aplicaciones web",
-        "Configuración y optimización de publicidad",
-        "Arquitectura de análisis y seguimiento",
-        "Optimización y soporte continuo"
-      ],
-      "description3": "El alcance se define después de la conversación inicial, basado en lo que creará más valor para tu negocio."
-    },
     "nextStep": {
       "title": "Siguiente paso",
-      "description": "Si esto suena relevante, el siguiente paso es una reunión corta para entender tu negocio y ver si hay una buena opción."
+      "description": "Empieza con una llamada corta."
     }
   },
   "contact": {
@@ -297,7 +242,7 @@
       "company": "Empresa",
       "website": "Sitio web (opcional)",
       "interest": "¿En qué estás interesado?",
-      "wholeSystem": "Todo el sistema de crecimiento digital",
+      "wholeSystem": "Todo lo anterior",
       "other": "Otro",
       "message": "Mensaje",
       "messageHint": "Objetivos, plazos o cualquier detalle útil.",
@@ -361,30 +306,28 @@
     "closeMenu": "Cerrar menú",
     "howItWorks": {
       "processTitle": "El proceso",
-      "processLede": "Cuatro etapas claras desde la primera conversación hasta la mejora continua.",
-      "fitTitle": "Encaje",
-      "fitLede": "Sinceros sobre a quién ayuda este trabajo — y a quién no."
+      "fitTitle": "Encajamos si…"
     },
     "serviceNext": {
       "service1": {
         "title": "Construye el tuyo",
-        "body": "Cuéntanos qué debe hacer el sitio o la app por el negocio — diseñamos el stack y la construcción en torno a eso."
+        "body": "Cuéntanos qué debe hacer el sitio. Nosotros nos encargamos del resto."
       },
       "service3": {
         "title": "Hazte visible",
-        "body": "Si los clientes ya buscan lo que ofreces, nos aseguramos de que aparezcas con claridad — en Google, mapas y las páginas que convierten."
+        "body": "Hagamos que los clientes te encuentren primero."
       },
       "service4": {
         "title": "Captura la demanda",
-        "body": "Quien ya busca lo que vendes debe llegar a una oferta clara — configuramos campañas, medición y la ruta de aterrizaje para que el gasto se convierta en consultas."
+        "body": "Convierte la inversión en anuncios en consultas."
       },
       "service5": {
         "title": "Ve qué funciona",
-        "body": "La medición debe responder preguntas simples — qué páginas, campañas y rutas realmente traen consultas — para invertir tiempo y presupuesto en lo que mueve el negocio."
+        "body": "Descubre qué trae clientes de verdad."
       },
       "service6": {
         "title": "Automatiza lo repetitivo",
-        "body": "Empieza por los traspasos repetitivos que frenan al equipo — luego conecta asistentes e integraciones que mantengan leads y datos en movimiento sin trabajo manual constante."
+        "body": "Empieza por la tarea que más tiempo te quita."
       }
     },
     "scrollHint": "Desplázate"
