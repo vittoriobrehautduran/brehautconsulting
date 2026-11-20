@@ -41,27 +41,27 @@
       "service1": {
         "title": "Websites & Web Apps",
         "subtitle": "Built to bring in customers",
-        "description": "Fast, clear websites and web apps designed to turn visitors into enquiries."
+        "description": "Fast, clear websites and web apps designed to turn visitors into enquiries. Built to load quickly, work on every device and be easy to grow."
       },
       "service3": {
         "title": "SEO & Local Visibility",
         "subtitle": "Be found when customers search",
-        "description": "We make sure you show up on Google and Maps when people look for what you offer."
+        "description": "We make sure you show up on Google and Maps when people look for what you offer. From technical SEO to your Business Profile, so the right customers find you first."
       },
       "service4": {
         "title": "Advertising",
         "subtitle": "Ads that bring real enquiries",
-        "description": "Campaigns aimed at people ready to buy, with clear tracking of what pays off."
+        "description": "Campaigns aimed at people ready to buy, with clear tracking of what pays off. You always know where the budget goes and what it brings back."
       },
       "service5": {
         "title": "Analytics & Tracking",
         "subtitle": "See what actually works",
-        "description": "Simple tracking that shows which pages and campaigns bring customers."
+        "description": "Simple tracking that shows which pages and campaigns bring customers. So decisions are based on data, not guesswork."
       },
       "service6": {
         "title": "Automation & AI",
         "subtitle": "Less manual work",
-        "description": "Workflows, integrations and AI assistants that save your team hours every week."
+        "description": "Workflows, integrations and AI assistants that save your team hours every week. We start with the repetitive tasks that slow you down the most."
       }
     },
     "work": {
@@ -83,8 +83,8 @@
     },
     "about": {
       "title": "About us",
-      "description1": "We build digital systems that bring in customers: websites, search, ads, tracking and automation.",
-      "description2": "Clear scope, solid work and results you can measure."
+      "description1": "We build digital systems that bring in customers: websites, search visibility, ads, tracking and automation. Each part is built to work with the others, so nothing is done just for show.",
+      "description2": "We start by understanding your business, then build only what makes a difference. Clear scope, solid work and results you can measure."
     },
     "faq": {
       "title": "Frequently Asked Questions",
@@ -107,7 +107,7 @@
         },
         {
           "question": "Who owns the website and data?",
-          "answer": "You do. The code, content and data are yours."
+          "answer": "Your domain, content and customer data are always yours. We host and maintain the site for you, so you don't have to deal with the technical side."
         }
       ]
     },

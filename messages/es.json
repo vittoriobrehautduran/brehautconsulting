@@ -41,27 +41,27 @@
       "service1": {
         "title": "Sitios web y apps",
         "subtitle": "Hechos para traer clientes",
-        "description": "Sitios web y apps rápidos y claros, pensados para convertir visitas en consultas."
+        "description": "Sitios web y apps rápidos y claros, pensados para convertir visitas en consultas. Cargan rápido, funcionan en cualquier dispositivo y son fáciles de ampliar."
       },
       "service3": {
         "title": "SEO y visibilidad local",
         "subtitle": "Aparece cuando te buscan",
-        "description": "Hacemos que aparezcas en Google y Maps cuando buscan lo que ofreces."
+        "description": "Hacemos que aparezcas en Google y Maps cuando buscan lo que ofreces. Del SEO técnico a tu Perfil de Empresa, para que los clientes adecuados te encuentren primero."
       },
       "service4": {
         "title": "Publicidad",
         "subtitle": "Anuncios que traen consultas reales",
-        "description": "Campañas dirigidas a quien está listo para comprar, midiendo qué funciona."
+        "description": "Campañas dirigidas a quien está listo para comprar, midiendo qué funciona. Siempre sabes a dónde va el presupuesto y qué te devuelve."
       },
       "service5": {
         "title": "Analítica y medición",
         "subtitle": "Mira qué funciona de verdad",
-        "description": "Medición simple que muestra qué páginas y campañas traen clientes."
+        "description": "Medición simple que muestra qué páginas y campañas traen clientes. Para decidir con datos, no a ciegas."
       },
       "service6": {
         "title": "Automatización e IA",
         "subtitle": "Menos trabajo manual",
-        "description": "Flujos, integraciones y asistentes de IA que ahorran horas a tu equipo cada semana."
+        "description": "Flujos, integraciones y asistentes de IA que ahorran horas a tu equipo cada semana. Empezamos por las tareas repetitivas que más te frenan."
       }
     },
     "work": {
@@ -83,8 +83,8 @@
     },
     "about": {
       "title": "Sobre nosotros",
-      "description1": "Creamos sistemas digitales que traen clientes: sitios web, búsqueda, anuncios, medición y automatización.",
-      "description2": "Alcance claro, trabajo sólido y resultados medibles."
+      "description1": "Creamos sistemas digitales que traen clientes: sitios web, visibilidad en búsquedas, anuncios, medición y automatización. Cada parte está pensada para funcionar con las demás, nada se hace solo por aparentar.",
+      "description2": "Primero entendemos tu negocio y luego construimos solo lo que marca la diferencia. Alcance claro, trabajo sólido y resultados medibles."
     },
     "faq": {
       "title": "Preguntas frecuentes",
@@ -107,7 +107,7 @@
         },
         {
           "question": "¿De quién es el sitio web y los datos?",
-          "answer": "Tuyos. El código, el contenido y los datos te pertenecen."
+          "answer": "Tu dominio, tu contenido y los datos de tus clientes son siempre tuyos. Nosotros alojamos y mantenemos el sitio, para que no tengas que ocuparte de la parte técnica."
         }
       ]
     },

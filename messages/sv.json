@@ -41,27 +41,27 @@
       "service1": {
         "title": "Webbplatser & webbappar",
         "subtitle": "Byggda för att ge fler kunder",
-        "description": "Snabba, tydliga webbplatser och webbappar som gör besökare till förfrågningar."
+        "description": "Snabba, tydliga webbplatser och webbappar som gör besökare till förfrågningar. Byggda för att ladda snabbt, fungera på alla enheter och vara lätta att bygga vidare på."
       },
       "service3": {
         "title": "SEO & lokal synlighet",
         "subtitle": "Syns när kunder söker",
-        "description": "Vi ser till att du syns på Google och Maps när folk söker efter det du erbjuder."
+        "description": "Vi ser till att du syns på Google och Maps när folk söker efter det du erbjuder. Från teknisk SEO till din företagsprofil, så att rätt kunder hittar dig först."
       },
       "service4": {
         "title": "Annonsering",
         "subtitle": "Annonser som ger riktiga förfrågningar",
-        "description": "Kampanjer riktade mot köpredo kunder, med tydlig uppföljning av vad som lönar sig."
+        "description": "Kampanjer riktade mot köpredo kunder, med tydlig uppföljning av vad som lönar sig. Du vet alltid vart budgeten går och vad den ger tillbaka."
       },
       "service5": {
         "title": "Analys & spårning",
         "subtitle": "Se vad som faktiskt fungerar",
-        "description": "Enkel spårning som visar vilka sidor och kampanjer som ger kunder."
+        "description": "Enkel spårning som visar vilka sidor och kampanjer som ger kunder. Så att besluten bygger på data, inte gissningar."
       },
       "service6": {
         "title": "Automation & AI",
         "subtitle": "Mindre manuellt arbete",
-        "description": "Arbetsflöden, integrationer och AI-assistenter som sparar ditt team timmar varje vecka."
+        "description": "Arbetsflöden, integrationer och AI-assistenter som sparar ditt team timmar varje vecka. Vi börjar med de återkommande uppgifterna som bromsar mest."
       }
     },
     "work": {
@@ -83,8 +83,8 @@
     },
     "about": {
       "title": "Om oss",
-      "description1": "Vi bygger digitala system som ger fler kunder: webbplatser, sök, annonser, spårning och automation.",
-      "description2": "Tydligt upplägg, gediget arbete och resultat som går att mäta."
+      "description1": "Vi bygger digitala system som ger fler kunder: webbplatser, synlighet i sök, annonser, spårning och automation. Varje del är byggd för att fungera med de andra, så inget görs bara för syns skull.",
+      "description2": "Vi börjar med att förstå din verksamhet och bygger sedan bara det som gör skillnad. Tydligt upplägg, gediget arbete och resultat som går att mäta."
     },
     "faq": {
       "title": "Vanliga frågor",
@@ -107,7 +107,7 @@
         },
         {
           "question": "Vem äger webbplatsen och datan?",
-          "answer": "Du. Koden, innehållet och datan är dina."
+          "answer": "Din domän, ditt innehåll och dina kunddata är alltid dina. Vi står för drift och underhåll, så att du slipper den tekniska biten."
         }
       ]
     },
