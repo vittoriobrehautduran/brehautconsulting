@@ -1406,3 +1406,41 @@
     transform: none;
   }
 }
+
+/* —— How it works: "what you can expect" cards + service subtitles —— */
+.blocks-site__expect {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(0.85rem, 2vw, 1.25rem);
+}
+
+.blocks-site__expect h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+
+.blocks-site__expect p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.blocks-site__service-link-sub {
+  display: block;
+  margin-top: 0.2rem;
+  font-size: 0.9rem;
+  font-weight: 400;
+  letter-spacing: 0;
+  color: rgb(255 255 255 / 0.6);
+}
+
+@media (max-width: 879px) {
+  .blocks-site__expect {
+    grid-template-columns: 1fr;
+  }
+}

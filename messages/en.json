@@ -117,26 +117,27 @@
   },
   "services": {
     "intro": {
-      "line1": "A simple process from first call to measurable results."
+      "line1": "A simple process from first call to measurable results.",
+      "line2": "You always know what we're doing, why, and what it costs."
     },
     "howItWorks": {
       "title": "How It Works",
       "steps": [
         {
           "title": "Talk",
-          "description": "A short call to understand your business and goals."
+          "description": "A short call to understand your business, your customers and what's holding growth back. No sales pitch, just questions."
         },
         {
           "title": "Plan",
-          "description": "We define what you need, and nothing more."
+          "description": "We define what you need, and nothing more. You get a clear proposal with scope, timeline and price before any work starts."
         },
         {
           "title": "Build",
-          "description": "We design and build it: fast and reliable."
+          "description": "We design and build it: fast, reliable and easy to use. You see progress along the way and give feedback before launch."
         },
         {
           "title": "Improve",
-          "description": "We track results and keep improving."
+          "description": "After launch we track results and keep improving. We also host and maintain everything, so it keeps running smoothly."
         }
       ]
     },
@@ -144,6 +145,7 @@
       "items": [
         "Want more enquiries or customers",
         "Care about results, not just looks",
+        "Want someone to handle the technical side",
         "Want a long-term partner"
       ]
     },
@@ -229,7 +231,24 @@
     },
     "nextStep": {
       "title": "Next step",
-      "description": "Start with a short call."
+      "description": "Start with a short call. Tell us about your business and we'll reply within one business day."
+    },
+    "expect": {
+      "title": "What you can expect",
+      "items": [
+        {
+          "title": "Clear from the start",
+          "description": "Scope, timeline and price are agreed before we begin. No surprises later."
+        },
+        {
+          "title": "Built to perform",
+          "description": "Fast, secure and measurable by default, not added on afterwards."
+        },
+        {
+          "title": "Looked after",
+          "description": "We host, maintain and update your site, so you can focus on your business."
+        }
+      ]
     }
   },
   "contact": {
@@ -306,7 +325,8 @@
     "closeMenu": "Close menu",
     "howItWorks": {
       "processTitle": "The process",
-      "fitTitle": "A good fit if you…"
+      "fitTitle": "A good fit if you…",
+      "processLede": "Four steps, each with a clear goal."
     },
     "serviceNext": {
       "service1": {

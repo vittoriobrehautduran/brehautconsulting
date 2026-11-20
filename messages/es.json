@@ -117,26 +117,27 @@
   },
   "services": {
     "intro": {
-      "line1": "Un proceso simple, de la primera llamada a resultados medibles."
+      "line1": "Un proceso simple, de la primera llamada a resultados medibles.",
+      "line2": "Siempre sabes qué hacemos, por qué y cuánto cuesta."
     },
     "howItWorks": {
       "title": "Cómo funciona",
       "steps": [
         {
           "title": "Hablar",
-          "description": "Una llamada corta para entender tu negocio y tus objetivos."
+          "description": "Una llamada corta para entender tu negocio, tus clientes y qué está frenando el crecimiento. Sin discurso de venta, solo preguntas."
         },
         {
           "title": "Planificar",
-          "description": "Definimos lo que necesitas, y nada más."
+          "description": "Definimos lo que necesitas, y nada más. Recibes una propuesta clara con alcance, plazos y precio antes de empezar."
         },
         {
           "title": "Construir",
-          "description": "Diseñamos y construimos: rápido y fiable."
+          "description": "Diseñamos y construimos: rápido, fiable y fácil de usar. Ves el avance durante el proceso y das tu opinión antes del lanzamiento."
         },
         {
           "title": "Mejorar",
-          "description": "Medimos resultados y seguimos mejorando."
+          "description": "Tras el lanzamiento medimos resultados y seguimos mejorando. También alojamos y mantenemos todo, para que siga funcionando sin problemas."
         }
       ]
     },
@@ -144,6 +145,7 @@
       "items": [
         "Quieres más consultas o clientes",
         "Te importan los resultados, no solo el diseño",
+        "Quieres que alguien se encargue de la parte técnica",
         "Buscas un socio a largo plazo"
       ]
     },
@@ -229,7 +231,24 @@
     },
     "nextStep": {
       "title": "Siguiente paso",
-      "description": "Empieza con una llamada corta."
+      "description": "Empieza con una llamada corta. Cuéntanos sobre tu negocio y te respondemos en un día laborable."
+    },
+    "expect": {
+      "title": "Qué puedes esperar",
+      "items": [
+        {
+          "title": "Claro desde el inicio",
+          "description": "Alcance, plazos y precio se acuerdan antes de empezar. Sin sorpresas después."
+        },
+        {
+          "title": "Hecho para rendir",
+          "description": "Rápido, seguro y medible desde el principio, no añadido después."
+        },
+        {
+          "title": "Bien cuidado",
+          "description": "Alojamos, mantenemos y actualizamos tu sitio, para que tú te centres en tu negocio."
+        }
+      ]
     }
   },
   "contact": {
@@ -306,7 +325,8 @@
     "closeMenu": "Cerrar menú",
     "howItWorks": {
       "processTitle": "El proceso",
-      "fitTitle": "Encajamos si…"
+      "fitTitle": "Encajamos si…",
+      "processLede": "Cuatro pasos, cada uno con un objetivo claro."
     },
     "serviceNext": {
       "service1": {

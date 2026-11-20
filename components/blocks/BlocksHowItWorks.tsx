@@ -18,6 +18,7 @@ export default function BlocksHowItWorks() {
 
   const steps = (t.raw('howItWorks.steps') as Step[]) || []
   const fitItems = (t.raw('whoFor.items') as string[]) || []
+  const expectItems = (t.raw('expect.items') as Step[]) || []
 
   return (
     <div className="blocks-site blocks-site--page">
@@ -28,11 +29,13 @@ export default function BlocksHowItWorks() {
           <header className="blocks-site__page-intro" aria-labelledby="hiw-h">
             <h1 id="hiw-h">{t('howItWorks.title')}</h1>
             <p>{t('intro.line1')}</p>
+            <p>{t('intro.line2')}</p>
           </header>
 
           <section className="blocks-site__panel" aria-labelledby="hiw-steps-h">
             <div className="blocks-site__panel-head">
               <h2 id="hiw-steps-h">{tBlocks('howItWorks.processTitle')}</h2>
+              <p>{tBlocks('howItWorks.processLede')}</p>
             </div>
             <ol className="blocks-site__steps">
               {steps.map((step, index) => (
@@ -47,6 +50,20 @@ export default function BlocksHowItWorks() {
                 </li>
               ))}
             </ol>
+          </section>
+
+          <section className="blocks-site__panel" aria-labelledby="hiw-expect-h">
+            <div className="blocks-site__panel-head">
+              <h2 id="hiw-expect-h">{t('expect.title')}</h2>
+            </div>
+            <ul className="blocks-site__expect">
+              {expectItems.map((item) => (
+                <li key={item.title} className="blocks-site__card">
+                  <h3>{item.title}</h3>
+                  <p>{item.description}</p>
+                </li>
+              ))}
+            </ul>
           </section>
 
           <section className="blocks-site__panel" aria-labelledby="hiw-who-h">
@@ -78,7 +95,12 @@ export default function BlocksHowItWorks() {
                         <span className="blocks-site__service-link-num" aria-hidden="true">
                           {num}
                         </span>
-                        <span className="blocks-site__service-link-title">{title}</span>
+                        <span className="blocks-site__service-link-title">
+                          {title}
+                          <span className="blocks-site__service-link-sub">
+                            {tHome(`${service.key}.subtitle`)}
+                          </span>
+                        </span>
                         <span className="blocks-site__service-link-arrow" aria-hidden="true">
                           ↗
                         </span>

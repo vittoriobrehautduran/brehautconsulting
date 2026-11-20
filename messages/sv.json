@@ -117,26 +117,27 @@
   },
   "services": {
     "intro": {
-      "line1": "En enkel process från första samtal till mätbara resultat."
+      "line1": "En enkel process från första samtal till mätbara resultat.",
+      "line2": "Du vet alltid vad vi gör, varför och vad det kostar."
     },
     "howItWorks": {
       "title": "Så fungerar det",
       "steps": [
         {
           "title": "Samtal",
-          "description": "Ett kort samtal för att förstå din verksamhet och dina mål."
+          "description": "Ett kort samtal för att förstå din verksamhet, dina kunder och vad som håller tillbaka tillväxten. Ingen säljpitch, bara frågor."
         },
         {
           "title": "Plan",
-          "description": "Vi bestämmer vad du behöver, och inget mer."
+          "description": "Vi bestämmer vad du behöver, och inget mer. Du får ett tydligt förslag med omfattning, tidsplan och pris innan något arbete börjar."
         },
         {
           "title": "Bygge",
-          "description": "Vi designar och bygger: snabbt och stabilt."
+          "description": "Vi designar och bygger: snabbt, stabilt och lätt att använda. Du ser hur arbetet går och ger feedback före lansering."
         },
         {
           "title": "Förbättring",
-          "description": "Vi följer resultaten och förbättrar löpande."
+          "description": "Efter lansering följer vi resultaten och förbättrar löpande. Vi sköter också drift och underhåll, så att allt fortsätter fungera."
         }
       ]
     },
@@ -144,6 +145,7 @@
       "items": [
         "Vill ha fler förfrågningar eller kunder",
         "Bryr dig om resultat, inte bara utseende",
+        "Vill att någon annan tar hand om tekniken",
         "Vill ha en långsiktig partner"
       ]
     },
@@ -229,7 +231,24 @@
     },
     "nextStep": {
       "title": "Nästa steg",
-      "description": "Börja med ett kort samtal."
+      "description": "Börja med ett kort samtal. Berätta om din verksamhet så svarar vi inom en arbetsdag."
+    },
+    "expect": {
+      "title": "Det här kan du räkna med",
+      "items": [
+        {
+          "title": "Tydligt från start",
+          "description": "Omfattning, tidsplan och pris är överenskomna innan vi börjar. Inga överraskningar senare."
+        },
+        {
+          "title": "Byggt för att prestera",
+          "description": "Snabbt, säkert och mätbart från början, inte något som läggs till i efterhand."
+        },
+        {
+          "title": "Omhändertaget",
+          "description": "Vi sköter drift, underhåll och uppdateringar, så att du kan fokusera på din verksamhet."
+        }
+      ]
     }
   },
   "contact": {
@@ -307,7 +326,8 @@
     "closeMenu": "Stäng meny",
     "howItWorks": {
       "processTitle": "Processen",
-      "fitTitle": "Passar bra om du…"
+      "fitTitle": "Passar bra om du…",
+      "processLede": "Fyra steg, vart och ett med ett tydligt mål."
     },
     "serviceNext": {
       "service1": {
