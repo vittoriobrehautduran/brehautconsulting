@@ -68,7 +68,7 @@ export default function BlocksNav() {
       <div className="blocks-scroll__nav-inner">
         <Link className="blocks-scroll__logo" href={HOME} onClick={closeAll}>
           <Image
-            src="/media/brand/logo-white.svg"
+            src="/media/brand/logo-white-128.png"
             alt="Brehaut Consulting"
             width={32}
             height={32}

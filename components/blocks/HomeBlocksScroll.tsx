@@ -30,7 +30,21 @@ const COMPACT_MQ = '(max-width: 999px)'
 
 const FWD_SRC = '/media/hero/brehaut_blocks_scroll.mp4'
 const REV_SRC = '/media/hero/brehaut_blocks_scroll_rev.mp4'
-const STILL = (n: number) => `/media/hero/scroll_stills/stop_${Math.min(5, Math.max(0, n))}.jpg`
+// Full / mid / small stills — pick lighter files on phone.
+const stillIndex = (n: number) => Math.min(5, Math.max(0, n))
+const STILL = (n: number) => `/media/hero/scroll_stills/stop_${stillIndex(n)}.jpg`
+const STILL_SRCSET = (n: number) => {
+  const i = stillIndex(n)
+  return `/media/hero/scroll_stills/stop_${i}-960.jpg 960w, /media/hero/scroll_stills/stop_${i}-1280.jpg 1280w, /media/hero/scroll_stills/stop_${i}.jpg 1920w`
+}
+const STILL_FOR_VIEWPORT = (n: number) => {
+  if (typeof window === 'undefined') return STILL(n)
+  const width = window.innerWidth
+  const i = stillIndex(n)
+  if (width <= 960) return `/media/hero/scroll_stills/stop_${i}-960.jpg`
+  if (width <= 1280) return `/media/hero/scroll_stills/stop_${i}-1280.jpg`
+  return STILL(n)
+}
 
 const SCENE_NAMES = [
   'Floating blocks',
@@ -182,7 +196,8 @@ export default function HomeBlocksScroll() {
     if (useStillsRef.current || !fwd) {
       setIsStills(true)
       if (stillARef.current) {
-        stillARef.current.src = STILL(next)
+        stillARef.current.src = STILL_FOR_VIEWPORT(next)
+        stillARef.current.srcset = STILL_SRCSET(next)
         stillARef.current.classList.add('is-front')
       }
       if (stillBRef.current) stillBRef.current.classList.remove('is-front')
@@ -324,7 +339,8 @@ export default function HomeBlocksScroll() {
     const showB = a.classList.contains('is-front')
     const front = showB ? b : a
     const back = showB ? a : b
-    back.src = STILL(to)
+    back.src = STILL_FOR_VIEWPORT(to)
+    back.srcset = STILL_SRCSET(to)
     back.onload = () => {
       front.classList.remove('is-front')
       back.classList.add('is-front')
@@ -1074,6 +1090,8 @@ export default function HomeBlocksScroll() {
           <img
             className="blocks-scroll__video blocks-scroll__video--static"
             src={STILL(1)}
+            srcSet={STILL_SRCSET(1)}
+            sizes="100vw"
             alt=""
             aria-hidden="true"
           />
@@ -1109,6 +1127,8 @@ export default function HomeBlocksScroll() {
               ref={stillARef}
               className="blocks-scroll__still is-front"
               src={STILL(0)}
+              srcSet={STILL_SRCSET(0)}
+              sizes="100vw"
               alt=""
               aria-hidden="true"
             />
@@ -1117,6 +1137,8 @@ export default function HomeBlocksScroll() {
               ref={stillBRef}
               className="blocks-scroll__still"
               src={STILL(1)}
+              srcSet={STILL_SRCSET(1)}
+              sizes="100vw"
               alt=""
               aria-hidden="true"
             />

@@ -17,7 +17,7 @@ export default function BlocksFooter() {
         <div className="blocks-site__footer-top">
           <Link className="blocks-scroll__logo" href={HOME}>
             <Image
-              src="/media/brand/logo-white.svg"
+              src="/media/brand/logo-white-128.png"
               alt=""
               width={28}
               height={28}

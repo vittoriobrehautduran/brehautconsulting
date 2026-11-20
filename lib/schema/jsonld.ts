@@ -111,7 +111,7 @@ export function generateOrganizationSchema(locale: string = 'en'): OrganizationS
     name: 'Brehaut Consulting',
     description,
     url: BASE_URL,
-    logo: `${BASE_URL}/media/brand/logo-favicon.svg`,
+    logo: `${BASE_URL}/media/brand/logo-favicon-256.png`,
     contactPoint: {
       '@type': 'ContactPoint',
       contactType: 'customer service',
