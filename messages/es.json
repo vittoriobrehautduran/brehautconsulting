@@ -152,76 +152,116 @@
       "service1": {
         "whatWeDo": "Lo que hacemos",
         "benefits": "Lo que obtienes",
-        "details": [
-          "Sitios web y apps a medida",
-          "Tiendas online",
-          "Rápidos en cualquier dispositivo",
-          "Contenido fácil de editar"
-        ],
         "benefitsList": [
           "Más consultas con el mismo tráfico",
           "Un sitio fácil de ampliar",
           "Una primera impresión creíble"
+        ],
+        "areas": [
+          {
+            "title": "Sitios web",
+            "body": "Sitios corporativos que explican lo que haces y facilitan que te contacten. Rápidos, claros y hechos para aparecer en Google. Puedes actualizar textos e imágenes tú mismo, o dejarlo en nuestras manos."
+          },
+          {
+            "title": "Tiendas online",
+            "body": "Tiendas para vender tus productos en internet, con pagos, envíos y gestión de pedidos listos desde el primer día. Pensadas para que el cliente encuentre lo que busca y compre sin complicaciones."
+          },
+          {
+            "title": "Apps web y herramientas internas",
+            "body": "Software a medida que funciona en el navegador: sistemas de reservas, portales de clientes, paneles o herramientas para tu equipo. Cuando el software estándar no se adapta a tu forma de trabajar, construimos lo que sí."
+          }
         ]
       },
       "service3": {
         "whatWeDo": "Lo que hacemos",
         "benefits": "Lo que obtienes",
-        "details": [
-          "SEO técnico",
-          "Perfil de Empresa en Google",
-          "Palabras clave y contenido",
-          "Auditorías y seguimiento"
-        ],
         "benefitsList": [
           "Más visitas desde búsquedas",
           "Mejores posiciones para lo que ofreces",
           "Consultas que siguen llegando"
+        ],
+        "areas": [
+          {
+            "title": "SEO técnico",
+            "body": "Corregimos lo que impide que Google entienda tu sitio: velocidad, estructura, problemas en móvil e indexación. Es la base sobre la que se construye todo lo demás."
+          },
+          {
+            "title": "Visibilidad local",
+            "body": "Configuramos y optimizamos tu Perfil de Empresa en Google y tus fichas locales, para que aparezcas en Maps y en búsquedas “cerca de mí”, justo donde el cliente decide."
+          },
+          {
+            "title": "Contenido que posiciona",
+            "body": "Descubrimos las palabras que tus clientes realmente buscan y adaptamos tus páginas a ellas. Contenido claro y útil que posiciona y convierte visitas en consultas."
+          }
         ]
       },
       "service4": {
         "whatWeDo": "Lo que hacemos",
         "benefits": "Lo que obtienes",
-        "details": [
-          "Google Ads y Bing Ads",
-          "Anuncios en Meta y LinkedIn",
-          "Retargeting",
-          "Seguimiento de conversiones"
-        ],
         "benefitsList": [
           "Visible desde el primer día",
           "Llegas a quien está listo para comprar",
           "Retorno claro de la inversión"
+        ],
+        "areas": [
+          {
+            "title": "Anuncios en buscadores",
+            "body": "Anuncios en Google y Bing que aparecen cuando alguien busca exactamente lo que ofreces. Pagas por clics de personas que ya quieren comprar."
+          },
+          {
+            "title": "Anuncios en redes sociales",
+            "body": "Campañas en Meta (Facebook e Instagram) y LinkedIn para llegar al público adecuado, más retargeting para quienes visitaron tu sitio pero no te contactaron."
+          },
+          {
+            "title": "Medición y optimización",
+            "body": "Cada campaña se mide desde el clic hasta la consulta. Eliminamos lo que no funciona y ponemos más presupuesto en lo que sí."
+          }
         ]
       },
       "service5": {
         "whatWeDo": "Lo que hacemos",
         "benefits": "Lo que obtienes",
-        "details": [
-          "Configuración de Google Analytics",
-          "Seguimiento de conversiones",
-          "Paneles simples",
-          "Informes periódicos"
-        ],
         "benefitsList": [
           "Sabes qué trae clientes",
           "Decisiones basadas en datos",
           "Presupuesto donde funciona"
+        ],
+        "areas": [
+          {
+            "title": "Configuración de la medición",
+            "body": "Configuramos Google Analytics y el seguimiento de conversiones correctamente, para que veas de dónde vienen las visitas y qué las lleva a contactarte."
+          },
+          {
+            "title": "Paneles e informes",
+            "body": "Un panel simple con los números que importan, e informes periódicos en lenguaje claro. Sin perderte entre gráficos interminables."
+          },
+          {
+            "title": "Privacidad incluida",
+            "body": "Consentimiento de cookies y medición conformes al RGPD, para recoger datos útiles sin arriesgar multas ni la confianza de tus clientes."
+          }
         ]
       },
       "service6": {
         "whatWeDo": "Lo que hacemos",
         "benefits": "Lo que obtienes",
-        "details": [
-          "Automatización de flujos de trabajo",
-          "Chatbots de IA para soporte y leads",
-          "Asistentes de IA para marketing",
-          "Integraciones entre tus herramientas"
-        ],
         "benefitsList": [
           "Horas ahorradas cada semana",
           "Respuestas más rápidas a los leads",
           "Menos errores manuales"
+        ],
+        "areas": [
+          {
+            "title": "Automatización de procesos",
+            "body": "Automatizamos tareas repetitivas como pasar leads a tu CRM, enviar seguimientos o crear facturas. Menos copiar y pegar, menos errores."
+          },
+          {
+            "title": "Chatbots con IA",
+            "body": "Un chatbot entrenado con la información de tu negocio que responde preguntas frecuentes, califica leads y agenda reuniones, a cualquier hora."
+          },
+          {
+            "title": "Asistentes de IA e integraciones",
+            "body": "Herramientas de IA que ayudan con contenido y campañas, e integraciones que conectan los sistemas que ya usas, para que los datos fluyan sin trabajo manual."
+          }
         ]
       }
     },

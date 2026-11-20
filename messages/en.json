@@ -152,76 +152,116 @@
       "service1": {
         "whatWeDo": "What we do",
         "benefits": "What you get",
-        "details": [
-          "Custom websites and web apps",
-          "Online stores",
-          "Fast on every device",
-          "Easy content editing"
-        ],
         "benefitsList": [
           "More enquiries from the same traffic",
           "A site that's easy to grow",
           "A credible first impression"
+        ],
+        "areas": [
+          {
+            "title": "Websites",
+            "body": "Company websites that explain what you do and make it easy to get in touch. Fast, clear and built to show up on Google. You can update texts and images yourself, or let us handle it."
+          },
+          {
+            "title": "Online stores",
+            "body": "Webshops for selling your products online, with payments, shipping and order handling set up from day one. Designed so customers find what they want and check out without friction."
+          },
+          {
+            "title": "Web apps and internal tools",
+            "body": "Custom software that runs in the browser: booking systems, customer portals, dashboards or staff tools. When off-the-shelf software doesn't fit how you work, we build what does."
+          }
         ]
       },
       "service3": {
         "whatWeDo": "What we do",
         "benefits": "What you get",
-        "details": [
-          "Technical SEO",
-          "Google Business Profile",
-          "Keyword research and content",
-          "Audits and progress tracking"
-        ],
         "benefitsList": [
           "More visitors from search",
           "Higher rankings for what you offer",
           "Leads that keep coming"
+        ],
+        "areas": [
+          {
+            "title": "Technical SEO",
+            "body": "We fix what stops Google from understanding your site: speed, structure, mobile issues and indexing. It's the foundation everything else builds on."
+          },
+          {
+            "title": "Local visibility",
+            "body": "We set up and optimise your Google Business Profile and local listings, so you show up on Maps and in “near me” searches, right where customers decide."
+          },
+          {
+            "title": "Content that ranks",
+            "body": "We find the words your customers actually search for and shape your pages around them. Clear, useful content that ranks and turns visitors into enquiries."
+          }
         ]
       },
       "service4": {
         "whatWeDo": "What we do",
         "benefits": "What you get",
-        "details": [
-          "Google Ads and Bing Ads",
-          "Meta and LinkedIn ads",
-          "Retargeting",
-          "Conversion tracking"
-        ],
         "benefitsList": [
           "Visible from day one",
           "Reach people ready to buy",
           "Clear return on spend"
+        ],
+        "areas": [
+          {
+            "title": "Search ads",
+            "body": "Google and Bing ads that appear when people search for exactly what you offer. You pay for clicks from people who are already looking to buy."
+          },
+          {
+            "title": "Social ads",
+            "body": "Campaigns on Meta (Facebook and Instagram) and LinkedIn that reach the right audience, plus retargeting for people who visited but didn't get in touch."
+          },
+          {
+            "title": "Tracking and optimisation",
+            "body": "Every campaign is tracked from click to enquiry. We cut what doesn't work and put more budget behind what does."
+          }
         ]
       },
       "service5": {
         "whatWeDo": "What we do",
         "benefits": "What you get",
-        "details": [
-          "Google Analytics setup",
-          "Conversion tracking",
-          "Simple dashboards",
-          "Regular reports"
-        ],
         "benefitsList": [
           "Know what brings customers",
           "Decisions based on data",
           "Budget spent where it works"
+        ],
+        "areas": [
+          {
+            "title": "Tracking setup",
+            "body": "We set up Google Analytics and conversion tracking properly, so you can see where visitors come from and what makes them get in touch."
+          },
+          {
+            "title": "Dashboards and reports",
+            "body": "One simple dashboard with the numbers that matter, and regular reports in plain language. No digging through endless charts."
+          },
+          {
+            "title": "Privacy built in",
+            "body": "Cookie consent and tracking set up to follow GDPR, so you collect useful data without risking fines or your customers' trust."
+          }
         ]
       },
       "service6": {
         "whatWeDo": "What we do",
         "benefits": "What you get",
-        "details": [
-          "Workflow automation",
-          "AI chatbots for support and leads",
-          "AI assistants for marketing",
-          "Integrations between your tools"
-        ],
         "benefitsList": [
           "Hours saved every week",
           "Faster replies to leads",
           "Fewer manual errors"
+        ],
+        "areas": [
+          {
+            "title": "Workflow automation",
+            "body": "We automate repetitive tasks like moving leads into your CRM, sending follow-ups or creating invoices. Less copy-paste, fewer mistakes."
+          },
+          {
+            "title": "AI chatbots",
+            "body": "A chatbot trained on your business that answers common questions, qualifies leads and books meetings, around the clock."
+          },
+          {
+            "title": "AI assistants and integrations",
+            "body": "AI tools that help with content and campaigns, and integrations that connect the systems you already use, so data flows without manual work."
+          }
         ]
       }
     },

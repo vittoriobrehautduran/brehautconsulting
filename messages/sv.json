@@ -152,76 +152,116 @@
       "service1": {
         "whatWeDo": "Vad vi gör",
         "benefits": "Vad du får",
-        "details": [
-          "Skräddarsydda webbplatser och webbappar",
-          "E-handel",
-          "Snabb på alla enheter",
-          "Enkelt att uppdatera innehåll"
-        ],
         "benefitsList": [
           "Fler förfrågningar från samma trafik",
           "En webbplats som är lätt att bygga vidare på",
           "Ett trovärdigt första intryck"
+        ],
+        "areas": [
+          {
+            "title": "Webbplatser",
+            "body": "Företagswebbplatser som förklarar vad du gör och gör det enkelt att höra av sig. Snabba, tydliga och byggda för att synas på Google. Du kan uppdatera texter och bilder själv, eller låta oss sköta det."
+          },
+          {
+            "title": "E-handel",
+            "body": "Webbshoppar för att sälja dina produkter online, med betalning, frakt och orderhantering på plats från dag ett. Utformade så att kunderna hittar rätt och kan handla utan krångel."
+          },
+          {
+            "title": "Webbappar och interna verktyg",
+            "body": "Skräddarsydd mjukvara som körs i webbläsaren: bokningssystem, kundportaler, dashboards eller verktyg för personalen. När färdiga program inte passar ditt sätt att arbeta bygger vi det som gör det."
+          }
         ]
       },
       "service3": {
         "whatWeDo": "Vad vi gör",
         "benefits": "Vad du får",
-        "details": [
-          "Teknisk SEO",
-          "Google-företagsprofil",
-          "Sökordsanalys och innehåll",
-          "Granskningar och uppföljning"
-        ],
         "benefitsList": [
           "Fler besökare från sök",
           "Högre placeringar för det du erbjuder",
           "Förfrågningar som fortsätter komma"
+        ],
+        "areas": [
+          {
+            "title": "Teknisk SEO",
+            "body": "Vi åtgärdar det som hindrar Google från att förstå din webbplats: hastighet, struktur, mobilproblem och indexering. Det är grunden som allt annat bygger på."
+          },
+          {
+            "title": "Lokal synlighet",
+            "body": "Vi sätter upp och optimerar din Google-företagsprofil och lokala listningar, så att du syns på Maps och i “nära mig”-sökningar, precis där kunderna bestämmer sig."
+          },
+          {
+            "title": "Innehåll som rankar",
+            "body": "Vi tar reda på vilka ord dina kunder faktiskt söker på och formar dina sidor efter dem. Tydligt, användbart innehåll som rankar och gör besökare till förfrågningar."
+          }
         ]
       },
       "service4": {
         "whatWeDo": "Vad vi gör",
         "benefits": "Vad du får",
-        "details": [
-          "Google Ads och Bing Ads",
-          "Annonser på Meta och LinkedIn",
-          "Retargeting",
-          "Konverteringsspårning"
-        ],
         "benefitsList": [
           "Synlig från dag ett",
           "Når kunder som är redo att köpa",
           "Tydlig avkastning på budgeten"
+        ],
+        "areas": [
+          {
+            "title": "Sökannonser",
+            "body": "Annonser på Google och Bing som visas när folk söker efter precis det du erbjuder. Du betalar för klick från personer som redan vill köpa."
+          },
+          {
+            "title": "Sociala annonser",
+            "body": "Kampanjer på Meta (Facebook och Instagram) och LinkedIn som når rätt målgrupp, plus retargeting mot dem som besökt sidan men inte hört av sig."
+          },
+          {
+            "title": "Uppföljning och optimering",
+            "body": "Varje kampanj följs från klick till förfrågan. Vi stänger av det som inte fungerar och lägger mer budget på det som gör det."
+          }
         ]
       },
       "service5": {
         "whatWeDo": "Vad vi gör",
         "benefits": "Vad du får",
-        "details": [
-          "Uppsättning av Google Analytics",
-          "Konverteringsspårning",
-          "Enkla dashboards",
-          "Regelbundna rapporter"
-        ],
         "benefitsList": [
           "Vet vad som ger kunder",
           "Beslut baserade på data",
           "Budgeten där den gör nytta"
+        ],
+        "areas": [
+          {
+            "title": "Uppsättning av spårning",
+            "body": "Vi sätter upp Google Analytics och konverteringsspårning ordentligt, så att du ser var besökarna kommer ifrån och vad som får dem att höra av sig."
+          },
+          {
+            "title": "Dashboards och rapporter",
+            "body": "En enkel dashboard med siffrorna som spelar roll, och regelbundna rapporter på vanlig svenska. Inget grävande i oändliga diagram."
+          },
+          {
+            "title": "Integritet från början",
+            "body": "Cookie-samtycke och spårning som följer GDPR, så att du samlar in användbar data utan att riskera böter eller kundernas förtroende."
+          }
         ]
       },
       "service6": {
         "whatWeDo": "Vad vi gör",
         "benefits": "Vad du får",
-        "details": [
-          "Automatiserade arbetsflöden",
-          "AI-chattbotar för support och leads",
-          "AI-assistenter för marknadsföring",
-          "Integrationer mellan dina verktyg"
-        ],
         "benefitsList": [
           "Timmar sparade varje vecka",
           "Snabbare svar till leads",
           "Färre manuella fel"
+        ],
+        "areas": [
+          {
+            "title": "Automatiserade arbetsflöden",
+            "body": "Vi automatiserar återkommande uppgifter som att föra in leads i ditt CRM, skicka uppföljningar eller skapa fakturor. Mindre kopiera-klistra, färre fel."
+          },
+          {
+            "title": "AI-chattbotar",
+            "body": "En chattbot tränad på din verksamhet som svarar på vanliga frågor, kvalificerar leads och bokar möten, dygnet runt."
+          },
+          {
+            "title": "AI-assistenter och integrationer",
+            "body": "AI-verktyg som hjälper till med innehåll och kampanjer, och integrationer som kopplar ihop systemen du redan använder, så att data flödar utan manuellt arbete."
+          }
         ]
       }
     },

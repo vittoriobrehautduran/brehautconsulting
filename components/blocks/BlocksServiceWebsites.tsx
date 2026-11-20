@@ -6,18 +6,16 @@ import BlocksNav from '@/components/blocks/BlocksNav'
 import BlocksFooter from '@/components/blocks/BlocksFooter'
 import BlocksTechCarousel from '@/components/blocks/BlocksTechCarousel'
 import { sitePath } from '@/components/blocks/serviceRoutes'
+import BlocksServiceDetails from '@/components/blocks/BlocksServiceDetails'
 import { WEB_TECH_STACK } from '@/components/blocks/techStack'
 
 // Website & web application service page for the /blocks redesign.
 export default function BlocksServiceWebsites() {
   const tHome = useTranslations('home.services.service1')
-  const tDetails = useTranslations('services.serviceDetails.service1')
   const tCommon = useTranslations('common.buttons')
   const tBlocks = useTranslations('blocks')
   const tNav = useTranslations('common.nav')
 
-  const details = (tDetails.raw('details') as string[]) || []
-  const benefits = (tDetails.raw('benefitsList') as string[]) || []
 
   return (
     <div className="blocks-site blocks-site--page">
@@ -52,26 +50,7 @@ export default function BlocksServiceWebsites() {
         <BlocksTechCarousel items={WEB_TECH_STACK} label={tBlocks("techStackLabel")} />
 
         <div className="blocks-site__wrap">
-          <section className="blocks-site__panel" aria-labelledby="svc-web-do">
-            <div className="blocks-site__two-col">
-              <div>
-                <h2 id="svc-web-do">{tDetails('whatWeDo')}</h2>
-                <ul className="blocks-site__plain-list">
-                  {details.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
-              </div>
-              <div>
-                <h2>{tDetails('benefits')}</h2>
-                <ul className="blocks-site__plain-list">
-                  {benefits.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </section>
+          <BlocksServiceDetails serviceKey="service1" idPrefix="svc-web" />
 
           <section className="blocks-site__panel" aria-labelledby="svc-web-next">
             <div className="blocks-site__close-block">

@@ -5,17 +5,15 @@ import { useTranslations } from 'next-intl'
 import BlocksNav from '@/components/blocks/BlocksNav'
 import BlocksFooter from '@/components/blocks/BlocksFooter'
 import { sitePath } from '@/components/blocks/serviceRoutes'
+import BlocksServiceDetails from '@/components/blocks/BlocksServiceDetails'
 
 // Analytics & Measurement service page for the /blocks redesign.
 export default function BlocksServiceAnalytics() {
   const tHome = useTranslations('home.services.service5')
-  const tDetails = useTranslations('services.serviceDetails.service5')
   const tCommon = useTranslations('common.buttons')
   const tBlocks = useTranslations('blocks')
   const tNav = useTranslations('common.nav')
 
-  const details = (tDetails.raw('details') as string[]) || []
-  const benefits = (tDetails.raw('benefitsList') as string[]) || []
 
   return (
     <div className="blocks-site blocks-site--page">
@@ -46,26 +44,7 @@ export default function BlocksServiceAnalytics() {
             </Link>
           </header>
 
-          <section className="blocks-site__panel" aria-labelledby="svc-analytics-do">
-            <div className="blocks-site__two-col">
-              <div>
-                <h2 id="svc-analytics-do">{tDetails('whatWeDo')}</h2>
-                <ul className="blocks-site__plain-list">
-                  {details.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
-              </div>
-              <div>
-                <h2>{tDetails('benefits')}</h2>
-                <ul className="blocks-site__plain-list">
-                  {benefits.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </section>
+          <BlocksServiceDetails serviceKey="service5" idPrefix="svc-analytics" />
 
           <section className="blocks-site__panel" aria-labelledby="svc-analytics-next">
             <div className="blocks-site__close-block">
