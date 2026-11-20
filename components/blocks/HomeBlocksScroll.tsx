@@ -8,11 +8,11 @@ import { sitePath } from '@/components/blocks/serviceRoutes'
 
 const FPS = 24
 const END = 20.458333
-const SPEED_FWD = 2.15
-const SPEED_REV = 2.25
+const SPEED_FWD = 2.5
+const SPEED_REV = 2.6
 // Second flick mid-transition nudges rate up a bit — still moderate, not turbo.
 const SPEED_BOOST_PER_EXTRA = 0.35
-const SPEED_MAX = 2.85
+const SPEED_MAX = 3.3
 // Last stop is AI automation — no outro floating-blocks scene after that.
 const STOPS = [1.541667, 4.291667, 8.208333, 11.291667, 14.708333, 18.125]
 // Need a real notch/swipe — trackpads won't skip scenes on a light flick.
@@ -20,8 +20,8 @@ const WHEEL_ACCUM = 48
 // While a scene is playing, require a clearer second flick to queue ahead.
 const WHEEL_ACCUM_BUSY = 90
 const WHEEL_IDLE_RESET_MS = 320
-// 1s between accepted flicks — can queue the next stop while a transition is still playing.
-const QUEUE_MIN_GAP_MS = 1000
+// 0.6s between accepted flicks — can queue the next stop while a transition is still playing.
+const QUEUE_MIN_GAP_MS = 600
 const STEP_COOLDOWN_MS = 0
 const TOUCH_SWIPE_MIN = 22
 const STOP_SLACK = 0.5 / FPS
@@ -383,9 +383,11 @@ export default function HomeBlocksScroll() {
     busyRef.current = false
     cooldownUntilRef.current = performance.now() + STEP_COOLDOWN_MS
 
+    // Landed on the last scene after an extra scroll: just unlock. No auto-scroll —
+    // the page stays put and the visitor's next scroll moves it naturally.
     if (releaseAfterRef.current && arrived === STOPS.length - 1) {
       releaseAfterRef.current = false
-      releaseLock(true)
+      releaseLock(false)
     }
   }
 

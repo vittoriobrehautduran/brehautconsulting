@@ -1,14 +1,14 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useTranslations } from 'next-intl'
+import { Link } from '@/i18n/navigation'
 import { Loader2 } from 'lucide-react'
 import BlocksNav from '@/components/blocks/BlocksNav'
 import BlocksFooter from '@/components/blocks/BlocksFooter'
 import { CONTACT_EMAIL, CONTACT_PHONE } from '@/lib/constants'
 import { trackLeadStarted, trackLeadSubmitted } from '@/lib/analytics/gtm'
 
-// Conversion & Lead Optimisation (service2) removed from the redesign.
 const SERVICE_KEYS = [
   'service1',
   'service3',
@@ -20,7 +20,7 @@ const SERVICE_KEYS = [
 const INTEREST_WHOLE = 'whole'
 const INTEREST_OTHER = 'other'
 
-// Contact form for the /blocks redesign — no calendar.
+// Contact form — emails the team via the create-contact Netlify function.
 export default function BlocksContact() {
   const t = useTranslations('contact')
   const tServices = useTranslations('home.services')
@@ -36,8 +36,12 @@ export default function BlocksContact() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [successMessage, setSuccessMessage] = useState<string | null>(null)
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
+  // Anti-spam: honeypot value and when the form was first shown.
+  const [fax, setFax] = useState('')
+  const startedAt = useRef<number>(0)
 
   useEffect(() => {
+    startedAt.current = Date.now()
     trackLeadStarted()
   }, [])
 
@@ -97,11 +101,16 @@ export default function BlocksContact() {
           website: website.trim() || undefined,
           interests: interests.map(interestLabel),
           message: message.trim() || undefined,
+          fax: fax || undefined,
+          startedAt: startedAt.current,
         }),
       })
-      const result = await response.json()
+      const result = await response.json().catch(() => ({}))
+      if (response.status === 429) {
+        throw new Error(t('form.errors.rateLimited'))
+      }
       if (!response.ok || !result.success) {
-        throw new Error(result.error || t('form.errors.submitFailed'))
+        throw new Error(t('form.errors.submitFailed'))
       }
 
       trackLeadSubmitted()
@@ -301,6 +310,27 @@ export default function BlocksContact() {
                   />
                   {errors.message ? <em>{errors.message}</em> : null}
                 </label>
+
+                {/* Honeypot: invisible to people, bots tend to fill it. */}
+                <div className="blocks-site__hp" aria-hidden="true">
+                  <label>
+                    Fax
+                    <input
+                      type="text"
+                      name="fax"
+                      tabIndex={-1}
+                      autoComplete="off"
+                      value={fax}
+                      onChange={(event) => setFax(event.target.value)}
+                    />
+                  </label>
+                </div>
+
+                <p className="blocks-site__consent-note">
+                  {t.rich('form.privacyNotice', {
+                    link: (chunks) => <Link href="/privacy">{chunks}</Link>,
+                  })}
+                </p>
 
                 <button
                   type="submit"

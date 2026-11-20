@@ -1,8 +1,7 @@
-// AWS SES email service for sending booking confirmations
+// AWS SES email service for contact form enquiries.
 
 import { SESClient, SendEmailCommand } from '@aws-sdk/client-ses'
-import { CONTACT_EMAIL, TIMEZONE } from '../constants'
-import { formatInTimeZone } from 'date-fns-tz'
+import { CONTACT_EMAIL } from '../constants'
 
 const sesClient = new SESClient({
   region: process.env.AWS_SES_REGION || 'us-east-1',
@@ -14,74 +13,6 @@ const sesClient = new SESClient({
     : undefined,
 })
 
-export interface BookingEmailData {
-  name: string
-  email: string
-  date: Date
-  timeSlot: string
-  company?: string
-}
-
-// Parse time string to minutes (handles "9", "09", "9:00", "09:00" formats)
-function parseTimeToMinutes(timeStr: string): number {
-  const trimmed = timeStr.trim()
-  
-  // If it contains a colon, parse as HH:mm
-  if (trimmed.includes(':')) {
-    const [hours, minutes = '0'] = trimmed.split(':')
-    return parseInt(hours, 10) * 60 + parseInt(minutes, 10)
-  }
-  
-  // Otherwise, treat as hours only
-  return parseInt(trimmed, 10) * 60
-}
-
-// Calculate duration from time slot and return human-readable string
-function formatTimeSlot(timeSlot: string): string {
-  const [startStr, endStr] = timeSlot.split('-')
-  
-  if (!startStr || !endStr) {
-    // Fallback if format is unexpected
-    return '1 hour'
-  }
-  
-  const startMinutes = parseTimeToMinutes(startStr)
-  const endMinutes = parseTimeToMinutes(endStr)
-  const durationMinutes = endMinutes - startMinutes
-  
-  // Handle edge case where end is before start (e.g., spans midnight)
-  const totalMinutes = durationMinutes < 0 ? durationMinutes + 24 * 60 : durationMinutes
-  
-  if (totalMinutes === 0) {
-    return '0 minutes'
-  }
-  
-  const hours = Math.floor(totalMinutes / 60)
-  const minutes = totalMinutes % 60
-  
-  const parts: string[] = []
-  
-  if (hours > 0) {
-    parts.push(`${hours} ${hours === 1 ? 'hour' : 'hours'}`)
-  }
-  
-  if (minutes > 0) {
-    parts.push(`${minutes} ${minutes === 1 ? 'minute' : 'minutes'}`)
-  }
-  
-  return parts.join(' ') || '0 minutes'
-}
-
-function formatMeetingDate(date: Date, timeSlot: string): string {
-  const [startHour] = timeSlot.split('-').map(Number)
-  const meetingDateTime = new Date(date)
-  meetingDateTime.setHours(startHour, 0, 0, 0)
-  
-  return formatInTimeZone(meetingDateTime, TIMEZONE, 'EEEE, MMMM d, yyyy \'at\' HH:mm', {
-    timeZone: TIMEZONE,
-  })
-}
-
 export interface ContactInquiryEmailData {
   name: string
   email: string
@@ -92,13 +23,23 @@ export interface ContactInquiryEmailData {
   message?: string
 }
 
-// Notify the team when someone submits the redesign contact form.
+// Form input is untrusted — escape it before it goes into the HTML email.
+function escapeHtml(value: string): string {
+  return value
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;')
+}
+
+// Notify the team when someone submits the contact form.
 export async function sendContactInquiryEmail(
   data: ContactInquiryEmailData
 ): Promise<void> {
   const { name, email, phone, company, website, interests, message } = data
   const fromEmail = process.env.SES_FROM_EMAIL || CONTACT_EMAIL
-  const subject = `New enquiry from ${company || name}`
+  const subject = `New enquiry from ${(company || name).replace(/[\r\n]+/g, ' ')}`
 
   const interestList = interests.map((item) => `• ${item}`).join('\n')
   const textBody = `
@@ -115,20 +56,21 @@ ${interestList}
 ${message ? `Message:\n${message}\n` : ''}
   `.trim()
 
+  const e = escapeHtml
   const htmlBody = `
     <!DOCTYPE html>
     <html>
     <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #222;">
       <h2>New contact enquiry</h2>
-      <p><strong>Name:</strong> ${name}<br>
-      <strong>Email:</strong> ${email}<br>
-      <strong>Phone:</strong> ${phone}<br>
-      <strong>Company:</strong> ${company}<br>
-      ${website ? `<strong>Website:</strong> ${website}<br>` : ''}
+      <p><strong>Name:</strong> ${e(name)}<br>
+      <strong>Email:</strong> ${e(email)}<br>
+      <strong>Phone:</strong> ${e(phone)}<br>
+      <strong>Company:</strong> ${e(company)}<br>
+      ${website ? `<strong>Website:</strong> ${e(website)}<br>` : ''}
       </p>
       <p><strong>Interested in:</strong></p>
-      <ul>${interests.map((item) => `<li>${item}</li>`).join('')}</ul>
-      ${message ? `<p><strong>Message:</strong><br>${message.replace(/\n/g, '<br>')}</p>` : ''}
+      <ul>${interests.map((item) => `<li>${e(item)}</li>`).join('')}</ul>
+      ${message ? `<p><strong>Message:</strong><br>${e(message).replace(/\n/g, '<br>')}</p>` : ''}
     </body>
     </html>
   `
@@ -154,103 +96,3 @@ ${message ? `Message:\n${message}\n` : ''}
     throw error
   }
 }
-
-export async function sendBookingConfirmationEmail(data: BookingEmailData): Promise<void> {
-  const { name, email, date, timeSlot, company } = data
-  
-  const meetingDate = formatMeetingDate(date, timeSlot)
-  const timeSlotFormatted = formatTimeSlot(timeSlot)
-  const fromEmail = process.env.SES_FROM_EMAIL || CONTACT_EMAIL
-  
-  const subject = `Meeting Confirmation - ${meetingDate}`
-  
-  const htmlBody = `
-    <!DOCTYPE html>
-    <html>
-    <head>
-      <meta charset="utf-8">
-      <style>
-        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
-        .container { max-width: 600px; margin: 0 auto; padding: 20px; }
-        .header { background-color: #2563eb; color: white; padding: 20px; border-radius: 8px 8px 0 0; }
-        .content { background-color: #f9fafb; padding: 30px; border-radius: 0 0 8px 8px; }
-        .button { display: inline-block; background-color: #2563eb; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px; margin-top: 20px; }
-        .details { background-color: white; padding: 20px; border-radius: 6px; margin: 20px 0; }
-        .detail-row { margin: 10px 0; }
-        .label { font-weight: bold; color: #666; }
-      </style>
-    </head>
-    <body>
-      <div class="container">
-        <div class="header">
-          <h1>Meeting Confirmed!</h1>
-        </div>
-        <div class="content">
-          <p>Hi ${name},</p>
-          <p>Your meeting has been confirmed. Here are the details:</p>
-          
-          <div class="details">
-            <div class="detail-row">
-              <span class="label">Date & Time:</span> ${meetingDate} (Stockholm time)
-            </div>
-            <div class="detail-row">
-              <span class="label">Duration:</span> ${timeSlotFormatted}
-            </div>
-            ${company ? `<div class="detail-row"><span class="label">Company:</span> ${company}</div>` : ''}
-          </div>
-          
-          <p style="margin-top: 30px;">We look forward to meeting with you!</p>
-          <p>Best regards,<br>Brehaut Consulting</p>
-        </div>
-      </div>
-    </body>
-    </html>
-  `
-  
-  const textBody = `
-Hi ${name},
-
-Your meeting has been confirmed. Here are the details:
-
-Date & Time: ${meetingDate} (Stockholm time)
-Duration: ${timeSlotFormatted}
-${company ? `Company: ${company}\n` : ''}
-
-We look forward to meeting with you!
-
-Best regards,
-Brehaut Consulting
-  `.trim()
-
-  try {
-    const command = new SendEmailCommand({
-      Source: fromEmail,
-      Destination: {
-        ToAddresses: [email],
-      },
-      ReplyToAddresses: [CONTACT_EMAIL],
-      Message: {
-        Subject: {
-          Data: subject,
-          Charset: 'UTF-8',
-        },
-        Body: {
-          Html: {
-            Data: htmlBody,
-            Charset: 'UTF-8',
-          },
-          Text: {
-            Data: textBody,
-            Charset: 'UTF-8',
-          },
-        },
-      },
-    })
-
-    await sesClient.send(command)
-  } catch (error) {
-    console.error('Error sending email via AWS SES:', error)
-    throw error
-  }
-}
-

@@ -4,17 +4,13 @@
       "home": "Home",
       "howItWorks": "How it works",
       "services": "Services",
-      "bookMeeting": "Book a Meeting",
       "contact": "Contact",
       "call": "Call"
     },
     "buttons": {
-      "bookMeeting": "Book a Meeting",
       "contactUs": "Contact us",
       "viewServices": "How it works",
       "getStarted": "Contact us",
-      "confirmBooking": "Confirm Booking",
-      "confirming": "Confirming...",
       "sendMessage": "Send message",
       "sending": "Sending..."
     },
@@ -25,7 +21,12 @@
       "location": "Location",
       "servingClients": "Serving clients globally",
       "regions": "Europe & Latin America",
-      "copyright": "All rights reserved."
+      "copyright": "All rights reserved.",
+      "legal": "Legal",
+      "privacy": "Privacy policy",
+      "cookieSettings": "Cookie settings",
+      "email": "Email",
+      "phone": "Phone"
     },
     "soon": "Soon",
     "language": "Language"
@@ -41,11 +42,6 @@
         "title": "Website & Web Application Development",
         "subtitle": "For Businesses",
         "description": "Design and development of modern websites and web applications built to support real business goals — not just visual presentation. Every solution is structured around usability, performance, and maintainability, with a clear focus on guiding visitors toward enquiries, bookings, or actions that matter to the business."
-      },
-      "service2": {
-        "title": "Conversion & Lead Optimisation",
-        "subtitle": "Turning Visitors into Enquiries",
-        "description": "Improving how visitors interact with your website so more people take action — contact you, book a meeting, or make a purchase. This focuses on reducing friction, clarifying messaging, and aligning the site with how real customers make decisions, turning traffic into measurable business results."
       },
       "service3": {
         "title": "Local Visibility & SEO",
@@ -67,6 +63,23 @@
         "subtitle": "Workflows, Integrations, and AI Assistants",
         "description": "We build practical automations that save time and reduce manual work, including workflow automation, AI chatbots, AI marketing assistants, and custom integrations."
       }
+    },
+    "work": {
+      "title": "Recent work",
+      "items": [
+        {
+          "key": "print",
+          "label": "Fine art print studio · Chile"
+        },
+        {
+          "key": "hunting",
+          "label": "Handmade hunting equipment · Sweden"
+        },
+        {
+          "key": "club",
+          "label": "Scheduling system for sports clubs"
+        }
+      ]
     },
     "about": {
       "title": "About Brehaut Consulting",
@@ -103,7 +116,6 @@
       ]
     },
     "cta": {
-      "title": "Ready to Grow?",
       "description": "Let's discuss how we can help transform your digital presence and drive real business results."
     }
   },
@@ -179,24 +191,6 @@
           "Enhanced brand presence and credibility",
           "Scalable solutions that grow with your business",
           "Modern technology stack for future-proof development"
-        ]
-      },
-      "service2": {
-        "whatWeDo": "What We Do",
-        "benefits": "Benefits",
-        "details": [
-          "Conversion rate optimization (CRO) strategies and implementation",
-          "Lead generation system design and optimization",
-          "User experience (UX) analysis and improvements",
-          "A/B testing and data-driven optimization",
-          "Landing page optimization for higher conversion rates",
-          "Funnel analysis and optimization at every stage"
-        ],
-        "benefitsList": [
-          "Higher conversion rates from existing traffic",
-          "More qualified leads and better lead quality",
-          "Improved ROI on marketing investments",
-          "Data-driven decision making for continuous improvement"
         ]
       },
       "service3": {
@@ -293,47 +287,6 @@
       "description": "If this sounds relevant, the next step is a short meeting to understand your business and see if there's a good fit."
     }
   },
-  "booking": {
-    "title": "Book a Meeting",
-    "subtitle": "Select a date and time that works for you",
-    "selectedTimeSlot": "Selected Time Slot",
-    "stockholmTime": "Stockholm time",
-    "today": "Today",
-    "tomorrow": "Tomorrow",
-    "previousDay": "Previous Day",
-    "nextDay": "Next Day",
-    "availableTimeSlots": "Available Time Slots",
-    "form": {
-      "name": "Name",
-      "email": "Email",
-      "company": "Company (optional)",
-      "message": "Message (optional)",
-      "required": "*",
-      "errors": {
-        "nameRequired": "Name is required",
-        "emailRequired": "Email is required",
-        "emailInvalid": "Please enter a valid email address",
-        "selectDateTime": "Please select a date and time slot",
-        "submitFailed": "Failed to create booking"
-      }
-    },
-    "success": "Booking confirmed! We look forward to meeting with you.",
-    "callAlternative": "Or call us and we'll find a time that works for both of us.",
-    "info": {
-      "purpose": {
-        "title": "Meeting Purpose",
-        "description": "This is a short, focused conversation to understand your business, goals, and current challenges — and to see if we're a good fit to work together."
-      },
-      "howItWorks": {
-        "title": "How the Meeting Works",
-        "description": "The meeting is held online and typically lasts 30 minutes. You'll receive all details by email after booking."
-      },
-      "rescheduling": {
-        "title": "Rescheduling & Cancellation",
-        "description": "If you need to reschedule or cancel, you can do so up to 24 hours before the meeting. This helps keep availability fair for everyone."
-      }
-    }
-  },
   "contact": {
     "title": "Contact us",
     "subtitle": "Tell us a little about your business and what you need. We’ll get back to you.",
@@ -357,26 +310,16 @@
         "companyRequired": "Company is required",
         "interestRequired": "Pick at least one option",
         "messageRequired": "Please add a short message for “Other”",
-        "submitFailed": "Couldn’t send your message. Please try again."
-      }
+        "submitFailed": "Couldn’t send your message. Please try again.",
+        "rateLimited": "You've sent several messages in a short time. Please wait a few minutes, or email us directly."
+      },
+      "privacyNotice": "We only use your details to reply to your enquiry. Read our <link>privacy policy</link>."
     },
     "success": "Thanks — your message is in. We’ll reply soon.",
     "aside": {
       "title": "What happens next",
       "description": "We read every enquiry and reply by email, usually within one business day."
     }
-  },
-  "footer": {
-    "contact": {
-      "title": "Contact Us",
-      "description": "Email us for inquiries and consultations"
-    },
-    "location": {
-      "title": "Location",
-      "description": "Serving clients globally",
-      "regions": "Europe & Latin America"
-    },
-    "copyright": "All rights reserved."
   },
   "metadata": {
     "title": "Brehaut Consulting | Technology & Growth Consultancy",
@@ -387,7 +330,6 @@
       "growth consultancy",
       "web development",
       "digital systems",
-      "conversion optimisation",
       "SEO",
       "analytics",
       "automation",
@@ -482,7 +424,90 @@
           "title": "Automation & AI solutions",
           "description": "Practical workflow automation, AI assistants, and integrations that cut manual work and keep leads and data moving."
         }
+      },
+      "privacy": {
+        "title": "Privacy policy",
+        "description": "How Brehaut Consulting handles personal data from the contact form, cookies and analytics, and what rights you have."
       }
     }
+  },
+  "consent": {
+    "title": "Cookies",
+    "text": "We'd like to use analytics cookies (Google Analytics) to understand how the site is used. They are only set if you accept.",
+    "privacyLink": "Read our privacy policy",
+    "accept": "Accept",
+    "decline": "Decline"
+  },
+  "notFound": {
+    "title": "Page not found",
+    "text": "The page you're looking for doesn't exist or has moved.",
+    "home": "Back to home",
+    "contact": "Contact us"
+  },
+  "error": {
+    "title": "Something went wrong",
+    "text": "An unexpected error occurred. Please try again. If it keeps happening, email us.",
+    "retry": "Try again",
+    "home": "Back to home"
+  },
+  "privacy": {
+    "title": "Privacy policy",
+    "updated": "Last updated: 20 November 2026",
+    "intro": "This policy explains what personal data we collect through this website, why we collect it, and what rights you have.",
+    "sections": [
+      {
+        "heading": "Who is responsible",
+        "paragraphs": [
+          "Brehaut Consulting is the data controller for the processing described here. If you have questions about your personal data, email contact@brehautconsulting.com."
+        ]
+      },
+      {
+        "heading": "The contact form",
+        "paragraphs": [
+          "When you send the contact form we receive your name, email address, phone number, company, website (if you add it), the services you select and your message.",
+          "We use this only to reply to your enquiry and, if we decide to work together, to prepare a proposal. The legal basis is taking steps at your request before entering into a contract, and our legitimate interest in answering enquiries.",
+          "The form is delivered to our inbox as an email through Amazon Web Services (Amazon SES). It is not stored in a database on the website. We keep the correspondence as long as needed to handle your enquiry. If it does not lead to an assignment, we delete it within 12 months."
+        ]
+      },
+      {
+        "heading": "Spam protection",
+        "paragraphs": [
+          "To stop automated spam, the form limits how many messages can be sent in a short time. For this we store a one-way hashed (pseudonymised) version of your IP address for at most 24 hours. The legal basis is our legitimate interest in keeping the form secure."
+        ]
+      },
+      {
+        "heading": "Cookies and analytics",
+        "paragraphs": [
+          "The website works without cookies. Only if you accept in the cookie banner do we load Google Tag Manager and Google Analytics, which set cookies to measure visits, for example which pages are viewed and whether the contact form is sent. If you decline, nothing is loaded. The legal basis is your consent.",
+          "Your choice is saved in your browser so we don't ask again. You can change it at any time via \"Cookie settings\" at the bottom of every page."
+        ]
+      },
+      {
+        "heading": "Hosting",
+        "paragraphs": [
+          "The website is hosted by Netlify. Like any web server, Netlify processes technical data such as your IP address and browser type to deliver the pages and protect against attacks."
+        ]
+      },
+      {
+        "heading": "Who we share data with",
+        "paragraphs": [
+          "We only share personal data with service providers that process it on our behalf: Netlify (hosting), Amazon Web Services (email delivery), our email provider and, only with your consent, Google (analytics). We never sell personal data.",
+          "Some of these providers are based in the USA. Such transfers are protected by the EU–U.S. Data Privacy Framework or the European Commission's standard contractual clauses."
+        ]
+      },
+      {
+        "heading": "Your rights",
+        "paragraphs": [
+          "You have the right to access, correct or delete your personal data, to restrict or object to its processing, to data portability, and to withdraw your consent at any time. Email contact@brehautconsulting.com and we will reply within one month.",
+          "If you think we handle your data incorrectly, you can complain to the Swedish Authority for Privacy Protection (Integritetsskyddsmyndigheten, IMY) at imy.se."
+        ]
+      },
+      {
+        "heading": "Changes",
+        "paragraphs": [
+          "We may update this policy. The date at the top shows when it was last changed."
+        ]
+      }
+    ]
   }
 }

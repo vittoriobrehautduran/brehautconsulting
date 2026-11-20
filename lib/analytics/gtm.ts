@@ -24,12 +24,12 @@ export function pushToDataLayer(event: string, data?: Record<string, any>) {
   window.dataLayer.push(eventData)
 }
 
-// Track lead started (when booking form becomes visible/interactive)
+// Track lead started (when the contact form is shown)
 export function trackLeadStarted() {
   pushToDataLayer('lead_started')
 }
 
-// Track lead submitted (when booking is successfully submitted)
+// Track lead submitted (when the contact form is sent successfully)
 export function trackLeadSubmitted() {
   pushToDataLayer('lead_submitted')
 }

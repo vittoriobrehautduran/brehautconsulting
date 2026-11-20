@@ -1,0 +1,748 @@
+/* Scroll-stepped blocks hero — one gesture = one scene. */
+
+.blocks-scroll {
+  --blue: #b7d4ef;
+  --ink: #fff;
+  --muted: rgb(255 255 255 / 0.84);
+  --line: rgb(255 255 255 / 0.14);
+  --bg: #000;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --font-display: var(--font-albert), "Albert Sans", system-ui, sans-serif;
+
+  color: var(--ink);
+  background: var(--bg);
+  font-family: var(--font-display);
+  min-height: 100svh;
+  text-underline-offset: 0.18em;
+}
+
+.blocks-scroll ::selection {
+  background: color-mix(in oklab, var(--blue) 55%, #000);
+  color: #fff;
+}
+
+.blocks-scroll :focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 3px;
+}
+
+.blocks-scroll__skip {
+  position: absolute;
+  left: 1rem;
+  top: 0;
+  z-index: 300;
+  transform: translateY(-140%);
+  padding: 0.65rem 1rem;
+  background: #fff;
+  color: #000;
+  border-radius: 8px;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.blocks-scroll__skip:focus {
+  transform: translateY(1rem);
+}
+
+.blocks-scroll__live {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* —— Top nav —— */
+.blocks-scroll__nav {
+  --nav-h: 4rem;
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 1000;
+  height: var(--nav-h);
+  background: rgb(0 0 0 / 0.92);
+  overflow: visible;
+}
+
+.blocks-scroll__nav-inner {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  height: 100%;
+  width: min(100% - 2.5rem, 1200px);
+  margin-inline: auto;
+}
+
+.blocks-scroll__logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  color: #fff;
+  text-decoration: none;
+  font-family: var(--font-playfair), "Playfair Display", Georgia, serif;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  flex: none;
+}
+
+.blocks-scroll__logo img {
+  border-radius: 4px;
+}
+
+/* Links sit with the Contact CTA on the right. */
+.blocks-scroll__links {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin-left: auto;
+}
+
+.blocks-scroll__nav-end {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex: none;
+}
+
+.blocks-scroll__lang {
+  position: relative;
+  flex: none;
+}
+
+.blocks-scroll__lang-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  height: 2.5rem;
+  padding: 0 0.75rem;
+  border: 1px solid rgb(255 255 255 / 0.18);
+  border-radius: 999px;
+  background: rgb(255 255 255 / 0.04);
+  color: #fff;
+  font: inherit;
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+}
+
+.blocks-scroll__lang-trigger:hover,
+.blocks-scroll__lang.is-open .blocks-scroll__lang-trigger {
+  background: rgb(255 255 255 / 0.1);
+  border-color: rgb(255 255 255 / 0.32);
+}
+
+.blocks-scroll__lang-menu {
+  position: absolute;
+  top: calc(100% + 0.45rem);
+  right: 0;
+  z-index: 40;
+  min-width: 9.5rem;
+  margin: 0;
+  padding: 0.35rem;
+  list-style: none;
+  border: 1px solid rgb(255 255 255 / 0.14);
+  border-radius: 12px;
+  background: rgb(8 8 8 / 0.96);
+  box-shadow: 0 16px 40px rgb(0 0 0 / 0.45);
+}
+
+.blocks-scroll__lang-menu button {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.55rem 0.7rem;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: rgb(255 255 255 / 0.78);
+  font: inherit;
+  font-size: 0.9rem;
+  text-align: left;
+  cursor: pointer;
+}
+
+.blocks-scroll__lang-menu button:hover,
+.blocks-scroll__lang-menu button.is-active {
+  background: rgb(255 255 255 / 0.08);
+  color: #fff;
+}
+
+.blocks-scroll__lang-code {
+  display: inline-flex;
+  min-width: 1.6rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  color: rgb(255 255 255 / 0.78);
+}
+
+.blocks-scroll__sheet .blocks-scroll__lang {
+  margin-top: 0.35rem;
+}
+
+.blocks-scroll__sheet .blocks-scroll__lang-menu {
+  position: static;
+  margin-top: 0.45rem;
+  box-shadow: none;
+}
+
+.blocks-scroll__links a,
+.blocks-scroll__links button,
+.blocks-scroll__links summary {
+  color: rgb(255 255 255 / 0.72);
+  text-decoration: none;
+  padding: 0.45rem 0.7rem;
+  border-radius: 6px;
+  font: inherit;
+  font-size: 0.95rem;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+}
+
+.blocks-scroll__links a:hover,
+.blocks-scroll__links button:hover,
+.blocks-scroll__links summary:hover {
+  color: #fff;
+}
+
+/* Services dropdown — CSS hover + .is-open for click/keyboard. */
+.blocks-scroll__services {
+  position: relative;
+}
+
+.blocks-scroll__services-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  cursor: pointer;
+}
+
+.blocks-scroll__services-caret {
+  font-size: 0.7em;
+  opacity: 0.7;
+  line-height: 1;
+}
+
+.blocks-scroll__services-menu {
+  position: absolute;
+  top: calc(100% + 0.35rem);
+  right: 0;
+  z-index: 250;
+  min-width: 16.5rem;
+  margin: 0;
+  padding: 0.4rem;
+  list-style: none;
+  border: 1px solid rgb(255 255 255 / 0.12);
+  border-radius: 12px;
+  background: rgb(8 8 8 / 0.98);
+  box-shadow: 0 16px 40px rgb(0 0 0 / 0.45);
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-4px);
+  transition: opacity 120ms ease, transform 120ms ease, visibility 120ms ease;
+}
+
+.blocks-scroll__services-menu::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -0.45rem;
+  height: 0.45rem;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .blocks-scroll__services:hover > .blocks-scroll__services-menu,
+  .blocks-scroll__services:focus-within > .blocks-scroll__services-menu {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+}
+
+.blocks-scroll__services.is-open > .blocks-scroll__services-menu {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.blocks-scroll__services-menu a {
+  display: block;
+  width: 100%;
+  padding: 0.65rem 0.8rem;
+  border-radius: 8px;
+  color: rgb(255 255 255 / 0.82);
+  text-decoration: none;
+  font-size: 0.92rem;
+  line-height: 1.35;
+  white-space: normal;
+  pointer-events: auto;
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+}
+
+.blocks-scroll__services-menu a:hover,
+.blocks-scroll__services-menu a:focus-visible {
+  color: #fff;
+  background: rgb(255 255 255 / 0.08);
+}
+
+.blocks-scroll__nav-end > .blocks-scroll__cta {
+  flex: none;
+}
+
+.blocks-scroll__toggle {
+  display: none;
+  box-sizing: border-box;
+  /* Match logo mark height so the bars sit on the same visual line. */
+  width: 2.5rem;
+  height: 2rem;
+  margin-left: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  flex: none;
+}
+
+.blocks-scroll__toggle span {
+  display: block;
+  width: 1.15rem;
+  height: 1.5px;
+  background: currentColor;
+  border-radius: 1px;
+  flex: none;
+}
+
+.blocks-scroll__sheet {
+  display: none;
+}
+
+@media (max-width: 879px) {
+  .blocks-scroll__nav-inner {
+    width: min(100% - 3.25rem, 1200px);
+  }
+
+  .blocks-scroll__links,
+  .blocks-scroll__nav-end > .blocks-scroll__cta {
+    display: none;
+  }
+
+  .blocks-scroll__nav-end {
+    margin-left: auto;
+  }
+
+  .blocks-scroll__toggle {
+    display: inline-flex;
+  }
+
+  .blocks-scroll__nav.is-open .blocks-scroll__sheet {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    inset: var(--nav-h) 0 0;
+    z-index: 201;
+    padding: 1.25rem 1.25rem 2rem;
+    gap: 0.25rem;
+    background: #000;
+  }
+
+  .blocks-scroll__sheet a,
+  .blocks-scroll__sheet button {
+    display: flex;
+    align-items: center;
+    min-height: 3.25rem;
+    color: #fff;
+    text-decoration: none;
+    font: inherit;
+    font-size: 1.2rem;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    padding: 0;
+    text-align: left;
+  }
+
+  .blocks-scroll__sheet-services-trigger {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .blocks-scroll__sheet-services-menu {
+    margin: 0 0 0.35rem;
+    padding: 0 0 0 0.85rem;
+    list-style: none;
+    border-left: 1px solid rgb(255 255 255 / 0.14);
+  }
+
+  .blocks-scroll__sheet-services-menu[hidden] {
+    display: none;
+  }
+
+  .blocks-scroll__sheet-services-menu a {
+    min-height: 2.75rem;
+    font-size: 1.05rem;
+    color: rgb(255 255 255 / 0.78);
+  }
+}
+
+/* —— Full-viewport locked hero —— */
+.blocks-scroll__hero {
+  position: relative;
+  height: 100svh;
+  overflow: clip;
+  isolation: isolate;
+  background: #000;
+  /* Let the fixed nav dropdown receive clicks over the hero area. */
+  pointer-events: none;
+}
+
+.blocks-scroll__video {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Bias up in the source so the subject sits below the fixed nav. */
+  object-position: right 32%;
+  background: #000;
+  pointer-events: none;
+}
+
+.blocks-scroll__video--static {
+  opacity: 1;
+}
+
+.blocks-scroll__still {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: right 32%;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 400ms var(--ease);
+}
+
+.blocks-scroll.is-stills .blocks-scroll__video {
+  opacity: 0 !important;
+}
+
+.blocks-scroll.is-stills .blocks-scroll__still.is-front {
+  opacity: 1;
+}
+
+.blocks-scroll__scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    /* Soft top fade so the blue doesn’t climb into the navbar. */
+    linear-gradient(180deg, rgb(0 0 0 / 0.55) 0%, transparent 16%),
+    /* Wider left-side blue wash (more space, less of a round blob). */
+    linear-gradient(
+      90deg,
+      rgb(183 212 239 / 0.52) 0%,
+      rgb(183 212 239 / 0.32) 22%,
+      rgb(183 212 239 / 0.12) 40%,
+      transparent 56%
+    ),
+    linear-gradient(90deg, rgb(0 0 0 / 0.78) 0%, rgb(0 0 0 / 0.52) 34%, rgb(0 0 0 / 0.14) 58%, transparent 78%),
+    linear-gradient(180deg, rgb(0 0 0 / 0.38) 0%, transparent 24%, transparent 72%, rgb(0 0 0 / 0.42) 100%);
+}
+
+.blocks-scroll__copy {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  width: min(100% - 2.5rem, 1200px);
+  height: 100%;
+  margin-inline: auto;
+  max-width: min(100% - 2.5rem, 1200px);
+  padding-top: 4rem;
+  pointer-events: none;
+}
+
+.blocks-scroll__intro,
+.blocks-scroll__service {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.05rem;
+  max-width: 28rem;
+  animation: blocks-copy-in 380ms var(--ease) both;
+}
+
+.blocks-scroll__copy h1,
+.blocks-scroll__copy h2 {
+  margin: 0;
+  max-width: 14ch;
+  font-weight: 400;
+  letter-spacing: -0.035em;
+  line-height: 1.12;
+  font-size: clamp(2.1rem, 4.6vw, 3.4rem);
+  text-wrap: balance;
+}
+
+.blocks-scroll__sub {
+  margin: 0;
+  color: color-mix(in oklab, #fff 72%, var(--blue));
+  font-size: 1.02rem;
+  line-height: 1.45;
+}
+
+.blocks-scroll__copy p {
+  margin: 0;
+  max-width: 36ch;
+  color: var(--muted);
+  font-size: 1.02rem;
+  line-height: 1.65;
+}
+
+@keyframes blocks-copy-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+    filter: blur(3px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .blocks-scroll__intro,
+  .blocks-scroll__service {
+    animation: none;
+  }
+}
+
+.blocks-scroll__cta {
+  pointer-events: auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 2.75rem;
+  padding: 0 1.15rem;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  background: var(--blue);
+  color: #061018;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: background 180ms var(--ease), transform 160ms var(--ease);
+}
+
+.blocks-scroll__cta:hover {
+  background: color-mix(in oklab, var(--blue) 82%, #fff);
+  transform: translateY(-2px);
+}
+
+.blocks-scroll__cta:active {
+  transform: translateY(0);
+}
+
+.blocks-scroll__cta--solid {
+  height: 3rem;
+  padding-inline: 1.35rem;
+  font-size: 1rem;
+}
+
+/* Dots: stops 1–6, right edge — clickable jumps */
+.blocks-scroll__dots {
+  position: absolute;
+  top: 50%;
+  right: 0.35rem;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  transform: translateY(-50%);
+  pointer-events: auto;
+}
+
+.blocks-scroll__dots li {
+  display: flex;
+}
+
+/* Big hit target; the visible dot stays small via ::before. */
+.blocks-scroll__dots button {
+  width: 2.75rem;
+  height: 2.75rem;
+  margin-inline: -0.8rem;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+}
+
+.blocks-scroll__dots button::before {
+  content: "";
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 999px;
+  background: rgb(255 255 255 / 0.25);
+  transition: background 160ms var(--ease), transform 160ms var(--ease);
+}
+
+.blocks-scroll__dots button.is-active::before,
+.blocks-scroll__dots button:hover::before {
+  background: var(--blue);
+}
+
+.blocks-scroll__dots button.is-active::before {
+  transform: scale(1.25);
+}
+
+.blocks-scroll__hint {
+  position: absolute;
+  left: 50%;
+  bottom: 1.5rem;
+  z-index: 3;
+  margin: 0;
+  transform: translateX(-50%);
+  color: rgb(255 255 255 / 0.72);
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  pointer-events: none;
+}
+
+.blocks-scroll__skip-scene {
+  position: absolute;
+  right: 1.15rem;
+  bottom: 1.35rem;
+  z-index: 3;
+  border: 0;
+  background: transparent;
+  color: rgb(255 255 255 / 0.78);
+  font: inherit;
+  font-size: 0.85rem;
+  cursor: pointer;
+  padding: 0.35rem 0.2rem;
+  pointer-events: auto;
+}
+
+.blocks-scroll__skip-scene:hover {
+  color: #fff;
+}
+
+/* —— Closing section (normal scroll after stop 6) —— */
+.blocks-scroll__end {
+  position: relative;
+  z-index: 5;
+  background: #000;
+  border-top: 1px solid var(--line);
+  padding: clamp(4rem, 12vh, 7rem) 0;
+}
+
+.blocks-scroll__end-inner {
+  width: min(100% - 2.5rem, 42rem);
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.15rem;
+}
+
+.blocks-scroll__end h2 {
+  margin: 0;
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.12;
+}
+
+.blocks-scroll__end p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.65;
+  max-width: 40ch;
+}
+
+/* Under 1000px: center the subject; keep copy left with more side inset. */
+@media (max-width: 999px) {
+  .blocks-scroll__video,
+  .blocks-scroll__still {
+    object-position: center center;
+  }
+
+  .blocks-scroll__dots,
+  .blocks-scroll__hint,
+  .blocks-scroll__skip-scene {
+    display: none;
+  }
+
+  .blocks-scroll__copy {
+    align-items: flex-start;
+    justify-content: flex-end;
+    width: min(100% - 3.25rem, 1200px);
+    max-width: min(100% - 3.25rem, 1200px);
+    padding-bottom: 4.5rem;
+    text-align: left;
+  }
+
+  .blocks-scroll__copy h1,
+  .blocks-scroll__copy h2 {
+    font-size: clamp(1.85rem, 7vw, 2.4rem);
+  }
+
+  .blocks-scroll__intro,
+  .blocks-scroll__service {
+    align-items: flex-start;
+    max-width: 22rem;
+    text-align: left;
+  }
+
+  /* Compact: subtler blue sitting at the bottom instead of the left wash. */
+  .blocks-scroll__scrim {
+    background:
+      radial-gradient(
+        ellipse 95% 42% at 50% 100%,
+        rgb(183 212 239 / 0.26),
+        transparent 72%
+      ),
+      linear-gradient(180deg, transparent 58%, rgb(183 212 239 / 0.12) 100%),
+      linear-gradient(90deg, rgb(0 0 0 / 0.72) 0%, rgb(0 0 0 / 0.42) 42%, rgb(0 0 0 / 0.12) 68%, transparent 88%),
+      linear-gradient(180deg, rgb(0 0 0 / 0.42) 0%, transparent 22%, transparent 62%, rgb(0 0 0 / 0.5) 100%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .blocks-scroll__still {
+    transition: none;
+  }
+
+  .blocks-scroll__hint {
+    display: none;
+  }
+}

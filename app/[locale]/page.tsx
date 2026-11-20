@@ -3,7 +3,10 @@ import HomeBlocksScroll from '@/components/blocks/HomeBlocksScroll'
 import BlocksHomeSections from '@/components/blocks/BlocksHomeSections'
 import BlocksFooter from '@/components/blocks/BlocksFooter'
 import BlocksStyles from '@/components/blocks/BlocksStyles'
+import { getTranslations } from 'next-intl/server'
 import { buildPageMetadata } from '@/lib/seo/pageMetadata'
+import JsonLd from '@/components/schema/JsonLd'
+import { faqPageSchema } from '@/lib/schema/jsonld'
 
 type Props = {
   params: Promise<{ locale: string }>
@@ -15,9 +18,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 // Live homepage — scroll hero + about / services / FAQ.
-export default function HomePage() {
+export default async function HomePage({ params }: Props) {
+  const { locale } = await params
+  const tFaq = await getTranslations({ locale, namespace: 'home.faq' })
+  const faqItems = tFaq.raw('items') as Array<{ question: string; answer: string }>
+
   return (
     <>
+      <JsonLd data={faqPageSchema(faqItems)} />
       <BlocksStyles />
       <HomeBlocksScroll />
       <BlocksHomeSections />

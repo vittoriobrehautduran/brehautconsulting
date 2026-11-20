@@ -1,171 +1,55 @@
-// JSON-LD Schema Markup Generator
-// Generates structured data for SEO
+// JSON-LD structured data (schema.org) for search engines.
 
-import { CONTACT_EMAIL, CONTACT_PHONE, COMPANY_TAGLINE } from '@/lib/constants'
+import { CONTACT_EMAIL, CONTACT_PHONE, COMPANY_NAME } from '@/lib/constants'
+import { locales } from '@/i18n'
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://brehautconsulting.com'
+const ORG_ID = `${BASE_URL}/#organization`
+const SITE_ID = `${BASE_URL}/#website`
 
-export interface OrganizationSchema {
-  '@context': string
-  '@type': string
-  name: string
-  description: string
-  url: string
-  logo: string
-  contactPoint: {
-    '@type': string
-    contactType: string
-    email: string
-    telephone: string
-    availableLanguage: string[]
-  }
-  areaServed: string[]
-  sameAs?: string[]
-}
-
-export interface ServiceSchema {
-  '@context': string
-  '@type': string
-  name: string
-  description: string
-  provider: {
-    '@type': string
-    name: string
-  }
-  serviceType: string
-  areaServed: string[]
-  availableChannel: {
-    '@type': string
-    serviceUrl: string
-  }
-}
-
-export interface WebSiteSchema {
-  '@context': string
-  '@type': string
-  name: string
-  url: string
-  inLanguage: string[]
-  potentialAction?: {
-    '@type': string
-    target: {
-      '@type': string
-      urlTemplate: string
-    }
-    'query-input': string
-  }
-}
-
-export interface FAQPageSchema {
-  '@context': string
-  '@type': string
-  mainEntity: Array<{
-    '@type': string
-    name: string
-    acceptedAnswer: {
-      '@type': string
-      text: string
-    }
-  }>
-}
-
-export interface BreadcrumbListSchema {
-  '@context': string
-  '@type': string
-  itemListElement: Array<{
-    '@type': string
-    position: number
-    name: string
-    item: string
-  }>
-}
-
-export interface EventSchema {
-  '@context': string
-  '@type': string
-  name: string
-  description: string
-  organizer: {
-    '@type': string
-    name: string
-    url: string
-  }
-  offers: {
-    '@type': string
-    price: string
-    priceCurrency: string
-  }
-  eventAttendanceMode: string
-  eventStatus: string
-}
-
-// Generate Organization Schema
-export function generateOrganizationSchema(locale: string = 'en'): OrganizationSchema {
-  const description = locale === 'sv' 
-    ? 'Tydliga, mätbara digitala system för kundtillväxt. Vi hjälper små och medelstora företag få fler kunder genom högpresterande webbplatser, sökbarhet och mätbara digitala marknadsföringssystem.'
-    : 'Clear, measurable digital systems for customer growth. We help small and medium-sized businesses get more customers through high-performance websites, search visibility, and measurable digital marketing systems.'
-
+// The business itself. Rendered once per page from the locale layout.
+export function organizationSchema(locale: string, description: string) {
   return {
     '@context': 'https://schema.org',
     '@type': 'ProfessionalService',
-    name: 'Brehaut Consulting',
+    '@id': ORG_ID,
+    name: COMPANY_NAME,
     description,
-    url: BASE_URL,
+    url: `${BASE_URL}/${locale}`,
     logo: `${BASE_URL}/media/brand/logo-favicon-256.png`,
+    image: `${BASE_URL}/media/hero/scroll_stills/stop_1.jpg`,
+    email: CONTACT_EMAIL,
+    telephone: CONTACT_PHONE.replace(/\s/g, ''),
     contactPoint: {
       '@type': 'ContactPoint',
       contactType: 'customer service',
       email: CONTACT_EMAIL,
-      telephone: CONTACT_PHONE,
+      telephone: CONTACT_PHONE.replace(/\s/g, ''),
       availableLanguage: ['English', 'Swedish', 'Spanish'],
     },
     areaServed: ['Europe', 'Latin America'],
   }
 }
 
-// Generate Service Schema
-export function generateServiceSchema(
-  name: string,
-  description: string,
-  locale: string = 'en'
-): ServiceSchema {
-  return {
-    '@context': 'https://schema.org',
-    '@type': 'Service',
-    name,
-    description,
-    provider: {
-      '@type': 'Organization',
-      name: 'Brehaut Consulting',
-    },
-    serviceType: 'Technology and Growth Consultancy',
-    areaServed: ['Europe', 'Latin America'],
-    availableChannel: {
-      '@type': 'ServiceChannel',
-      serviceUrl: `${BASE_URL}/${locale}/contact`,
-    },
-  }
-}
-
-// Generate WebSite Schema
-export function generateWebSiteSchema(locale: string = 'en'): WebSiteSchema {
+export function webSiteSchema(locale: string) {
   return {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
-    name: 'Brehaut Consulting',
+    '@id': SITE_ID,
+    name: COMPANY_NAME,
     url: BASE_URL,
-    inLanguage: ['en', 'sv'],
+    inLanguage: locale,
+    availableLanguage: [...locales],
+    publisher: { '@id': ORG_ID },
   }
 }
 
-// Generate FAQPage Schema
-export function generateFAQPageSchema(
-  faqItems: Array<{ question: string; answer: string }>
-): FAQPageSchema {
+// Mirrors the FAQ shown on the home page — must stay identical to visible text.
+export function faqPageSchema(items: Array<{ question: string; answer: string }>) {
   return {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    mainEntity: faqItems.map((item) => ({
+    mainEntity: items.map((item) => ({
       '@type': 'Question',
       name: item.question,
       acceptedAnswer: {
@@ -176,49 +60,20 @@ export function generateFAQPageSchema(
   }
 }
 
-// Generate BreadcrumbList Schema
-export function generateBreadcrumbListSchema(
-  items: Array<{ name: string; url: string }>
-): BreadcrumbListSchema {
+// One service page.
+export function serviceSchema(opts: {
+  locale: string
+  slug: string
+  name: string
+  description: string
+}) {
   return {
     '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: items.map((item, index) => ({
-      '@type': 'ListItem',
-      position: index + 1,
-      name: item.name,
-      item: item.url,
-    })),
+    '@type': 'Service',
+    name: opts.name,
+    description: opts.description,
+    url: `${BASE_URL}/${opts.locale}/services/${opts.slug}`,
+    provider: { '@id': ORG_ID },
+    areaServed: ['Europe', 'Latin America'],
   }
 }
-
-// Generate Event Schema for Booking Page
-export function generateEventSchema(locale: string = 'en'): EventSchema {
-  const name = locale === 'sv' 
-    ? 'Boka ett möte'
-    : 'Book a Consultation'
-  
-  const description = locale === 'sv'
-    ? 'Boka ett kostnadsfritt konsultationsmöte för att diskutera dina affärsmål och hur vi kan hjälpa dig växa.'
-    : 'Book a free consultation meeting to discuss your business goals and how we can help you grow.'
-
-  return {
-    '@context': 'https://schema.org',
-    '@type': 'Event',
-    name,
-    description,
-    organizer: {
-      '@type': 'Organization',
-      name: 'Brehaut Consulting',
-      url: BASE_URL,
-    },
-    offers: {
-      '@type': 'Offer',
-      price: '0',
-      priceCurrency: 'SEK',
-    },
-    eventAttendanceMode: 'https://schema.org/OnlineEventAttendanceMode',
-    eventStatus: 'https://schema.org/EventScheduled',
-  }
-}
-

@@ -4,17 +4,13 @@
       "home": "Inicio",
       "howItWorks": "Cómo funciona",
       "services": "Servicios",
-      "bookMeeting": "Reservar una reunión",
       "contact": "Contacto",
       "call": "Llamar"
     },
     "buttons": {
-      "bookMeeting": "Reservar una reunión",
       "contactUs": "Contáctanos",
       "viewServices": "Cómo funciona",
       "getStarted": "Contáctanos",
-      "confirmBooking": "Confirmar reserva",
-      "confirming": "Confirmando...",
       "sendMessage": "Enviar mensaje",
       "sending": "Enviando..."
     },
@@ -25,7 +21,12 @@
       "location": "Ubicación",
       "servingClients": "Atendemos clientes globalmente",
       "regions": "Europa y América Latina",
-      "copyright": "Todos los derechos reservados."
+      "copyright": "Todos los derechos reservados.",
+      "legal": "Legal",
+      "privacy": "Política de privacidad",
+      "cookieSettings": "Configuración de cookies",
+      "email": "Correo",
+      "phone": "Teléfono"
     },
     "soon": "Pronto",
     "language": "Idioma"
@@ -41,11 +42,6 @@
         "title": "Desarrollo de sitios web y aplicaciones web",
         "subtitle": "Para empresas",
         "description": "Diseño y desarrollo de sitios web y aplicaciones web modernos construidos para apoyar objetivos comerciales reales — no solo presentación visual. Cada solución está estructurada en torno a la usabilidad, el rendimiento y la mantenibilidad, con un enfoque claro en guiar a los visitantes hacia consultas, reservas o acciones que importan al negocio."
-      },
-      "service2": {
-        "title": "Optimización de conversión y leads",
-        "subtitle": "Convertir visitantes en consultas",
-        "description": "Mejorar cómo los visitantes interactúan con tu sitio web para que más personas tomen acción — contactarte, reservar una reunión o realizar una compra. Esto se enfoca en reducir la fricción, clarificar los mensajes y alinear el sitio con cómo los clientes reales toman decisiones, convirtiendo el tráfico en resultados comerciales medibles."
       },
       "service3": {
         "title": "Visibilidad local y SEO",
@@ -67,6 +63,23 @@
         "subtitle": "Flujos de trabajo, integraciones y asistentes de IA",
         "description": "Creamos automatizaciones prácticas que ahorran tiempo y reducen el trabajo manual, incluyendo automatización de flujos de trabajo, chatbots con IA, asistentes de marketing con IA e integraciones personalizadas."
       }
+    },
+    "work": {
+      "title": "Trabajos recientes",
+      "items": [
+        {
+          "key": "print",
+          "label": "Estudio de impresión fine art · Chile"
+        },
+        {
+          "key": "hunting",
+          "label": "Equipamiento de caza artesanal · Suecia"
+        },
+        {
+          "key": "club",
+          "label": "Sistema de horarios para clubes deportivos"
+        }
+      ]
     },
     "about": {
       "title": "Acerca de Brehaut Consulting",
@@ -103,7 +116,6 @@
       ]
     },
     "cta": {
-      "title": "¿Listo para crecer?",
       "description": "Hablemos de cómo podemos ayudar a transformar tu presencia digital e impulsar resultados comerciales reales."
     }
   },
@@ -179,24 +191,6 @@
           "Mayor presencia de marca y credibilidad",
           "Soluciones escalables que crecen con tu negocio",
           "Stack tecnológico moderno para desarrollo a prueba de futuro"
-        ]
-      },
-      "service2": {
-        "whatWeDo": "Lo que hacemos",
-        "benefits": "Beneficios",
-        "details": [
-          "Estrategias e implementación de optimización de tasa de conversión (CRO)",
-          "Diseño y optimización de sistemas de generación de leads",
-          "Análisis y mejoras de experiencia de usuario (UX)",
-          "Pruebas A/B y optimización basada en datos",
-          "Optimización de páginas de destino para mayores tasas de conversión",
-          "Análisis y optimización de embudos en cada etapa"
-        ],
-        "benefitsList": [
-          "Mayores tasas de conversión del tráfico existente",
-          "Más leads calificados y mejor calidad de leads",
-          "Mejor ROI en inversiones de marketing",
-          "Toma de decisiones basada en datos para mejora continua"
         ]
       },
       "service3": {
@@ -293,47 +287,6 @@
       "description": "Si esto suena relevante, el siguiente paso es una reunión corta para entender tu negocio y ver si hay una buena opción."
     }
   },
-  "booking": {
-    "title": "Reservar una reunión",
-    "subtitle": "Selecciona una fecha y hora que te funcione",
-    "selectedTimeSlot": "Franja horaria seleccionada",
-    "stockholmTime": "Hora de Estocolmo",
-    "today": "Hoy",
-    "tomorrow": "Mañana",
-    "previousDay": "Día anterior",
-    "nextDay": "Día siguiente",
-    "availableTimeSlots": "Franjas horarias disponibles",
-    "form": {
-      "name": "Nombre",
-      "email": "Correo electrónico",
-      "company": "Empresa (opcional)",
-      "message": "Mensaje (opcional)",
-      "required": "*",
-      "errors": {
-        "nameRequired": "El nombre es obligatorio",
-        "emailRequired": "El correo electrónico es obligatorio",
-        "emailInvalid": "Por favor ingresa una dirección de correo electrónico válida",
-        "selectDateTime": "Por favor selecciona una fecha y franja horaria",
-        "submitFailed": "Error al crear la reserva"
-      }
-    },
-    "success": "¡Reserva confirmada! Esperamos reunirnos contigo.",
-    "callAlternative": "O llámanos y encontraremos un horario que funcione para ambos.",
-    "info": {
-      "purpose": {
-        "title": "Propósito de la reunión",
-        "description": "Esta es una conversación corta y enfocada para entender tu negocio, objetivos y desafíos actuales — y para ver si somos una buena opción para trabajar juntos."
-      },
-      "howItWorks": {
-        "title": "Cómo funciona la reunión",
-        "description": "La reunión se realiza en línea y típicamente dura 30 minutos. Recibirás todos los detalles por correo electrónico después de la reserva."
-      },
-      "rescheduling": {
-        "title": "Reprogramación y cancelación",
-        "description": "Si necesitas reprogramar o cancelar, puedes hacerlo hasta 24 horas antes de la reunión. Esto ayuda a mantener la disponibilidad justa para todos."
-      }
-    }
-  },
   "contact": {
     "title": "Contáctanos",
     "subtitle": "Cuéntanos un poco sobre tu negocio y lo que necesitas. Te responderemos.",
@@ -357,26 +310,16 @@
         "companyRequired": "La empresa es obligatoria",
         "interestRequired": "Elige al menos una opción",
         "messageRequired": "Añade un mensaje breve para “Otro”",
-        "submitFailed": "No se pudo enviar el mensaje. Inténtalo de nuevo."
-      }
+        "submitFailed": "No se pudo enviar el mensaje. Inténtalo de nuevo.",
+        "rateLimited": "Has enviado varios mensajes en poco tiempo. Espera unos minutos o escríbenos directamente por correo."
+      },
+      "privacyNotice": "Solo usamos tus datos para responder a tu consulta. Lee nuestra <link>política de privacidad</link>."
     },
     "success": "Gracias — recibimos tu mensaje. Te responderemos pronto.",
     "aside": {
       "title": "Qué sigue",
       "description": "Leemos cada consulta y respondemos por correo, normalmente en un día hábil."
     }
-  },
-  "footer": {
-    "contact": {
-      "title": "Contáctanos",
-      "description": "Envíanos un correo para consultas y asesorías"
-    },
-    "location": {
-      "title": "Ubicación",
-      "description": "Atendemos clientes globalmente",
-      "regions": "Europa y América Latina"
-    },
-    "copyright": "Todos los derechos reservados."
   },
   "metadata": {
     "title": "Brehaut Consulting | Consultoría de Tecnología y Crecimiento",
@@ -387,7 +330,6 @@
       "consultoría de crecimiento",
       "desarrollo web",
       "sistemas digitales",
-      "optimización de conversión",
       "SEO",
       "análisis",
       "automatización",
@@ -482,7 +424,90 @@
           "title": "Automatización y soluciones de IA",
           "description": "Automatización práctica de flujos, asistentes de IA e integraciones que reducen trabajo manual y mantienen leads y datos en movimiento."
         }
+      },
+      "privacy": {
+        "title": "Política de privacidad",
+        "description": "Cómo Brehaut Consulting trata los datos personales del formulario de contacto, las cookies y la analítica, y qué derechos tienes."
       }
     }
+  },
+  "consent": {
+    "title": "Cookies",
+    "text": "Nos gustaría usar cookies de analítica (Google Analytics) para entender cómo se usa el sitio. Solo se instalan si las aceptas.",
+    "privacyLink": "Lee nuestra política de privacidad",
+    "accept": "Aceptar",
+    "decline": "Rechazar"
+  },
+  "notFound": {
+    "title": "Página no encontrada",
+    "text": "La página que buscas no existe o se ha movido.",
+    "home": "Volver al inicio",
+    "contact": "Contáctanos"
+  },
+  "error": {
+    "title": "Algo salió mal",
+    "text": "Se produjo un error inesperado. Inténtalo de nuevo. Si sigue ocurriendo, escríbenos por correo.",
+    "retry": "Intentar de nuevo",
+    "home": "Volver al inicio"
+  },
+  "privacy": {
+    "title": "Política de privacidad",
+    "updated": "Última actualización: 20 de noviembre de 2026",
+    "intro": "Esta política explica qué datos personales recopilamos a través de este sitio web, por qué lo hacemos y qué derechos tienes.",
+    "sections": [
+      {
+        "heading": "Quién es el responsable",
+        "paragraphs": [
+          "Brehaut Consulting es el responsable del tratamiento descrito aquí. Si tienes preguntas sobre tus datos personales, escribe a contact@brehautconsulting.com."
+        ]
+      },
+      {
+        "heading": "El formulario de contacto",
+        "paragraphs": [
+          "Cuando envías el formulario de contacto recibimos tu nombre, correo electrónico, teléfono, empresa, sitio web (si lo indicas), los servicios que seleccionas y tu mensaje.",
+          "Usamos estos datos solo para responder a tu consulta y, si decidimos trabajar juntos, para preparar una propuesta. La base jurídica es la aplicación, a petición tuya, de medidas precontractuales y nuestro interés legítimo en responder consultas.",
+          "El formulario llega a nuestra bandeja de entrada como correo electrónico a través de Amazon Web Services (Amazon SES). No se guarda en ninguna base de datos del sitio web. Conservamos la correspondencia el tiempo necesario para gestionar tu consulta. Si no da lugar a un encargo, la eliminamos en un plazo de 12 meses."
+        ]
+      },
+      {
+        "heading": "Protección contra spam",
+        "paragraphs": [
+          "Para frenar el spam automatizado, el formulario limita cuántos mensajes se pueden enviar en poco tiempo. Para ello guardamos una versión cifrada de forma irreversible (seudonimizada) de tu dirección IP durante un máximo de 24 horas. La base jurídica es nuestro interés legítimo en mantener seguro el formulario."
+        ]
+      },
+      {
+        "heading": "Cookies y analítica",
+        "paragraphs": [
+          "El sitio web funciona sin cookies. Solo si aceptas en el aviso de cookies cargamos Google Tag Manager y Google Analytics, que instalan cookies para medir las visitas, por ejemplo qué páginas se ven y si se envía el formulario de contacto. Si rechazas, no se carga nada. La base jurídica es tu consentimiento.",
+          "Tu elección se guarda en tu navegador para no volver a preguntarte. Puedes cambiarla en cualquier momento en «Configuración de cookies», al pie de cada página."
+        ]
+      },
+      {
+        "heading": "Alojamiento",
+        "paragraphs": [
+          "El sitio web está alojado en Netlify. Como cualquier servidor web, Netlify trata datos técnicos como tu dirección IP y tipo de navegador para servir las páginas y proteger contra ataques."
+        ]
+      },
+      {
+        "heading": "Con quién compartimos datos",
+        "paragraphs": [
+          "Solo compartimos datos personales con proveedores que los tratan por cuenta nuestra: Netlify (alojamiento), Amazon Web Services (envío de correo), nuestro proveedor de correo electrónico y, solo con tu consentimiento, Google (analítica). Nunca vendemos datos personales.",
+          "Algunos de estos proveedores están en EE. UU. Estas transferencias están protegidas por el Marco de Privacidad de Datos UE-EE. UU. o por las cláusulas contractuales tipo de la Comisión Europea."
+        ]
+      },
+      {
+        "heading": "Tus derechos",
+        "paragraphs": [
+          "Tienes derecho a acceder a tus datos personales, rectificarlos o suprimirlos, a limitar u oponerte a su tratamiento, a la portabilidad y a retirar tu consentimiento en cualquier momento. Escribe a contact@brehautconsulting.com y te responderemos en el plazo de un mes.",
+          "Si crees que tratamos tus datos de forma incorrecta, puedes presentar una reclamación ante la autoridad sueca de protección de datos (Integritetsskyddsmyndigheten, IMY) en imy.se, o ante la autoridad de tu país."
+        ]
+      },
+      {
+        "heading": "Cambios",
+        "paragraphs": [
+          "Podemos actualizar esta política. La fecha que aparece arriba indica cuándo se modificó por última vez."
+        ]
+      }
+    ]
   }
 }

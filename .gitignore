@@ -59,3 +59,6 @@ next-env.d.ts
 .taste-skill/
 shots/
 skills-lock.json
+
+# Original client screenshots (unblurred) — never commit or serve
+/media-source/

@@ -5,11 +5,11 @@ import { Link } from '@/i18n/navigation'
 import { useTranslations } from 'next-intl'
 import { CONTACT_EMAIL, CONTACT_PHONE } from '@/lib/constants'
 import { HOME, sitePath } from '@/components/blocks/serviceRoutes'
+import { OPEN_CONSENT_EVENT } from '@/components/consent/CookieConsent'
 
 // Site footer for the live redesign — stacks cleanly on phone.
 export default function BlocksFooter() {
   const tFooter = useTranslations('common.footer')
-  const tCommon = useTranslations('common.buttons')
 
   return (
     <footer className="blocks-site__footer" id="site-footer">
@@ -32,30 +32,44 @@ export default function BlocksFooter() {
 
         <div className="blocks-site__footer-grid">
           <div className="blocks-site__footer-contact">
-            <h3>{tFooter('contactUs')}</h3>
+            <h3>
+              <Link className="blocks-site__footer-heading-link" href={sitePath('contact')}>
+                {tFooter('contactUs')}
+                <span aria-hidden="true">↗</span>
+              </Link>
+            </h3>
             <ul>
               <li>
-                <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
+                <a href={`mailto:${CONTACT_EMAIL}`}>
+                  <span className="blocks-site__footer-label">{tFooter('email')}</span>
+                  <span className="blocks-site__footer-value">{CONTACT_EMAIL}</span>
+                </a>
               </li>
               <li>
-                <a href={`tel:${CONTACT_PHONE.replace(/\s/g, '')}`}>{CONTACT_PHONE}</a>
-              </li>
-              <li>
-                <Link
-                  className="blocks-site__footer-cta"
-                  href={sitePath('contact')}
-                >
-                  {tCommon('contactUs')}
-                </Link>
+                <a href={`tel:${CONTACT_PHONE.replace(/\s/g, '')}`}>
+                  <span className="blocks-site__footer-label">{tFooter('phone')}</span>
+                  <span className="blocks-site__footer-value">{CONTACT_PHONE}</span>
+                </a>
               </li>
             </ul>
           </div>
         </div>
 
-        <p className="blocks-site__legal">
-          &copy; {new Date().getFullYear()} Brehaut Consulting.{' '}
-          {tFooter('copyright')}
-        </p>
+        <div className="blocks-site__legal">
+          <p>
+            &copy; {new Date().getFullYear()} Brehaut Consulting.{' '}
+            {tFooter('copyright')}
+          </p>
+          <nav className="blocks-site__legal-links" aria-label={tFooter('legal')}>
+            <Link href={sitePath('privacy')}>{tFooter('privacy')}</Link>
+            <button
+              type="button"
+              onClick={() => window.dispatchEvent(new Event(OPEN_CONSENT_EVENT))}
+            >
+              {tFooter('cookieSettings')}
+            </button>
+          </nav>
+        </div>
       </div>
     </footer>
   )

@@ -4,17 +4,13 @@
       "home": "Hem",
       "howItWorks": "Så fungerar det",
       "services": "Tjänster",
-      "bookMeeting": "Boka ett möte",
       "contact": "Kontakt",
       "call": "Ring"
     },
     "buttons": {
-      "bookMeeting": "Boka ett möte",
       "contactUs": "Kontakta oss",
       "viewServices": "Så fungerar det",
       "getStarted": "Kontakta oss",
-      "confirmBooking": "Bekräfta bokning",
-      "confirming": "Bekräftar...",
       "sendMessage": "Skicka meddelande",
       "sending": "Skickar..."
     },
@@ -25,7 +21,12 @@
       "location": "Plats",
       "servingClients": "Betjänar kunder globalt",
       "regions": "Europa & Latinamerika",
-      "copyright": "Alla rättigheter förbehållna."
+      "copyright": "Alla rättigheter förbehållna.",
+      "legal": "Juridiskt",
+      "privacy": "Integritetspolicy",
+      "cookieSettings": "Cookieinställningar",
+      "email": "E-post",
+      "phone": "Telefon"
     },
     "soon": "Snart",
     "language": "Språk"
@@ -41,11 +42,6 @@
         "title": "Webbplats & webbappsutveckling",
         "subtitle": "för företag",
         "description": "Design och utveckling av moderna webbplatser och webbapplikationer byggda för att stödja verkliga affärsmål — inte bara visuell presentation. Varje lösning är strukturerad kring användbarhet, prestanda och underhållbarhet, med ett tydligt fokus på att guida besökare mot förfrågningar, bokningar eller åtgärder som betyder något för verksamheten."
-      },
-      "service2": {
-        "title": "Konverterings- & leadoptimering",
-        "subtitle": "Omvandla besökare till förfrågningar",
-        "description": "Förbättra hur besökare interagerar med din webbplats så att fler människor vidtar åtgärder — kontaktar dig, bokar ett möte eller gör ett köp. Detta fokuserar på att minska friktion, klargöra meddelanden och anpassa webbplatsen till hur verkliga kunder fattar beslut, vilket omvandlar trafik till mätbara affärsresultat."
       },
       "service3": {
         "title": "Lokal synlighet & SEO",
@@ -67,6 +63,23 @@
         "subtitle": "Arbetsflöden, integrationer och AI-assistenter",
         "description": "Vi bygger praktiska automatiseringar som sparar tid och minskar manuellt arbete, inklusive arbetsflödesautomatisering, AI-chatbotar, AI-marknadsföringsassistenter och skräddarsydda integrationer."
       }
+    },
+    "work": {
+      "title": "Senaste projekt",
+      "items": [
+        {
+          "key": "print",
+          "label": "Fine art-tryckeri · Chile"
+        },
+        {
+          "key": "hunting",
+          "label": "Handgjord jaktutrustning · Sverige"
+        },
+        {
+          "key": "club",
+          "label": "Schemasystem för idrottsklubbar"
+        }
+      ]
     },
     "about": {
       "title": "Om Brehaut Consulting",
@@ -103,7 +116,6 @@
       ]
     },
     "cta": {
-      "title": "Redo att växa?",
       "description": "Låt oss diskutera hur vi kan hjälpa till att transformera din digitala närvaro och driva verkliga affärsresultat."
     }
   },
@@ -179,24 +191,6 @@
           "Förbättrat varumärkesnärvaro och trovärdighet",
           "Skalbara lösningar som växer med din verksamhet",
           "Modern teknikstack för framtidssäker utveckling"
-        ]
-      },
-      "service2": {
-        "whatWeDo": "Vad vi gör",
-        "benefits": "Fördelar",
-        "details": [
-          "Konverteringsfrekvensoptimering (CRO) strategier och implementering",
-          "Leadgenereringssystemdesign och optimering",
-          "Användarupplevelse (UX) analys och förbättringar",
-          "A/B-testning och datadriven optimering",
-          "Landningssidesoptimering för högre konverteringsfrekvens",
-          "Trattanalys och optimering i varje steg"
-        ],
-        "benefitsList": [
-          "Högre konverteringsfrekvens från befintlig trafik",
-          "Fler kvalificerade leads och bättre leadkvalitet",
-          "Förbättrad ROI på marknadsföringsinvesteringar",
-          "Datadriven beslutsfattande för kontinuerlig förbättring"
         ]
       },
       "service3": {
@@ -293,47 +287,6 @@
       "description": "Om detta låter relevant är nästa steg ett kort möte för att förstå din verksamhet och se om det finns en bra matchning."
     }
   },
-  "booking": {
-    "title": "Boka ett möte",
-    "subtitle": "Välj ett datum och tid som passar dig",
-    "selectedTimeSlot": "Valt tidsintervall",
-    "stockholmTime": "Stockholmstid",
-    "today": "Idag",
-    "tomorrow": "Imorgon",
-    "previousDay": "Föregående dag",
-    "nextDay": "Nästa dag",
-    "availableTimeSlots": "Tillgängliga tidsintervall",
-    "form": {
-      "name": "Namn",
-      "email": "E-post",
-      "company": "Företag (valfritt)",
-      "message": "Meddelande (valfritt)",
-      "required": "*",
-      "errors": {
-        "nameRequired": "Namn krävs",
-        "emailRequired": "E-post krävs",
-        "emailInvalid": "Vänligen ange en giltig e-postadress",
-        "selectDateTime": "Vänligen välj ett datum och tidsintervall",
-        "submitFailed": "Kunde inte skapa bokning"
-      }
-    },
-    "success": "Bokning bekräftad! Vi ser fram emot att träffa dig.",
-    "callAlternative": "Eller ring oss så hittar vi en tid som passar oss båda.",
-    "info": {
-      "purpose": {
-        "title": "Mötesändamål",
-        "description": "Detta är ett kort, fokuserat samtal för att förstå din verksamhet, mål och nuvarande utmaningar — och för att se om vi är en bra matchning att arbeta tillsammans."
-      },
-      "howItWorks": {
-        "title": "Hur mötet fungerar",
-        "description": "Mötet hålls online och varar vanligtvis 30 minuter. Du får alla detaljer via e-post efter bokning."
-      },
-      "rescheduling": {
-        "title": "Ombokning & avbokning",
-        "description": "Om du behöver boka om eller avboka kan du göra det upp till 24 timmar före mötet. Detta hjälper till att hålla tillgängligheten rättvis för alla."
-      }
-    }
-  },
   "contact": {
     "title": "Kontakta oss",
     "subtitle": "Berätta kort om ditt företag och vad du behöver. Vi återkommer till dig.",
@@ -357,26 +310,16 @@
         "companyRequired": "Företag krävs",
         "interestRequired": "Välj minst ett alternativ",
         "messageRequired": "Lägg till ett kort meddelande för “Annat”",
-        "submitFailed": "Kunde inte skicka meddelandet. Försök igen."
-      }
+        "submitFailed": "Kunde inte skicka meddelandet. Försök igen.",
+        "rateLimited": "Du har skickat flera meddelanden på kort tid. Vänta några minuter, eller mejla oss direkt."
+      },
+      "privacyNotice": "Vi använder bara dina uppgifter för att svara på din förfrågan. Läs vår <link>integritetspolicy</link>."
     },
     "success": "Tack — vi har fått ditt meddelande och återkommer snart.",
     "aside": {
       "title": "Vad händer sen",
       "description": "Vi läser varje förfrågan och svarar via e-post, vanligtvis inom en arbetsdag."
     }
-  },
-  "footer": {
-    "contact": {
-      "title": "Kontakta oss",
-      "description": "Mejla oss för förfrågningar och konsultationer"
-    },
-    "location": {
-      "title": "Plats",
-      "description": "Betjänar kunder globalt",
-      "regions": "Europa & Latinamerika"
-    },
-    "copyright": "Alla rättigheter förbehållna."
   },
   "metadata": {
     "title": "Brehaut Consulting | Teknologi- & tillväxtkonsult",
@@ -482,7 +425,90 @@
           "title": "Automation & AI-lösningar",
           "description": "Praktisk arbetsflödesautomation, AI-assistenter och integrationer som minskar manuellt arbete och håller leads och data i rörelse."
         }
+      },
+      "privacy": {
+        "title": "Integritetspolicy",
+        "description": "Hur Brehaut Consulting hanterar personuppgifter från kontaktformuläret, cookies och analys, och vilka rättigheter du har."
       }
     }
+  },
+  "consent": {
+    "title": "Cookies",
+    "text": "Vi vill använda analyscookies (Google Analytics) för att förstå hur webbplatsen används. De sätts bara om du godkänner.",
+    "privacyLink": "Läs vår integritetspolicy",
+    "accept": "Godkänn",
+    "decline": "Avböj"
+  },
+  "notFound": {
+    "title": "Sidan hittades inte",
+    "text": "Sidan du letar efter finns inte eller har flyttats.",
+    "home": "Till startsidan",
+    "contact": "Kontakta oss"
+  },
+  "error": {
+    "title": "Något gick fel",
+    "text": "Ett oväntat fel uppstod. Försök igen. Om det fortsätter, mejla oss.",
+    "retry": "Försök igen",
+    "home": "Till startsidan"
+  },
+  "privacy": {
+    "title": "Integritetspolicy",
+    "updated": "Senast uppdaterad: 20 november 2026",
+    "intro": "Den här policyn förklarar vilka personuppgifter vi samlar in via webbplatsen, varför vi gör det och vilka rättigheter du har.",
+    "sections": [
+      {
+        "heading": "Vem är ansvarig",
+        "paragraphs": [
+          "Brehaut Consulting är personuppgiftsansvarig för behandlingen som beskrivs här. Har du frågor om dina personuppgifter, mejla contact@brehautconsulting.com."
+        ]
+      },
+      {
+        "heading": "Kontaktformuläret",
+        "paragraphs": [
+          "När du skickar kontaktformuläret får vi ditt namn, din e-postadress, ditt telefonnummer, företag, webbplats (om du anger den), de tjänster du väljer och ditt meddelande.",
+          "Vi använder uppgifterna enbart för att svara på din förfrågan och, om vi bestämmer oss för att samarbeta, för att ta fram ett förslag. Den rättsliga grunden är åtgärder på din begäran innan ett avtal ingås, samt vårt berättigade intresse av att besvara förfrågningar.",
+          "Formuläret levereras till vår inkorg som e-post via Amazon Web Services (Amazon SES). Det sparas inte i någon databas på webbplatsen. Vi sparar korrespondensen så länge som behövs för att hantera din förfrågan. Leder den inte till ett uppdrag raderar vi den inom 12 månader."
+        ]
+      },
+      {
+        "heading": "Skydd mot skräppost",
+        "paragraphs": [
+          "För att stoppa automatiserad skräppost begränsar formuläret hur många meddelanden som kan skickas på kort tid. För detta sparar vi en envägshashad (pseudonymiserad) version av din IP-adress i högst 24 timmar. Den rättsliga grunden är vårt berättigade intresse av att hålla formuläret säkert."
+        ]
+      },
+      {
+        "heading": "Cookies och analys",
+        "paragraphs": [
+          "Webbplatsen fungerar utan cookies. Först om du godkänner i cookiebannern laddar vi Google Tag Manager och Google Analytics, som sätter cookies för att mäta besök, till exempel vilka sidor som visas och om kontaktformuläret skickas. Avböjer du laddas ingenting. Den rättsliga grunden är ditt samtycke.",
+          "Ditt val sparas i din webbläsare så att vi inte frågar igen. Du kan ändra det när som helst via ”Cookieinställningar” längst ned på varje sida."
+        ]
+      },
+      {
+        "heading": "Webbhotell",
+        "paragraphs": [
+          "Webbplatsen drivs hos Netlify. Som alla webbservrar behandlar Netlify tekniska uppgifter som din IP-adress och webbläsartyp för att leverera sidorna och skydda mot attacker."
+        ]
+      },
+      {
+        "heading": "Vilka vi delar uppgifter med",
+        "paragraphs": [
+          "Vi delar bara personuppgifter med tjänsteleverantörer som behandlar dem för vår räkning: Netlify (webbhotell), Amazon Web Services (e-postleverans), vår e-postleverantör och, endast med ditt samtycke, Google (analys). Vi säljer aldrig personuppgifter.",
+          "Vissa av leverantörerna finns i USA. Sådana överföringar skyddas av EU–US Data Privacy Framework eller EU-kommissionens standardavtalsklausuler."
+        ]
+      },
+      {
+        "heading": "Dina rättigheter",
+        "paragraphs": [
+          "Du har rätt att få tillgång till, rätta eller radera dina personuppgifter, att begränsa eller invända mot behandlingen, till dataportabilitet och att när som helst återkalla ditt samtycke. Mejla contact@brehautconsulting.com så svarar vi inom en månad.",
+          "Om du anser att vi hanterar dina uppgifter felaktigt kan du klaga hos Integritetsskyddsmyndigheten (IMY) på imy.se."
+        ]
+      },
+      {
+        "heading": "Ändringar",
+        "paragraphs": [
+          "Vi kan komma att uppdatera policyn. Datumet högst upp visar när den senast ändrades."
+        ]
+      }
+    ]
   }
 }

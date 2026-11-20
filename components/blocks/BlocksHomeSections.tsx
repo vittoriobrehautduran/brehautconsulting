@@ -6,6 +6,7 @@ import { useTranslations } from 'next-intl'
 import { SERVICE_PAGES, sitePath } from '@/components/blocks/serviceRoutes'
 
 type FaqItem = { question: string; answer: string }
+type WorkItem = { key: string; label: string }
 
 // Home content below the scroll hero — about, services, FAQ. No scroll-lock here.
 export default function BlocksHomeSections() {
@@ -13,12 +14,14 @@ export default function BlocksHomeSections() {
   const tServices = useTranslations('home.services')
   const tAbout = useTranslations('home.about')
   const tFaq = useTranslations('home.faq')
+  const tWork = useTranslations('home.work')
   const tCta = useTranslations('home.cta')
   const tCommon = useTranslations('common.buttons')
   const tCommonRoot = useTranslations('common')
-  const [openFaq, setOpenFaq] = useState<number | null>(0)
+  const [openFaq, setOpenFaq] = useState<number | null>(null)
 
   const faqItems = (tFaq.raw('items') as FaqItem[]) || []
+  const workItems = (tWork.raw('items') as WorkItem[]) || []
 
   return (
     <div className="blocks-site">
@@ -141,6 +144,44 @@ export default function BlocksHomeSections() {
                 </li>
               )
             })}
+          </ul>
+        </div>
+      </section>
+      {/* Quiet footnote-style strip: blurred screenshots, no client names or links. */}
+      <section className="blocks-site__section blocks-site__section--tight" aria-labelledby="blocks-work-h">
+        <div className="blocks-site__wrap">
+          <h2 id="blocks-work-h" className="blocks-site__work-title">{tWork('title')}</h2>
+          <ul className="blocks-site__work">
+            {workItems.map((item, index) => (
+              <li key={item.key}>
+                <figure className="blocks-site__work-card">
+                  {/* Minimal browser frame around the full, uncropped screenshot. */}
+                  <div className="blocks-site__work-window">
+                    <div className="blocks-site__work-bar" aria-hidden="true">
+                      <span />
+                      <span />
+                      <span />
+                    </div>
+                    <img
+                      src={`/media/work/${item.key}-640.webp`}
+                      srcSet={`/media/work/${item.key}-640.webp 640w, /media/work/${item.key}-1280.webp 1280w`}
+                      sizes="(max-width: 599px) 100vw, 320px"
+                      width={640}
+                      height={301}
+                      loading="lazy"
+                      decoding="async"
+                      alt=""
+                    />
+                  </div>
+                  <figcaption>
+                    <span className="blocks-site__work-num" aria-hidden="true">
+                      {String(index + 1).padStart(2, '0')}
+                    </span>
+                    {item.label}
+                  </figcaption>
+                </figure>
+              </li>
+            ))}
           </ul>
         </div>
       </section>

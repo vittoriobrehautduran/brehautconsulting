@@ -2,9 +2,17 @@
 
 import type { Metadata, Viewport } from 'next'
 import { NextIntlClientProvider } from 'next-intl'
-import { getMessages } from 'next-intl/server'
+import { getMessages, getTranslations } from 'next-intl/server'
 import { notFound } from 'next/navigation'
 import { locales } from '@/i18n'
+import JsonLd from '@/components/schema/JsonLd'
+import CookieConsent from '@/components/consent/CookieConsent'
+import { organizationSchema, webSiteSchema } from '@/lib/schema/jsonld'
+import { fontClassName } from '@/lib/fonts'
+import { OG_LOCALES } from '@/lib/seo/pageMetadata'
+import { consentDefaultsScript } from '@/components/consent/consentDefaults'
+
+const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID || ''
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -26,10 +34,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const messages = await getMessages({ locale })
   const metadata = messages.metadata as any
 
-  const localeMap: Record<string, string> = {
-    en: 'en_US',
-    sv: 'sv_SE',
-  }
 
   return {
     metadataBase: new URL(
@@ -51,7 +55,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     },
     openGraph: {
       type: 'website',
-      locale: localeMap[locale] || 'en_US',
+      locale: OG_LOCALES[locale] ?? 'en_US',
       url: process.env.NEXT_PUBLIC_SITE_URL || 'https://brehautconsulting.com',
       siteName: metadata.openGraph.siteName,
       title: metadata.openGraph.title,
@@ -141,32 +145,31 @@ export default async function LocaleLayout({ children, params }: Props) {
   }
 
   const messages = await getMessages({ locale })
+  const t = await getTranslations({ locale, namespace: 'seo.pages.home' })
 
   return (
-    <>
-      <link rel="preconnect" href="https://fonts.googleapis.com" />
-      <link
-        rel="preconnect"
-        href="https://fonts.gstatic.com"
-        crossOrigin="anonymous"
-      />
-      {/* Hide legacy Tailwind chrome if anything still renders it. */}
-      <style>{`
-        body header.fixed {
-          display: none !important;
-        }
-        body footer:not(.blocks-site__footer) {
-          display: none !important;
-        }
-        main.relative {
-          background: #000 !important;
-          min-height: 100svh;
-          padding: 0 !important;
-        }
-      `}</style>
-      <NextIntlClientProvider messages={messages}>
-        <main className="relative bg-transparent">{children}</main>
-      </NextIntlClientProvider>
-    </>
+    <html
+      lang={locale}
+      className={fontClassName}
+    >
+      <head>
+        {/* Consent Mode v2 defaults: everything denied until the visitor
+            accepts in the cookie banner. GTM itself is only loaded after
+            consent (see CookieConsent). */}
+        <script dangerouslySetInnerHTML={{ __html: consentDefaultsScript }} />
+      </head>
+      <body className="min-h-screen bg-black font-sans antialiased text-white overflow-x-hidden">
+        <JsonLd
+          data={[
+            organizationSchema(locale, t('description')),
+            webSiteSchema(locale),
+          ]}
+        />
+        <NextIntlClientProvider messages={messages}>
+          <div className="site-root">{children}</div>
+          <CookieConsent gtmId={GTM_ID} />
+        </NextIntlClientProvider>
+      </body>
+    </html>
   )
 }

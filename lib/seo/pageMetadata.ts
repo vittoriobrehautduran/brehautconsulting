@@ -7,6 +7,13 @@ const SITE_URL =
 
 const OG_IMAGE = '/media/hero/scroll_stills/stop_1.jpg'
 
+// Open Graph wants language_TERRITORY codes.
+export const OG_LOCALES: Record<string, string> = {
+  en: 'en_US',
+  sv: 'sv_SE',
+  es: 'es_ES',
+}
+
 type PageKey =
   | 'home'
   | 'contact'
@@ -16,6 +23,7 @@ type PageKey =
   | 'services.ads'
   | 'services.analytics'
   | 'services.automation'
+  | 'privacy'
 
 // Build locale-aware metadata for a public site page.
 export async function buildPageMetadata(
@@ -41,14 +49,19 @@ export async function buildPageMetadata(
     : `${SITE_URL}/en`
 
   return {
-    title,
+    // The layout's "%s | Brehaut Consulting" template only applies to child
+    // segments, not to the home page (same segment), so spell it out there.
+    title: pageKey === 'home' ? { absolute: `${title} | Brehaut Consulting` } : title,
     description,
     openGraph: {
       title: `${title} | Brehaut Consulting`,
       description,
       type: 'website',
       url: canonical,
-      locale,
+      locale: OG_LOCALES[locale] ?? 'en_US',
+      alternateLocale: locales
+        .filter((loc) => loc !== locale)
+        .map((loc) => OG_LOCALES[loc]),
       images: [
         {
           url: OG_IMAGE,

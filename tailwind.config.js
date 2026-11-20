@@ -57,7 +57,7 @@ module.exports = {
         sm: "calc(var(--radius) - 4px)",
       },
       fontFamily: {
-        sans: ['var(--font-inter)', 'sans-serif'],
+        sans: ['var(--font-albert)', 'system-ui', 'sans-serif'],
         heading: ['var(--font-space-grotesk)', 'sans-serif'],
         canela: ['var(--font-playfair)', 'serif'],
       },
