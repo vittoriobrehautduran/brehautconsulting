@@ -446,5 +446,43 @@
       }
     },
     "scrollHint": "Scroll"
+  },
+  "seo": {
+    "pages": {
+      "home": {
+        "title": "Technology & Growth Consultancy",
+        "description": "Clear, measurable digital systems for customer growth — websites, SEO, ads, analytics, and automation for SMBs."
+      },
+      "contact": {
+        "title": "Contact",
+        "description": "Tell us about your business and what you need. We reply by email with clear next steps — no calendar booking required."
+      },
+      "howItWorks": {
+        "title": "How it works",
+        "description": "How Brehaut Consulting works with businesses: discovery, system design, build, and ongoing improvement across web, SEO, ads, analytics, and automation."
+      },
+      "services": {
+        "websites": {
+          "title": "Website & web app development",
+          "description": "Modern websites and web applications built around real business goals — usability, performance, and paths that turn visitors into enquiries."
+        },
+        "seo": {
+          "title": "Local visibility & SEO",
+          "description": "Search and local visibility so customers find you on Google and maps when they are ready to enquire — structured for relevance, not vanity rankings."
+        },
+        "ads": {
+          "title": "Advertising & demand capture",
+          "description": "Google Ads and high-intent campaigns that capture existing demand, with clear conversion goals and visibility into what generates enquiries."
+        },
+        "analytics": {
+          "title": "Analytics & measurement",
+          "description": "Analytics architecture that shows which pages, campaigns, and paths actually bring enquiries — so decisions are based on data, not guesswork."
+        },
+        "automation": {
+          "title": "Automation & AI solutions",
+          "description": "Practical workflow automation, AI assistants, and integrations that cut manual work and keep leads and data moving."
+        }
+      }
+    }
   }
 }

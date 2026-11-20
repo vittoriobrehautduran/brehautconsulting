@@ -58,9 +58,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: metadata.openGraph.description,
       images: [
         {
-          url: '/media/brand/logo-favicon.svg',
-          width: 1200,
-          height: 630,
+          url: '/media/hero/scroll_stills/stop_1.jpg',
+          width: 1280,
+          height: 720,
           alt: 'Brehaut Consulting',
         },
       ],
@@ -69,7 +69,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       card: 'summary_large_image',
       title: metadata.openGraph.title,
       description: metadata.openGraph.description,
-      images: ['/media/brand/logo-favicon.svg'],
+      images: ['/media/hero/scroll_stills/stop_1.jpg'],
     },
     robots: {
       index: true,
@@ -83,8 +83,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       },
     },
     alternates: {
-      canonical:
-        process.env.NEXT_PUBLIC_SITE_URL || 'https://brehautconsulting.com',
+      canonical: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://brehautconsulting.com'}/${locale}`,
+      languages: {
+        en: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://brehautconsulting.com'}/en`,
+        sv: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://brehautconsulting.com'}/sv`,
+        es: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://brehautconsulting.com'}/es`,
+        'x-default': `${process.env.NEXT_PUBLIC_SITE_URL || 'https://brehautconsulting.com'}/en`,
+      },
     },
     icons: {
       icon: [

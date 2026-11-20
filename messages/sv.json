@@ -446,5 +446,43 @@
       }
     },
     "scrollHint": "Scrolla"
+  },
+  "seo": {
+    "pages": {
+      "home": {
+        "title": "Teknik- & tillväxtkonsult",
+        "description": "Tydliga, mätbara digitala system för kundtillväxt — webb, SEO, annonsering, analys och automation för små och medelstora företag."
+      },
+      "contact": {
+        "title": "Kontakt",
+        "description": "Berätta om ditt företag och vad du behöver. Vi svarar via e-post med tydliga nästa steg — ingen kalenderbokning krävs."
+      },
+      "howItWorks": {
+        "title": "Så fungerar det",
+        "description": "Så arbetar Brehaut Consulting med företag: upptäckt, systemdesign, bygge och löpande förbättring inom webb, SEO, annonser, analys och automation."
+      },
+      "services": {
+        "websites": {
+          "title": "Webbplats & webbappsutveckling",
+          "description": "Moderna webbplatser och webbappar byggda kring verkliga affärsmål — användbarhet, prestanda och vägar som gör besökare till förfrågningar."
+        },
+        "seo": {
+          "title": "Lokal synlighet & SEO",
+          "description": "Sök- och lokal synlighet så att kunder hittar dig på Google och kartor när de är redo att höra av sig — strukturerat för relevans, inte tomma rankings."
+        },
+        "ads": {
+          "title": "Annonsering & efterfrågefångst",
+          "description": "Google Ads och högintentionskampanjer som fångar befintlig efterfrågan, med tydliga konverteringsmål och synlighet i vad som genererar förfrågningar."
+        },
+        "analytics": {
+          "title": "Analys & mätning",
+          "description": "Analysarkitektur som visar vilka sidor, kampanjer och vägar som faktiskt ger förfrågningar — så beslut baseras på data, inte gissningar."
+        },
+        "automation": {
+          "title": "Automation & AI-lösningar",
+          "description": "Praktisk arbetsflödesautomation, AI-assistenter och integrationer som minskar manuellt arbete och håller leads och data i rörelse."
+        }
+      }
+    }
   }
 }

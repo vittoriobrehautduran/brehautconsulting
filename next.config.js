@@ -49,6 +49,11 @@ const nextConfig = {
         destination: '/:locale/services/:slug',
         permanent: true,
       },
+      {
+        source: '/:locale(en|sv|es)/redesign',
+        destination: '/:locale',
+        permanent: true,
+      },
     ]
   },
 }

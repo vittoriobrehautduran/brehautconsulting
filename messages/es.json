@@ -446,5 +446,43 @@
       }
     },
     "scrollHint": "Desplázate"
+  },
+  "seo": {
+    "pages": {
+      "home": {
+        "title": "Consultoría de tecnología y crecimiento",
+        "description": "Sistemas digitales claros y medibles para el crecimiento de clientes — sitios web, SEO, anuncios, analítica y automatización para pymes."
+      },
+      "contact": {
+        "title": "Contacto",
+        "description": "Cuéntanos sobre tu negocio y lo que necesitas. Respondemos por correo con pasos claros — sin reserva de calendario."
+      },
+      "howItWorks": {
+        "title": "Cómo funciona",
+        "description": "Cómo trabaja Brehaut Consulting con empresas: descubrimiento, diseño del sistema, construcción y mejora continua en web, SEO, anuncios, analítica y automatización."
+      },
+      "services": {
+        "websites": {
+          "title": "Desarrollo web y de aplicaciones",
+          "description": "Sitios y aplicaciones web modernas orientadas a objetivos de negocio reales — usabilidad, rendimiento y rutas que convierten visitantes en consultas."
+        },
+        "seo": {
+          "title": "Visibilidad local y SEO",
+          "description": "Visibilidad en búsqueda y local para que los clientes te encuentren en Google y mapas cuando están listos para consultar — estructurado por relevancia, no por rankings vanos."
+        },
+        "ads": {
+          "title": "Publicidad y captura de demanda",
+          "description": "Google Ads y campañas de alta intención que capturan demanda existente, con objetivos de conversión claros y visibilidad de lo que genera consultas."
+        },
+        "analytics": {
+          "title": "Analítica y medición",
+          "description": "Arquitectura de analítica que muestra qué páginas, campañas y rutas realmente traen consultas — para decidir con datos, no con intuición."
+        },
+        "automation": {
+          "title": "Automatización y soluciones de IA",
+          "description": "Automatización práctica de flujos, asistentes de IA e integraciones que reducen trabajo manual y mantienen leads y datos en movimiento."
+        }
+      }
+    }
   }
 }

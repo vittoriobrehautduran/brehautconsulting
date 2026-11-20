@@ -1,42 +1,35 @@
-// Dynamic sitemap generation
+// Dynamic sitemap — all locales and public routes.
 
 import { MetadataRoute } from 'next'
+import { locales } from '@/i18n'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://brehautconsulting.com'
 
-  const serviceSlugs = [
-    'websites',
-    'seo',
-    'ads',
-    'analytics',
-    'automation',
+  const paths = [
+    '',
+    '/how-it-works',
+    '/contact',
+    '/services/websites',
+    '/services/seo',
+    '/services/ads',
+    '/services/analytics',
+    '/services/automation',
   ] as const
 
-  return [
-    {
-      url: baseUrl,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 1,
-    },
-    {
-      url: `${baseUrl}/how-it-works`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/contact`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.9,
-    },
-    ...serviceSlugs.map((slug) => ({
-      url: `${baseUrl}/services/${slug}`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly' as const,
-      priority: 0.8,
-    })),
-  ]
+  const entries: MetadataRoute.Sitemap = []
+
+  for (const locale of locales) {
+    for (const path of paths) {
+      const isHome = path === ''
+      entries.push({
+        url: isHome ? `${baseUrl}/${locale}` : `${baseUrl}/${locale}${path}`,
+        lastModified: new Date(),
+        changeFrequency: path === '/contact' ? 'weekly' : 'monthly',
+        priority: isHome ? 1 : path.startsWith('/services') ? 0.8 : 0.9,
+      })
+    }
+  }
+
+  return entries
 }
