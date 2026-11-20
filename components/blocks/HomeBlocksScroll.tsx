@@ -73,6 +73,7 @@ export default function HomeBlocksScroll() {
   const t = useTranslations('home')
   const tServices = useTranslations('home.services')
   const tCommon = useTranslations('common.buttons')
+  const tBlocks = useTranslations('blocks')
   const heroRef = useRef<HTMLElement>(null)
   const fwdRef = useRef<HTMLVideoElement>(null)
   const revRef = useRef<HTMLVideoElement>(null)
@@ -1057,7 +1058,7 @@ export default function HomeBlocksScroll() {
         href="#about"
         onClick={() => releaseLock(false)}
       >
-        Skip to content
+        {tBlocks('skipToContent')}
       </a>
 
       <BlocksNav />
@@ -1066,7 +1067,7 @@ export default function HomeBlocksScroll() {
         ref={heroRef}
         id="blocks-story"
         className="blocks-scroll__hero"
-        aria-label="Product story"
+        aria-label={tBlocks('productStory')}
       >
         {reducedMotion ? (
           // eslint-disable-next-line @next/next/no-img-element
@@ -1148,7 +1149,7 @@ export default function HomeBlocksScroll() {
         </div>
 
         {!isCompact && !reducedMotion ? (
-          <ol className="blocks-scroll__dots" aria-label="Jump to a scene">
+          <ol className="blocks-scroll__dots" aria-label={tBlocks('jumpToScene')}>
             {SCENE_NAMES.slice(1).map((name, index) => {
               const stopIndex = index + 1
               return (
@@ -1168,7 +1169,7 @@ export default function HomeBlocksScroll() {
 
         {hintVisible && !reducedMotion && !isCompact ? (
           <p className="blocks-scroll__hint" aria-hidden="true">
-            Scroll
+            {tBlocks('scrollHint')}
           </p>
         ) : null}
 
@@ -1178,7 +1179,7 @@ export default function HomeBlocksScroll() {
             className="blocks-scroll__skip-scene"
             onClick={() => releaseLock(true)}
           >
-            Skip ↓
+            {tBlocks('skipScene')}
           </button>
         ) : null}
 

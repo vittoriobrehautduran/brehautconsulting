@@ -13,6 +13,8 @@ export default function BlocksServiceWebsites() {
   const tHome = useTranslations('home.services.service1')
   const tDetails = useTranslations('services.serviceDetails.service1')
   const tCommon = useTranslations('common.buttons')
+  const tBlocks = useTranslations('blocks')
+  const tNav = useTranslations('common.nav')
 
   const details = (tDetails.raw('details') as string[]) || []
   const benefits = (tDetails.raw('benefitsList') as string[]) || []
@@ -24,7 +26,7 @@ export default function BlocksServiceWebsites() {
       <main className="blocks-site__page">
         <div className="blocks-site__wrap">
           <p className="blocks-site__crumb">
-            <Link href={sitePath('how-it-works')}>How it works</Link>
+            <Link href={sitePath('how-it-works')}>{tNav("howItWorks")}</Link>
             <span aria-hidden="true"> / </span>
             <span>{tHome('title')}</span>
           </p>
@@ -47,7 +49,7 @@ export default function BlocksServiceWebsites() {
           </header>
         </div>
 
-        <BlocksTechCarousel items={WEB_TECH_STACK} label="Tech stack we build with" />
+        <BlocksTechCarousel items={WEB_TECH_STACK} label={tBlocks("techStackLabel")} />
 
         <div className="blocks-site__wrap">
           <section className="blocks-site__panel" aria-labelledby="svc-web-do">
@@ -74,11 +76,8 @@ export default function BlocksServiceWebsites() {
           <section className="blocks-site__panel" aria-labelledby="svc-web-next">
             <div className="blocks-site__close-block">
               <div>
-                <h2 id="svc-web-next">Build yours</h2>
-                <p>
-                  Tell us what the site or app needs to do for the business — we
-                  shape the stack and the build around that.
-                </p>
+                <h2 id="svc-web-next">{tBlocks(`serviceNext.service1.title`)}</h2>
+                <p>{tBlocks(`serviceNext.service1.body`)}</p>
               </div>
               <Link
                 className="blocks-scroll__cta blocks-scroll__cta--solid"

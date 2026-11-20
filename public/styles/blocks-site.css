@@ -4,7 +4,7 @@
 .blocks-site {
   --blue: #b7d4ef;
   --ink: #fff;
-  --muted: rgb(255 255 255 / 0.68);
+  --muted: rgb(255 255 255 / 0.84);
   --line: rgb(255 255 255 / 0.1);
   --bg: #000;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
@@ -193,7 +193,7 @@
 
 .blocks-site__crumb {
   margin: 0 0 1.25rem;
-  color: rgb(255 255 255 / 0.45);
+  color: rgb(255 255 255 / 0.72);
   font-size: 0.9rem;
 }
 
@@ -255,7 +255,7 @@
 
 .blocks-site__service-link-num {
   font-variant-numeric: tabular-nums;
-  color: rgb(255 255 255 / 0.38);
+  color: rgb(255 255 255 / 0.68);
   font-size: 0.95rem;
 }
 
@@ -274,7 +274,7 @@
 
 .blocks-site__service-link-soon {
   font-size: 0.85rem;
-  color: rgb(255 255 255 / 0.4);
+  color: rgb(255 255 255 / 0.7);
 }
 
 /* Tech stack marquee */
@@ -496,17 +496,20 @@
   height: 2.75rem;
   padding: 0 1.15rem;
   border-radius: 999px;
-  border: 1px solid var(--line);
-  color: #fff;
+  border: 1px solid #fff;
+  background: #fff;
+  color: #061018;
   text-decoration: none;
   font: inherit;
   font-size: 0.95rem;
-  transition: border-color 180ms var(--ease), color 180ms var(--ease), transform 160ms var(--ease);
+  font-weight: 500;
+  transition: background 180ms var(--ease), border-color 180ms var(--ease), transform 160ms var(--ease);
 }
 
 .blocks-site__ghost:hover {
-  border-color: color-mix(in oklab, var(--blue) 55%, #fff);
-  color: color-mix(in oklab, #fff 80%, var(--blue));
+  background: color-mix(in oklab, #fff 88%, var(--blue));
+  border-color: color-mix(in oklab, #fff 88%, var(--blue));
+  color: #061018;
   transform: translateY(-2px);
 }
 
@@ -775,8 +778,10 @@
   min-height: 2.5rem;
   padding: 0 1rem;
   border-radius: 999px;
-  border: 1px solid var(--line);
-  color: #fff !important;
+  border: 1px solid var(--blue);
+  background: var(--blue);
+  color: #061018 !important;
+  font-weight: 500;
 }
 
 .blocks-site__footer-lede {
@@ -788,7 +793,7 @@
 
 .blocks-site__legal {
   margin: 2.5rem 0 0;
-  color: rgb(255 255 255 / 0.42);
+  color: rgb(255 255 255 / 0.72);
   font-size: 0.85rem;
 }
 
@@ -815,7 +820,7 @@
 
 .blocks-site__booking-hint {
   margin: 0;
-  color: rgb(255 255 255 / 0.45);
+  color: rgb(255 255 255 / 0.72);
   font-size: 0.95rem;
 }
 
@@ -1097,9 +1102,9 @@
     width: 100%;
     margin-top: 0.65rem;
     min-height: 2.85rem;
-    background: #fff;
-    border-color: #fff;
-    color: #000 !important;
+    background: var(--blue);
+    border-color: var(--blue);
+    color: #061018 !important;
   }
 
   .blocks-site__footer-nav ul {

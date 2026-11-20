@@ -15,6 +15,7 @@ export default function BlocksHomeSections() {
   const tFaq = useTranslations('home.faq')
   const tCta = useTranslations('home.cta')
   const tCommon = useTranslations('common.buttons')
+  const tCommonRoot = useTranslations('common')
   const [openFaq, setOpenFaq] = useState<number | null>(0)
 
   const faqItems = (tFaq.raw('items') as FaqItem[]) || []
@@ -81,7 +82,7 @@ export default function BlocksHomeSections() {
                         {num}
                       </span>
                       <span className="blocks-site__service-link-title">{title}</span>
-                      <span className="blocks-site__service-link-soon">Soon</span>
+                      <span className="blocks-site__service-link-soon">{tCommonRoot('soon')}</span>
                     </span>
                   )}
                 </li>

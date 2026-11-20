@@ -13,6 +13,8 @@ export default function BlocksHowItWorks() {
   const t = useTranslations('services')
   const tHome = useTranslations('home.services')
   const tCommon = useTranslations('common.buttons')
+  const tBlocks = useTranslations('blocks')
+  const tCommonRoot = useTranslations('common')
 
   const steps = (t.raw('howItWorks.steps') as Step[]) || []
   const forItems = (t.raw('whoFor.for.items') as string[]) || []
@@ -33,8 +35,8 @@ export default function BlocksHowItWorks() {
 
           <section className="blocks-site__panel" aria-labelledby="hiw-steps-h">
             <div className="blocks-site__panel-head">
-              <h2 id="hiw-steps-h">The process</h2>
-              <p>Four clear stages from the first conversation to ongoing improvement.</p>
+              <h2 id="hiw-steps-h">{tBlocks('howItWorks.processTitle')}</h2>
+              <p>{tBlocks('howItWorks.processLede')}</p>
             </div>
             <ol className="blocks-site__steps">
               {steps.map((step, index) => (
@@ -53,8 +55,8 @@ export default function BlocksHowItWorks() {
 
           <section className="blocks-site__panel" aria-labelledby="hiw-who-h">
             <div className="blocks-site__panel-head">
-              <h2 id="hiw-who-h">Fit</h2>
-              <p>Honest about who this work helps — and who it doesn’t.</p>
+              <h2 id="hiw-who-h">{tBlocks('howItWorks.fitTitle')}</h2>
+              <p>{tBlocks('howItWorks.fitLede')}</p>
             </div>
             <div className="blocks-site__split">
               <div className="blocks-site__card">
@@ -106,7 +108,7 @@ export default function BlocksHowItWorks() {
                           {num}
                         </span>
                         <span className="blocks-site__service-link-title">{title}</span>
-                        <span className="blocks-site__service-link-soon">Soon</span>
+                        <span className="blocks-site__service-link-soon">{tCommonRoot('soon')}</span>
                       </span>
                     )}
                   </li>

@@ -26,7 +26,9 @@
       "servingClients": "Betjänar kunder globalt",
       "regions": "Europa & Latinamerika",
       "copyright": "Alla rättigheter förbehållna."
-    }
+    },
+    "soon": "Snart",
+    "language": "Språk"
   },
   "home": {
     "hero": {
@@ -36,7 +38,7 @@
     "services": {
       "title": "Vad vi erbjuder",
       "service1": {
-        "title": "Webbplats & webbapplikationsutveckling",
+        "title": "Webbplats & webbappsutveckling",
         "subtitle": "för företag",
         "description": "Design och utveckling av moderna webbplatser och webbapplikationer byggda för att stödja verkliga affärsmål — inte bara visuell presentation. Varje lösning är strukturerad kring användbarhet, prestanda och underhållbarhet, med ett tydligt fokus på att guida besökare mot förfrågningar, bokningar eller åtgärder som betyder något för verksamheten."
       },
@@ -75,12 +77,12 @@
       "title": "Vanliga frågor",
       "items": [
         {
-          "question": "Hur börjar man arbeta med Brehaut Consulting?",
-          "answer": "Det börjar med ett samtal. Du bokar ett möte genom vårt bokningssystem, och vi diskuterar din verksamhet, mål och nuvarande utmaningar. Detta hjälper oss att förstå om vi är en bra matchning och vilket tillvägagångssätt som skulle fungera bäst för dig."
+          "question": "Hur börjar ett samarbete med Brehaut Consulting?",
+          "answer": "Det börjar med ett samtal. Du hör av dig via kontaktformuläret, och vi går igenom din verksamhet, mål och nuvarande utmaningar. Så får vi en bild av om vi passar varandra och vilken väg som fungerar bäst."
         },
         {
           "question": "Vad händer under det första mötet?",
-          "answer": "Vi lyssnar på din situation, ställer frågor om din verksamhet och mål, och diskuterar vad du försöker uppnå. Det är ett upptäcktsamtal, inte en försäljningspresentation. I slutet kommer du att ha klarhet i om vi kan hjälpa och hur det kan se ut."
+          "answer": "Vi lyssnar in er situation, ställer frågor om verksamheten och målen, och pratar om vad ni vill uppnå. Det är ett upptäcktssamtal, inte en säljpitch. När ni är klara har ni klarhet i om vi kan hjälpa — och hur det kan se ut."
         },
         {
           "question": "Kan jag anlita er för bara en webbplats eller bara annonser?",
@@ -405,6 +407,44 @@
       "serviceType": "Teknologi- och tillväxtkonsult",
       "catalogName": "Konsulttjänster"
     }
+  },
+  "blocks": {
+    "soon": "Snart",
+    "skipToContent": "Hoppa till innehåll",
+    "skipScene": "Hoppa ↓",
+    "productStory": "Produktberättelse",
+    "jumpToScene": "Hoppa till en scen",
+    "techStackLabel": "Teknikstack vi bygger med",
+    "openMenu": "Öppna meny",
+    "closeMenu": "Stäng meny",
+    "howItWorks": {
+      "processTitle": "Processen",
+      "processLede": "Fyra tydliga steg från första samtalet till löpande förbättring.",
+      "fitTitle": "Passform",
+      "fitLede": "Ärligt om vilka det här arbetet hjälper — och vilka det inte gör."
+    },
+    "serviceNext": {
+      "service1": {
+        "title": "Bygg er",
+        "body": "Berätta vad sajten eller appen behöver göra för verksamheten — vi formar stacken och bygget utifrån det."
+      },
+      "service3": {
+        "title": "Bli hittad",
+        "body": "Om kunder redan söker efter det ni erbjuder ser vi till att ni syns tydligt — på Google, kartor och sidorna som konverterar."
+      },
+      "service4": {
+        "title": "Fånga efterfrågan",
+        "body": "Personer som redan söker det ni säljer ska landa på ett tydligt erbjudande — vi sätter kampanjer, spårning och landningssökväg så att spend blir förfrågningar."
+      },
+      "service5": {
+        "title": "Se vad som fungerar",
+        "body": "Mätning ska svara på enkla frågor — vilka sidor, kampanjer och vägar som faktiskt ger förfrågningar — så ni kan lägga tid och budget på det som rör verksamheten."
+      },
+      "service6": {
+        "title": "Automatisera det tidskrävande",
+        "body": "Börja med de repetitiva överlämningarna som bromsar teamet — koppla sedan in assistenter och integrationer som håller leads och data i rörelse utan konstant manuellt arbete."
+      }
+    },
+    "scrollHint": "Scrolla"
   }
 }
-

@@ -11,6 +11,8 @@ export default function BlocksServiceAutomation() {
   const tHome = useTranslations('home.services.service6')
   const tDetails = useTranslations('services.serviceDetails.service6')
   const tCommon = useTranslations('common.buttons')
+  const tBlocks = useTranslations('blocks')
+  const tNav = useTranslations('common.nav')
 
   const details = (tDetails.raw('details') as string[]) || []
   const benefits = (tDetails.raw('benefitsList') as string[]) || []
@@ -22,7 +24,7 @@ export default function BlocksServiceAutomation() {
       <main className="blocks-site__page">
         <div className="blocks-site__wrap">
           <p className="blocks-site__crumb">
-            <Link href={sitePath('how-it-works')}>How it works</Link>
+            <Link href={sitePath('how-it-works')}>{tNav("howItWorks")}</Link>
             <span aria-hidden="true"> / </span>
             <span>{tHome('title')}</span>
           </p>
@@ -68,12 +70,8 @@ export default function BlocksServiceAutomation() {
           <section className="blocks-site__panel" aria-labelledby="svc-auto-next">
             <div className="blocks-site__close-block">
               <div>
-                <h2 id="svc-auto-next">Automate the busywork</h2>
-                <p>
-                  Start with the repetitive handoffs that slow the team down —
-                  then wire in assistants and integrations that keep leads and
-                  data moving without constant manual work.
-                </p>
+                <h2 id="svc-auto-next">{tBlocks(`serviceNext.service6.title`)}</h2>
+                <p>{tBlocks(`serviceNext.service6.body`)}</p>
               </div>
               <Link
                 className="blocks-scroll__cta blocks-scroll__cta--solid"

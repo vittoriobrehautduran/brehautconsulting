@@ -11,6 +11,8 @@ export default function BlocksServiceAds() {
   const tHome = useTranslations('home.services.service4')
   const tDetails = useTranslations('services.serviceDetails.service4')
   const tCommon = useTranslations('common.buttons')
+  const tBlocks = useTranslations('blocks')
+  const tNav = useTranslations('common.nav')
 
   const details = (tDetails.raw('details') as string[]) || []
   const benefits = (tDetails.raw('benefitsList') as string[]) || []
@@ -22,7 +24,7 @@ export default function BlocksServiceAds() {
       <main className="blocks-site__page">
         <div className="blocks-site__wrap">
           <p className="blocks-site__crumb">
-            <Link href={sitePath('how-it-works')}>How it works</Link>
+            <Link href={sitePath('how-it-works')}>{tNav("howItWorks")}</Link>
             <span aria-hidden="true"> / </span>
             <span>{tHome('title')}</span>
           </p>
@@ -68,12 +70,8 @@ export default function BlocksServiceAds() {
           <section className="blocks-site__panel" aria-labelledby="svc-ads-next">
             <div className="blocks-site__close-block">
               <div>
-                <h2 id="svc-ads-next">Capture demand</h2>
-                <p>
-                  People already looking for what you sell should land on a
-                  clear offer — we set the campaigns, tracking, and landing path
-                  so spend turns into enquiries.
-                </p>
+                <h2 id="svc-ads-next">{tBlocks(`serviceNext.service4.title`)}</h2>
+                <p>{tBlocks(`serviceNext.service4.body`)}</p>
               </div>
               <Link
                 className="blocks-scroll__cta blocks-scroll__cta--solid"

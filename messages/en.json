@@ -26,7 +26,9 @@
       "servingClients": "Serving clients globally",
       "regions": "Europe & Latin America",
       "copyright": "All rights reserved."
-    }
+    },
+    "soon": "Soon",
+    "language": "Language"
   },
   "home": {
     "hero": {
@@ -76,7 +78,7 @@
       "items": [
         {
           "question": "How does working with Brehaut Consulting start?",
-          "answer": "It starts with a conversation. You book a meeting through our booking system, and we discuss your business, goals, and current challenges. This helps us understand if we're a good fit and what approach would work best for you."
+          "answer": "It starts with a conversation. You reach out through the contact form, and we discuss your business, goals, and current challenges. This helps us understand if we're a good fit and what approach would work best for you."
         },
         {
           "question": "What happens during the first meeting?",
@@ -405,6 +407,44 @@
       "serviceType": "Technology and Growth Consultancy",
       "catalogName": "Consulting Services"
     }
+  },
+  "blocks": {
+    "soon": "Soon",
+    "skipToContent": "Skip to content",
+    "skipScene": "Skip ↓",
+    "productStory": "Product story",
+    "jumpToScene": "Jump to a scene",
+    "techStackLabel": "Tech stack we build with",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "howItWorks": {
+      "processTitle": "The process",
+      "processLede": "Four clear stages from the first conversation to ongoing improvement.",
+      "fitTitle": "Fit",
+      "fitLede": "Honest about who this work helps — and who it doesn’t."
+    },
+    "serviceNext": {
+      "service1": {
+        "title": "Build yours",
+        "body": "Tell us what the site or app needs to do for the business — we shape the stack and the build around that."
+      },
+      "service3": {
+        "title": "Get found",
+        "body": "If customers already search for what you offer, we make sure you show up clearly — on Google, maps, and the pages that convert."
+      },
+      "service4": {
+        "title": "Capture demand",
+        "body": "People already looking for what you sell should land on a clear offer — we set the campaigns, tracking, and landing path so spend turns into enquiries."
+      },
+      "service5": {
+        "title": "See what works",
+        "body": "Measurement should answer simple questions — which pages, campaigns, and paths actually bring enquiries — so you can spend time and budget on what moves the business."
+      },
+      "service6": {
+        "title": "Automate the busywork",
+        "body": "Start with the repetitive handoffs that slow the team down — then wire in assistants and integrations that keep leads and data moving without constant manual work."
+      }
+    },
+    "scrollHint": "Scroll"
   }
 }
-

@@ -26,7 +26,9 @@
       "servingClients": "Atendemos clientes globalmente",
       "regions": "Europa y América Latina",
       "copyright": "Todos los derechos reservados."
-    }
+    },
+    "soon": "Pronto",
+    "language": "Idioma"
   },
   "home": {
     "hero": {
@@ -75,12 +77,12 @@
       "title": "Preguntas frecuentes",
       "items": [
         {
-          "question": "¿Cómo comienza el trabajo con Brehaut Consulting?",
-          "answer": "Comienza con una conversación. Reservas una reunión a través de nuestro sistema de reservas, y discutimos tu negocio, objetivos y desafíos actuales. Esto nos ayuda a entender si somos una buena opción y qué enfoque funcionaría mejor para ti."
+          "question": "¿Cómo empieza a trabajar con Brehaut Consulting?",
+          "answer": "Empieza con una conversación. Nos escribes a través del formulario de contacto y hablamos de tu negocio, objetivos y retos actuales. Así entendemos si encajamos y qué enfoque tiene más sentido."
         },
         {
-          "question": "¿Qué sucede durante la primera reunión?",
-          "answer": "Escuchamos tu situación, hacemos preguntas sobre tu negocio y objetivos, y discutimos lo que estás tratando de lograr. Es una conversación de descubrimiento, no una presentación de ventas. Al final, tendrás claridad sobre si podemos ayudar y cómo podría verse eso."
+          "question": "¿Qué pasa en la primera reunión?",
+          "answer": "Escuchamos tu situación, preguntamos sobre el negocio y los objetivos, y hablamos de lo que quieres lograr. Es una conversación de descubrimiento, no un discurso de ventas. Al final tendrás claridad sobre si podemos ayudar y cómo podría verse."
         },
         {
           "question": "¿Puedo contratarte solo para un sitio web o solo para anuncios?",
@@ -405,6 +407,44 @@
       "serviceType": "Consultoría de Tecnología y Crecimiento",
       "catalogName": "Servicios de Consultoría"
     }
+  },
+  "blocks": {
+    "soon": "Pronto",
+    "skipToContent": "Saltar al contenido",
+    "skipScene": "Saltar ↓",
+    "productStory": "Historia del producto",
+    "jumpToScene": "Ir a una escena",
+    "techStackLabel": "Stack tecnológico con el que construimos",
+    "openMenu": "Abrir menú",
+    "closeMenu": "Cerrar menú",
+    "howItWorks": {
+      "processTitle": "El proceso",
+      "processLede": "Cuatro etapas claras desde la primera conversación hasta la mejora continua.",
+      "fitTitle": "Encaje",
+      "fitLede": "Sinceros sobre a quién ayuda este trabajo — y a quién no."
+    },
+    "serviceNext": {
+      "service1": {
+        "title": "Construye el tuyo",
+        "body": "Cuéntanos qué debe hacer el sitio o la app por el negocio — diseñamos el stack y la construcción en torno a eso."
+      },
+      "service3": {
+        "title": "Hazte visible",
+        "body": "Si los clientes ya buscan lo que ofreces, nos aseguramos de que aparezcas con claridad — en Google, mapas y las páginas que convierten."
+      },
+      "service4": {
+        "title": "Captura la demanda",
+        "body": "Quien ya busca lo que vendes debe llegar a una oferta clara — configuramos campañas, medición y la ruta de aterrizaje para que el gasto se convierta en consultas."
+      },
+      "service5": {
+        "title": "Ve qué funciona",
+        "body": "La medición debe responder preguntas simples — qué páginas, campañas y rutas realmente traen consultas — para invertir tiempo y presupuesto en lo que mueve el negocio."
+      },
+      "service6": {
+        "title": "Automatiza lo repetitivo",
+        "body": "Empieza por los traspasos repetitivos que frenan al equipo — luego conecta asistentes e integraciones que mantengan leads y datos en movimiento sin trabajo manual constante."
+      }
+    },
+    "scrollHint": "Desplázate"
   }
 }
-

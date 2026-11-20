@@ -5,12 +5,14 @@ import Image from 'next/image'
 import { Link, usePathname } from '@/i18n/navigation'
 import { useTranslations } from 'next-intl'
 import { HOME, SERVICE_PAGES, sitePath } from '@/components/blocks/serviceRoutes'
+import BlocksLanguageSwitcher from '@/components/blocks/BlocksLanguageSwitcher'
 
 // Shared top nav for the live redesign site.
 export default function BlocksNav() {
   const tNav = useTranslations('common.nav')
   const tCommon = useTranslations('common.buttons')
   const tServices = useTranslations('home.services')
+  const tBlocks = useTranslations('blocks')
   const pathname = usePathname()
   const [menuOpen, setMenuOpen] = useState(false)
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false)
@@ -123,6 +125,8 @@ export default function BlocksNav() {
         </nav>
 
         <div className="blocks-scroll__nav-end">
+          <BlocksLanguageSwitcher onNavigate={closeAll} />
+
           {!isContactPage ? (
             <Link
               className="blocks-scroll__cta"
@@ -137,7 +141,7 @@ export default function BlocksNav() {
             className="blocks-scroll__toggle"
             type="button"
             aria-expanded={menuOpen}
-            aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+            aria-label={menuOpen ? tBlocks('closeMenu') : tBlocks('openMenu')}
             onClick={() => {
               setMenuOpen((open) => !open)
               setMobileServicesOpen(false)
