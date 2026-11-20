@@ -41,3 +41,21 @@ next-env.d.ts
 
 # Local Netlify folder
 .netlify
+
+# Heavy source frames / raw hero videos (optimized copies live in /public)
+/blocks/
+/brehaut_blocks_hero.webm
+/brehaut_hero_loop.webm
+/brehaut_blocks_scroll.webm
+/brehaut_blocks_scroll_rev.webm
+/brehaut_blocks_scroll_rev.mp4
+/public/media/hero/frames/
+
+# Local agent / design tooling (not part of the site)
+.agents/
+.claude/
+.cursor/
+.impeccable/
+.taste-skill/
+shots/
+skills-lock.json

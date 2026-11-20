@@ -4,8 +4,6 @@ import type { Metadata, Viewport } from 'next'
 import { NextIntlClientProvider } from 'next-intl'
 import { getMessages } from 'next-intl/server'
 import { notFound } from 'next/navigation'
-import Header from '@/components/layout/Header'
-import Footer from '@/components/layout/Footer'
 import { locales } from '@/i18n'
 
 export const viewport: Viewport = {
@@ -34,107 +32,135 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 
   return {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://brehautconsulting.com'),
-  title: {
+    metadataBase: new URL(
+      process.env.NEXT_PUBLIC_SITE_URL || 'https://brehautconsulting.com'
+    ),
+    title: {
       default: metadata.title,
       template: metadata.titleTemplate,
-  },
+    },
     description: metadata.description,
     keywords: metadata.keywords,
-  authors: [{ name: 'Brehaut Consulting' }],
-  creator: 'Brehaut Consulting',
-  publisher: 'Brehaut Consulting',
-  formatDetection: {
-    email: false,
-    address: false,
-    telephone: false,
-  },
-  openGraph: {
-    type: 'website',
+    authors: [{ name: 'Brehaut Consulting' }],
+    creator: 'Brehaut Consulting',
+    publisher: 'Brehaut Consulting',
+    formatDetection: {
+      email: false,
+      address: false,
+      telephone: false,
+    },
+    openGraph: {
+      type: 'website',
       locale: localeMap[locale] || 'en_US',
-    url: process.env.NEXT_PUBLIC_SITE_URL || 'https://brehautconsulting.com',
+      url: process.env.NEXT_PUBLIC_SITE_URL || 'https://brehautconsulting.com',
       siteName: metadata.openGraph.siteName,
       title: metadata.openGraph.title,
       description: metadata.openGraph.description,
-    images: [
-      {
-        url: '/images/logo_favicon.svg',
-        width: 1200,
-        height: 630,
-        alt: 'Brehaut Consulting',
-      },
-    ],
-  },
-  twitter: {
-    card: 'summary_large_image',
+      images: [
+        {
+          url: '/media/brand/logo-favicon.svg',
+          width: 1200,
+          height: 630,
+          alt: 'Brehaut Consulting',
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
       title: metadata.openGraph.title,
       description: metadata.openGraph.description,
-    images: ['/images/logo_favicon.svg'],
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
+      images: ['/media/brand/logo-favicon.svg'],
+    },
+    robots: {
       index: true,
       follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
+      googleBot: {
+        index: true,
+        follow: true,
+        'max-video-preview': -1,
+        'max-image-preview': 'large',
+        'max-snippet': -1,
+      },
     },
-  },
-  alternates: {
-    canonical: process.env.NEXT_PUBLIC_SITE_URL || 'https://brehautconsulting.com',
-  },
-  icons: {
-    icon: [
-        { url: '/images/favicon/favicon.svg', type: 'image/svg+xml' },
-        { url: '/images/favicon/favicon.ico', sizes: 'any' },
-        { url: '/images/favicon/favicon-96x96.png', sizes: '96x96', type: 'image/png' },
-    ],
-    shortcut: [
-        { url: '/images/favicon/favicon.ico', sizes: 'any' },
-    ],
-    apple: '/images/favicon/apple-touch-icon.png',
-    other: [
-      {
-        rel: 'android-chrome-192x192',
-          url: '/images/favicon/web-app-manifest-192x192.png',
-        sizes: '192x192',
-        type: 'image/png',
-      },
-      {
-        rel: 'android-chrome-512x512',
-          url: '/images/favicon/web-app-manifest-512x512.png',
-        sizes: '512x512',
-        type: 'image/png',
-      },
-    ],
-  },
-    manifest: '/images/favicon/site.webmanifest',
+    alternates: {
+      canonical:
+        process.env.NEXT_PUBLIC_SITE_URL || 'https://brehautconsulting.com',
+    },
+    icons: {
+      icon: [
+        {
+          url: '/media/brand/favicon/favicon.svg?v=20261120',
+          type: 'image/svg+xml',
+        },
+        {
+          url: '/media/brand/favicon/favicon.ico?v=20261120',
+          sizes: 'any',
+        },
+        {
+          url: '/media/brand/favicon/favicon-96x96.png?v=20261120',
+          sizes: '96x96',
+          type: 'image/png',
+        },
+      ],
+      shortcut: [
+        {
+          url: '/media/brand/favicon/favicon.ico?v=20261120',
+          sizes: 'any',
+        },
+      ],
+      apple: '/media/brand/favicon/apple-touch-icon.png?v=20261120',
+      other: [
+        {
+          rel: 'android-chrome-192x192',
+          url: '/media/brand/favicon/web-app-manifest-192x192.png?v=20261120',
+          sizes: '192x192',
+          type: 'image/png',
+        },
+        {
+          rel: 'android-chrome-512x512',
+          url: '/media/brand/favicon/web-app-manifest-512x512.png?v=20261120',
+          sizes: '512x512',
+          type: 'image/png',
+        },
+      ],
+    },
+    manifest: '/media/brand/favicon/site.webmanifest',
   }
 }
 
 export default async function LocaleLayout({ children, params }: Props) {
   const { locale } = await params
-  
-  // Validate locale
+
   if (!locales.includes(locale as any)) {
     notFound()
   }
 
-  // Providing all messages to the client
-  // side is the easiest way to get started
   const messages = await getMessages({ locale })
 
   return (
     <>
-      {/* Preconnect to improve font loading */}
       <link rel="preconnect" href="https://fonts.googleapis.com" />
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+      <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossOrigin="anonymous"
+      />
+      {/* Hide legacy Tailwind chrome if anything still renders it. */}
+      <style>{`
+        body header.fixed {
+          display: none !important;
+        }
+        body footer:not(.blocks-site__footer) {
+          display: none !important;
+        }
+        main.relative {
+          background: #000 !important;
+          min-height: 100svh;
+          padding: 0 !important;
+        }
+      `}</style>
       <NextIntlClientProvider messages={messages}>
-          <Header />
         <main className="relative bg-transparent">{children}</main>
-          <Footer />
       </NextIntlClientProvider>
     </>
   )

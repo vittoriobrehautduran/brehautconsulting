@@ -111,7 +111,7 @@ export function generateOrganizationSchema(locale: string = 'en'): OrganizationS
     name: 'Brehaut Consulting',
     description,
     url: BASE_URL,
-    logo: `${BASE_URL}/images/logo_favicon.svg`,
+    logo: `${BASE_URL}/media/brand/logo-favicon.svg`,
     contactPoint: {
       '@type': 'ContactPoint',
       contactType: 'customer service',
@@ -142,7 +142,7 @@ export function generateServiceSchema(
     areaServed: ['Europe', 'Latin America'],
     availableChannel: {
       '@type': 'ServiceChannel',
-      serviceUrl: `${BASE_URL}/${locale}/booking`,
+      serviceUrl: `${BASE_URL}/${locale}/contact`,
     },
   }
 }

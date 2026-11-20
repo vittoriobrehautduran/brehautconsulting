@@ -3,15 +3,20 @@
     "nav": {
       "home": "Inicio",
       "howItWorks": "Cómo funciona",
+      "services": "Servicios",
       "bookMeeting": "Reservar una reunión",
+      "contact": "Contacto",
       "call": "Llamar"
     },
     "buttons": {
       "bookMeeting": "Reservar una reunión",
+      "contactUs": "Contáctanos",
       "viewServices": "Cómo funciona",
-      "getStarted": "Reservar una reunión",
+      "getStarted": "Contáctanos",
       "confirmBooking": "Confirmar reserva",
-      "confirming": "Confirmando..."
+      "confirming": "Confirmando...",
+      "sendMessage": "Enviar mensaje",
+      "sending": "Enviando..."
     },
     "companyName": "Brehaut Consulting",
     "footer": {
@@ -325,6 +330,38 @@
         "title": "Reprogramación y cancelación",
         "description": "Si necesitas reprogramar o cancelar, puedes hacerlo hasta 24 horas antes de la reunión. Esto ayuda a mantener la disponibilidad justa para todos."
       }
+    }
+  },
+  "contact": {
+    "title": "Contáctanos",
+    "subtitle": "Cuéntanos un poco sobre tu negocio y lo que necesitas. Te responderemos.",
+    "form": {
+      "name": "Nombre",
+      "email": "Correo",
+      "phone": "Teléfono",
+      "company": "Empresa",
+      "website": "Sitio web (opcional)",
+      "interest": "¿En qué estás interesado?",
+      "wholeSystem": "Todo el sistema de crecimiento digital",
+      "other": "Otro",
+      "message": "Mensaje",
+      "messageHint": "Objetivos, plazos o cualquier detalle útil.",
+      "required": "*",
+      "errors": {
+        "nameRequired": "El nombre es obligatorio",
+        "emailRequired": "El correo es obligatorio",
+        "emailInvalid": "Introduce un correo válido",
+        "phoneRequired": "El teléfono es obligatorio",
+        "companyRequired": "La empresa es obligatoria",
+        "interestRequired": "Elige al menos una opción",
+        "messageRequired": "Añade un mensaje breve para “Otro”",
+        "submitFailed": "No se pudo enviar el mensaje. Inténtalo de nuevo."
+      }
+    },
+    "success": "Gracias — recibimos tu mensaje. Te responderemos pronto.",
+    "aside": {
+      "title": "Qué sigue",
+      "description": "Leemos cada consulta y respondemos por correo, normalmente en un día hábil."
     }
   },
   "footer": {

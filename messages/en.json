@@ -3,15 +3,20 @@
     "nav": {
       "home": "Home",
       "howItWorks": "How it works",
+      "services": "Services",
       "bookMeeting": "Book a Meeting",
+      "contact": "Contact",
       "call": "Call"
     },
     "buttons": {
       "bookMeeting": "Book a Meeting",
+      "contactUs": "Contact us",
       "viewServices": "How it works",
-      "getStarted": "Book a Meeting",
+      "getStarted": "Contact us",
       "confirmBooking": "Confirm Booking",
-      "confirming": "Confirming..."
+      "confirming": "Confirming...",
+      "sendMessage": "Send message",
+      "sending": "Sending..."
     },
     "companyName": "Brehaut Consulting",
     "footer": {
@@ -325,6 +330,38 @@
         "title": "Rescheduling & Cancellation",
         "description": "If you need to reschedule or cancel, you can do so up to 24 hours before the meeting. This helps keep availability fair for everyone."
       }
+    }
+  },
+  "contact": {
+    "title": "Contact us",
+    "subtitle": "Tell us a little about your business and what you need. We’ll get back to you.",
+    "form": {
+      "name": "Name",
+      "email": "Email",
+      "phone": "Phone",
+      "company": "Company",
+      "website": "Website (optional)",
+      "interest": "What are you interested in?",
+      "wholeSystem": "The whole digital growth system",
+      "other": "Other",
+      "message": "Message",
+      "messageHint": "Goals, timeline, or anything else that helps.",
+      "required": "*",
+      "errors": {
+        "nameRequired": "Name is required",
+        "emailRequired": "Email is required",
+        "emailInvalid": "Please enter a valid email address",
+        "phoneRequired": "Phone is required",
+        "companyRequired": "Company is required",
+        "interestRequired": "Pick at least one option",
+        "messageRequired": "Please add a short message for “Other”",
+        "submitFailed": "Couldn’t send your message. Please try again."
+      }
+    },
+    "success": "Thanks — your message is in. We’ll reply soon.",
+    "aside": {
+      "title": "What happens next",
+      "description": "We read every enquiry and reply by email, usually within one business day."
     }
   },
   "footer": {

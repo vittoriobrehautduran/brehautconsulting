@@ -82,6 +82,79 @@ function formatMeetingDate(date: Date, timeSlot: string): string {
   })
 }
 
+export interface ContactInquiryEmailData {
+  name: string
+  email: string
+  phone: string
+  company: string
+  website?: string
+  interests: string[]
+  message?: string
+}
+
+// Notify the team when someone submits the redesign contact form.
+export async function sendContactInquiryEmail(
+  data: ContactInquiryEmailData
+): Promise<void> {
+  const { name, email, phone, company, website, interests, message } = data
+  const fromEmail = process.env.SES_FROM_EMAIL || CONTACT_EMAIL
+  const subject = `New enquiry from ${company || name}`
+
+  const interestList = interests.map((item) => `• ${item}`).join('\n')
+  const textBody = `
+New contact enquiry
+
+Name: ${name}
+Email: ${email}
+Phone: ${phone}
+Company: ${company}
+${website ? `Website: ${website}\n` : ''}
+Interested in:
+${interestList}
+
+${message ? `Message:\n${message}\n` : ''}
+  `.trim()
+
+  const htmlBody = `
+    <!DOCTYPE html>
+    <html>
+    <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #222;">
+      <h2>New contact enquiry</h2>
+      <p><strong>Name:</strong> ${name}<br>
+      <strong>Email:</strong> ${email}<br>
+      <strong>Phone:</strong> ${phone}<br>
+      <strong>Company:</strong> ${company}<br>
+      ${website ? `<strong>Website:</strong> ${website}<br>` : ''}
+      </p>
+      <p><strong>Interested in:</strong></p>
+      <ul>${interests.map((item) => `<li>${item}</li>`).join('')}</ul>
+      ${message ? `<p><strong>Message:</strong><br>${message.replace(/\n/g, '<br>')}</p>` : ''}
+    </body>
+    </html>
+  `
+
+  try {
+    const command = new SendEmailCommand({
+      Source: fromEmail,
+      Destination: {
+        ToAddresses: [CONTACT_EMAIL],
+      },
+      ReplyToAddresses: [email],
+      Message: {
+        Subject: { Data: subject, Charset: 'UTF-8' },
+        Body: {
+          Html: { Data: htmlBody, Charset: 'UTF-8' },
+          Text: { Data: textBody, Charset: 'UTF-8' },
+        },
+      },
+    })
+    await sesClient.send(command)
+  } catch (error) {
+    console.error('Error sending contact enquiry via AWS SES:', error)
+    throw error
+  }
+}
+
 export async function sendBookingConfirmationEmail(data: BookingEmailData): Promise<void> {
   const { name, email, date, timeSlot, company } = data
   

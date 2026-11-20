@@ -5,6 +5,14 @@ import { MetadataRoute } from 'next'
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
 
+  const serviceSlugs = [
+    'websites',
+    'seo',
+    'ads',
+    'analytics',
+    'automation',
+  ] as const
+
   return [
     {
       url: baseUrl,
@@ -19,11 +27,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
-      url: `${baseUrl}/booking`,
+      url: `${baseUrl}/contact`,
       lastModified: new Date(),
       changeFrequency: 'weekly',
-      priority: 0.8,
+      priority: 0.9,
     },
+    ...serviceSlugs.map((slug) => ({
+      url: `${baseUrl}/services/${slug}`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly' as const,
+      priority: 0.8,
+    })),
   ]
 }
-

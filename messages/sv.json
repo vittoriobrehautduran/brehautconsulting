@@ -3,15 +3,20 @@
     "nav": {
       "home": "Hem",
       "howItWorks": "Så fungerar det",
+      "services": "Tjänster",
       "bookMeeting": "Boka ett möte",
+      "contact": "Kontakt",
       "call": "Ring"
     },
     "buttons": {
       "bookMeeting": "Boka ett möte",
+      "contactUs": "Kontakta oss",
       "viewServices": "Så fungerar det",
-      "getStarted": "Boka ett möte",
+      "getStarted": "Kontakta oss",
       "confirmBooking": "Bekräfta bokning",
-      "confirming": "Bekräftar..."
+      "confirming": "Bekräftar...",
+      "sendMessage": "Skicka meddelande",
+      "sending": "Skickar..."
     },
     "companyName": "Brehaut Consulting",
     "footer": {
@@ -325,6 +330,38 @@
         "title": "Ombokning & avbokning",
         "description": "Om du behöver boka om eller avboka kan du göra det upp till 24 timmar före mötet. Detta hjälper till att hålla tillgängligheten rättvis för alla."
       }
+    }
+  },
+  "contact": {
+    "title": "Kontakta oss",
+    "subtitle": "Berätta kort om ditt företag och vad du behöver. Vi återkommer till dig.",
+    "form": {
+      "name": "Namn",
+      "email": "E-post",
+      "phone": "Telefon",
+      "company": "Företag",
+      "website": "Webbplats (valfritt)",
+      "interest": "Vad är du intresserad av?",
+      "wholeSystem": "Hela det digitala tillväxtsystemet",
+      "other": "Annat",
+      "message": "Meddelande",
+      "messageHint": "Mål, tidplan eller något annat som hjälper.",
+      "required": "*",
+      "errors": {
+        "nameRequired": "Namn krävs",
+        "emailRequired": "E-post krävs",
+        "emailInvalid": "Ange en giltig e-postadress",
+        "phoneRequired": "Telefon krävs",
+        "companyRequired": "Företag krävs",
+        "interestRequired": "Välj minst ett alternativ",
+        "messageRequired": "Lägg till ett kort meddelande för “Annat”",
+        "submitFailed": "Kunde inte skicka meddelandet. Försök igen."
+      }
+    },
+    "success": "Tack — vi har fått ditt meddelande och återkommer snart.",
+    "aside": {
+      "title": "Vad händer sen",
+      "description": "Vi läser varje förfrågan och svarar via e-post, vanligtvis inom en arbetsdag."
     }
   },
   "footer": {

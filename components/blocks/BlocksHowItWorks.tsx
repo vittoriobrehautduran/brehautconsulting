@@ -1,0 +1,145 @@
+'use client'
+
+import { Link } from '@/i18n/navigation'
+import { useTranslations } from 'next-intl'
+import BlocksNav from '@/components/blocks/BlocksNav'
+import BlocksFooter from '@/components/blocks/BlocksFooter'
+import { SERVICE_PAGES, sitePath } from '@/components/blocks/serviceRoutes'
+
+type Step = { title: string; description: string }
+
+// How-it-works redesign — services are links to their own pages, not dropdowns.
+export default function BlocksHowItWorks() {
+  const t = useTranslations('services')
+  const tHome = useTranslations('home.services')
+  const tCommon = useTranslations('common.buttons')
+
+  const steps = (t.raw('howItWorks.steps') as Step[]) || []
+  const forItems = (t.raw('whoFor.for.items') as string[]) || []
+  const notForItems = (t.raw('whoFor.notFor.items') as string[]) || []
+  const engagementItems = (t.raw('engagement.items') as string[]) || []
+
+  return (
+    <div className="blocks-site blocks-site--page">
+      <BlocksNav />
+
+      <main className="blocks-site__page">
+        <div className="blocks-site__wrap">
+          <header className="blocks-site__page-intro" aria-labelledby="hiw-h">
+            <h1 id="hiw-h">{t('howItWorks.title')}</h1>
+            <p>{t('intro.line1')}</p>
+            <p>{t('intro.line2')}</p>
+          </header>
+
+          <section className="blocks-site__panel" aria-labelledby="hiw-steps-h">
+            <div className="blocks-site__panel-head">
+              <h2 id="hiw-steps-h">The process</h2>
+              <p>Four clear stages from the first conversation to ongoing improvement.</p>
+            </div>
+            <ol className="blocks-site__steps">
+              {steps.map((step, index) => (
+                <li key={step.title}>
+                  <span className="blocks-site__step-num" aria-hidden="true">
+                    {index + 1}
+                  </span>
+                  <div>
+                    <h3>{step.title}</h3>
+                    <p>{step.description}</p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </section>
+
+          <section className="blocks-site__panel" aria-labelledby="hiw-who-h">
+            <div className="blocks-site__panel-head">
+              <h2 id="hiw-who-h">Fit</h2>
+              <p>Honest about who this work helps — and who it doesn’t.</p>
+            </div>
+            <div className="blocks-site__split">
+              <div className="blocks-site__card">
+                <h3>{t('whoFor.for.title')}</h3>
+                <ul className="blocks-site__plain-list">
+                  {forItems.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              </div>
+              <div className="blocks-site__card blocks-site__card--muted">
+                <h3>{t('whoFor.notFor.title')}</h3>
+                <ul className="blocks-site__plain-list blocks-site__plain-list--muted">
+                  {notForItems.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </section>
+
+          <section className="blocks-site__panel" id="system" aria-labelledby="hiw-system-h">
+            <div className="blocks-site__panel-head">
+              <h2 id="hiw-system-h">{t('system.title')}</h2>
+              <p>{t('system.description')}</p>
+            </div>
+
+            <ul className="blocks-site__service-links">
+              {SERVICE_PAGES.map((service, index) => {
+                const href = sitePath('services', service.slug)
+                const title = tHome(`${service.key}.title`)
+                const num = String(index + 1).padStart(2, '0')
+
+                return (
+                  <li key={service.key}>
+                    {service.ready ? (
+                      <Link href={href} className="blocks-site__service-link">
+                        <span className="blocks-site__service-link-num" aria-hidden="true">
+                          {num}
+                        </span>
+                        <span className="blocks-site__service-link-title">{title}</span>
+                        <span className="blocks-site__service-link-arrow" aria-hidden="true">
+                          ↗
+                        </span>
+                      </Link>
+                    ) : (
+                      <span className="blocks-site__service-link is-soon">
+                        <span className="blocks-site__service-link-num" aria-hidden="true">
+                          {num}
+                        </span>
+                        <span className="blocks-site__service-link-title">{title}</span>
+                        <span className="blocks-site__service-link-soon">Soon</span>
+                      </span>
+                    )}
+                  </li>
+                )
+              })}
+            </ul>
+          </section>
+
+          <section className="blocks-site__panel" aria-labelledby="hiw-next-h">
+            <div className="blocks-site__panel-head">
+              <h2 id="hiw-next-h">{t('nextStep.title')}</h2>
+              <p>{t('nextStep.description')}</p>
+            </div>
+            <div className="blocks-site__card">
+              <h3>{t('engagement.title')}</h3>
+              <p className="blocks-site__lede">{t('engagement.description1')}</p>
+              <ul className="blocks-site__plain-list blocks-site__plain-list--inline">
+                {engagementItems.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+              <Link
+                className="blocks-scroll__cta blocks-scroll__cta--solid"
+                href={sitePath('contact')}
+              >
+                {tCommon('contactUs')}
+              </Link>
+            </div>
+          </section>
+        </div>
+      </main>
+
+      <BlocksFooter />
+    </div>
+  )
+}
