@@ -91,7 +91,7 @@
       "items": [
         {
           "question": "Hur kommer vi igång?",
-          "answer": "Skicka ett meddelande. Vi bokar ett kort samtal för att förstå din verksamhet och se om vi passar ihop."
+          "answer": "Skicka ett meddelande. Vi bokar ett kort, kostnadsfritt samtal för att förstå din verksamhet och se om vi passar ihop."
         },
         {
           "question": "Kan jag anlita er för bara en sak?",
@@ -99,7 +99,7 @@
         },
         {
           "question": "Hur sätts priset?",
-          "answer": "Per projekt, utifrån omfattning. Du får ett tydligt förslag innan något arbete börjar."
+          "answer": "Per projekt, utifrån omfattning. Du får först ett tydligt förslag, och inget debiteras förrän du har godkänt det."
         },
         {
           "question": "Arbetar ni på distans?",
@@ -116,20 +116,16 @@
     }
   },
   "services": {
-    "intro": {
-      "line1": "En enkel process från första samtal till mätbara resultat.",
-      "line2": "Du vet alltid vad vi gör, varför och vad det kostar."
-    },
     "howItWorks": {
       "title": "Så fungerar det",
       "steps": [
         {
           "title": "Samtal",
-          "description": "Ett kort samtal för att förstå din verksamhet, dina kunder och vad som håller tillbaka tillväxten. Ingen säljpitch, bara frågor."
+          "description": "Ett kostnadsfritt och förutsättningslöst samtal för att förstå din verksamhet, dina kunder och vad som håller tillbaka tillväxten. Ingen säljpitch, bara frågor."
         },
         {
           "title": "Plan",
-          "description": "Vi bestämmer vad du behöver, och inget mer. Du får ett tydligt förslag med omfattning, tidsplan och pris innan något arbete börjar."
+          "description": "Vi bestämmer vad du behöver, och inget mer. Du får ett tydligt förslag med omfattning, tidsplan och pris, och du betalar ingenting förrän du har godkänt det."
         },
         {
           "title": "Bygge",
@@ -231,14 +227,14 @@
     },
     "nextStep": {
       "title": "Nästa steg",
-      "description": "Börja med ett kort samtal. Berätta om din verksamhet så svarar vi inom en arbetsdag."
+      "description": "Börja med ett kostnadsfritt samtal. Berätta om din verksamhet så svarar vi inom en arbetsdag."
     },
     "expect": {
       "title": "Det här kan du räkna med",
       "items": [
         {
           "title": "Tydligt från start",
-          "description": "Omfattning, tidsplan och pris är överenskomna innan vi börjar. Inga överraskningar senare."
+          "description": "Omfattning, tidsplan och pris är överenskomna innan vi börjar. Inget debiteras innan dess."
         },
         {
           "title": "Byggt för att prestera",

@@ -91,7 +91,7 @@
       "items": [
         {
           "question": "How do we get started?",
-          "answer": "Send us a message. We'll set up a short call to understand your business and see if we're a good fit."
+          "answer": "Send us a message. We'll set up a short, free call to understand your business and see if we're a good fit."
         },
         {
           "question": "Can I hire you for just one thing?",
@@ -99,7 +99,7 @@
         },
         {
           "question": "How is pricing set?",
-          "answer": "Per project, based on scope. You get a clear proposal before any work starts."
+          "answer": "Per project, based on scope. You get a clear proposal first, and nothing is charged until you've approved it."
         },
         {
           "question": "Do you work remotely?",
@@ -116,20 +116,16 @@
     }
   },
   "services": {
-    "intro": {
-      "line1": "A simple process from first call to measurable results.",
-      "line2": "You always know what we're doing, why, and what it costs."
-    },
     "howItWorks": {
       "title": "How It Works",
       "steps": [
         {
           "title": "Talk",
-          "description": "A short call to understand your business, your customers and what's holding growth back. No sales pitch, just questions."
+          "description": "A free, no-obligation call to understand your business, your customers and what's holding growth back. No sales pitch, just questions."
         },
         {
           "title": "Plan",
-          "description": "We define what you need, and nothing more. You get a clear proposal with scope, timeline and price before any work starts."
+          "description": "We define what you need, and nothing more. You get a clear proposal with scope, timeline and price, and you pay nothing until you've approved it."
         },
         {
           "title": "Build",
@@ -231,14 +227,14 @@
     },
     "nextStep": {
       "title": "Next step",
-      "description": "Start with a short call. Tell us about your business and we'll reply within one business day."
+      "description": "Start with a free call. Tell us about your business and we'll reply within one business day."
     },
     "expect": {
       "title": "What you can expect",
       "items": [
         {
           "title": "Clear from the start",
-          "description": "Scope, timeline and price are agreed before we begin. No surprises later."
+          "description": "Scope, timeline and price are agreed before we begin. Nothing is charged until then."
         },
         {
           "title": "Built to perform",

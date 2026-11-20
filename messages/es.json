@@ -91,7 +91,7 @@
       "items": [
         {
           "question": "¿Cómo empezamos?",
-          "answer": "Escríbenos. Agendamos una llamada corta para entender tu negocio y ver si encajamos."
+          "answer": "Escríbenos. Agendamos una llamada corta y gratuita para entender tu negocio y ver si encajamos."
         },
         {
           "question": "¿Puedo contrataros para una sola cosa?",
@@ -99,7 +99,7 @@
         },
         {
           "question": "¿Cómo se fija el precio?",
-          "answer": "Por proyecto, según el alcance. Recibes una propuesta clara antes de empezar."
+          "answer": "Por proyecto, según el alcance. Primero recibes una propuesta clara, y no se cobra nada hasta que la apruebes."
         },
         {
           "question": "¿Trabajáis en remoto?",
@@ -116,20 +116,16 @@
     }
   },
   "services": {
-    "intro": {
-      "line1": "Un proceso simple, de la primera llamada a resultados medibles.",
-      "line2": "Siempre sabes qué hacemos, por qué y cuánto cuesta."
-    },
     "howItWorks": {
       "title": "Cómo funciona",
       "steps": [
         {
           "title": "Hablar",
-          "description": "Una llamada corta para entender tu negocio, tus clientes y qué está frenando el crecimiento. Sin discurso de venta, solo preguntas."
+          "description": "Una llamada gratuita y sin compromiso para entender tu negocio, tus clientes y qué está frenando el crecimiento. Sin discurso de venta, solo preguntas."
         },
         {
           "title": "Planificar",
-          "description": "Definimos lo que necesitas, y nada más. Recibes una propuesta clara con alcance, plazos y precio antes de empezar."
+          "description": "Definimos lo que necesitas, y nada más. Recibes una propuesta clara con alcance, plazos y precio, y no pagas nada hasta que la apruebes."
         },
         {
           "title": "Construir",
@@ -231,14 +227,14 @@
     },
     "nextStep": {
       "title": "Siguiente paso",
-      "description": "Empieza con una llamada corta. Cuéntanos sobre tu negocio y te respondemos en un día laborable."
+      "description": "Empieza con una llamada gratuita. Cuéntanos sobre tu negocio y te respondemos en un día laborable."
     },
     "expect": {
       "title": "Qué puedes esperar",
       "items": [
         {
           "title": "Claro desde el inicio",
-          "description": "Alcance, plazos y precio se acuerdan antes de empezar. Sin sorpresas después."
+          "description": "Alcance, plazos y precio se acuerdan antes de empezar. No se cobra nada hasta entonces."
         },
         {
           "title": "Hecho para rendir",

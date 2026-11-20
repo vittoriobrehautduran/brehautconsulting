@@ -28,8 +28,6 @@ export default function BlocksHowItWorks() {
         <div className="blocks-site__wrap">
           <header className="blocks-site__page-intro" aria-labelledby="hiw-h">
             <h1 id="hiw-h">{t('howItWorks.title')}</h1>
-            <p>{t('intro.line1')}</p>
-            <p>{t('intro.line2')}</p>
           </header>
 
           <section className="blocks-site__panel" aria-labelledby="hiw-steps-h">
