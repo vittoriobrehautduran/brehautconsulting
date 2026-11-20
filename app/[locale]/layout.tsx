@@ -9,7 +9,7 @@ import JsonLd from '@/components/schema/JsonLd'
 import CookieConsent from '@/components/consent/CookieConsent'
 import { organizationSchema, webSiteSchema } from '@/lib/schema/jsonld'
 import { fontClassName } from '@/lib/fonts'
-import { OG_LOCALES } from '@/lib/seo/pageMetadata'
+import { OG_LOCALES, ogImage, ogImages } from '@/lib/seo/pageMetadata'
 import { consentDefaultsScript } from '@/components/consent/consentDefaults'
 
 const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID || ''
@@ -60,20 +60,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       siteName: metadata.openGraph.siteName,
       title: metadata.openGraph.title,
       description: metadata.openGraph.description,
-      images: [
-        {
-          url: '/media/hero/scroll_stills/stop_1.jpg',
-          width: 1280,
-          height: 720,
-          alt: 'Brehaut Consulting',
-        },
-      ],
+      images: ogImages(locale),
     },
     twitter: {
       card: 'summary_large_image',
       title: metadata.openGraph.title,
       description: metadata.openGraph.description,
-      images: ['/media/hero/scroll_stills/stop_1.jpg'],
+      images: [ogImage(locale)],
     },
     robots: {
       index: true,

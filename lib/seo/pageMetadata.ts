@@ -5,7 +5,13 @@ import { locales } from '@/i18n'
 const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL || 'https://brehautconsulting.com'
 
-const OG_IMAGE = '/media/hero/scroll_stills/stop_1.jpg'
+// Branded 1200×630 link-preview image, one per language.
+export const ogImage = (locale: string) =>
+  `/media/og/og-${['en', 'sv', 'es'].includes(locale) ? locale : 'en'}.jpg`
+
+export const ogImages = (locale: string) => [
+  { url: ogImage(locale), width: 1200, height: 630, alt: 'Brehaut Consulting' },
+]
 
 // Open Graph wants language_TERRITORY codes.
 export const OG_LOCALES: Record<string, string> = {
@@ -62,20 +68,13 @@ export async function buildPageMetadata(
       alternateLocale: locales
         .filter((loc) => loc !== locale)
         .map((loc) => OG_LOCALES[loc]),
-      images: [
-        {
-          url: OG_IMAGE,
-          width: 1280,
-          height: 720,
-          alt: 'Brehaut Consulting',
-        },
-      ],
+      images: ogImages(locale),
     },
     twitter: {
       card: 'summary_large_image',
       title: `${title} | Brehaut Consulting`,
       description,
-      images: [OG_IMAGE],
+      images: [ogImage(locale)],
     },
     robots: {
       index: true,
