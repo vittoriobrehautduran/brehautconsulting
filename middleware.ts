@@ -10,6 +10,11 @@ export default createMiddleware({
 
   // Always show locale prefix in URL
   localePrefix: 'always',
+
+  // No NEXT_LOCALE cookie: the locale is always in the URL. A cookie on every
+  // response stops Netlify from caching pages at the CDN (each visit would be
+  // rendered again), and the privacy policy says the site works without cookies.
+  localeCookie: false,
 })
 
 export const config = {
