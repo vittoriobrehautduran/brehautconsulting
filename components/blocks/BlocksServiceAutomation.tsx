@@ -6,6 +6,7 @@ import BlocksNav from '@/components/blocks/BlocksNav'
 import BlocksFooter from '@/components/blocks/BlocksFooter'
 import { sitePath } from '@/components/blocks/serviceRoutes'
 import BlocksServiceDetails from '@/components/blocks/BlocksServiceDetails'
+import BlocksOtherServices from '@/components/blocks/BlocksOtherServices'
 
 // Automation & AI Solutions service page for the /blocks redesign.
 export default function BlocksServiceAutomation() {
@@ -60,6 +61,8 @@ export default function BlocksServiceAutomation() {
               </Link>
             </div>
           </section>
+
+          <BlocksOtherServices current="service6" />
         </div>
       </main>
 

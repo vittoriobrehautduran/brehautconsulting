@@ -6,6 +6,7 @@ import BlocksNav from '@/components/blocks/BlocksNav'
 import BlocksFooter from '@/components/blocks/BlocksFooter'
 import { sitePath } from '@/components/blocks/serviceRoutes'
 import BlocksServiceDetails from '@/components/blocks/BlocksServiceDetails'
+import BlocksOtherServices from '@/components/blocks/BlocksOtherServices'
 
 // Advertising & Demand Capture service page for the /blocks redesign.
 export default function BlocksServiceAds() {
@@ -60,6 +61,8 @@ export default function BlocksServiceAds() {
               </Link>
             </div>
           </section>
+
+          <BlocksOtherServices current="service4" />
         </div>
       </main>
 

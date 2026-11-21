@@ -205,8 +205,8 @@
         ],
         "areas": [
           {
-            "title": "Search ads",
-            "body": "Google and Bing ads that appear when people search for exactly what you offer. You pay for clicks from people who are already looking to buy."
+            "title": "Google Ads",
+            "body": "Ads on Google that appear when people search for exactly what you offer. You pay for clicks from people who are already looking to buy."
           },
           {
             "title": "Social ads",
@@ -386,7 +386,8 @@
         "body": "Start with the task that takes the most time."
       }
     },
-    "scrollHint": "Scroll"
+    "scrollHint": "Scroll",
+    "otherServices": "Explore our other services"
   },
   "seo": {
     "pages": {

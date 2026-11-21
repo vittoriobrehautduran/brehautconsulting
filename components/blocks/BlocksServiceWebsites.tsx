@@ -7,6 +7,7 @@ import BlocksFooter from '@/components/blocks/BlocksFooter'
 import BlocksTechCarousel from '@/components/blocks/BlocksTechCarousel'
 import { sitePath } from '@/components/blocks/serviceRoutes'
 import BlocksServiceDetails from '@/components/blocks/BlocksServiceDetails'
+import BlocksOtherServices from '@/components/blocks/BlocksOtherServices'
 import { WEB_TECH_STACK } from '@/components/blocks/techStack'
 
 // Website & web application service page for the /blocks redesign.
@@ -66,6 +67,8 @@ export default function BlocksServiceWebsites() {
               </Link>
             </div>
           </section>
+
+          <BlocksOtherServices current="service1" />
         </div>
       </main>
 

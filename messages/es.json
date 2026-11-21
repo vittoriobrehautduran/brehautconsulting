@@ -205,8 +205,8 @@
         ],
         "areas": [
           {
-            "title": "Anuncios en buscadores",
-            "body": "Anuncios en Google y Bing que aparecen cuando alguien busca exactamente lo que ofreces. Pagas por clics de personas que ya quieren comprar."
+            "title": "Google Ads",
+            "body": "Anuncios en Google que aparecen cuando alguien busca exactamente lo que ofreces. Pagas por clics de personas que ya quieren comprar."
           },
           {
             "title": "Anuncios en redes sociales",
@@ -386,7 +386,8 @@
         "body": "Empieza por la tarea que más tiempo te quita."
       }
     },
-    "scrollHint": "Desplázate"
+    "scrollHint": "Desplázate",
+    "otherServices": "Descubre nuestros otros servicios"
   },
   "seo": {
     "pages": {

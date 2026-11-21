@@ -205,8 +205,8 @@
         ],
         "areas": [
           {
-            "title": "Sökannonser",
-            "body": "Annonser på Google och Bing som visas när folk söker efter precis det du erbjuder. Du betalar för klick från personer som redan vill köpa."
+            "title": "Google Ads",
+            "body": "Annonser på Google som visas när folk söker efter precis det du erbjuder. Du betalar för klick från personer som redan vill köpa."
           },
           {
             "title": "Sociala annonser",
@@ -387,7 +387,8 @@
         "body": "Börja med uppgiften som tar mest tid."
       }
     },
-    "scrollHint": "Scrolla"
+    "scrollHint": "Scrolla",
+    "otherServices": "Utforska våra andra tjänster"
   },
   "seo": {
     "pages": {
