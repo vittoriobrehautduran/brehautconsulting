@@ -117,14 +117,11 @@ export default function HomeBlocksScroll() {
 
   const [stop, setStop] = useState(0)
   const [hintVisible, setHintVisible] = useState(true)
-  const [reducedMotion, setReducedMotion] = useState(() =>
-    typeof window !== 'undefined'
-      ? window.matchMedia('(prefers-reduced-motion: reduce)').matches
-      : false
-  )
-  const [isCompact, setIsCompact] = useState(() =>
-    typeof window !== 'undefined' ? window.matchMedia(COMPACT_MQ).matches : false
-  )
+  // Start with the server's values (false) so hydration matches; the effect
+  // below syncs the real media queries right after mount. The CSS already
+  // switches the compact layout by media query, so nothing visibly jumps.
+  const [reducedMotion, setReducedMotion] = useState(false)
+  const [isCompact, setIsCompact] = useState(false)
   const [activeLayer, setActiveLayer] = useState<'fwd' | 'rev'>('fwd')
   const [isStills, setIsStills] = useState(false)
 
