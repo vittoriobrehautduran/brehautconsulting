@@ -1,6 +1,6 @@
 // JSON-LD structured data (schema.org) for search engines.
 
-import { CONTACT_EMAIL, CONTACT_PHONE, COMPANY_NAME } from '@/lib/constants'
+import { CONTACT_EMAIL, CONTACT_PHONE, COMPANY_NAME, LINKEDIN_URL } from '@/lib/constants'
 import { locales } from '@/i18n'
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://brehautconsulting.com'
@@ -28,6 +28,7 @@ export function organizationSchema(locale: string, description: string) {
       availableLanguage: ['English', 'Swedish', 'Spanish'],
     },
     areaServed: ['Europe', 'Latin America'],
+    sameAs: [LINKEDIN_URL],
   }
 }
 

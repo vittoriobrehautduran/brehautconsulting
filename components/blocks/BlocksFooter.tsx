@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import { Link } from '@/i18n/navigation'
 import { useTranslations } from 'next-intl'
-import { CONTACT_EMAIL, CONTACT_PHONE } from '@/lib/constants'
+import { CONTACT_EMAIL, CONTACT_PHONE, LINKEDIN_URL } from '@/lib/constants'
 import { HOME, sitePath } from '@/components/blocks/serviceRoutes'
 import { OPEN_CONSENT_EVENT } from '@/components/consent/CookieConsent'
 
@@ -49,6 +49,14 @@ export default function BlocksFooter() {
                 <a href={`tel:${CONTACT_PHONE.replace(/\s/g, '')}`}>
                   <span className="blocks-site__footer-label">{tFooter('phone')}</span>
                   <span className="blocks-site__footer-value">{CONTACT_PHONE}</span>
+                </a>
+              </li>
+              <li>
+                <a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer">
+                  <span className="blocks-site__footer-label">LinkedIn</span>
+                  <span className="blocks-site__footer-value">
+                    Brehaut Consulting <span aria-hidden="true">↗</span>
+                  </span>
                 </a>
               </li>
             </ul>
