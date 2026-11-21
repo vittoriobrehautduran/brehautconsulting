@@ -35,14 +35,7 @@ export default function BlocksServiceAds() {
               </span>
               {tHome('title')}
             </h1>
-            <p>{tHome('subtitle')}</p>
             <p>{tHome('description')}</p>
-            <Link
-              className="blocks-scroll__cta blocks-scroll__cta--solid"
-              href={sitePath('contact')}
-            >
-              {tCommon('contactUs')}
-            </Link>
           </header>
 
           <BlocksServiceDetails serviceKey="service4" idPrefix="svc-ads" />
