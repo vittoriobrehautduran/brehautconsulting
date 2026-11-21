@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import BlocksServiceAutomation from '@/components/blocks/BlocksServiceAutomation'
 import BlocksStyles from '@/components/blocks/BlocksStyles'
-import { getTranslations } from 'next-intl/server'
+import { getTranslations, setRequestLocale } from 'next-intl/server'
 import { buildPageMetadata } from '@/lib/seo/pageMetadata'
 import JsonLd from '@/components/schema/JsonLd'
 import { serviceSchema } from '@/lib/schema/jsonld'
@@ -17,6 +17,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function ServiceAutomationPage({ params }: Props) {
   const { locale } = await params
+  setRequestLocale(locale)
   const t = await getTranslations({ locale, namespace: 'seo.pages.services.automation' })
 
   return (

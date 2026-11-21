@@ -6,7 +6,7 @@ import BlocksNav from '@/components/blocks/BlocksNav'
 import BlocksFooter from '@/components/blocks/BlocksFooter'
 import { HOME, sitePath } from '@/components/blocks/serviceRoutes'
 
-// Localized 404 content, rendered by app/not-found.tsx.
+// Localized 404 content, rendered via LocalizedNotFound from app/not-found.tsx.
 export default function BlocksNotFound() {
   const t = useTranslations('notFound')
 

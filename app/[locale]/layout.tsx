@@ -2,7 +2,7 @@
 
 import type { Metadata, Viewport } from 'next'
 import { NextIntlClientProvider } from 'next-intl'
-import { getMessages, getTranslations } from 'next-intl/server'
+import { getMessages, getTranslations, setRequestLocale } from 'next-intl/server'
 import { notFound } from 'next/navigation'
 import { locales } from '@/i18n'
 import JsonLd from '@/components/schema/JsonLd'
@@ -132,6 +132,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function LocaleLayout({ children, params }: Props) {
   const { locale } = await params
+  setRequestLocale(locale)
 
   if (!locales.includes(locale as any)) {
     notFound()

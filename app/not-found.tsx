@@ -1,45 +1,40 @@
 import type { Metadata } from 'next'
-import { NextIntlClientProvider } from 'next-intl'
-import { getLocale, getMessages, getTranslations } from 'next-intl/server'
-import BlocksNotFound from '@/components/blocks/BlocksNotFound'
+import LocalizedNotFound from '@/components/blocks/LocalizedNotFound'
 import BlocksStyles from '@/components/blocks/BlocksStyles'
-import CookieConsent from '@/components/consent/CookieConsent'
 import { consentDefaultsScript } from '@/components/consent/consentDefaults'
 import { fontClassName } from '@/lib/fonts'
+import messages from '@/messages/en.json'
+import sv from '@/messages/sv.json'
+import es from '@/messages/es.json'
 
-// Localized 404 for every unknown URL.
+// Localized 404 for every unknown URL (the middleware sends /foo → /en/foo).
 //
-// Lives at the root (not in app/[locale]) on purpose: in Next 14 a 404 from an
-// unmatched route is fully server-rendered, whereas notFound() thrown inside a
-// page only sends an empty shell that the browser fills in after JS loads.
-// The middleware sends /foo → /en/foo, so the locale comes from its header.
+// Lives at the root on purpose: a 404 from an unmatched route is fully
+// server-rendered, whereas notFound() thrown inside a page only sends an empty
+// shell that the browser fills in after JS loads.
+//
+// Must not read request headers (no getLocale()): Next renders this file as
+// part of every page, and any headers() call here makes the whole site
+// dynamic, so Netlify can't cache pages. So the server renders English and
+// LocalizedNotFound switches to the URL's language in the browser.
 // The root layout renders no <html>, so this page provides its own.
 
-export async function generateMetadata(): Promise<Metadata> {
-  const t = await getTranslations('notFound')
-  return {
-    title: `${t('title')} | Brehaut Consulting`,
-    robots: { index: false, follow: true },
-  }
+export const metadata: Metadata = {
+  title: `${messages.notFound.title} | Brehaut Consulting`,
+  robots: { index: false, follow: true },
 }
 
-export default async function NotFound() {
-  const locale = await getLocale()
-  const messages = await getMessages()
-
+export default function NotFound() {
   return (
-    <html lang={locale} className={fontClassName}>
+    <html lang="en" className={fontClassName}>
       <head>
         <script dangerouslySetInnerHTML={{ __html: consentDefaultsScript }} />
       </head>
       <body className="min-h-screen bg-black font-sans antialiased text-white overflow-x-hidden">
-        <NextIntlClientProvider locale={locale} messages={messages}>
-          <BlocksStyles />
-          <div className="site-root">
-            <BlocksNotFound />
-          </div>
-          <CookieConsent gtmId={process.env.NEXT_PUBLIC_GTM_ID || ''} />
-        </NextIntlClientProvider>
+        <BlocksStyles />
+        <div className="site-root">
+          <LocalizedNotFound messages={{ en: messages, sv, es }} />
+        </div>
       </body>
     </html>
   )

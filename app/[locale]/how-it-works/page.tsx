@@ -1,7 +1,14 @@
+import { setRequestLocale } from 'next-intl/server'
 import BlocksHowItWorks from '@/components/blocks/BlocksHowItWorks'
 import BlocksStyles from '@/components/blocks/BlocksStyles'
 
-export default function HowItWorksPage() {
+type Props = { params: Promise<{ locale: string }> }
+
+// setRequestLocale lets next-intl render this page statically at build time.
+export default async function HowItWorksPage({ params }: Props) {
+  const { locale } = await params
+  setRequestLocale(locale)
+
   return (
     <>
       <BlocksStyles />
