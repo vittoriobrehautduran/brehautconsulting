@@ -7,7 +7,7 @@
   --line: rgb(255 255 255 / 0.14);
   --bg: #000;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
-  --font-display: var(--font-albert), "Albert Sans", system-ui, sans-serif;
+  --font-display: var(--font-geist), "Geist", system-ui, sans-serif;
 
   color: var(--ink);
   background: var(--bg);

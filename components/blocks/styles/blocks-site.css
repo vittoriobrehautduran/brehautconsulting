@@ -8,8 +8,9 @@
   --line: rgb(255 255 255 / 0.1);
   --bg: #000;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
-  --font-display: var(--font-albert), "Albert Sans", system-ui, sans-serif;
-  --font-brand: var(--font-playfair), "Playfair Display", Georgia, serif;
+  --font-display: var(--font-geist), "Geist", system-ui, sans-serif;
+  --font-brand: var(--font-geist), "Geist", system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), "Geist Mono", ui-monospace, monospace;
 
   color: var(--ink);
   background: var(--bg);
@@ -85,8 +86,8 @@
   margin: 0;
   font-family: var(--font-brand);
   font-weight: 600;
-  letter-spacing: -0.03em;
-  line-height: 1.12;
+  letter-spacing: -0.04em;
+  line-height: 1.08;
   font-size: clamp(2rem, 4vw, 3rem);
 }
 
@@ -153,8 +154,8 @@
   margin: 0;
   font-family: var(--font-brand);
   font-weight: 600;
-  letter-spacing: -0.03em;
-  line-height: 1.15;
+  letter-spacing: -0.035em;
+  line-height: 1.12;
   font-size: clamp(1.65rem, 3vw, 2.15rem);
 }
 
@@ -1283,7 +1284,7 @@
 }
 
 .blocks-site__status-code {
-  font-family: var(--font-brand);
+  font-family: var(--font-mono);
   font-size: clamp(4rem, 14vw, 8rem);
   line-height: 1;
   color: var(--blue) !important;
@@ -1443,4 +1444,26 @@
   .blocks-site__expect {
     grid-template-columns: 1fr;
   }
+}
+
+/* —— Geist Mono for small technical details —— */
+.blocks-site__service-link-num,
+.blocks-site__step-num,
+.blocks-site__title-num,
+.blocks-site__work-num,
+.blocks-site__crumb,
+.blocks-site__footer-label,
+.blocks-site__work-title {
+  font-family: var(--font-mono);
+  font-feature-settings: normal;
+}
+
+.blocks-site__footer-label,
+.blocks-site__work-title {
+  letter-spacing: 0.04em;
+}
+
+.blocks-site__crumb {
+  font-size: 0.8rem;
+  letter-spacing: 0.01em;
 }

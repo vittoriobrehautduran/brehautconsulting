@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import { Link } from '@/i18n/navigation'
 import { useTranslations } from 'next-intl'
-import { CONTACT_EMAIL, CONTACT_PHONE, LINKEDIN_URL } from '@/lib/constants'
+import { CONTACT_EMAIL, CONTACT_PHONE, INSTAGRAM_URL, LINKEDIN_URL } from '@/lib/constants'
 import { HOME, sitePath } from '@/components/blocks/serviceRoutes'
 import { OPEN_CONSENT_EVENT } from '@/components/consent/CookieConsent'
 
@@ -56,6 +56,14 @@ export default function BlocksFooter() {
                   <span className="blocks-site__footer-label">LinkedIn</span>
                   <span className="blocks-site__footer-value">
                     Brehaut Consulting <span aria-hidden="true">↗</span>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer">
+                  <span className="blocks-site__footer-label">Instagram</span>
+                  <span className="blocks-site__footer-value">
+                    @brehautconsulting <span aria-hidden="true">↗</span>
                   </span>
                 </a>
               </li>
