@@ -91,36 +91,36 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     icons: {
       icon: [
         {
-          url: '/media/brand/favicon/favicon.svg?v=20261120',
+          url: '/media/brand/favicon/favicon.svg?v=20261122e',
           type: 'image/svg+xml',
         },
         {
-          url: '/media/brand/favicon/favicon.ico?v=20261120',
+          url: '/media/brand/favicon/favicon.ico?v=20261122e',
           sizes: 'any',
         },
         {
-          url: '/media/brand/favicon/favicon-96x96.png?v=20261120',
+          url: '/media/brand/favicon/favicon-96x96.png?v=20261122e',
           sizes: '96x96',
           type: 'image/png',
         },
       ],
       shortcut: [
         {
-          url: '/media/brand/favicon/favicon.ico?v=20261120',
+          url: '/media/brand/favicon/favicon.ico?v=20261122e',
           sizes: 'any',
         },
       ],
-      apple: '/media/brand/favicon/apple-touch-icon.png?v=20261120',
+      apple: '/media/brand/favicon/apple-touch-icon.png?v=20261122e',
       other: [
         {
           rel: 'android-chrome-192x192',
-          url: '/media/brand/favicon/web-app-manifest-192x192.png?v=20261120',
+          url: '/media/brand/favicon/web-app-manifest-192x192.png?v=20261122e',
           sizes: '192x192',
           type: 'image/png',
         },
         {
           rel: 'android-chrome-512x512',
-          url: '/media/brand/favicon/web-app-manifest-512x512.png?v=20261120',
+          url: '/media/brand/favicon/web-app-manifest-512x512.png?v=20261122e',
           sizes: '512x512',
           type: 'image/png',
         },

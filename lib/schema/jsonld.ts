@@ -16,7 +16,7 @@ export function organizationSchema(locale: string, description: string) {
     name: COMPANY_NAME,
     description,
     url: `${BASE_URL}/${locale}`,
-    logo: `${BASE_URL}/media/brand/logo-favicon-256.png`,
+    logo: `${BASE_URL}/media/brand/logo/bc-logo-512.png`,
     image: `${BASE_URL}/media/og/og-en.jpg`,
     email: CONTACT_EMAIL,
     telephone: CONTACT_PHONE.replace(/\s/g, ''),

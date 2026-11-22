@@ -17,10 +17,11 @@ export default function BlocksFooter() {
         <div className="blocks-site__footer-top">
           <Link className="blocks-scroll__logo" href={HOME}>
             <Image
-              src="/media/brand/logo-white-128.png"
+              src="/media/brand/logo/bc-mark-white.svg"
               alt=""
-              width={28}
-              height={28}
+              width={39}
+              height={16}
+              unoptimized
               aria-hidden
             />
             <span>Brehaut Consulting</span>

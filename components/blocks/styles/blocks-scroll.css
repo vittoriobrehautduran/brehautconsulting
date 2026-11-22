@@ -89,7 +89,8 @@
 }
 
 .blocks-scroll__logo img {
-  border-radius: 4px;
+  display: block;
+  height: auto;
 }
 
 /* Links sit with the Contact CTA on the right. */
