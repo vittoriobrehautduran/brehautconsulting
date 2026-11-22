@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useState } from 'react'
 import { useTranslations } from 'next-intl'
 import { Link } from '@/i18n/navigation'
+import { CONSENT_HIDE_STYLE_ID } from '@/components/consent/consentDefaults'
 
 // Cookie consent for analytics (GDPR / ePrivacy).
 // - Google Tag Manager is NOT loaded until the visitor accepts.
@@ -68,16 +69,21 @@ function readChoice(): Choice | null {
 
 export default function CookieConsent({ gtmId }: { gtmId: string }) {
   const t = useTranslations('consent')
-  const [open, setOpen] = useState(false)
+  // Open in the server HTML so the banner paints with the page instead of
+  // after hydration. For visitors who already chose, an inline <head> script
+  // hides it before paint (see consentDefaults) and we close it here.
+  const [open, setOpen] = useState(true)
 
   useEffect(() => {
     const stored = readChoice()
     if (stored === 'granted') {
       setConsent('granted')
       loadGtm(gtmId)
-    } else if (stored === null) {
-      setOpen(true)
     }
+    if (stored !== null) setOpen(false)
+    // The banner is unmounted now (or should show), so the pre-paint hiding
+    // style is no longer needed and must not block a later reopen.
+    document.getElementById(CONSENT_HIDE_STYLE_ID)?.remove()
 
     const reopen = () => setOpen(true)
     window.addEventListener(OPEN_CONSENT_EVENT, reopen)
